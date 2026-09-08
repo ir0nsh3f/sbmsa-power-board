@@ -1,0 +1,1080 @@
+{
+  "last_checked": "2026-09-08T22:41:01.146941Z",
+  "status": "ok",
+  "errors": [],
+  "divisions": [
+    {
+      "sport": "flag",
+      "division": "Mahomes",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/707765/",
+      "teams": [
+        {
+          "team": "Bengals",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 14,
+          "pa": 18,
+          "margin_sum": -4,
+          "capped_margin_sum": -4
+        },
+        {
+          "team": "Chargers",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 22,
+          "pa": 6,
+          "margin_sum": 16,
+          "capped_margin_sum": 16
+        },
+        {
+          "team": "Cowboys",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 7,
+          "pa": 21,
+          "margin_sum": -14,
+          "capped_margin_sum": -14
+        },
+        {
+          "team": "Eagles",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 25,
+          "pa": 8,
+          "margin_sum": 17,
+          "capped_margin_sum": 17
+        },
+        {
+          "team": "Falcons",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 18,
+          "pa": 14,
+          "margin_sum": 4,
+          "capped_margin_sum": 4
+        },
+        {
+          "team": "Jets",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 21,
+          "pa": 7,
+          "margin_sum": 14,
+          "capped_margin_sum": 14
+        },
+        {
+          "team": "Saints",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 8,
+          "pa": 25,
+          "margin_sum": -17,
+          "capped_margin_sum": -17
+        },
+        {
+          "team": "Texans",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Titans",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 6,
+          "pa": 22,
+          "margin_sum": -16,
+          "capped_margin_sum": -16
+        }
+      ],
+      "games": [
+        {
+          "home": "Bengals",
+          "away": "Falcons",
+          "home_score": 14,
+          "away_score": 18,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Saints",
+          "away": "Eagles",
+          "home_score": 8,
+          "away_score": 25,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Jets",
+          "away": "Cowboys",
+          "home_score": 21,
+          "away_score": 7,
+          "date": "Sat 9/5"
+        },
+        {
+          "home": "Titans",
+          "away": "Chargers",
+          "home_score": 6,
+          "away_score": 22,
+          "date": "Sat 9/5"
+        }
+      ]
+    },
+    {
+      "sport": "flag",
+      "division": "Burrow",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/707766/",
+      "teams": [
+        {
+          "team": "49ers",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 13,
+          "pa": 21,
+          "margin_sum": -8,
+          "capped_margin_sum": -8
+        },
+        {
+          "team": "Bears",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 19,
+          "pa": 0,
+          "margin_sum": 19,
+          "capped_margin_sum": 19
+        },
+        {
+          "team": "Bills",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 21,
+          "pa": 13,
+          "margin_sum": 8,
+          "capped_margin_sum": 8
+        },
+        {
+          "team": "Broncos",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 6,
+          "pa": 34,
+          "margin_sum": -28,
+          "capped_margin_sum": -21
+        },
+        {
+          "team": "Buccaneers",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 34,
+          "pa": 6,
+          "margin_sum": 28,
+          "capped_margin_sum": 21
+        },
+        {
+          "team": "Lions",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Mustangs",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 0,
+          "pa": 19,
+          "margin_sum": -19,
+          "capped_margin_sum": -19
+        },
+        {
+          "team": "Oilers",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 19,
+          "pa": 18,
+          "margin_sum": 1,
+          "capped_margin_sum": 1
+        },
+        {
+          "team": "Spartans",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 18,
+          "pa": 19,
+          "margin_sum": -1,
+          "capped_margin_sum": -1
+        }
+      ],
+      "games": [
+        {
+          "home": "Bears",
+          "away": "Mustangs",
+          "home_score": 19,
+          "away_score": 0,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Spartans",
+          "away": "Oilers",
+          "home_score": 18,
+          "away_score": 19,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "49ers",
+          "away": "Bills",
+          "home_score": 13,
+          "away_score": 21,
+          "date": "Sat 9/5"
+        },
+        {
+          "home": "Broncos",
+          "away": "Buccaneers",
+          "home_score": 6,
+          "away_score": 34,
+          "date": "Sat 9/5"
+        }
+      ]
+    },
+    {
+      "sport": "flag",
+      "division": "Jackson",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/707767/",
+      "teams": [
+        {
+          "team": "Chiefs",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 39,
+          "pa": 7,
+          "margin_sum": 32,
+          "capped_margin_sum": 21
+        },
+        {
+          "team": "Dolphins",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 12,
+          "pa": 6,
+          "margin_sum": 6,
+          "capped_margin_sum": 6
+        },
+        {
+          "team": "Gamblers",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 18,
+          "pa": 47,
+          "margin_sum": -29,
+          "capped_margin_sum": -21
+        },
+        {
+          "team": "Giants",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 47,
+          "pa": 18,
+          "margin_sum": 29,
+          "capped_margin_sum": 21
+        },
+        {
+          "team": "Jaguars",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 0,
+          "pa": 19,
+          "margin_sum": -19,
+          "capped_margin_sum": -19
+        },
+        {
+          "team": "Packers",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 7,
+          "pa": 39,
+          "margin_sum": -32,
+          "capped_margin_sum": -21
+        },
+        {
+          "team": "Patriots",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 31,
+          "pa": 24,
+          "margin_sum": 7,
+          "capped_margin_sum": 7
+        },
+        {
+          "team": "Raiders",
+          "w": 1,
+          "l": 0,
+          "t": 0,
+          "gp": 1,
+          "pf": 19,
+          "pa": 0,
+          "margin_sum": 19,
+          "capped_margin_sum": 19
+        },
+        {
+          "team": "Seahawks",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 6,
+          "pa": 12,
+          "margin_sum": -6,
+          "capped_margin_sum": -6
+        },
+        {
+          "team": "Steelers",
+          "w": 0,
+          "l": 1,
+          "t": 0,
+          "gp": 1,
+          "pf": 24,
+          "pa": 31,
+          "margin_sum": -7,
+          "capped_margin_sum": -7
+        }
+      ],
+      "games": [
+        {
+          "home": "Seahawks",
+          "away": "Dolphins",
+          "home_score": 6,
+          "away_score": 12,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Giants",
+          "away": "Gamblers",
+          "home_score": 47,
+          "away_score": 18,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Packers",
+          "away": "Chiefs",
+          "home_score": 7,
+          "away_score": 39,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Jaguars",
+          "away": "Raiders",
+          "home_score": 0,
+          "away_score": 19,
+          "date": "Wed 9/2"
+        },
+        {
+          "home": "Patriots",
+          "away": "Steelers",
+          "home_score": 31,
+          "away_score": 24,
+          "date": "Sat 9/5"
+        }
+      ]
+    },
+    {
+      "sport": "8u",
+      "division": "Pulisic",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/710191/",
+      "teams": [
+        {
+          "team": "Arsenal",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Brazil",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Canada",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Dortmund",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Germany",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Houston",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Madrid",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "New York",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Seattle",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Spain",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        }
+      ],
+      "games": []
+    },
+    {
+      "sport": "8u",
+      "division": "Messi",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/710190/",
+      "teams": [
+        {
+          "team": "Argentina",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Barcelona",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Celtic",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "England",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "France",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Holland",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Ireland",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Juve",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "USA",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        }
+      ],
+      "games": []
+    },
+    {
+      "sport": "6u",
+      "division": "Messi",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/710199/",
+      "teams": [
+        {
+          "team": "America",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Argentina FC",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Bayern Eagles",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Bulls FC",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Celtics",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Chelsea",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Holland Hooligans",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Mexico",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Real Madrid",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Space City Strikers",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "The Rams",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Vipers",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        }
+      ],
+      "games": []
+    },
+    {
+      "sport": "6u",
+      "division": "Haaland",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/710198/",
+      "teams": [
+        {
+          "team": "Blue Jays",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Cannonballs",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Ireland",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Kinkaid Falcons",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Liverpool",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Red Fury",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "San Jose",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Seattle Sounders FC",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Speedy Yetis",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Tigers",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Turbo Turtles",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "USA Screaming Eagles",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        }
+      ],
+      "games": []
+    },
+    {
+      "sport": "6u",
+      "division": "Mbappe",
+      "url": "https://sbmsa.net/sites/sbmsa/schedule/742279/",
+      "teams": [
+        {
+          "team": "BHE Lions",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Barcelona",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Bomb Pops",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Brazil",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Canada Raptors",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "England Lions",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Golden Dragons",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Green Army",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Green Machine",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Lightning",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "New York Knights",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Regis Knights",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        }
+      ],
+      "games": []
+    }
+  ],
+  "last_successful_check": "2026-09-08T22:41:01.146941Z",
+  "data_updated": "2026-09-08T22:37:17.032136Z"
+}
