@@ -1,10 +1,7 @@
 {
-  "last_checked": "2026-09-08T23:30:20.353122Z",
-  "status": "error",
-  "errors": [
-    "6u Messi: URLError: <urlopen error timed out>",
-    "6u Mbappe: URLError: <urlopen error timed out>"
-  ],
+  "last_checked": "2026-09-08T23:33:31.045673Z",
+  "status": "ok",
+  "errors": [],
   "divisions": [
     {
       "sport": "flag",
@@ -5478,6 +5475,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-08T23:16:01.610070Z",
+  "last_successful_check": "2026-09-08T23:33:31.045673Z",
   "data_updated": "2026-09-08T23:07:19.406018Z"
 }
