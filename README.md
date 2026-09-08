@@ -28,6 +28,10 @@ SOS averages opponents' win rates after removing **all** head-to-head meetings w
 
 The Our Teams schedule uses only current public SBMSA fixtures for Buccaneers/Burrow, Arsenal/Pulisic and Vipers/Messi. It includes upcoming games, completed results, home/away, official field labels, and opponents' latest records/scoring/coaches. These opponent summaries are **current season totals**, not historical pre-game estimates. Times use America/Chicago. Undated/TBD games remain explicitly unresolved; private practices, calendar feeds, personal arrival instructions and unverified stream links are excluded. Historical spring baseball emails informed the layout, not the current data.
 
+## Mobile layout
+
+The dashboard stays one continuous page on phones: rankings, schedules and advanced statistics are not separate views. Compact table spacing, aligned numeric columns and visible coach identities take priority over large cards. Wide comparison tables scroll inside their own containers rather than widening the page. Keep data readable and interactive controls at least 44px tall. `node tests/mobile-smoke.cjs` checks mobile density, section visibility, coach search and overflow; it also supports `TEST_URL` for deployment verification.
+
 ## Scope and privacy
 
 Only public team results, official coach names, division names, source links, and owner-approved child first-name/team associations are published. No private feeds, player profiles, personal contacts or GitHub credentials are included. Baseball is excluded until the relevant league/results source is identified.
