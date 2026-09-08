@@ -116,7 +116,7 @@ def parse_division(html, sport, division, url):
             raise ValueError('Missing or duplicate team')
         if any(not values[k].isascii() or not values[k].isdigit() for k in ('w','l','t','gp')):
             raise ValueError('Invalid standings number')
-        teams[name] = {'team': name, **{k: int(values[k]) for k in ('w','l','t','gp')},
+        teams[name] = {'team': name, 'coach': values.get('coach', ''), **{k: int(values[k]) for k in ('w','l','t','gp')},
                        'pf': 0, 'pa': 0, 'margin_sum': 0, 'capped_margin_sum': 0}
     if len(teams) < 2:
         raise ValueError('Suspicious empty or single-team division')

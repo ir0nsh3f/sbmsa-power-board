@@ -12,7 +12,7 @@ GitHub Actions checks the eight official division pages every six hours, at 00:1
 - **Last successful check:** latest collection accepted after validation.
 - **Data updated:** when accepted results/standings last changed; an unchanged successful check does not move this timestamp.
 - If any division cannot be verified, the collector keeps the previous complete snapshot and publishes an error status instead of silently mixing old and new divisions. Failed source checks also flag the workflow.
-- The page's reload button reads the latest published JSON. It does not trigger a GitHub workflow or scrape SBMSA from the browser.
+- Opening or refreshing the page reads the latest published JSON. There is no extra reload button, and the browser does not trigger a source check.
 
 ## Ranking method
 
@@ -22,7 +22,7 @@ The per-game method avoids rewarding teams simply for having played more games. 
 
 ## Scope and privacy
 
-Only public team results, division names, source links, and owner-approved child first-name/team associations are published. No private feeds, player profiles, personal contacts or GitHub credentials are included. Baseball is excluded until the relevant league/results source is identified.
+Only public team results, official coach names, division names, source links, and owner-approved child first-name/team associations are published. No private feeds, player profiles, personal contacts or GitHub credentials are included. Baseball is excluded until the relevant league/results source is identified.
 
 ## Run locally
 
@@ -36,6 +36,10 @@ python -m http.server 8000 --directory site
 ```
 
 Open http://localhost:8000. The server is only needed for local viewing; GitHub hosts the public site even with the household PC off.
+
+## Browser regression checks
+
+With Playwright and its Chromium browser installed, run `node tests/ui-smoke.cjs`. Set `PLAYWRIGHT_MODULE` to a module path for an external installation; set `TEST_URL` to verify the deployed site. The test serves local publication files over loopback by default and checks coach identification/search, button removal, responsive layouts and escaping. QA mutations stay in browser memory.
 
 ## Operations
 

@@ -142,6 +142,21 @@ class ResultsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'reconcile'):
             results.parse_division(synthetic_page(records=[(2,0,0,2),(0,2,0,2)]), 'flag','Test','url')
 
+    def test_preserves_coach_column_and_handles_unlisted_coaches(self):
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(synthetic_page(), 'html.parser')
+        header = soup.new_tag('th')
+        header.string = 'Coach'
+        soup.select_one('#standingsGrid thead tr').append(header)
+        for row, coach in zip(soup.select('#standingsGrid tbody tr'), ['Smith / Jones', '']):
+            cell = soup.new_tag('td')
+            cell.string = coach
+            row.append(cell)
+        parsed = results.parse_division(str(soup), 'flag', 'Test', 'url')
+        self.assertEqual([t.get('coach') for t in parsed['teams']], ['Smith / Jones', ''])
+        missing = results.parse_division(synthetic_page(), 'flag', 'Test', 'url')
+        self.assertEqual([t.get('coach') for t in missing['teams']], ['', ''])
+
     def test_real_mahomes_standings_and_completed_games(self):
         self.assertTrue(hasattr(results, 'parse_division'), 'parser not implemented')
         division = results.parse_division((ROOT / 'tests/fixtures/mahomes.html').read_text(), 'flag', 'Mahomes', 'source')
