@@ -22,18 +22,32 @@ const path=require('node:path');
   await page.waitForSelector('.row');
   assert.equal(await page.locator('button').filter({hasText:/Reload published data/i}).count(),0,'Redundant reload button must be absent');
   assert.equal(await page.locator('#advanced').count(),1,'Advanced stats section must exist');
+  assert.equal(await page.getByRole('tab').count(),3,'Three separate dashboard views');
+  assert.equal(await page.locator('#advanced').isVisible(),false,'Inactive advanced panel is hidden');
   for(const [sport,team,coach] of [['flag','Buccaneers','Wells'],['8u','Arsenal','Klupchak'],['6u','Vipers','Ellis']]){
+   await page.getByRole('tab',{name:'Advanced',exact:true}).click();
    await page.locator(`[data-sport="${sport}"]`).click();
+   assert.ok(await page.locator('#search').isVisible());
+   assert.equal(await page.locator('#stat-sort option[value="raw_total"]').count(),1,'Raw TOTAL sort exists');
    assert.equal(await page.locator('#stats-body tr').count(),await page.locator('.row').count(),'Advanced stats must include the entire filtered field');
    assert.ok((await page.locator('#stats-body').innerText()).includes(coach),'Advanced stats must retain coaches');
    assert.ok((await page.locator('#stats-head').innerText()).includes(sport==='flag'?'PF/G':'GF/G'),'Sport-specific scoring labels');
    const summary=await page.evaluate(({sport,team})=>{const d=data.divisions.find(d=>d.sport===sport&&d.teams.some(t=>t.team===team));const t=d.teams.find(t=>t.team===team);return {gp:t.gp,pf:t.pf,pa:t.pa};},{sport,team});
    const statsRow=page.locator('#stats-body tr').filter({hasText:team}).first();
    const cells=await statsRow.locator('td').allTextContents();
-   assert.equal(cells[4],summary.gp?(summary.pf/summary.gp).toFixed(1):'—');
-   assert.equal(cells[5],summary.gp?(summary.pa/summary.gp).toFixed(1):'—');
-   await page.locator('#stat-sort').selectOption('scored_pg');
+   assert.equal(cells[6],summary.gp?(summary.pf/summary.gp).toFixed(1):'—');
+   assert.equal(cells[7],summary.gp?(summary.pa/summary.gp).toFixed(1):'—');
+   for(const sort of ['raw_total','raw_margin','scored_pg','allowed_pg','adjusted_margin','sos','board']){
+    await page.locator('#stat-sort').selectOption(sort);
+    const actual=await page.locator('#stats-body tr').evaluateAll(rows=>rows.map(r=>({team:r.dataset.team,value:r.dataset.metric,rank:r.dataset.metricRank,label:r.cells[1].textContent})));
+    const expected=await page.evaluate(sort=>{const stats=SBMSAAdvanced.compute(data.divisions,sport);return rankings().map(t=>{const st=stats[JSON.stringify([t.division,t.team])];return {team:t.team,value:!t.gp?null:sort==='board'?t.rank:sort==='raw_total'?t.margin_sum:st[sort]};}).sort((a,b)=>a.value==null?(b.value==null?a.team.localeCompare(b.team):1):b.value==null?-1:(sort==='board'||sort==='allowed_pg'?a.value-b.value:b.value-a.value)||a.team.localeCompare(b.team));},sort);
+    assert.deepEqual(actual.map(r=>r.team),expected.map(r=>r.team),sport+'/'+sort+' order');
+    let rank=0;for(let i=0;i<actual.length;i++){const r=actual[i],v=expected[i].value;if(v==null){assert.equal(r.label,'—');continue;}if(i===0||Math.abs(v-expected[i-1].value)>1e-9)rank=i+1;assert.equal(+r.rank,rank);assert.equal(+r.value,v);const tied=expected.filter(x=>x.value!=null&&Math.abs(x.value-v)<=1e-9).length>1;assert.equal(r.label,(tied?'T':'')+rank);}
+   }
+   assert.ok(await page.locator('.metric-definition').first().isVisible());
+   await page.locator('.stats-method summary').click();assert.ok((await page.locator('.stats-method').innerText()).includes('n/(n+3)'));await page.locator('.stats-method summary').click();
    await page.locator('#stat-sort').selectOption('board');
+   await page.getByRole('tab',{name:'Rankings',exact:true}).click();
    assert.ok((await page.locator(`.row[data-team="${team}"]`).innerText()).includes('Coach: '+coach),'Team row must identify its coach');
    assert.ok((await page.locator('#focus').innerText()).includes('Coach: '+coach),'Spotlight must identify its coach');
    await page.locator('#search').fill(coach.toLowerCase());
@@ -44,6 +58,7 @@ const path=require('node:path');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`Overflow at ${width}`);
    }
   }
+  await page.getByRole('tab',{name:'Our Teams',exact:true}).click();
   assert.ok((await page.locator('#team-schedules').innerText()).toLowerCase().includes('opponent'),'Our teams opponent guide must render');
   const guide=page.locator('#team-schedules');
   await guide.getByRole('button',{name:'All',exact:true}).click();
@@ -53,13 +68,28 @@ const path=require('node:path');
   await guide.getByRole('button',{name:'Results',exact:true}).click();
   assert.ok((await guide.innerText()).includes('34'),'Completed Buccaneers result is present');
   await guide.getByRole('button',{name:'Upcoming',exact:true}).click();
+  await page.getByRole('tab',{name:'Rankings',exact:true}).click();
   await page.locator('[data-sport="flag"]').click();
   if(process.env.SCREENSHOT){
    await page.screenshot({path:process.env.SCREENSHOT,fullPage:true});
    for(const [selector,suffix] of [['#advanced','stats'],['#team-schedules','schedule']]){
+    await page.evaluate(id=>setView(id),selector.slice(1));
     await page.locator(selector).screenshot({path:process.env.SCREENSHOT+'.'+suffix+'.png'});
    }
   }
+  await page.getByRole('tab',{name:'Rankings',exact:true}).focus();await page.keyboard.press('ArrowRight');assert.ok(await page.locator('#advanced').isVisible());
+  for(const [hash,panel] of [['team-schedules','team-schedules'],['boardtitle','rankings'],['advanced','advanced']]){await page.evaluate(hash=>location.hash=hash,hash);await page.waitForFunction(panel=>!document.getElementById(panel).hidden,panel);}
+  for(const hash of ['unknown-view','constructor','toString','__proto__']){
+   await page.evaluate(hash=>new Promise(resolve=>{window.addEventListener('hashchange',()=>resolve(),{once:true});location.hash=hash;}),hash);
+   assert.ok(await page.locator('#advanced').isVisible(),`Unknown hash #${hash} must preserve the active panel`);
+   assert.equal(await page.getByRole('tab',{selected:true}).getAttribute('data-view'),'advanced',`Unknown hash #${hash} must preserve the selected tab`);
+   assert.equal(await page.locator('[role="tabpanel"]:visible').count(),1,`Unknown hash #${hash} must leave exactly one visible panel`);
+  }
+  await page.emulateMedia({media:'print'});for(const panel of ['rankings','advanced','team-schedules'])assert.ok(await page.locator('#'+panel).isVisible());await page.emulateMedia({media:'screen'});
+  // Browser-only edge matrix: equal metrics, missing histories and an unplayed team.
+  await page.evaluate(()=>{window.originalCompute=SBMSAAdvanced.compute;window.originalData=data;data=structuredClone(data);const d=data.divisions.find(d=>d.sport==='flag');d.teams=d.teams.slice(0,4);data.divisions=[d];d.teams.forEach((t,i)=>{t.gp=i===3?0:1;t.margin_sum=[10,10,-2,0][i];});SBMSAAdvanced.compute=()=>Object.fromEntries(d.teams.map((t,i)=>[JSON.stringify([d.division,t.team]),{scored_pg:[10,10,null,0][i],allowed_pg:[2,2,null,0][i],raw_margin:[10,10,null,0][i],adjusted_margin:[3,3,null,0][i],sos:[.5,.5,null,0][i],capped_margin:null,sos_coverage:0,close_record:{w:0,l:0,t:0}}]));resetDivision();render();setView('advanced');});
+  for(const sort of ['raw_total','raw_margin','scored_pg','allowed_pg','adjusted_margin','sos']){await page.locator('#stat-sort').selectOption(sort);const labels=await page.locator('#stats-body tr td:nth-child(2)').allTextContents();assert.deepEqual(labels,sort==='raw_total'?['T1','T1','3','—']:['T1','T1','—','—']);}
+  await page.evaluate(()=>{data=window.originalData;SBMSAAdvanced.compute=window.originalCompute;resetDivision();render();setView('rankings');});
   // Hostile name is QA-only, injected in browser memory, never written into public data.
   await page.evaluate(()=>{data.divisions.find(d=>d.sport==='flag').teams[0].coach='<img src=x onerror="window.coachInjection=true">';render();});
   assert.equal(await page.locator('#rows img').count(),0);

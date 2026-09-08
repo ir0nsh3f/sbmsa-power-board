@@ -30,7 +30,7 @@ The Our Teams schedule uses only current public SBMSA fixtures for Buccaneers/Bu
 
 ## Mobile layout
 
-The dashboard stays one continuous page on phones: rankings, schedules and advanced statistics are not separate views. Compact table spacing, aligned numeric columns and visible coach identities take priority over large cards. Wide comparison tables scroll inside their own containers rather than widening the page. Keep data readable and interactive controls at least 44px tall. `node tests/mobile-smoke.cjs` checks mobile density, section visibility, coach search and overflow; it also supports `TEST_URL` for deployment verification.
+The dashboard has separate keyboard-accessible **Rankings**, **Advanced**, and **Our Teams** views at every width. Rankings and Advanced share always-accessible sport/division/team-or-coach filters. Advanced sorts by raw differential TOTAL, raw differential /game, best offense, best defense, adjusted margin, SOS or board rank. Selected-metric competition ranks (ties share rank; missing/unplayed last) and values appear beside team identity; the original board rank is separately labeled. Metric ranks describe the filtered comparison. Compact rows keep primary figures at least 12px, metadata 11px and controls 44px tall. Wide tables scroll within their container. Publication details collapse on mobile, but source errors remain visible. Hash links reveal the correct panel; printing reveals all panels. `node tests/mobile-smoke.cjs` checks real-publication density, separate views, disclosures, coach search, touch targets and overflow; `node tests/ui-smoke.cjs` verifies all seven sort orders and browser-only tie/null edge cases. Both support `TEST_URL`.
 
 ## Scope and privacy
 
