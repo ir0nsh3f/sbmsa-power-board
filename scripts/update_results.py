@@ -4,6 +4,8 @@ import json
 import os
 from pathlib import Path
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+import re
 import tempfile
 import time
 from urllib.request import Request, urlopen
@@ -89,10 +91,66 @@ def text(node):
     return node.get_text(' ', strip=True) if node else ''
 
 
+FALL_SEASON_YEAR = 2026
+CENTRAL = ZoneInfo('America/Chicago')
+
+
+def schedule_dates(date_label, time_label):
+    """Normalize official labels without inventing dates for pending games."""
+    pending = {'', 'TBA', 'TBD'}
+    day = clock = None
+    if date_label.upper() not in pending:
+        match = re.fullmatch(r'(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s+)?([0-9]{1,2})/([0-9]{1,2})', date_label)
+        if not match:
+            raise ValueError(f'Malformed schedule date: {date_label!r}')
+        weekday, month, date = match.groups()
+        day = datetime(FALL_SEASON_YEAR, int(month), int(date))
+        if weekday and weekday != ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun')[day.weekday()]:
+            raise ValueError(f'Schedule weekday disagrees with Fall {FALL_SEASON_YEAR}: {date_label!r}')
+    if time_label.upper() not in pending:
+        if not re.fullmatch(r'(?:0?[1-9]|1[0-2]):[0-5][0-9] [AP]M', time_label):
+            raise ValueError(f'Malformed schedule time: {time_label!r}')
+        clock = datetime.strptime(time_label, '%I:%M %p')
+    start = day.replace(hour=clock.hour, minute=clock.minute, tzinfo=CENTRAL) if day and clock else None
+    return day.date().isoformat() if day else None, start.isoformat() if start else None
+
+
+def parse_schedule(table, teams):
+    entries = []
+    seen = set()
+    for row in table.select('tbody > tr'):
+        if not row.select('[id$=HomeLabel], [id$=AwayLabel]'):
+            continue
+        get = lambda suffix: text(row.select_one('[id$="' + suffix + '"]'))
+        home, away = get('HomeLabel'), get('AwayLabel')
+        # Official bye rows use TimeLabel='Bye' and an empty AwayLabel.
+        if 'BYE' in (home.upper(), away.upper()) or get('TimeLabel').upper() == 'BYE':
+            continue
+        if home not in teams or away not in teams or home == away:
+            raise ValueError('Unknown or self-playing team in schedule')
+        date_label, time_label = get('DateLabel'), get('TimeLabel')
+        date_iso, start_iso = schedule_dates(date_label, time_label)
+        key = (date_iso or date_label, start_iso or time_label, *sorted((home, away)))
+        if key in seen:
+            raise ValueError('Duplicate game in schedule')
+        seen.add(key)
+        hs, aws = get('HomeScoreLabel'), get('AwayScoreLabel')
+        if (hs or aws) and any(not s.isascii() or not s.isdigit() for s in (hs, aws)):
+            raise ValueError('Malformed or partial score')
+        entries.append({'home':get('HomeLabel'), 'away':get('AwayLabel'),
+                        'date':date_label, 'time':time_label,
+                        'location':get('ScheduleLabel') or get('LocationLabel') or get('LocationLink'),
+                        'date_iso':date_iso, 'start_iso':start_iso,
+                        'home_score':int(hs) if hs else None,
+                        'away_score':int(aws) if aws else None})
+    return entries
+
+
 def parse_division(html, sport, division, url):
     soup = BeautifulSoup(html, 'html.parser')
     standings = soup.select_one('table[id*="standingsGrid"]')
-    schedule = soup.select_one('table[id*="ScheduleGrid"]')
+    # Exact desktop ID; the short ID supports isolated synthetic parser fixtures.
+    schedule = soup.select_one('table#ctl00_ContentPlaceHolder1_StandingsResultsControl_ScheduleGrid_ctl00, table#ScheduleGrid')
     if standings is None or schedule is None:
         raise ValueError('Missing standings or schedule table')
     headers = [text(h).lower() for h in standings.select('thead th')]
@@ -154,7 +212,7 @@ def parse_division(html, sport, division, url):
             raise ValueError(f'Cannot reconcile goals for {name}')
         if actual != tuple(team[k] for k in ('w','l','t','gp')):
             raise ValueError(f'Cannot reconcile standings and games for {name}')
-    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games}
+    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':parse_schedule(schedule, teams)}
 
 
 if __name__ == '__main__':

@@ -16,7 +16,7 @@ def synthetic_page(games=((0, 0), (30, 0)), extra='', records=None):
     standing = ''.join('<tr>'+''.join(f'<td>{v}</td>' for v in (name,*record))+'</tr>' for name,record in zip(('A','B'),records))
     rows = ''
     for i,(hs,aws) in enumerate(games):
-        rows += '<tr>'+''.join(f'<td><span id="r{i}_{key}">{value}</span></td>' for key,value in [('HomeLabel','A'),('AwayLabel','B'),('HomeScoreLabel',hs),('AwayScoreLabel',aws),('DateLabel',f'Sat 9/{i+1}'),('TimeLabel','10:00 AM')])+'</tr>'
+        rows += '<tr>'+''.join(f'<td><span id="r{i}_{key}">{value}</span></td>' for key,value in [('HomeLabel','A'),('AwayLabel','B'),('HomeScoreLabel',hs),('AwayScoreLabel',aws),('DateLabel',f'Sat 9/{5 + i * 7}'),('TimeLabel','10:00 AM')])+'</tr>'
     return '<table id="standingsGrid"><thead><tr>'+''.join(f'<th>{h}</th>' for h in ('Team','W','L','T','GP'))+'</tr></thead><tbody>'+standing+'</tbody></table><table id="ScheduleGrid"><tbody>'+rows+extra+'</tbody></table>'
 
 

@@ -20,17 +20,26 @@ Within each sport/age group, rank teams that have played by `(wins + 0.5 × ties
 
 The per-game method avoids rewarding teams simply for having played more games. It is not a strength-of-schedule model and does not establish equal difficulty across disconnected divisions. All rankings remain provisional. Caps are editorial choices, not league rules. Public official standings and completed-game totals are cross-checked before publishing.
 
+## Advanced stats and opponent guide
+
+The advanced table follows the selected sport and team/coach/division filters; its comparison sort does not replace the main board ranks. Scoring and defense use points/game for flag, goals/game for soccer. Raw and per-game capped margins are both shown. Soccer includes clean sheets and comparison points/game (3 per win, 1 per tie); flag includes shutouts and one-score records (final margin ≤8 points).
+
+SOS averages opponents' win rates after removing **all** head-to-head meetings with the focal team. Each meeting receives equal weight; coverage identifies missing opponent history. The experimental adjusted margin averages each capped game margin plus that opponent's external capped margin/game, shrunk by `n/(n+3)` for `n` external games. It is withheld unless all opponents have external history. The three-game prior is editorial, not fitted, and this is not a calibrated prediction. No cross-division strength adjustment is made for disconnected schedules. Under three games is explicitly labeled a very small sample. No xG, EPA, or expected-win probabilities are invented from final scores.
+
+The Our Teams schedule uses only current public SBMSA fixtures for Buccaneers/Burrow, Arsenal/Pulisic and Vipers/Messi. It includes upcoming games, completed results, home/away, official field labels, and opponents' latest records/scoring/coaches. These opponent summaries are **current season totals**, not historical pre-game estimates. Times use America/Chicago. Undated/TBD games remain explicitly unresolved; private practices, calendar feeds, personal arrival instructions and unverified stream links are excluded. Historical spring baseball emails informed the layout, not the current data.
+
 ## Scope and privacy
 
 Only public team results, official coach names, division names, source links, and owner-approved child first-name/team associations are published. No private feeds, player profiles, personal contacts or GitHub credentials are included. Baseball is excluded until the relevant league/results source is identified.
 
 ## Run locally
 
-Python 3.12 or newer:
+Python 3.12 or newer and Node.js 22:
 
 ```sh
 python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
+node --test tests/*.test.cjs
 python scripts/update_results.py
 python -m http.server 8000 --directory site
 ```
