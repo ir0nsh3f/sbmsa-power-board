@@ -45,6 +45,35 @@ test('render exposes both records, capped ranks, searchable official coaches, ma
  const small=L.renderRows(L.buildRows({divisions:[{...data.divisions[0],teams:[team('Arsenal',1,1),team('<b>',0,0)]}]},'8u','2026-09-09'));
  assert.match(small,/Small sample/);assert.match(small,/Unrated/);assert.ok(!small.includes('Top matchup'));
 });
+test('favorite block class matches exact sport/division/team, home or away, through filters',()=>{
+ const favorites=[['flag','Burrow','Buccaneers'],['8u','Pulisic','Arsenal'],['6u','Messi','Vipers']];
+ for(const [sport,division,name] of favorites){
+  const divisions=[];
+  for(const s of ['flag','8u','6u'])for(const d of [division,'Other']){
+   const schedule=[];
+   for(const home of [name,'Opponent'])for(const completed of [false,true])schedule.push({home,away:home===name?'Opponent':name,date_iso:'2099-09-10',...(completed?{home_score:1,away_score:0}:{})});
+   schedule.push({home:name+' United',away:'Opponent',date_iso:'2099-09-10'});
+   divisions.push({sport:s,division:d,teams:[team(name),team(name+' United'),team('Opponent')],schedule});
+  }
+  for(const s of ['flag','8u','6u']){
+   const rows=L.buildRows({divisions},s,'2026-09-09');
+   for(const filter of ['Upcoming','Results','All'])for(const watchlist of [false,true])for(const query of ['',name,'Opponent'])for(const d of ['all',division,'Other']){
+    const shown=L.filterRows(rows,{filter,watchlist,query,division:d});
+    for(const r of shown){
+     const expected=s===sport&&r.division===division&&[r.home.team,r.away.team].includes(name);
+     assert.equal(r.ourTeam,expected);
+     const html=L.renderRows([r]);
+     assert.equal(/<details class="league-fixture league-fixture-ours"/.test(html),expected);
+     assert.equal(html.includes('Our team'),expected);
+    }
+   }
+  }
+ }
+});
+test('favorite release versions CSS and renderer for returning clients',()=>{
+ const html=fs.readFileSync(require.resolve('../site/index.html'),'utf8');
+ for(const asset of ['league-schedule.css','league-schedule.js'])assert.ok(html.includes(asset+'?v=20260909-favorite-fill-1'));
+});
 const team=(team,gp=3,w=3,margin=9)=>({team,coach:team+' coach',gp,w,l:gp-w,t:0,capped_margin_sum:margin});
 test('capped profiles use full sport competition ties and exclude unrated from denominator',()=>{
  const data={divisions:[{sport:'8u',division:'A',teams:[team('a'),team('b'),team('c',3,2),team('u',0,0,0)]},{sport:'8u',division:'B',teams:[team('d',3,1),team('e',3,0)]},{sport:'6u',division:'A',teams:[team('other')]}]};
