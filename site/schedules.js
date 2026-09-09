@@ -61,7 +61,7 @@
           cappedMargin:average(team?.capped_margin_sum),
           venue, scoreFor:completed ? scoreFor : null, scoreAgainst:completed ? scoreAgainst : null,
           completed, dateISO, timeLabel, sortKey:(dateISO || '9999-99-99') + 'T' + sortTime,
-          location:game.location || null, dateLabel:dateISO || game.date || 'Date TBD',
+          location:game.location || null, locationUrl:safeLocationURL(game.location_url), dateLabel:dateISO || game.date || 'Date TBD',
           status, opponentRecord:record, scoredPerGame:average(team?.pf),
           allowedPerGame:average(team?.pa), scoredLabel:favorite.sport === 'flag' ? 'PF/G' : 'GF/G',
           allowedLabel:favorite.sport === 'flag' ? 'PA/G' : 'GA/G'});
@@ -77,6 +77,21 @@
     if (typeof value !== 'string') return null;
     try { const url = new URL(value); return ['https:','http:'].includes(url.protocol) ? value : null; }
     catch { return null; }
+  }
+  // Keep aligned with the collector's reviewed Google Maps host/path allowlist.
+  function safeLocationURL(value) {
+    if (typeof value !== 'string' || /[\x00-\x20\x7f\\]/.test(value)) return null;
+    try {
+      const url = new URL(value);
+      return ['http:','https:'].includes(url.protocol) && !url.username && !url.password && !url.port
+        && ['google.com','www.google.com','maps.google.com','google.com.au','www.google.com.au','maps.google.com.au'].includes(url.hostname)
+        && (url.pathname === '/maps' || url.pathname.startsWith('/maps/')) ? value : null;
+    } catch { return null; }
+  }
+  function fieldHTML(r) {
+    const label = escapeHTML(r.location || 'Field not listed');
+    const url = r.location && safeLocationURL(r.locationUrl);
+    return url ? `<a class="field-map" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" aria-label="${label} in Google Maps (opens in a new tab)">${label}</a>` : label;
   }
   const teamKey = r => `${r.sport}|${r.division}|${r.team}`;
   function filterRows(rows, filter = 'Upcoming', team = 'all') {
@@ -97,14 +112,14 @@
       const date = r.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(r.dateISO+'T12:00:00Z')) : r.dateLabel;
       const rank = r.opponentRank || (r.opponentGP === 0 ? 'Unrated' : '—');
       return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
-        <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${escapeHTML(r.location || 'Field not listed')}</small></td>
+        <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${fieldHTML(r)}</small></td>
         <th scope="row" class="fixture-match"><strong>${escapeHTML(r.team)}</strong> <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs <strong>${escapeHTML(r.opponent)}</strong> · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
         <td class="fixture-strength"><div class="strength-line"><b>Cap rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
-        <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+' '+r.scoreFor+'–'+r.scoreAgainst : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${escapeHTML(r.location || 'Field not listed')}<br>${r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
+        <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+' '+r.scoreFor+'–'+r.scoreAgainst : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
     }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
   function glanceTable(rows, filter, team = 'all') {
-    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}"><strong>${escapeHTML(r.team)}</strong><span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${escapeHTML(r.opponent)}</span><small>${escapeHTML(r.location || 'Field not listed')}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.scoreFor}–${r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
+    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}"><strong>${escapeHTML(r.team)}</strong><span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${escapeHTML(r.opponent)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.scoreFor}–${r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
     const body = groupDates(rows, filter, team).map(g => {
       const date = g.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'numeric',day:'numeric'}).format(new Date(g.dateISO+'T12:00:00Z')) : 'Date TBD';
       return `<tr><th scope="row">${escapeHTML(date)}</th><td>${cell(g.Dexter)}</td><td>${cell(g.Beckham)}</td></tr>`;
@@ -130,6 +145,7 @@
 .sbmsa-schedules .sbmsa-schedule-note{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:6px 0}.schedule-toolbar{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin:8px 0}.sbmsa-schedule-filters{display:flex;gap:4px}.sbmsa-schedules button,.sbmsa-schedules select{font:700 12px Arial,sans-serif;min-height:44px;padding:6px 10px;border:1px solid var(--line);background:transparent;color:var(--ink);max-width:100%;cursor:pointer}.sbmsa-schedules select{font-weight:normal}.sbmsa-schedules button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.sbmsa-schedules :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .sbmsa-schedules .sbmsa-schedule-scroll{width:100%;min-width:0}.sbmsa-schedules table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}.sbmsa-schedules caption{text-align:left;font-size:11px;padding:5px 0;color:var(--muted)}.sbmsa-schedules th,.sbmsa-schedules td{padding:8px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere;white-space:normal}.sbmsa-schedules thead th{background:var(--ink);color:var(--paper);font-size:11px}.sbmsa-schedules thead th:first-child{width:17%}.sbmsa-schedules thead th:nth-child(2){width:34%}.sbmsa-schedules thead th:nth-child(3){width:35%}.sbmsa-schedules thead th:last-child{width:14%}.sbmsa-schedules small{display:block;font-size:11px;font-weight:normal;margin-top:2px;color:var(--muted)}.fixture-match{font-weight:normal}.fixture-child{color:var(--muted)}.fixture-versus{display:block}.strength-line{display:flex;flex-wrap:wrap;gap:2px 10px;margin-bottom:3px}.strength-line>span,.strength-line>b{white-space:nowrap}.strength-line b{color:var(--green)}.record-label{font-size:10px;color:var(--muted)}.sbmsa-schedules summary{cursor:pointer;min-height:44px;align-content:center;font-size:12px}.fixture-details p{margin:4px 0}.fixture-details a{display:inline-flex;align-items:center;min-height:44px}.schedule-method{margin-top:4px}.schedule-method>summary{color:var(--muted)}
 @media(max-width:700px){.sbmsa-schedules table,.sbmsa-schedules tbody{display:block}.sbmsa-schedules thead{display:none}.sbmsa-schedules tr{display:grid;grid-template-columns:90px minmax(0,1fr);border-bottom:1px solid var(--line);padding:7px 0}.sbmsa-schedules th,.sbmsa-schedules td{border:0;padding:2px 4px}.sbmsa-schedules .fixture-date{grid-column:1;grid-row:1}.sbmsa-schedules .fixture-match{grid-column:2;grid-row:1}.sbmsa-schedules .fixture-strength{grid-column:1/-1;grid-row:2;padding-top:6px}.sbmsa-schedules .fixture-result{grid-column:1/-1;grid-row:3;display:flex;align-items:baseline;justify-content:space-between;gap:10px}.fixture-details{max-width:72%;text-align:right}.fixture-details>div{text-align:left}.sbmsa-schedules td[colspan]{grid-column:1/-1}.sbmsa-schedules caption{display:block}.schedule-toolbar{gap:4px}.schedule-toolbar select{flex:1;min-width:0}.sbmsa-schedules button{padding-inline:8px}.strength-line{gap:2px 8px}.sbmsa-schedules .fixture-date strong{font-size:11px}}
+.sbmsa-schedules a.field-map{display:inline;min-height:0;color:inherit;text-decoration:underline;text-underline-offset:2px}.sbmsa-schedules a.field-map:hover{color:var(--accent)}
 .schedule-layout{display:flex;gap:4px;margin-top:8px}
 .sbmsa-schedules .glance-table{display:table;font-size:12px}
 .sbmsa-schedules .glance-table caption{display:table-caption}
@@ -179,5 +195,5 @@
       update();
     });
   }
-  return {buildRows, chicagoDate, groupDates, filterRows, escapeHTML, safeSourceURL, renderHTML, render};
+  return {buildRows, chicagoDate, groupDates, filterRows, escapeHTML, safeSourceURL, safeLocationURL, renderHTML, render};
 });

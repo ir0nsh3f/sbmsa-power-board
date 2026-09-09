@@ -107,6 +107,9 @@ class HistoryTests(unittest.TestCase):
         for d in payload['divisions']:
             d['teams'].reverse()
             d['schedule'].reverse()
+            for g in d['schedule']:
+                g['location_url'] = 'https://www.google.com/maps?q=updated'
+                g['location'] = 'Updated official field'
             d['schedule'].append(dict(d['schedule'][0], home_score=None, away_score=None))
             for t in d['teams']:
                 t['coach'] = 'updated official coach'

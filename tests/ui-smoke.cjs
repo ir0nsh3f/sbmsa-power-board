@@ -79,6 +79,18 @@ const path=require('node:path');
      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
      assert.ok(await guide.locator('button,select').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().height>=44)));
      assert.ok(await guide.locator('button').evaluateAll(es=>es.every(e=>e.scrollWidth<=e.clientWidth)),'Control labels must not overlap');
+     const mapExpected=await page.evaluate(({filter,team})=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data),filter,team).filter(r=>r.location && r.locationUrl).map(r=>r.location+'|'+r.locationUrl).sort(),{filter,team});
+     const mapSelector=layout==='glance'?'.glance-fixture .field-map':'.fixture-date .field-map';
+     const mapActual=await guide.locator(mapSelector).evaluateAll(es=>es.map(e=>e.textContent+'|'+e.getAttribute('href')).sort());
+     assert.deepEqual(mapActual,mapExpected,'Exact published field destinations in both layouts');
+     assert.ok(await guide.locator('.field-map').evaluateAll(es=>es.every(e=>e.target==='_blank' && e.rel==='noopener noreferrer' && e.getAttribute('aria-label')===e.textContent+' in Google Maps (opens in a new tab)')));
+     const density=await guide.locator('[data-schedule-content]').evaluate(e=>{
+      const before=[e.getBoundingClientRect().height,...Array.from(e.querySelectorAll('tr'),r=>r.getBoundingClientRect().height)];
+      const html=e.innerHTML;e.querySelectorAll('.field-map').forEach(a=>a.replaceWith(document.createTextNode(a.textContent)));
+      const plain=[e.getBoundingClientRect().height,...Array.from(e.querySelectorAll('tr'),r=>r.getBoundingClientRect().height)];e.innerHTML=html;
+      return {before,plain};
+     });
+     assert.deepEqual(density.before,density.plain,`Map links must not increase row density at ${width}/${layout}`);
      if(layout==='glance'){
       assert.deepEqual(await guide.locator('thead th').allTextContents(),['Date','Dexter','Beckham']);
       assert.ok(await guide.locator('thead').isVisible(),'Keep child columns on mobile');
@@ -112,7 +124,7 @@ const path=require('node:path');
    assert.ok((await guide.locator('tbody tr[data-fixture-team]').count())>0);
    assert.ok((await guide.locator('tbody tr[data-fixture-team]').evaluateAll(rs=>rs.every(r=>r.dataset.fixtureTeam==='8u|Pulisic|Arsenal'))));
    await select.selectOption('all');
-   const detail=guide.locator('.fixture-details').first();await detail.locator('summary').click();assert.ok(await detail.locator('a').isVisible());await detail.locator('summary').click();
+   const detail=guide.locator('.fixture-details').first();await detail.locator('summary').click();assert.ok(await detail.getByRole('link',{name:'Public source',exact:true}).isVisible());await detail.locator('summary').click();
    await page.evaluate(()=>scrollTo(0,0));
    if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`schedule-${width}.png`),fullPage:false});
   }

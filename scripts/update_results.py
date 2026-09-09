@@ -121,7 +121,30 @@ def schedule_dates(date_label, time_label):
     return day.date().isoformat() if day else None, start.isoformat() if start else None
 
 
-def parse_schedule(table, teams):
+def safe_location_url(value, source_url):
+    """Retain source map destinations exactly; reject non-map or ambiguous URLs.
+
+    Host/path allowlist mirrors schedules.js. Review on 2026-11-30 or source
+    changes: current official links use Google US/Australia, including HTTP.
+    """
+    from urllib.parse import urljoin, urlsplit
+    if not isinstance(value, str) or not value or re.search(r'[\x00-\x20\x7f\\\\]', value):
+        return None
+    try:
+        resolved = urljoin(source_url, value)
+        url = urlsplit(resolved)
+        if (url.scheme not in ('http', 'https') or url.username or url.password
+                or url.port not in (None, 80 if url.scheme == 'http' else 443)):
+            return None
+        if url.hostname not in ('google.com', 'www.google.com', 'maps.google.com',
+                                'google.com.au', 'www.google.com.au', 'maps.google.com.au'):
+            return None
+        return resolved if url.path == '/maps' or url.path.startswith('/maps/') else None
+    except ValueError:
+        return None
+
+
+def parse_schedule(table, teams, source_url=''):
     entries = []
     seen = set()
     for row in table.select('tbody > tr'):
@@ -143,9 +166,11 @@ def parse_schedule(table, teams):
         hs, aws = get('HomeScoreLabel'), get('AwayScoreLabel')
         if (hs or aws) and any(not s.isascii() or not s.isdigit() for s in (hs, aws)):
             raise ValueError('Malformed or partial score')
+        link = row.select_one('a[id$=LocationLink]')
         entries.append({'home':get('HomeLabel'), 'away':get('AwayLabel'),
                         'date':date_label, 'time':time_label,
                         'location':get('ScheduleLabel') or get('LocationLabel') or get('LocationLink'),
+                        'location_url':safe_location_url(link.get('href') if link else None, source_url),
                         'date_iso':date_iso, 'start_iso':start_iso,
                         'home_score':int(hs) if hs else None,
                         'away_score':int(aws) if aws else None})
@@ -218,7 +243,7 @@ def parse_division(html, sport, division, url):
             raise ValueError(f'Cannot reconcile goals for {name}')
         if actual != tuple(team[k] for k in ('w','l','t','gp')):
             raise ValueError(f'Cannot reconcile standings and games for {name}')
-    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':parse_schedule(schedule, teams)}
+    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':parse_schedule(schedule, teams, url)}
 
 
 if __name__ == '__main__':

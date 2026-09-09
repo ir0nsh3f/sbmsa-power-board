@@ -87,7 +87,7 @@ class ScheduleTests(unittest.TestCase):
         result = parse(page(row(hs='0', aws='0') + row(date='Sat 9/12'), records=((0, 0, 1, 1),) * 2))
         self.assertIn('schedule', result)
         self.assertEqual(len(result['schedule']), 2)
-        self.assertEqual(result['schedule'][0], dict(home='A', away='B', date='Sat 9/5', time='10:30 AM', location='MMS Aux East', date_iso='2026-09-05', start_iso='2026-09-05T10:30:00-05:00', home_score=0, away_score=0))
+        self.assertEqual(result['schedule'][0], dict(home='A', away='B', date='Sat 9/5', time='10:30 AM', location='MMS Aux East', location_url=None, date_iso='2026-09-05', start_iso='2026-09-05T10:30:00-05:00', home_score=0, away_score=0))
         self.assertIsNone(result['schedule'][1]['home_score'])
         self.assertIsNone(result['schedule'][1]['away_score'])
         self.assertEqual(result['games'], [dict(home='A', away='B', home_score=0, away_score=0, date='Sat 9/5')])
