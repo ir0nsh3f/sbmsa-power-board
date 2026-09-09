@@ -70,13 +70,33 @@ test('browser global exposes render; rerender replaces local subtree without con
  const styles = [];
  const doc = {getElementById:id=>styles.find(s=>s.id===id),createElement:()=>({}),head:{appendChild:s=>styles.push(s)}};
  const buttons = ['Upcoming','Results','All'].map(filter=>({dataset:{scheduleFilter:filter},setAttribute(k,v){this[k]=v;},addEventListener(type,fn){this.click=fn;}}));
- const body = {innerHTML:''};
+ const body = {innerHTML:'',value:'all',addEventListener(){}};
  const container = {ownerDocument:doc,classList:{add(){}},innerHTML:'',querySelectorAll:()=>buttons,querySelector:()=>body};
  const data = {divisions:[division()]};
  ui.render(data,container,'2026-09-08');
- assert.match(container.innerHTML,/Our teams — schedule &amp; opponent guide/);
+ assert.match(container.innerHTML,/Schedule &amp; opponent guide/);
  buttons[2].click(); assert.equal(buttons[2]['aria-pressed'],'true');
  ui.render(data,container,'2026-09-08'); assert.equal(styles.length,1);
+});
+
+test('opponent capped ranks compare all same-sport divisions, preserve ties and exact identity', () => {
+ const t=(team,w,cap)=>({team,w,l:2-w,t:0,gp:2,pf:30,pa:12,capped_margin_sum:cap,margin_sum:90});
+ const data={divisions:[division({teams:[t('Rivals',1,6),{team:'Buccaneers',coach:'Our coach'}]}),division({division:'Other',teams:[t('Leader',2,0),t('Equal',1,6),t('Rivals',0,-6)]}),division({sport:'8u',division:'Other',teams:[t('Different sport',2,6)]})]};
+ const r=ui.buildRows(data,'2026-09-08')[0];
+ assert.equal(r.opponentRank,'T2');assert.equal(r.opponentGP,2);assert.equal(r.cappedMargin,3);assert.equal(r.ourCoach,'Our coach');
+ const unplayed=ui.buildRows({divisions:[division({teams:[{team:'Rivals',w:0,l:0,t:0,gp:0,pf:0,pa:0,capped_margin_sum:0}]})]},'2026-09-08')[0];
+ assert.equal(unplayed.opponentRank,null);assert.equal(unplayed.cappedMargin,null);assert.equal(unplayed.scoredPerGame,null);
+ assert.equal(ui.buildRows({divisions:[division({teams:[]})]},'2026-09-08')[0].opponentGP,null);
+});
+
+test('compact schedule keeps strength inline, date first, team selector and collapsed details', () => {
+ const list=rows([game()]);const html=ui.renderHTML(list);
+ assert.match(html,/Wed, Sep 9/);assert.match(html,/data-schedule-team/);
+ assert.match(html,/Cap rank/);assert.match(html,/Cap Δ\/G/);assert.match(html,/GP 2/);
+ assert.match(html,/<details class="fixture-details"><summary>Details/);
+ assert.doesNotMatch(html,/scroll horizontally|<details[^>]* open/);
+ assert.equal(ui.filterRows(list,'All','8u|Pulisic|Arsenal').length,0);
+ assert.equal(ui.filterRows(list,'All','flag|Burrow|Buccaneers').length,1);
 });
 
 test('fall DST repeated hour is ordered by actual offset-aware start instant', () => {

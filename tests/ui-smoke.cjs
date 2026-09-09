@@ -61,6 +61,29 @@ const path=require('node:path');
   await page.getByRole('tab',{name:'Our Teams',exact:true}).click();
   assert.ok((await page.locator('#team-schedules').innerText()).toLowerCase().includes('opponent'),'Our teams opponent guide must render');
   const guide=page.locator('#team-schedules');
+  for(const width of [320,390,768,1400]){
+   await page.setViewportSize({width,height:1000});
+   assert.equal(await page.locator('#publication-details').getAttribute('open'),null,'Our Teams publication starts collapsed');
+   for(const filter of ['All','Results','Upcoming']){
+    await guide.locator(`[data-schedule-filter="${filter}"]`).click();
+    assert.ok(await guide.locator('.sbmsa-schedule-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth),'Schedule itself must not scroll horizontally at '+width);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   }
+   const first=await guide.locator('tbody tr').first().boundingBox();assert.ok(first.y<500,'Compact Our Teams header at '+width);
+   const select=guide.locator('[data-schedule-team]');await select.selectOption('8u|Pulisic|Arsenal');
+   assert.ok((await guide.locator('tbody tr[data-fixture-team]').count())>0);
+   assert.ok((await guide.locator('tbody tr[data-fixture-team]').evaluateAll(rs=>rs.every(r=>r.dataset.fixtureTeam==='8u|Pulisic|Arsenal'))));
+   await select.selectOption('all');
+   const detail=guide.locator('.fixture-details').first();await detail.locator('summary').click();assert.ok(await detail.locator('a').isVisible());await detail.locator('summary').click();
+   await page.evaluate(()=>scrollTo(0,0));
+   if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`schedule-${width}.png`),fullPage:false});
+  }
+  // Schedule ranks must remain the capped full-field ranks even with Raw and board filters selected.
+  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode='capped';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.gp?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
+  for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
+  await page.evaluate(()=>{mode='raw';render();});
+  assert.deepEqual(await guide.locator('.fixture-strength b').allTextContents(),await page.evaluate(()=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data)).map(r=>'Cap rank '+(r.opponentRank||(r.opponentGP===0?'Unrated':'—')))));
+  await page.evaluate(()=>{mode='capped';render();});
   await guide.getByRole('button',{name:'All',exact:true}).click();
   const expectedGames=await page.evaluate(()=>data.divisions.reduce((n,d)=>{const favorites={'flag|Burrow':'Buccaneers','8u|Pulisic':'Arsenal','6u|Messi':'Vipers'};const team=favorites[d.sport+'|'+d.division];return n+(team?(d.schedule||[]).filter(g=>g.home===team||g.away===team).length:0);},0));
   assert.ok(expectedGames>0,'Actual public schedules required');

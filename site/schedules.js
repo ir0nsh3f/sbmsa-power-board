@@ -17,6 +17,21 @@
   }
   function buildRows(data, today = new Date()) {
     today = typeof today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(today) ? today : chicagoDate(new Date(today));
+    const ranks = new Map();
+    for (const sport of new Set((data?.divisions || []).map(d => d.sport))) {
+      const rated = (data.divisions || []).filter(d => d.sport === sport).flatMap(d => (d.teams || []).map(t => ({...t, division:d.division})))
+        .filter(t => t.gp > 0 && ['w','t','capped_margin_sum'].every(k => Number.isFinite(t[k])))
+        .map(t => ({...t, rate:(t.w + 0.5*t.t)/t.gp, margin:t.capped_margin_sum/t.gp}))
+        .sort((a,b) => b.rate-a.rate || b.margin-a.margin || a.team.localeCompare(b.team));
+      let anchor = null;
+      const counts = {};
+      rated.forEach((t,i) => {
+        if (!anchor || Math.abs(t.rate-anchor.rate)>1e-9 || Math.abs(t.margin-anchor.margin)>1e-9) { t.rank=i+1; anchor=t; }
+        else t.rank=anchor.rank;
+        counts[t.rank]=(counts[t.rank] || 0)+1;
+      });
+      rated.forEach(t => ranks.set(JSON.stringify([sport,t.division,t.team]), (counts[t.rank]>1?'T':'')+t.rank));
+    }
     const rows = [];
     for (const division of data?.divisions || []) {
       const favorite = favorites.find(f => f.sport === division.sport && f.division === division.division);
@@ -40,6 +55,10 @@
         const average = value => Number.isFinite(value) && Number.isFinite(team?.gp) && team.gp > 0 ? value / team.gp : null;
         const record = team && ['w','l','t'].every(k => Number.isInteger(team[k]) && team[k] >= 0) ? `${team.w}–${team.l}–${team.t}` : null;
         rows.push({...favorite, opponent, opponentCoach:team?.coach || null, sourceUrl:division.url,
+          ourCoach:(division.teams || []).find(t => t.team === favorite.team)?.coach || null,
+          opponentRank:ranks.get(JSON.stringify([division.sport,division.division,opponent])) || null,
+          opponentGP:Number.isInteger(team?.gp) && team.gp >= 0 ? team.gp : null,
+          cappedMargin:average(team?.capped_margin_sum),
           venue, scoreFor:completed ? scoreFor : null, scoreAgainst:completed ? scoreAgainst : null,
           completed, dateISO, timeLabel, sortKey:(dateISO || '9999-99-99') + 'T' + sortTime,
           location:game.location || null, dateLabel:dateISO || game.date || 'Date TBD',
@@ -59,32 +78,39 @@
     try { const url = new URL(value); return ['https:','http:'].includes(url.protocol) ? value : null; }
     catch { return null; }
   }
-  function filterRows(rows, filter = 'Upcoming') {
-    return rows.filter(r => filter === 'All' || (filter === 'Results' ? r.completed : !r.completed && r.status !== 'Awaiting result'));
+  const teamKey = r => `${r.sport}|${r.division}|${r.team}`;
+  function filterRows(rows, filter = 'Upcoming', team = 'all') {
+    return rows.filter(r => (team === 'all' || teamKey(r) === team) && (filter === 'All' || (filter === 'Results' ? r.completed : !r.completed && r.status !== 'Awaiting result')));
   }
-  function tableBody(rows, filter) {
-    const selected = filterRows(rows, filter);
-    return selected.map(r => {
+  function tableBody(rows, filter, team = 'all') {
+    return filterRows(rows, filter, team).map(r => {
       const source = safeSourceURL(r.sourceUrl);
       const avg = n => Number.isFinite(n) ? n.toFixed(1) : '—';
-      return `<tr><th scope="row">${escapeHTML(r.child)} · ${escapeHTML(r.team)}<small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small></th>
-        <td>${escapeHTML(r.dateLabel)}<small>${escapeHTML(r.timeLabel)}</small><small>${escapeHTML(r.location || 'Field not listed')}</small></td>
-        <td>${escapeHTML(r.venue)}<small>${escapeHTML(r.opponent)}</small></td>
-        <td>${escapeHTML(r.opponentCoach ? 'Coach: ' + r.opponentCoach : 'Coach not listed')}<small>${escapeHTML(r.opponentRecord || 'Record not listed')} (W–L–T)</small></td>
-        <td>${escapeHTML(r.scoredLabel)} ${avg(r.scoredPerGame)}<small>${escapeHTML(r.allowedLabel)} ${avg(r.allowedPerGame)}</small></td>
-        <td><strong>${escapeHTML(r.status)}</strong>${r.completed ? `<small>${escapeHTML(r.scoreFor)}–${escapeHTML(r.scoreAgainst)} (us–them)</small>` : ''}${source ? `<small><a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a></small>` : ''}</td></tr>`;
-    }).join('') || '<tr><td colspan="6">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
+      const date = r.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(r.dateISO+'T12:00:00Z')) : r.dateLabel;
+      const rank = r.opponentRank || (r.opponentGP === 0 ? 'Unrated' : '—');
+      return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
+        <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${escapeHTML(r.location || 'Field not listed')}</small></td>
+        <th scope="row" class="fixture-match"><strong>${escapeHTML(r.team)}</strong> <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs <strong>${escapeHTML(r.opponent)}</strong> · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
+        <td class="fixture-strength"><div class="strength-line"><b>Cap rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
+        <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+' '+r.scoreFor+'–'+r.scoreAgainst : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${escapeHTML(r.location || 'Field not listed')}<br>${r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
+    }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
   function renderHTML(rows, filter = 'Upcoming') {
     const missing = rows.filter(r => r.status === 'Awaiting result').length;
-    return `<h2>Our teams — schedule &amp; opponent guide</h2>
-      <p class="sbmsa-schedule-note">Dexter: Buccaneers (Burrow) &amp; Vipers (Messi). Beckham: Arsenal (Pulisic). All times Central (CT).</p>
-      <div class="sbmsa-schedule-filters" role="group" aria-label="Schedule view">${['Upcoming','Results','All'].map(f => `<button type="button" data-schedule-filter="${f}" aria-pressed="${f === filter}">${f}</button>`).join('')}</div>
+    return `<div class="schedule-heading"><h2>Our teams</h2><span>Schedule &amp; opponent guide · CT</span></div>
+      <div class="schedule-toolbar"><div class="sbmsa-schedule-filters" role="group" aria-label="Schedule view">${['Upcoming','Results','All'].map(f => `<button type="button" data-schedule-filter="${f}" aria-pressed="${f === filter}">${f}</button>`).join('')}</div><select data-schedule-team aria-label="Schedule team"><option value="all">All teams</option>${favorites.map(f => `<option value="${teamKey(f)}">${f.child} · ${f.team}</option>`).join('')}</select></div>
       ${missing ? `<p class="sbmsa-schedule-note">${missing} past game${missing === 1 ? '' : 's'} awaiting a published result. Choose All to see ${missing === 1 ? 'it' : 'them'}; these are not upcoming games.</p>` : ''}
-      <div class="sbmsa-schedule-scroll" tabindex="0" role="region" aria-label="Our teams schedule; scroll horizontally for more columns"><table><caption>Favorite-team fixtures · scores shown from our team’s perspective</caption><thead><tr>${['Child / team (sport)','Date / time CT / field','Home / away · opponent','Opponent coach / record','Opponent scored / allowed','Result / source'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter)}</tbody></table></div>
-      <p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game. — means unavailable. Past unscored games are awaiting results, not assumed draws.</p>`;
+      <p class="sbmsa-schedule-note">Opponent strength: current season, not historical pre-game. Capped ranks across all divisions of the same sport/age.</p>
+      <div class="sbmsa-schedule-scroll"><table><caption>Chronological fixtures · scores us–them · opponent strength always capped</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter)}</tbody></table></div>
+      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Cap rank uses win rate, then capped margin/game, across all divisions of the same sport/age, independent of board filters or Raw mode. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
   }
-  const styles = `.sbmsa-schedules{min-width:0;max-width:100%;margin-top:28px;color:var(--ink,#202b29);background:var(--paper,#faf8f3);border:1px solid var(--line,#cdd2c7);padding:16px;font-family:Arial,Helvetica,sans-serif;box-sizing:border-box}.sbmsa-schedules h2{font:700 26px/1.2 Georgia,serif;margin:0}.sbmsa-schedules .sbmsa-schedule-note{font-size:12px;color:var(--muted,#58645f);overflow-wrap:anywhere;margin:10px 0}.sbmsa-schedules .sbmsa-schedule-filters{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.sbmsa-schedules button{font:700 13px Arial,sans-serif;min-height:44px;padding:8px 12px;border:1px solid var(--line,#cdd2c7);background:transparent;color:var(--ink,#202b29);cursor:pointer}.sbmsa-schedules button[aria-pressed=true]{background:var(--ink,#202b29);color:var(--paper,#faf8f3)}.sbmsa-schedules :focus-visible{outline:2px solid var(--accent,#a83224);outline-offset:3px}.sbmsa-schedules .sbmsa-schedule-scroll{width:100%;max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain}.sbmsa-schedules table{width:100%;min-width:800px;table-layout:fixed;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}.sbmsa-schedules caption{text-align:left;padding:8px 0;color:var(--muted,#58645f)}.sbmsa-schedules th,.sbmsa-schedules td{padding:10px 8px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line,#cdd2c7);overflow-wrap:anywhere;white-space:normal}.sbmsa-schedules thead th{background:var(--ink,#202b29);color:var(--paper,#faf8f3);font-size:11px}.sbmsa-schedules small{display:block;font-size:11px;font-weight:normal;margin-top:3px}.sbmsa-schedules a{color:var(--accent,#a83224)}@media(max-width:600px){.sbmsa-schedules{padding:12px}.sbmsa-schedules h2{font-size:23px}}`;
+  const styles = `
+.sbmsa-schedules{min-width:0;max-width:100%;color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:12px;box-sizing:border-box}
+.sbmsa-schedules h2{font:700 24px/1.2 Georgia,serif;margin:0}.schedule-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px}.schedule-heading>span{font-size:12px;color:var(--muted)}
+.sbmsa-schedules .sbmsa-schedule-note{font-size:12px;color:var(--muted);overflow-wrap:anywhere;margin:6px 0}.schedule-toolbar{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center;margin:8px 0}.sbmsa-schedule-filters{display:flex;gap:4px}.sbmsa-schedules button,.sbmsa-schedules select{font:700 12px Arial,sans-serif;min-height:44px;padding:6px 10px;border:1px solid var(--line);background:transparent;color:var(--ink);max-width:100%;cursor:pointer}.sbmsa-schedules select{font-weight:normal}.sbmsa-schedules button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.sbmsa-schedules :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sbmsa-schedules .sbmsa-schedule-scroll{width:100%;min-width:0}.sbmsa-schedules table{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}.sbmsa-schedules caption{text-align:left;font-size:11px;padding:5px 0;color:var(--muted)}.sbmsa-schedules th,.sbmsa-schedules td{padding:8px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);overflow-wrap:anywhere;white-space:normal}.sbmsa-schedules thead th{background:var(--ink);color:var(--paper);font-size:11px}.sbmsa-schedules thead th:first-child{width:17%}.sbmsa-schedules thead th:nth-child(2){width:34%}.sbmsa-schedules thead th:nth-child(3){width:35%}.sbmsa-schedules thead th:last-child{width:14%}.sbmsa-schedules small{display:block;font-size:11px;font-weight:normal;margin-top:2px;color:var(--muted)}.fixture-match{font-weight:normal}.fixture-child{color:var(--muted)}.fixture-versus{display:block}.strength-line{display:flex;flex-wrap:wrap;gap:2px 10px;margin-bottom:3px}.strength-line>span,.strength-line>b{white-space:nowrap}.strength-line b{color:var(--green)}.record-label{font-size:10px;color:var(--muted)}.sbmsa-schedules summary{cursor:pointer;min-height:44px;align-content:center;font-size:12px}.fixture-details p{margin:4px 0}.fixture-details a{display:inline-flex;align-items:center;min-height:44px}.schedule-method{margin-top:4px}.schedule-method>summary{color:var(--muted)}
+@media(max-width:700px){.sbmsa-schedules table,.sbmsa-schedules tbody{display:block}.sbmsa-schedules thead{display:none}.sbmsa-schedules tr{display:grid;grid-template-columns:90px minmax(0,1fr);border-bottom:1px solid var(--line);padding:7px 0}.sbmsa-schedules th,.sbmsa-schedules td{border:0;padding:2px 4px}.sbmsa-schedules .fixture-date{grid-column:1;grid-row:1}.sbmsa-schedules .fixture-match{grid-column:2;grid-row:1}.sbmsa-schedules .fixture-strength{grid-column:1/-1;grid-row:2;padding-top:6px}.sbmsa-schedules .fixture-result{grid-column:1/-1;grid-row:3;display:flex;align-items:baseline;justify-content:space-between;gap:10px}.fixture-details{max-width:72%;text-align:right}.fixture-details>div{text-align:left}.sbmsa-schedules td[colspan]{grid-column:1/-1}.sbmsa-schedules caption{display:block}.schedule-toolbar{gap:4px}.schedule-toolbar select{flex:1;min-width:0}.sbmsa-schedules button{padding-inline:8px}.strength-line{gap:2px 8px}.sbmsa-schedules .fixture-date strong{font-size:11px}}
+`;
   function render(data, containerElement, today) {
     const doc = containerElement.ownerDocument;
     if (!doc.getElementById('sbmsa-schedules-style')) {
@@ -97,10 +123,15 @@
     containerElement.innerHTML = renderHTML(rows);
     const buttons = containerElement.querySelectorAll('[data-schedule-filter]');
     const body = containerElement.querySelector('tbody');
+    const select = containerElement.querySelector('[data-schedule-team]');
+    let activeFilter = 'Upcoming';
+    const update = () => { body.innerHTML = tableBody(rows, activeFilter, select.value); };
+    select.addEventListener('change', update);
     for (const button of buttons) button.addEventListener('click', () => {
       const filter = button.dataset.scheduleFilter;
       for (const other of buttons) other.setAttribute('aria-pressed', String(other === button));
-      body.innerHTML = tableBody(rows, filter);
+      activeFilter = filter;
+      update();
     });
   }
   return {buildRows, chicagoDate, filterRows, escapeHTML, safeSourceURL, renderHTML, render};
