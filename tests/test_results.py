@@ -98,7 +98,8 @@ class ResultsTests(unittest.TestCase):
             self.assertEqual(json.loads(output.read_text()),error)
             changed = results.update_results(output,fetch=lambda u: synthetic_page(games=((0,0),(31,0))),now='2026-09-08T15:00:00Z')
             self.assertEqual(changed['data_updated'],'2026-09-08T15:00:00Z')
-            self.assertEqual(list(Path(tmp).iterdir()),[output])
+            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history'})
+            self.assertEqual(list(Path(tmp).rglob('*.tmp')), [])
 
     def test_network_retry_timeout_and_cli_exit_code(self):
         from unittest.mock import patch

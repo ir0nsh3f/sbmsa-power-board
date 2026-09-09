@@ -10,6 +10,11 @@ import tempfile
 import time
 from urllib.request import Request, urlopen
 
+try:
+    from scripts.history import record_history
+except ModuleNotFoundError:  # Direct CLI execution places scripts/ on sys.path.
+    from history import record_history
+
 
 def fetch_html(url):
     """One retry with a pause; no browser/session credentials needed."""
@@ -71,6 +76,7 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
         payload['divisions'] = divisions
         payload['last_successful_check'] = now
         payload['data_updated'] = previous.get('data_updated') if previous.get('divisions') == divisions else now
+        record_history(output.parent / 'history', payload)
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary = None
     try:
