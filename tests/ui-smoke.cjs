@@ -9,8 +9,8 @@ const path=require('node:path');
  const site=path.join(__dirname,'../site');
  const server=http.createServer((req,res)=>{
   const requested=path.basename(req.url.split('?')[0]);
-  const name=['data.json','advanced.js','schedules.js'].includes(requested)?requested:'index.html';
-  res.setHeader('Content-Type',name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
+  const name=['data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
+  res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
   res.end(fs.readFileSync(path.join(site,name)));
  });
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -22,7 +22,7 @@ const path=require('node:path');
   await page.waitForSelector('.row');
   assert.equal(await page.locator('button').filter({hasText:/Reload published data/i}).count(),0,'Redundant reload button must be absent');
   assert.equal(await page.locator('#advanced').count(),1,'Advanced stats section must exist');
-  assert.equal(await page.getByRole('tab').count(),3,'Three separate dashboard views');
+  assert.equal(await page.getByRole('tab').count(),4,'Four separate dashboard views');
   assert.equal(await page.locator('#advanced').isVisible(),false,'Inactive advanced panel is hidden');
   for(const [sport,team,coach] of [['flag','Buccaneers','Wells'],['8u','Arsenal','Klupchak'],['6u','Vipers','Ellis']]){
    await page.getByRole('tab',{name:'Advanced',exact:true}).click();

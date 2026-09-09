@@ -3,7 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert=require('node:assert/strict');
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
- const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['data.json','advanced.js','schedules.js'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
+ const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  try{
   browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -11,7 +11,7 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
   const metrics=()=>page.evaluate(()=>({firstRow:document.querySelector('.row').getBoundingClientRect().top+scrollY-[...document.querySelectorAll('#publication .warning')].reduce((n,e)=>n+e.getBoundingClientRect().height+10,0),row:document.querySelector('.row').getBoundingClientRect().height,page:document.documentElement.scrollHeight}));
   console.log('390px layout',await metrics());
   assert.ok((await metrics()).firstRow<=600,'Rankings must start within 600px at 390px');
-  assert.equal(await page.getByRole('tab').count(),3,'Separate views');
+  assert.equal(await page.getByRole('tab').count(),4,'Separate views');
   for(const width of [320,390,600]){
    await page.setViewportSize({width,height:844});
    const m=await metrics();assert.ok(m.firstRow<=(width===320?700:600),`First ranking at ${m.firstRow}px (${width})`);assert.ok(m.row<=(width===320?72:60),`Compact row ${m.row}px`);
@@ -40,8 +40,8 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
   await page.evaluate(()=>{window.savedPublication={status:data.status,last_successful_check:data.last_successful_check,errors:data.errors};data.status='error';data.last_successful_check='2000-01-01';data.errors=['QA source failure'];publication();});
   assert.ok((await page.locator('#publication').innerText()).includes('Stale:'));assert.ok(await page.getByText('QA source failure',{exact:true}).isVisible());
   await page.evaluate(()=>{Object.assign(data,window.savedPublication);publication();});
-  await page.locator('[data-sport="flag"]').click();await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'/tmp/sbmsa-tabs-mobile.png',fullPage:true});
-  await page.getByRole('tab',{name:'Advanced',exact:true}).click();await page.locator('#stat-sort').selectOption('scored_pg');await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'/tmp/sbmsa-tabs-mobile-advanced.png',fullPage:true});
+  await page.locator('[data-sport="flag"]').click();await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(process.env.QA_DIR||'/tmp','sbmsa-tabs-mobile.png'),fullPage:true});
+  await page.getByRole('tab',{name:'Advanced',exact:true}).click();await page.locator('#stat-sort').selectOption('scored_pg');await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(process.env.QA_DIR||'/tmp','sbmsa-tabs-mobile-advanced.png'),fullPage:true});
   await page.getByRole('tab',{name:'Rankings',exact:true}).click();
   assert.equal(errors.length,0,errors.join('\n'));console.log('Final 390px layout',await metrics());console.log('PASS: separate mobile views, compact heights, coaches/search, touch targets, overflow and JavaScript.');
  }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
