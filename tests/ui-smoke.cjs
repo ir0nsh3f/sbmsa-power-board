@@ -61,6 +61,44 @@ const path=require('node:path');
   await page.getByRole('tab',{name:'Our Teams',exact:true}).click();
   assert.ok((await page.locator('#team-schedules').innerText()).toLowerCase().includes('opponent'),'Our teams opponent guide must render');
   const guide=page.locator('#team-schedules');
+  assert.equal(await guide.locator('[data-schedule-layout="glance"]').getAttribute('aria-pressed'),'true');
+  assert.match(await page.locator('script[src*="schedules.js"]').getAttribute('src'),/\?v=/);
+  for(const width of [320,390,768,1400]){
+   await page.setViewportSize({width,height:1000});
+   for(const filter of ['Upcoming','Results','All'])for(const team of ['all','flag|Burrow|Buccaneers','8u|Pulisic|Arsenal','6u|Messi|Vipers']){
+    await guide.locator(`[data-schedule-filter="${filter}"]`).click();
+    await guide.locator('[data-schedule-team]').selectOption(team);
+    const expected=await page.evaluate(({filter,team})=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data),filter,team).map(r=>r.team+'|'+r.opponent+'|'+r.child),{filter,team});
+    for(const layout of ['guide','glance']){
+     await guide.locator(`[data-schedule-layout="${layout}"]`).click();
+     assert.equal(await guide.locator('table').count(),1,'One schedule, not duplicate tables');
+     assert.equal(await guide.locator('[data-fixture-team]').count(),expected.length,`${width}/${layout}/${filter}/${team} includes every fixture`);
+     assert.equal(await guide.locator('[data-schedule-team]').inputValue(),team);
+     assert.equal(await guide.locator(`[data-schedule-filter="${filter}"]`).getAttribute('aria-pressed'),'true');
+     assert.ok(await guide.locator('.sbmsa-schedule-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth));
+     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+     assert.ok(await guide.locator('button,select').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().height>=44)));
+     assert.ok(await guide.locator('button').evaluateAll(es=>es.every(e=>e.scrollWidth<=e.clientWidth)),'Control labels must not overlap');
+     if(layout==='glance'){
+      assert.deepEqual(await guide.locator('thead th').allTextContents(),['Date','Dexter','Beckham']);
+      assert.ok(await guide.locator('thead').isVisible(),'Keep child columns on mobile');
+      const caption=await guide.locator('caption').boundingBox(),table=await guide.locator('table').boundingBox();
+      assert.ok(caption.width>=table.width-2,'Caption spans the entire table, not just the date column');
+      const selectBox=await guide.locator('[data-schedule-team]').boundingBox();assert.ok(selectBox.width>=110,'Team selection remains legible');
+      const actual=await guide.locator('.glance-fixture').evaluateAll(es=>es.map(e=>e.querySelector('strong').textContent+'|'+e.querySelector('span:not(.glance-time)').textContent.replace(/^(vs|@) /,'')+'|'+(e.parentElement.cellIndex===1?'Dexter':'Beckham')));
+      assert.deepEqual(actual.sort(),expected.sort(),'Correct child column, team and opponent');
+      const dates=await page.evaluate(({filter,team})=>new Set(SBMSASchedules.filterRows(SBMSASchedules.buildRows(data),filter,team).map(r=>r.dateISO)).size,{filter,team});
+      assert.equal(await guide.locator('tbody tr').count(),dates||1,'Exactly one row per date');
+     }
+    }
+   }
+   await guide.locator('[data-schedule-team]').selectOption('all');
+   await guide.locator('[data-schedule-filter="All"]').click();
+   await page.evaluate(()=>scrollTo(0,0));
+   if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`glance-${width}.png`),fullPage:false});
+  }
+  await guide.locator('[data-schedule-layout="guide"]').click();
+  await guide.locator('[data-schedule-filter="Upcoming"]').click();
   for(const width of [320,390,768,1400]){
    await page.setViewportSize({width,height:1000});
    assert.equal(await page.locator('#publication-details').getAttribute('open'),null,'Our Teams publication starts collapsed');
@@ -82,8 +120,10 @@ const path=require('node:path');
   const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode='capped';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.gp?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
   for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
   await page.evaluate(()=>{mode='raw';render();});
+  await guide.locator('[data-schedule-layout="guide"]').click();
   assert.deepEqual(await guide.locator('.fixture-strength b').allTextContents(),await page.evaluate(()=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data)).map(r=>'Cap rank '+(r.opponentRank||(r.opponentGP===0?'Unrated':'—')))));
   await page.evaluate(()=>{mode='capped';render();});
+  await guide.locator('[data-schedule-layout="guide"]').click();
   await guide.getByRole('button',{name:'All',exact:true}).click();
   const expectedGames=await page.evaluate(()=>data.divisions.reduce((n,d)=>{const favorites={'flag|Burrow':'Buccaneers','8u|Pulisic':'Arsenal','6u|Messi':'Vipers'};const team=favorites[d.sport+'|'+d.division];return n+(team?(d.schedule||[]).filter(g=>g.home===team||g.away===team).length:0);},0));
   assert.ok(expectedGames>0,'Actual public schedules required');
