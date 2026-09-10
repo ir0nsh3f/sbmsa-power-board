@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-09T20:56:20.675101Z",
+  "last_checked": "2026-09-10T01:42:49.302484Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -1169,26 +1169,26 @@
         {
           "team": "Chiefs",
           "coach": "Gillespie",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 39,
-          "pa": 7,
-          "margin_sum": 32,
-          "capped_margin_sum": 21
+          "gp": 2,
+          "pf": 64,
+          "pa": 13,
+          "margin_sum": 51,
+          "capped_margin_sum": 40
         },
         {
           "team": "Dolphins",
           "coach": "Dewan",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 12,
-          "pa": 6,
-          "margin_sum": 6,
-          "capped_margin_sum": 6
+          "gp": 2,
+          "pf": 31,
+          "pa": 13,
+          "margin_sum": 18,
+          "capped_margin_sum": 18
         },
         {
           "team": "Gamblers",
@@ -1218,25 +1218,25 @@
           "team": "Jaguars",
           "coach": "Benitez",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 0,
-          "pa": 19,
-          "margin_sum": -19,
-          "capped_margin_sum": -19
+          "gp": 2,
+          "pf": 7,
+          "pa": 38,
+          "margin_sum": -31,
+          "capped_margin_sum": -31
         },
         {
           "team": "Packers",
           "coach": "Martin",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 7,
-          "pa": 39,
-          "margin_sum": -32,
-          "capped_margin_sum": -21
+          "gp": 2,
+          "pf": 32,
+          "pa": 47,
+          "margin_sum": -15,
+          "capped_margin_sum": -4
         },
         {
           "team": "Patriots",
@@ -1266,25 +1266,25 @@
           "team": "Seahawks",
           "coach": "Shea",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 6,
-          "pa": 12,
-          "margin_sum": -6,
-          "capped_margin_sum": -6
+          "gp": 2,
+          "pf": 12,
+          "pa": 37,
+          "margin_sum": -25,
+          "capped_margin_sum": -25
         },
         {
           "team": "Steelers",
           "coach": "Lemming",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 24,
-          "pa": 31,
-          "margin_sum": -7,
-          "capped_margin_sum": -7
+          "gp": 2,
+          "pf": 32,
+          "pa": 56,
+          "margin_sum": -24,
+          "capped_margin_sum": -24
         }
       ],
       "games": [
@@ -1322,6 +1322,27 @@
           "home_score": 31,
           "away_score": 24,
           "date": "Sat 9/5"
+        },
+        {
+          "home": "Chiefs",
+          "away": "Seahawks",
+          "home_score": 25,
+          "away_score": 6,
+          "date": "Wed 9/9"
+        },
+        {
+          "home": "Dolphins",
+          "away": "Jaguars",
+          "home_score": 19,
+          "away_score": 7,
+          "date": "Wed 9/9"
+        },
+        {
+          "home": "Steelers",
+          "away": "Packers",
+          "home_score": 8,
+          "away_score": 25,
+          "date": "Wed 9/9"
         }
       ],
       "schedule": [
@@ -1394,8 +1415,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 25,
+          "away_score": 6
         },
         {
           "home": "Dolphins",
@@ -1406,8 +1427,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 19,
+          "away_score": 7
         },
         {
           "home": "Steelers",
@@ -1418,8 +1439,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 8,
+          "away_score": 25
         },
         {
           "home": "Gamblers",
@@ -5866,6 +5887,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-09T20:56:20.675101Z",
-  "data_updated": "2026-09-09T01:05:10.579558Z"
+  "last_successful_check": "2026-09-10T01:42:49.302484Z",
+  "data_updated": "2026-09-10T01:42:49.302484Z"
 }
