@@ -12,8 +12,10 @@ from urllib.request import Request, urlopen
 
 try:
     from scripts.history import record_history
+    from scripts.projections import record as record_projections, load_archive, receipts
 except ModuleNotFoundError:  # Direct CLI execution places scripts/ on sys.path.
     from history import record_history
+    from projections import record as record_projections, load_archive, receipts
 
 
 def fetch_html(url):
@@ -50,6 +52,8 @@ DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / 'site/data.json'
 def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
     """All-or-nothing refresh; failures retain the last trustworthy divisions."""
     fetch = fetch or fetch_html
+    # Timestamp is the end of actual source collection, not the beginning of fetches.
+    supplied_now = now
     now = now or datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
     output = Path(output)
     previous = json.loads(output.read_text()) if output.exists() else {}
@@ -66,6 +70,8 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
             divisions.append(parsed)
         except Exception as exc:
             errors.append(f'{sport} {division}: {type(exc).__name__}: {exc}')
+    if supplied_now is None:
+        now = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
     payload = dict(previous)
     payload.update(last_checked=now,status='error' if errors else 'ok',errors=errors)
     if errors:
@@ -76,7 +82,9 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
         payload['divisions'] = divisions
         payload['last_successful_check'] = now
         payload['data_updated'] = previous.get('data_updated') if previous.get('divisions') == divisions else now
+        receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
         record_history(output.parent / 'history', payload)
+        record_projections(output.parent / 'projections', divisions, now)
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary = None
     try:

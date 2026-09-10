@@ -1,0 +1,20 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const L=require('../site/league-schedule.js');
+const fs=require('node:fs');
+test('Projection only for exact future flag identity; no chronology/rank/watchlist changes',()=>{
+ const data=JSON.parse(fs.readFileSync(__dirname+'/fixtures/league-baseline-20260909.json'));
+ const rows=L.buildRows(data,'flag','2026-09-09'),r=rows.find(r=>!r.completed&&r.start>Date.parse('2026-09-10'));
+ const f={game_id:['fall-2026','flag',r.division,r.home.team,r.away.team,new Date(r.start).toISOString()],margin_home:2,total:40,margin_range:[-40,44],total_range:[0,85],gp_home:1,gp_away:1,division_games:4};
+ const p={model_version:'flag-huber-ridge-v1',forecasts:[f]};
+ assert.ok(L.projectionFor(r,p,Date.parse('2026-09-09')));
+ assert.equal(L.projectionFor(r,p,r.start),null);
+ assert.equal(L.projectionFor({...r,sport:'8u'},p,0),null);
+ assert.equal(L.projectionFor({...r,start:null},p,0),null);
+ assert.equal(L.projectionFor({...r,division:'Other'},p,0),null);
+ assert.equal(L.projectionFor({...r,completed:true},p,0),null);
+ assert.equal(L.renderRows([r]).includes('Experimental ·'),false);
+ const html=L.renderRows([r],{projections:p,showProjections:true,now:Date.parse('2026-09-09')});
+ assert.match(html,/Experimental · very small sample/);assert.match(html,/Home margin/);assert.match(html,/Total/);assert.match(html,/GP/);
+ assert.deepEqual(L.filterRows(rows,{watchlist:true}),rows.filter(r=>r.highlight));
+ assert.deepEqual(L.buildRows(data,'flag','2026-09-09'),rows);
+});

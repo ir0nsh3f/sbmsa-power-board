@@ -88,6 +88,7 @@ class ResultsTests(unittest.TestCase):
             second = results.update_results(output,fetch=fetch,now='2026-09-08T13:00:00Z')
             self.assertEqual(second['data_updated'],first['data_updated'])
             self.assertEqual(second['last_successful_check'],'2026-09-08T13:00:00Z')
+            forecasts = {str(p):p.read_bytes() for p in (Path(tmp)/'projections').rglob('*.json')}
             def fail(url):
                 raise OSError('offline')
             error = results.update_results(output,fetch=fail,now='2026-09-08T14:00:00Z')
@@ -96,9 +97,10 @@ class ResultsTests(unittest.TestCase):
             for key in ('divisions','data_updated','last_successful_check'):
                 self.assertEqual(error[key],second[key])
             self.assertEqual(json.loads(output.read_text()),error)
+            self.assertEqual({str(p):p.read_bytes() for p in (Path(tmp)/'projections').rglob('*.json')},forecasts)
             changed = results.update_results(output,fetch=lambda u: synthetic_page(games=((0,0),(31,0))),now='2026-09-08T15:00:00Z')
             self.assertEqual(changed['data_updated'],'2026-09-08T15:00:00Z')
-            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history'})
+            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections'})
             self.assertEqual(list(Path(tmp).rglob('*.tmp')), [])
 
     def test_network_retry_timeout_and_cli_exit_code(self):
