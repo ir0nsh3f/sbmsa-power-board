@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-10T01:42:49.302484Z",
+  "last_checked": "2026-09-10T02:30:04.108613Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -602,14 +602,14 @@
         {
           "team": "Bears",
           "coach": "Brown",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 19,
+          "gp": 2,
+          "pf": 32,
           "pa": 0,
-          "margin_sum": 19,
-          "capped_margin_sum": 19
+          "margin_sum": 32,
+          "capped_margin_sum": 32
         },
         {
           "team": "Bills",
@@ -687,13 +687,13 @@
           "team": "Spartans",
           "coach": "Devine",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 18,
-          "pa": 19,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "pa": 32,
+          "margin_sum": -14,
+          "capped_margin_sum": -14
         }
       ],
       "games": [
@@ -724,6 +724,13 @@
           "home_score": 6,
           "away_score": 34,
           "date": "Sat 9/5"
+        },
+        {
+          "home": "Bears",
+          "away": "Spartans",
+          "home_score": 13,
+          "away_score": 0,
+          "date": "Wed 9/9"
         }
       ],
       "schedule": [
@@ -784,8 +791,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 13,
+          "away_score": 0
         },
         {
           "home": "Buccaneers",
@@ -5887,6 +5894,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-10T01:42:49.302484Z",
-  "data_updated": "2026-09-10T01:42:49.302484Z"
+  "last_successful_check": "2026-09-10T02:30:04.108613Z",
+  "data_updated": "2026-09-10T02:30:04.108613Z"
 }
