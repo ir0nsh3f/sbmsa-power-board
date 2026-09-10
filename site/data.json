@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-10T16:24:14.841882Z",
+  "last_checked": "2026-09-10T20:52:24.998931Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -72,13 +72,13 @@
           "team": "Jets",
           "coach": "Mendrek-Laske",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 21,
-          "pa": 7,
-          "margin_sum": 14,
-          "capped_margin_sum": 14
+          "pa": 21,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         },
         {
           "team": "Saints",
@@ -95,14 +95,14 @@
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
+          "gp": 1,
+          "pf": 14,
           "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 14,
+          "capped_margin_sum": 14
         },
         {
           "team": "Titans",
@@ -145,6 +145,13 @@
           "home_score": 6,
           "away_score": 22,
           "date": "Sat 9/5"
+        },
+        {
+          "home": "Jets",
+          "away": "Texans",
+          "home_score": 0,
+          "away_score": 14,
+          "date": "Wed 9/9"
         },
         {
           "home": "Falcons",
@@ -212,8 +219,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 14
         },
         {
           "home": "Falcons",
@@ -1214,14 +1221,14 @@
         {
           "team": "Gamblers",
           "coach": "Eisterhold",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 18,
-          "pa": 47,
-          "margin_sum": -29,
-          "capped_margin_sum": -21
+          "gp": 2,
+          "pf": 43,
+          "pa": 61,
+          "margin_sum": -18,
+          "capped_margin_sum": -10
         },
         {
           "team": "Giants",
@@ -1263,13 +1270,13 @@
           "team": "Patriots",
           "coach": "Fersen",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 31,
-          "pa": 24,
-          "margin_sum": 7,
-          "capped_margin_sum": 7
+          "gp": 2,
+          "pf": 45,
+          "pa": 49,
+          "margin_sum": -4,
+          "capped_margin_sum": -4
         },
         {
           "team": "Raiders",
@@ -1363,6 +1370,13 @@
           "away": "Packers",
           "home_score": 8,
           "away_score": 25,
+          "date": "Wed 9/9"
+        },
+        {
+          "home": "Gamblers",
+          "away": "Patriots",
+          "home_score": 25,
+          "away_score": 14,
           "date": "Wed 9/9"
         }
       ],
@@ -1472,8 +1486,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 25,
+          "away_score": 14
         },
         {
           "home": "Raiders",
@@ -5908,6 +5922,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-10T16:24:14.841882Z",
-  "data_updated": "2026-09-10T03:01:09.040558Z"
+  "last_successful_check": "2026-09-10T20:52:24.998931Z",
+  "data_updated": "2026-09-10T20:52:24.998931Z"
 }
