@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-10T02:30:04.108613Z",
+  "last_checked": "2026-09-10T03:01:09.040558Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -59,14 +59,14 @@
         {
           "team": "Falcons",
           "coach": "Berry",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 18,
-          "pa": 14,
-          "margin_sum": 4,
-          "capped_margin_sum": 4
+          "gp": 2,
+          "pf": 30,
+          "pa": 20,
+          "margin_sum": 10,
+          "capped_margin_sum": 10
         },
         {
           "team": "Jets",
@@ -108,13 +108,13 @@
           "team": "Titans",
           "coach": "Flynn",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 6,
-          "pa": 22,
-          "margin_sum": -16,
-          "capped_margin_sum": -16
+          "gp": 2,
+          "pf": 12,
+          "pa": 34,
+          "margin_sum": -22,
+          "capped_margin_sum": -22
         }
       ],
       "games": [
@@ -145,6 +145,13 @@
           "home_score": 6,
           "away_score": 22,
           "date": "Sat 9/5"
+        },
+        {
+          "home": "Falcons",
+          "away": "Titans",
+          "home_score": 12,
+          "away_score": 6,
+          "date": "Wed 9/9"
         }
       ],
       "schedule": [
@@ -217,8 +224,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 6
         },
         {
           "home": "Cowboys",
@@ -639,13 +646,13 @@
           "team": "Buccaneers",
           "coach": "Wells",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 34,
-          "pa": 6,
-          "margin_sum": 28,
-          "capped_margin_sum": 21
+          "gp": 2,
+          "pf": 40,
+          "pa": 24,
+          "margin_sum": 16,
+          "capped_margin_sum": 9
         },
         {
           "team": "Lions",
@@ -662,14 +669,14 @@
         {
           "team": "Mustangs",
           "coach": "Brown",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 0,
-          "pa": 19,
-          "margin_sum": -19,
-          "capped_margin_sum": -19
+          "gp": 2,
+          "pf": 18,
+          "pa": 25,
+          "margin_sum": -7,
+          "capped_margin_sum": -7
         },
         {
           "team": "Oilers",
@@ -730,6 +737,13 @@
           "away": "Spartans",
           "home_score": 13,
           "away_score": 0,
+          "date": "Wed 9/9"
+        },
+        {
+          "home": "Buccaneers",
+          "away": "Mustangs",
+          "home_score": 6,
+          "away_score": 18,
           "date": "Wed 9/9"
         }
       ],
@@ -803,8 +817,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-09",
           "start_iso": "2026-09-09T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 18
         },
         {
           "home": "Bills",
@@ -5894,6 +5908,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-10T02:30:04.108613Z",
-  "data_updated": "2026-09-10T02:30:04.108613Z"
+  "last_successful_check": "2026-09-10T03:01:09.040558Z",
+  "data_updated": "2026-09-10T03:01:09.040558Z"
 }
