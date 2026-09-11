@@ -1,7 +1,10 @@
 {
-  "last_checked": "2026-09-11T11:20:52.944059Z",
-  "status": "ok",
-  "errors": [],
+  "last_checked": "2026-09-11T16:28:43.664434Z",
+  "status": "error",
+  "errors": [
+    "8u Pulisic: ValueError: Team roster changed; verify official division before resetting baseline",
+    "8u Messi: ValueError: Team roster changed; verify official division before resetting baseline"
+  ],
   "divisions": [
     {
       "sport": "flag",
