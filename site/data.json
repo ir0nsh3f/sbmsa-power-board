@@ -1,10 +1,7 @@
 {
-  "last_checked": "2026-09-11T16:28:43.664434Z",
-  "status": "error",
-  "errors": [
-    "8u Pulisic: ValueError: Team roster changed; verify official division before resetting baseline",
-    "8u Messi: ValueError: Team roster changed; verify official division before resetting baseline"
-  ],
+  "last_checked": "2026-09-11T17:49:20.847556Z",
+  "status": "ok",
+  "errors": [],
   "divisions": [
     {
       "sport": "flag",
@@ -1908,8 +1905,32 @@
           "capped_margin_sum": 0
         },
         {
+          "team": "Dinoscores",
+          "coach": "Urban",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
           "team": "Dortmund",
           "coach": "Mena",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Galaticos",
+          "coach": "Walker",
           "w": 0,
           "l": 0,
           "t": 0,
@@ -1932,30 +1953,6 @@
           "capped_margin_sum": 0
         },
         {
-          "team": "Houston",
-          "coach": "Urban",
-          "w": 0,
-          "l": 0,
-          "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
-        },
-        {
-          "team": "Madrid",
-          "coach": "Walker",
-          "w": 0,
-          "l": 0,
-          "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
-        },
-        {
           "team": "New York",
           "coach": "Norfleet",
           "w": 0,
@@ -1968,7 +1965,7 @@
           "capped_margin_sum": 0
         },
         {
-          "team": "Seattle",
+          "team": "Sounders",
           "coach": "Zabor",
           "w": 0,
           "l": 0,
@@ -1995,8 +1992,8 @@
       "games": [],
       "schedule": [
         {
-          "home": "Houston",
-          "away": "Seattle",
+          "home": "Dinoscores",
+          "away": "Sounders",
           "date": "Tue 9/15",
           "time": "7:00 PM",
           "location": "SBEC 8U #5",
@@ -2043,7 +2040,7 @@
           "away_score": null
         },
         {
-          "home": "Madrid",
+          "home": "Galaticos",
           "away": "Canada",
           "date": "Fri 9/18",
           "time": "7:00 PM",
@@ -2079,7 +2076,7 @@
           "away_score": null
         },
         {
-          "home": "Houston",
+          "home": "Dinoscores",
           "away": "Dortmund",
           "date": "Wed 9/23",
           "time": "5:45 PM",
@@ -2092,7 +2089,7 @@
         },
         {
           "home": "New York",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Thu 9/24",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2103,8 +2100,8 @@
           "away_score": null
         },
         {
-          "home": "Madrid",
-          "away": "Houston",
+          "home": "Galaticos",
+          "away": "Dinoscores",
           "date": "Thu 9/24",
           "time": "7:00 PM",
           "location": "SBEC 8U #5",
@@ -2115,7 +2112,7 @@
           "away_score": null
         },
         {
-          "home": "Madrid",
+          "home": "Galaticos",
           "away": "Arsenal",
           "date": "Fri 9/25",
           "time": "5:45 PM",
@@ -2152,7 +2149,7 @@
         },
         {
           "home": "Germany",
-          "away": "Madrid",
+          "away": "Galaticos",
           "date": "Tue 9/29",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2163,7 +2160,7 @@
           "away_score": null
         },
         {
-          "home": "Houston",
+          "home": "Dinoscores",
           "away": "Canada",
           "date": "Wed 9/30",
           "time": "7:00 PM",
@@ -2199,8 +2196,8 @@
           "away_score": null
         },
         {
-          "home": "Madrid",
-          "away": "Seattle",
+          "home": "Galaticos",
+          "away": "Sounders",
           "date": "Thu 10/1",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2211,7 +2208,7 @@
           "away_score": null
         },
         {
-          "home": "Madrid",
+          "home": "Galaticos",
           "away": "Brazil",
           "date": "Fri 10/2",
           "time": "7:00 PM",
@@ -2223,7 +2220,7 @@
           "away_score": null
         },
         {
-          "home": "Houston",
+          "home": "Dinoscores",
           "away": "Arsenal",
           "date": "Fri 10/2",
           "time": "7:00 PM",
@@ -2260,7 +2257,7 @@
         },
         {
           "home": "Spain",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Tue 10/6",
           "time": "7:00 PM",
           "location": "PC-8u #1",
@@ -2272,7 +2269,7 @@
         },
         {
           "home": "Dortmund",
-          "away": "Madrid",
+          "away": "Galaticos",
           "date": "Tue 10/6",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2307,7 +2304,7 @@
           "away_score": null
         },
         {
-          "home": "Houston",
+          "home": "Dinoscores",
           "away": "Brazil",
           "date": "Thu 10/8",
           "time": "7:00 PM",
@@ -2320,7 +2317,7 @@
         },
         {
           "home": "Germany",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Tue 10/13",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2356,7 +2353,7 @@
         },
         {
           "home": "Spain",
-          "away": "Madrid",
+          "away": "Galaticos",
           "date": "Wed 10/14",
           "time": "7:00 PM",
           "location": "SBEC 8U #5",
@@ -2368,7 +2365,7 @@
         },
         {
           "home": "New York",
-          "away": "Madrid",
+          "away": "Galaticos",
           "date": "Fri 10/16",
           "time": "5:45 PM",
           "location": "PC-8u #1",
@@ -2380,7 +2377,7 @@
         },
         {
           "home": "Spain",
-          "away": "Houston",
+          "away": "Dinoscores",
           "date": "Fri 10/16",
           "time": "7:00 PM",
           "location": "PC-8u #1",
@@ -2392,7 +2389,7 @@
         },
         {
           "home": "Dortmund",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Fri 10/16",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2428,7 +2425,7 @@
         },
         {
           "home": "Canada",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Tue 10/20",
           "time": "7:00 PM",
           "location": "PC-8u #1",
@@ -2440,7 +2437,7 @@
         },
         {
           "home": "New York",
-          "away": "Houston",
+          "away": "Dinoscores",
           "date": "Wed 10/21",
           "time": "7:00 PM",
           "location": "PC-8u #1",
@@ -2476,7 +2473,7 @@
         },
         {
           "home": "Arsenal",
-          "away": "Seattle",
+          "away": "Sounders",
           "date": "Thu 10/22",
           "time": "5:45 PM",
           "location": "SBEC 8U #5",
@@ -2487,7 +2484,7 @@
           "away_score": null
         },
         {
-          "home": "Houston",
+          "home": "Dinoscores",
           "away": "Germany",
           "date": "Thu 10/22",
           "time": "7:00 PM",
@@ -2511,7 +2508,7 @@
           "away_score": null
         },
         {
-          "home": "Seattle",
+          "home": "Sounders",
           "away": "Brazil",
           "date": "Fri 10/23",
           "time": "7:00 PM",
@@ -2578,18 +2575,6 @@
           "capped_margin_sum": 0
         },
         {
-          "team": "England",
-          "coach": "Novak",
-          "w": 0,
-          "l": 0,
-          "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
-        },
-        {
           "team": "France",
           "coach": "Miller",
           "w": 0,
@@ -2628,6 +2613,18 @@
         {
           "team": "Juve",
           "coach": "Kilgore",
+          "w": 0,
+          "l": 0,
+          "t": 0,
+          "gp": 0,
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
+        },
+        {
+          "team": "Three Lions",
+          "coach": "Novak",
           "w": 0,
           "l": 0,
           "t": 0,
@@ -2678,7 +2675,7 @@
         },
         {
           "home": "Celtic",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Sat 9/19",
           "time": "5:15 PM",
           "location": "SBEC 8U #5",
@@ -2738,7 +2735,7 @@
         },
         {
           "home": "Holland",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Fri 9/25",
           "time": "7:00 PM",
           "location": "PC-8u #3",
@@ -2774,7 +2771,7 @@
         },
         {
           "home": "France",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Tue 9/29",
           "time": "7:00 PM",
           "location": "SBEC 8U #5",
@@ -2845,7 +2842,7 @@
           "away_score": null
         },
         {
-          "home": "England",
+          "home": "Three Lions",
           "away": "Juve",
           "date": "Mon 10/5",
           "time": "7:00 PM",
@@ -2953,7 +2950,7 @@
           "away_score": null
         },
         {
-          "home": "England",
+          "home": "Three Lions",
           "away": "Barcelona",
           "date": "Thu 10/15",
           "time": "7:00 PM",
@@ -2978,7 +2975,7 @@
         },
         {
           "home": "Argentina",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Sat 10/17",
           "time": "9:45 AM",
           "location": "PC-8u #1",
@@ -3014,7 +3011,7 @@
         },
         {
           "home": "USA",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Tue 10/20",
           "time": "7:00 PM",
           "location": "SBEC 8U #5",
@@ -3062,7 +3059,7 @@
         },
         {
           "home": "Ireland",
-          "away": "England",
+          "away": "Three Lions",
           "date": "Sat 10/24",
           "time": "2:45 PM",
           "location": "SBEC 8U #5",
@@ -5925,6 +5922,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-11T11:20:52.944059Z",
-  "data_updated": "2026-09-10T20:52:24.998931Z"
+  "last_successful_check": "2026-09-11T17:49:20.847556Z",
+  "data_updated": "2026-09-11T17:49:20.847556Z"
 }
