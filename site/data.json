@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-12T10:45:57.045300Z",
+  "last_checked": "2026-09-12T15:31:35.743529Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -3117,10 +3117,10 @@
           "coach": "Suarez",
           "w": 0,
           "l": 0,
-          "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
+          "t": 1,
+          "gp": 1,
+          "pf": 1,
+          "pa": 1,
           "margin_sum": 0,
           "capped_margin_sum": 0
         },
@@ -3129,10 +3129,10 @@
           "coach": "Belock",
           "w": 0,
           "l": 0,
-          "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
+          "t": 1,
+          "gp": 1,
+          "pf": 1,
+          "pa": 1,
           "margin_sum": 0,
           "capped_margin_sum": 0
         },
@@ -3233,7 +3233,15 @@
           "capped_margin_sum": 0
         }
       ],
-      "games": [],
+      "games": [
+        {
+          "home": "Bulls FC",
+          "away": "Bayern Eagles",
+          "home_score": 1,
+          "away_score": 1,
+          "date": "Sat 9/12"
+        }
+      ],
       "schedule": [
         {
           "home": "Bulls FC",
@@ -3244,8 +3252,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 1
         },
         {
           "home": "Space City Strikers",
@@ -5922,6 +5930,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-12T10:45:57.045300Z",
-  "data_updated": "2026-09-11T17:49:20.847556Z"
+  "last_successful_check": "2026-09-12T15:31:35.743529Z",
+  "data_updated": "2026-09-12T15:31:35.743529Z"
 }
