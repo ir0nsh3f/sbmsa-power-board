@@ -81,7 +81,7 @@ test('browser global exposes render; rerender replaces local subtree without con
 
 test('opponent capped ranks compare all same-sport divisions, preserve ties and exact identity', () => {
  const t=(team,w,cap)=>({team,w,l:2-w,t:0,gp:2,pf:30,pa:12,capped_margin_sum:cap,margin_sum:90});
- const data={divisions:[division({teams:[t('Rivals',1,6),{team:'Buccaneers',coach:'Our coach'}]}),division({division:'Other',teams:[t('Leader',2,0),t('Equal',1,6),t('Rivals',0,-6)]}),division({sport:'8u',division:'Other',teams:[t('Different sport',2,6)]})]};
+ const data={divisions:[division({teams:[t('Rivals',1,6),{...t('Buccaneers',1,-6),coach:'Our coach'}],games:[{home:'Rivals',away:'Buccaneers',home_score:6,away_score:0}]}),division({division:'Other',teams:[t('Leader',2,0),t('Equal',1,6),t('Rivals',0,-6),t('Base',0,0)],games:[{home:'Equal',away:'Rivals',home_score:6,away_score:0},{home:'Leader',away:'Base',home_score:21,away_score:0}]}),division({sport:'8u',division:'Other',teams:[t('Different sport',2,6)]})]};
  const r=ui.buildRows(data,'2026-09-08')[0];
  assert.equal(r.opponentRank,'T2');assert.equal(r.opponentGP,2);assert.equal(r.cappedMargin,3);assert.equal(r.ourCoach,'Our coach');
  const unplayed=ui.buildRows({divisions:[division({teams:[{team:'Rivals',w:0,l:0,t:0,gp:0,pf:0,pa:0,capped_margin_sum:0}]})]},'2026-09-08')[0];
@@ -92,7 +92,7 @@ test('opponent capped ranks compare all same-sport divisions, preserve ties and 
 test('compact schedule keeps strength inline, date first, team selector and collapsed details', () => {
  const list=rows([game()]);const html=ui.renderHTML(list,'Upcoming','guide');
  assert.match(html,/Wed, Sep 9/);assert.match(html,/data-schedule-team/);
- assert.match(html,/Cap rank/);assert.match(html,/Cap Δ\/G/);assert.match(html,/GP 2/);
+ assert.match(html,/Power rank/);assert.match(html,/Cap Δ\/G/);assert.match(html,/GP 2/);
  assert.match(html,/<details class="fixture-details"><summary>Details/);
  assert.doesNotMatch(html,/scroll horizontally|<details[^>]* open/);
  assert.equal(ui.filterRows(list,'All','8u|Pulisic|Arsenal').length,0);

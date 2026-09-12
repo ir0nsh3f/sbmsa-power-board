@@ -23,6 +23,24 @@ class HistoryTests(unittest.TestCase):
     def index(self):
         return json.loads((self.history / 'index.json').read_text())
 
+    def test_method_transition_appends_without_rewriting_old_capture(self):
+        from scripts import history
+        with patch.object(history, 'METHOD', history.LEGACY_METHOD):
+            self.collect()
+        old = self.index()['captures'][0]
+        immutable = (self.history / old['path']).read_bytes()
+        self.collect('2026-09-08T13:00:00Z')
+        index = history.load_index(self.history)
+        self.assertEqual(index['schema_version'], 2)
+        self.assertEqual(len(index['captures']), 2)
+        self.assertEqual((self.history / old['path']).read_bytes(), immutable)
+        self.assertEqual(index['captures'][0]['ranking_method_id'], history.LEGACY_METHOD['id'])
+        self.assertEqual(index['captures'][1]['ranking_method_id'], history.METHOD['id'])
+        self.assertEqual(index['captures'][0]['result_sha256'], index['captures'][1]['result_sha256'])
+        self.assertEqual(index['captures'][1]['change_reason'], 'ranking-method-change')
+        self.collect('2026-09-08T14:00:00Z')
+        self.assertEqual(len(self.index()['captures']), 2)
+
     def test_verified_baseline_has_full_results_and_compact_rank_points(self):
         payload = self.collect()
         self.assertTrue((self.history / 'index.json').exists(), 'accepted collection must create history')

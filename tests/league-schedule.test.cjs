@@ -29,7 +29,7 @@ test('all official fixtures retained with exact counts and no premature highligh
 });
 test('CT chronology, date-only/undated ordering, same-day and partial scores never imply draws',()=>{
  const game=(date_iso,start_iso,extra={})=>({away:'a',home:'b',date_iso,start_iso,...extra});
- const data={divisions:[{sport:'8u',division:'A',teams:[team('a'),team('b')],schedule:[game(null,null),game('2026-09-10','2026-09-10T00:30:00Z'),game('2026-09-09',null),game('2026-09-08',null),game('2026-09-09',null,{home_score:0,away_score:0}),game('2026-09-09',null,{home_score:1,away_score:null})]}]};
+ const data={divisions:[{sport:'8u',division:'A',teams:[team('a'),team('b')],games:[{home:'a',away:'b',home_score:0,away_score:0}],schedule:[game(null,null),game('2026-09-10','2026-09-10T00:30:00Z'),game('2026-09-09',null),game('2026-09-08',null),game('2026-09-09',null,{home_score:0,away_score:0}),game('2026-09-09',null,{home_score:1,away_score:null})]}]};
  const rows=L.buildRows(data,'8u','2026-09-09');
  assert.equal(rows[0].status,'Awaiting result');assert.equal(rows.at(-1).dateISO,null);
  const timed=rows.find(r=>r.start);assert.equal(timed.dateISO,'2026-09-09');assert.equal(timed.timeLabel,'7:30 PM');
@@ -39,9 +39,9 @@ test('CT chronology, date-only/undated ordering, same-day and partial scores nev
  assert.equal(L.groupDates(rows).at(-1).dateISO,null);
 });
 test('render exposes both records, capped ranks, searchable official coaches, map and evidence without unsafe HTML',()=>{
- const data={divisions:[{sport:'8u',division:'Pulisic',url:'https://example.org',teams:[team('Arsenal'),team('<b>')],schedule:[{home:'Arsenal',away:'<b>',date_iso:'2026-09-10',location:'Field',location_url:'https://www.google.com/maps/'}]}]};
+ const data={divisions:[{sport:'8u',division:'Pulisic',url:'https://example.org',teams:[team('Arsenal'),team('<b>')],games:[{home:'Arsenal',away:'<b>',home_score:0,away_score:0}],schedule:[{home:'Arsenal',away:'<b>',date_iso:'2026-09-10',location:'Field',location_url:'https://www.google.com/maps/'}]}]};
  const html=L.renderRows(L.buildRows(data,'8u','2026-09-09'));
- assert.match(html,/&lt;b&gt;/);assert.ok(!html.includes('<b> coach'));assert.match(html,/Arsenal coach/);assert.match(html,/Our team/);assert.match(html,/3–0–0/);assert.match(html,/T1/);assert.match(html,/Top matchup/);assert.match(html,/Both capped ranks/);assert.match(html,/noopener noreferrer/);
+ assert.match(html,/&lt;b&gt;/);assert.ok(!html.includes('<b> coach'));assert.match(html,/Arsenal coach/);assert.match(html,/Our team/);assert.match(html,/3–0–0/);assert.match(html,/T1/);assert.match(html,/Top matchup/);assert.match(html,/Both power ranks/);assert.match(html,/noopener noreferrer/);
  const small=L.renderRows(L.buildRows({divisions:[{...data.divisions[0],teams:[team('Arsenal',1,1),team('<b>',0,0)]}]},'8u','2026-09-09'));
  assert.match(small,/Small sample/);assert.match(small,/Unrated/);assert.ok(!small.includes('Top matchup'));
 });
@@ -72,14 +72,14 @@ test('favorite block class matches exact sport/division/team, home or away, thro
 });
 test('favorite release versions CSS and renderer for returning clients',()=>{
  const html=fs.readFileSync(require.resolve('../site/index.html'),'utf8');
- for(const asset of ['league-schedule.css','league-schedule.js'])assert.ok(html.includes(asset+'?v=20260912-last-pregame-1'));
+ for(const asset of ['league-schedule.css','league-schedule.js'])assert.ok(html.includes(asset+'?v=20260912-power-2'));
 });
 const team=(team,gp=3,w=3,margin=9)=>({team,coach:team+' coach',gp,w,l:gp-w,t:0,capped_margin_sum:margin});
 test('capped profiles use full sport competition ties and exclude unrated from denominator',()=>{
- const data={divisions:[{sport:'8u',division:'A',teams:[team('a'),team('b'),team('c',3,2),team('u',0,0,0)]},{sport:'8u',division:'B',teams:[team('d',3,1),team('e',3,0)]},{sport:'6u',division:'A',teams:[team('other')]}]};
+ const data={divisions:[{sport:'8u',division:'A',teams:[team('a'),team('b'),team('c',3,2),team('u',0,0,0)],games:[{home:'a',away:'c',home_score:3,away_score:0},{home:'b',away:'c',home_score:3,away_score:0}]},{sport:'8u',division:'B',teams:[team('d',3,1),team('e',3,0)],games:[{home:'d',away:'e',home_score:0,away_score:0}]},{sport:'6u',division:'A',teams:[team('other')]}]};
  const p=L.profiles(data,'8u');
  assert.equal(p.ratedCount,5);assert.equal(p.cutoff,2);
  assert.equal(p.teams.get(JSON.stringify(['A','a'])).rankText,'T1');
- assert.equal(p.teams.get(JSON.stringify(['A','c'])).rank,3);
+ assert.equal(p.teams.get(JSON.stringify(['A','c'])).rank,5);
  assert.equal(p.teams.get(JSON.stringify(['A','u'])).rank,null);
 });

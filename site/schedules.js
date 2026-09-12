@@ -1,9 +1,9 @@
 (function (root, factory) {
   'use strict';
-  const api = factory();
+  const api = factory(typeof module === 'object' && module.exports ? require('./ratings.js') : root.SBMSARatings);
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.SBMSASchedules = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (R) {
   'use strict';
   const favorites = [
     {sport:'flag', division:'Burrow', team:'Buccaneers', child:'Dexter'},
@@ -19,18 +19,7 @@
     today = typeof today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(today) ? today : chicagoDate(new Date(today));
     const ranks = new Map();
     for (const sport of new Set((data?.divisions || []).map(d => d.sport))) {
-      const rated = (data.divisions || []).filter(d => d.sport === sport).flatMap(d => (d.teams || []).map(t => ({...t, division:d.division})))
-        .filter(t => t.gp > 0 && ['w','t','capped_margin_sum'].every(k => Number.isFinite(t[k])))
-        .map(t => ({...t, rate:(t.w + 0.5*t.t)/t.gp, margin:t.capped_margin_sum/t.gp}))
-        .sort((a,b) => b.rate-a.rate || b.margin-a.margin || a.team.localeCompare(b.team));
-      let anchor = null;
-      const counts = {};
-      rated.forEach((t,i) => {
-        if (!anchor || Math.abs(t.rate-anchor.rate)>1e-9 || Math.abs(t.margin-anchor.margin)>1e-9) { t.rank=i+1; anchor=t; }
-        else t.rank=anchor.rank;
-        counts[t.rank]=(counts[t.rank] || 0)+1;
-      });
-      rated.forEach(t => ranks.set(JSON.stringify([sport,t.division,t.team]), (counts[t.rank]>1?'T':'')+t.rank));
+      R.compute(data.divisions || [], sport).filter(t=>t.rank).forEach(t=>ranks.set(JSON.stringify([sport,t.division,t.team]),t.rankText));
     }
     const rows = [];
     for (const division of data?.divisions || []) {
@@ -114,7 +103,7 @@
       return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
         <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${fieldHTML(r)}</small></td>
         <th scope="row" class="fixture-match"><strong>${escapeHTML(r.team)}</strong> <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs <strong>${escapeHTML(r.opponent)}</strong> · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
-        <td class="fixture-strength"><div class="strength-line"><b>Cap rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
+        <td class="fixture-strength"><div class="strength-line"><b>Power rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
         <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+' '+r.scoreFor+'–'+r.scoreAgainst : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
     }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
@@ -128,8 +117,8 @@
   }
   function scheduleContent(rows, filter, layout, team) {
     return layout === 'glance' ? glanceTable(rows, filter, team) : `
-      <div class="sbmsa-schedule-scroll"><table><caption>Current-season capped strength, not pre-game · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
-      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Cap rank uses win rate, then capped margin/game, across all divisions of the same sport/age, independent of board filters or Raw mode. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
+      <div class="sbmsa-schedule-scroll"><table><caption>Current power, not pre-game · disconnected comparisons provisional · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
+      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, independent of filters or descriptive Raw mode. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
   }
   function renderHTML(rows, filter = 'Upcoming', layout = 'glance', team = 'all') {
     const missing = rows.filter(r => r.status === 'Awaiting result').length;

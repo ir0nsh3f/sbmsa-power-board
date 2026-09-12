@@ -8,9 +8,14 @@ from datetime import datetime, timezone
 from fractions import Fraction
 
 SEASON = 'fall-2026'
-METHOD = {'id': 'win-rate-capped-margin-v1', 'caps': {'flag': 21, '8u': 3, '6u': 3},
+LEGACY_METHOD = {'id': 'win-rate-capped-margin-v1', 'caps': {'flag': 21, '8u': 3, '6u': 3},
           'order': ['(w + t/2) / gp descending', 'capped_margin_sum / gp descending'],
           'ties': 'competition', 'unplayed': 'unrated', 'scope': 'sport/age across divisions'}
+try:
+    from scripts.ratings import METHOD, compute
+except ModuleNotFoundError:
+    from ratings import METHOD, compute
+METHODS = {m['id']: m for m in (LEGACY_METHOD, METHOD)}
 TEAM_FIELDS = ('team', 'w', 'l', 't', 'gp', 'pf', 'pa', 'margin_sum', 'capped_margin_sum')
 GAME_FIELDS = ('home', 'away', 'home_score', 'away_score', 'date', 'time', 'date_iso', 'start_iso')
 
@@ -28,9 +33,16 @@ def result_data(divisions):
             for d in sorted(divisions, key=lambda d: (d['sport'], d['division']))]
 
 
-def rank_points(divisions):
+def rank_points(divisions, method=None):
+    method = method or METHOD
+    if method != LEGACY_METHOD:
+        if method != METHODS['opponent-ridge-margin-v2']:
+            raise ValueError('Unknown ranking method')
+        return [dict(t, sport=s, team_id=[SEASON, s, t['division'], t['team']],
+                     win_rate=t['rate'], capped_margin_per_game=t['capped_margin_sum']/t['gp'] if t['gp'] else None)
+                for s in ('flag', '8u', '6u') for t in compute(divisions, s)]
     points = []
-    for sport in METHOD['caps']:
+    for sport in ('flag', '8u', '6u'):
         group = [dict(t, sport=sport, division=d['division'], team_id=[SEASON, sport, d['division'], t['team']])
                  for d in divisions if d['sport'] == sport for t in d['teams']]
         def score(t):
@@ -73,19 +85,22 @@ def atomic_write(path, content, *, immutable=False):
             os.unlink(temporary)
 
 
-def snapshot_entry(snapshot, path):
-    return {'captured_at': snapshot['captured_at'], 'path': path,
-            'result_sha256': snapshot['result_sha256'], 'teams': rank_points(snapshot['divisions']),
-            'completed_games': sum(len(d['games']) for d in snapshot['divisions'])}
+def snapshot_entry(snapshot, path, version=2):
+    extra = {} if version == 1 else {'ranking_method_id': snapshot['ranking_method']['id'],
+                                    'change_reason': snapshot.get('change_reason', 'observed-results')}
+    return dict(extra, **{'captured_at': snapshot['captured_at'], 'path': path,
+            'result_sha256': snapshot['result_sha256'], 'teams': rank_points(snapshot['divisions'], snapshot['ranking_method']),
+            'completed_games': sum(len(d['games']) for d in snapshot['divisions'])})
 
 
 def load_index(directory):
     """Fail closed on damage; never reset an unreadable previous good archive."""
     directory = Path(directory)
     index_path = directory / 'index.json'
-    index = json.loads(index_path.read_text()) if index_path.exists() else {'schema_version': 1, 'season': SEASON, 'ranking_method': METHOD, 'captures': []}
+    index = json.loads(index_path.read_text()) if index_path.exists() else {'schema_version': 2, 'season': SEASON, 'ranking_methods': METHODS, 'captures': []}
     try:
-        if (index['schema_version'], index['season'], index['ranking_method']) != (1, SEASON, METHOD):
+        version = index['schema_version']
+        if index['season'] != SEASON or version not in (1, 2) or (version == 1 and index['ranking_method'] != LEGACY_METHOD) or (version == 2 and index['ranking_methods'] != METHODS):
             raise ValueError('History schema/season/method mismatch; review before rollover')
         seen = set()
         for entry in index['captures']:
@@ -95,13 +110,16 @@ def load_index(directory):
             seen.add(str(path))
             snapshot = json.loads((directory / path).read_text())
             digest = hashlib.sha256(encoded({'season': SEASON, 'divisions': snapshot['divisions']})).hexdigest()
-            if snapshot['result_sha256'] != digest or snapshot['season'] != SEASON or snapshot['ranking_method'] != METHOD or snapshot['schema_version'] != 1:
+            if snapshot['result_sha256'] != digest or snapshot['season'] != SEASON or snapshot['ranking_method'] not in METHODS.values() or snapshot['schema_version'] != 1:
                 raise ValueError('History snapshot integrity failure')
-            if snapshot_entry(snapshot, str(path)) != entry:
+            if snapshot_entry(snapshot, str(path), version) != entry:
                 raise ValueError('History index does not match immutable snapshot')
         stored = {str(p.relative_to(directory)) for p in directory.glob(f'{SEASON}/*.json')}
         if stored != seen:
             raise ValueError('Unindexed history capture; preserve files and repair index before continuing')
+        if version == 1:
+            index = {'schema_version': 2, 'season': SEASON, 'ranking_methods': METHODS,
+                     'captures': [dict(e, ranking_method_id=LEGACY_METHOD['id'], change_reason='observed-results') for e in index['captures']]}
         return index
     except (KeyError, TypeError, OSError) as exc:
         raise ValueError('History archive incomplete or invalid; retain and investigate') from exc
@@ -121,13 +139,14 @@ def record_history(directory, payload):
         raise ValueError('Capture time must include timezone')
     if captures and observed < datetime.fromisoformat(captures[-1]['captured_at'].replace('Z', '+00:00')):
         raise ValueError('Capture time predates the latest observation')
-    if captures and captures[-1]['result_sha256'] == digest:
+    if captures and captures[-1]['result_sha256'] == digest and captures[-1]['ranking_method_id'] == METHOD['id']:
         return captures[-1]
     stamp = datetime.fromisoformat(captured_at.replace('Z', '+00:00')).astimezone(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     path = f'{SEASON}/{stamp}-{digest[:16]}.json'
     snapshot = {'schema_version': 1, 'season': SEASON, 'captured_at': captured_at,
                 'capture_semantics': 'observed verified results; not game-day or source-posted time',
-                'result_sha256': digest, 'ranking_method': METHOD, 'divisions': data}
+                'result_sha256': digest, 'ranking_method': METHOD, 'divisions': data,
+                'change_reason': 'ranking-method-change' if captures and captures[-1]['ranking_method_id'] != METHOD['id'] else 'observed-results'}
     entry = snapshot_entry(snapshot, path)
     created = False
     try:

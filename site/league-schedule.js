@@ -1,24 +1,18 @@
 (function(root,factory){
   'use strict';
-  if(typeof module==='object'&&module.exports)module.exports=factory(require('./schedules.js'));
-  else root.SBMSALeagueSchedule=factory(root.SBMSASchedules);
-})(typeof globalThis!=='undefined'?globalThis:this,function(S){
+  if(typeof module==='object'&&module.exports)module.exports=factory(require('./schedules.js'),require('./ratings.js'));
+  else root.SBMSALeagueSchedule=factory(root.SBMSASchedules,root.SBMSARatings);
+})(typeof globalThis!=='undefined'?globalThis:this,function(S,R){
   'use strict';
   const key=(division,team)=>JSON.stringify([division,team]);
   function profiles(data,sport){
-    const all=(data?.divisions||[]).filter(d=>d.sport===sport).flatMap(d=>(d.teams||[]).map(t=>({...t,division:d.division,rank:null,rankText:'Unrated'})));
-    const rated=all.filter(t=>t.gp>0&&['w','t','capped_margin_sum'].every(k=>Number.isFinite(t[k])))
-      .map(t=>Object.assign(t,{rate:(t.w+.5*t.t)/t.gp,margin:t.capped_margin_sum/t.gp}))
-      .sort((a,b)=>b.rate-a.rate||b.margin-a.margin||a.team.localeCompare(b.team));
-    let anchor=null;const counts={};
-    rated.forEach((t,i)=>{if(!anchor||Math.abs(t.rate-anchor.rate)>1e-9||Math.abs(t.margin-anchor.margin)>1e-9){t.rank=i+1;anchor=t;}else t.rank=anchor.rank;counts[t.rank]=(counts[t.rank]||0)+1;});
-    rated.forEach(t=>t.rankText=(counts[t.rank]>1?'T':'')+t.rank);
+    const all=R.compute(data?.divisions||[],sport),rated=all.filter(t=>t.rank);
     return {teams:new Map(all.map(t=>[key(t.division,t.team),t])),ratedCount:rated.length,cutoff:Math.ceil(rated.length/4)};
   }
   function highlight(row,ratedCount){
     const {away:a,home:b}=row,cutoff=Math.ceil(ratedCount/4);
     if(row.status!=='Upcoming'||!row.dateISO||![a,b].every(t=>t&&t.gp>=3&&t.rank>0&&Number.isFinite(t.rate)))return null;
-    if(a.rank<=cutoff&&b.rank<=cutoff)return {label:'Top matchup',reason:`Both capped ranks in top ${cutoff} of ${ratedCount} rated teams (rounded-up top quarter; ties included). Both have at least 3 GP.`};
+    if(a.rank<=cutoff&&b.rank<=cutoff)return {label:'Top matchup',reason:`Both power ranks in top ${cutoff} of ${ratedCount} rated teams (rounded-up top quarter; ties included). Both have at least 3 GP.`};
     const gap=Math.abs(a.rate-b.rate);
     if(a.division===b.division&&gap<=.15+1e-12)return {label:'Close records',reason:`Same division; win-rate gap ${(gap*100).toFixed(1)} percentage points (≤15). Both have at least 3 GP. This does not predict a close game.`};
     return null;
@@ -115,7 +109,7 @@
       clearTimeout(state.timer);
       if(state.showProjections){const next=Math.min(...rows.map(r=>r.start).filter(t=>t>Date.now()));if(Number.isFinite(next))state.timer=setTimeout(update,Math.min(2147483647,Math.max(1,next-Date.now()+10)));}
     };
-    container.innerHTML=`<div class="league-heading"><h2>League schedule</h2><span>Fall 2026 · All dates &amp; times Central</span></div><div class="league-toolbar"><div role="group" aria-label="League schedule view">${['Upcoming','Results','All'].map(f=>`<button data-league-filter="${f}">${f}</button>`).join('')}</div><button data-league-watch>Watchlist</button>${(options.sport||'flag')==='flag'?'<button data-league-projections aria-pressed="false">Experimental projections</button>':''}</div>${(options.sport||'flag')==='flag'?projectionGuide(data.projections):''}<p class="league-note" data-league-count role="status"></p><p class="league-note">Away @ home · # = capped rank · record W–L–T · Tap a row for coaches &amp; GP.</p><details class="league-method"><summary>Highlights &amp; ranking guide</summary><p>Highlights describe current records, not predictions or playoff stakes. No playoff or tiebreak simulation. Both teams need at least 3 games played and a rated rank; undated, completed and past unscored games receive no badge.</p><p><b>Top matchup</b> takes priority: both competition ranks ≤ ceil(rated teams ÷ 4), across all divisions of this sport/age. Ties at the cutoff are included, so more than a quarter can qualify. The denominator includes rated teams with 1–2 GP, but they cannot earn a badge.</p><p><b>Close records</b>: same division, win-rate gap ≤15 percentage points; not a prediction of a close game. Win rate = (W + ½T) / GP. Watchlist shows only upcoming highlighted games; it does not reorder them.</p><p>Ranks use win rate, then per-game capped margin (±21 flag, ±3 soccer), independent of Raw mode and filters. T = tied competition rank. All records and ranks are latest season totals, not historical pregame stats; GP 0 is unrated, GP 1–2 is a small sample. No division-strength adjustment. Same-day unscored games remain upcoming; older unscored games are awaiting results in All, never assumed draws. Undated fixtures sort last; unknown times precede known times on a date.</p></details><div data-league-content></div>`;
+    container.innerHTML=`<div class="league-heading"><h2>League schedule</h2><span>Fall 2026 · All dates &amp; times Central</span></div><div class="league-toolbar"><div role="group" aria-label="League schedule view">${['Upcoming','Results','All'].map(f=>`<button data-league-filter="${f}">${f}</button>`).join('')}</div><button data-league-watch>Watchlist</button>${(options.sport||'flag')==='flag'?'<button data-league-projections aria-pressed="false">Experimental projections</button>':''}</div>${(options.sport||'flag')==='flag'?projectionGuide(data.projections):''}<p class="league-note" data-league-count role="status"></p><p class="league-note">Away @ home · # = power rank · W–L–T. Disconnected comparisons are provisional, even within divisions.</p><details class="league-method"><summary>Highlights &amp; ranking guide</summary><p>Highlights describe current records, not predictions or playoff stakes. No playoff or tiebreak simulation. Both teams need at least 3 games played and a rated rank; undated, completed and past unscored games receive no badge.</p><p><b>Top matchup</b> takes priority: both competition ranks ≤ ceil(rated teams ÷ 4), across all divisions of this sport/age. Ties at the cutoff are included, so more than a quarter can qualify. The denominator includes rated teams with 1–2 GP, but they cannot earn a badge.</p><p><b>Close records</b>: same division, win-rate gap ≤15 percentage points; not a prediction of a close game. Win rate = (W + ½T) / GP. Watchlist shows only upcoming highlighted games; it does not reorder them.</p><p>Ranks use joint opponent-adjusted power with ridge shrinkage and game caps (±21 flag, ±3 soccer), independent of descriptive Raw mode and filters. Disconnected result groups share an assumed baseline, not measured relative strength. T = tied competition rank. All records and ranks are latest season totals, not historical pregame stats; GP 0 is unrated, GP 1–2 is a small sample. No division-strength adjustment. Same-day unscored games remain upcoming; older unscored games are awaiting results in All, never assumed draws. Undated fixtures sort last; unknown times precede known times on a date.</p></details><div data-league-content></div>`;
     container.querySelectorAll('[data-league-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.leagueFilter;update();}));
     container.querySelector('[data-league-watch]').addEventListener('click',()=>{state.watchlist=!state.watchlist;update();});
     container.querySelector('[data-league-projections]')?.addEventListener('click',()=>{state.showProjections=!state.showProjections;update();});

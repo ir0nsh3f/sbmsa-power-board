@@ -9,7 +9,7 @@ const path=require('node:path');
  const site=path.join(__dirname,'../site');
  const server=http.createServer((req,res)=>{
   const requested=path.basename(req.url.split('?')[0]);
-  const name=['data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
+  const name=['ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
   res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
   res.end(fs.readFileSync(path.join(site,name)));
  });
@@ -20,6 +20,30 @@ const path=require('node:path');
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(process.env.TEST_URL || `http://127.0.0.1:${server.address().port}/`);
   await page.waitForSelector('.row');
+  // Independently compute expected identities outside the page; numerical Python parity is in ratings.test.cjs.
+  const R=require('../site/ratings.js');
+  const publication=await page.evaluate(()=>data);
+  for(const s of ['flag','8u','6u']){
+   await page.locator(`[data-sport="${s}"]`).click();
+   const expected=R.compute(publication.divisions,s);
+   const identities=()=>page.locator('#rows .row').evaluateAll(es=>es.map(e=>[e.dataset.team,e.querySelector('.rank').textContent,e.querySelector('.diff').textContent]));
+   const wanted=expected.map(t=>[t.team,t.rank?t.rankText:'—',t.power===null?'—':(t.power>0?'+':'')+Number(t.power.toFixed(2))]);
+   assert.deepEqual(await identities(),wanted,s+' power ordering/value/ties');
+   const spotlight=expected.find(t=>t.team===({flag:'Buccaneers','8u':'Arsenal','6u':'Vipers'})[s]);
+   assert.ok((await page.locator('#focus').innerText()).includes(spotlight.rank?'Rank '+spotlight.rankText:'Unrated'));
+   await page.locator('#raw').click();assert.deepEqual(await identities(),wanted,'Raw never changes power');
+   if(expected.some(t=>t.gp)){
+    const margins=await page.locator('#rows .result').allTextContents();
+    assert.deepEqual(margins,expected.map(t=>t.gp?(t.margin_sum/t.gp>0?'+':'')+Number((t.margin_sum/t.gp).toFixed(2)):'—'));
+   }
+   await page.locator('#capped').click();
+   if(s==='flag')for(const width of [320,390,768,1400]){
+    await page.setViewportSize({width,height:1000});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.screenshot({path:path.join(process.env.QA_DIR||'/tmp',`power-board-${width}.png`),fullPage:true});
+   }
+  }
+  await page.locator('[data-sport="flag"]').click();
   assert.equal(await page.locator('button').filter({hasText:/Reload published data/i}).count(),0,'Redundant reload button must be absent');
   assert.equal(await page.locator('#advanced').count(),1,'Advanced stats section must exist');
   assert.equal(await page.getByRole('tab').count(),4,'Four separate dashboard views');
@@ -133,7 +157,7 @@ const path=require('node:path');
   for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
   await page.evaluate(()=>{mode='raw';render();});
   await guide.locator('[data-schedule-layout="guide"]').click();
-  assert.deepEqual(await guide.locator('.fixture-strength b').allTextContents(),await page.evaluate(()=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data)).map(r=>'Cap rank '+(r.opponentRank||(r.opponentGP===0?'Unrated':'—')))));
+  assert.deepEqual(await guide.locator('.fixture-strength b').allTextContents(),await page.evaluate(()=>SBMSASchedules.filterRows(SBMSASchedules.buildRows(data)).map(r=>'Power rank '+(r.opponentRank||(r.opponentGP===0?'Unrated':'—')))));
   await page.evaluate(()=>{mode='capped';render();});
   await guide.locator('[data-schedule-layout="guide"]').click();
   await guide.getByRole('button',{name:'All',exact:true}).click();
@@ -162,7 +186,7 @@ const path=require('node:path');
   }
   await page.emulateMedia({media:'print'});for(const panel of ['rankings','advanced','team-schedules'])assert.ok(await page.locator('#'+panel).isVisible());await page.emulateMedia({media:'screen'});
   // Browser-only edge matrix: equal metrics, missing histories and an unplayed team.
-  await page.evaluate(()=>{window.originalCompute=SBMSAAdvanced.compute;window.originalData=data;data=structuredClone(data);const d=data.divisions.find(d=>d.sport==='flag');d.teams=d.teams.slice(0,4);data.divisions=[d];d.teams.forEach((t,i)=>{t.gp=i===3?0:1;t.margin_sum=[10,10,-2,0][i];});SBMSAAdvanced.compute=()=>Object.fromEntries(d.teams.map((t,i)=>[JSON.stringify([d.division,t.team]),{scored_pg:[10,10,null,0][i],allowed_pg:[2,2,null,0][i],raw_margin:[10,10,null,0][i],adjusted_margin:[3,3,null,0][i],sos:[.5,.5,null,0][i],capped_margin:null,sos_coverage:0,close_record:{w:0,l:0,t:0}}]));resetDivision();render();setView('advanced');});
+  await page.evaluate(()=>{window.originalCompute=SBMSAAdvanced.compute;window.originalData=data;data=structuredClone(data);const d=data.divisions.find(d=>d.sport==='flag');d.teams=d.teams.slice(0,4);d.games=d.games.filter(g=>[g.home,g.away].every(n=>d.teams.some(t=>t.team===n)));data.divisions=[d];d.teams.forEach((t,i)=>{t.gp=i===3?0:1;t.margin_sum=[10,10,-2,0][i];});SBMSAAdvanced.compute=()=>Object.fromEntries(d.teams.map((t,i)=>[JSON.stringify([d.division,t.team]),{scored_pg:[10,10,null,0][i],allowed_pg:[2,2,null,0][i],raw_margin:[10,10,null,0][i],adjusted_margin:[3,3,null,0][i],sos:[.5,.5,null,0][i],capped_margin:null,sos_coverage:0,close_record:{w:0,l:0,t:0}}]));resetDivision();render();setView('advanced');});
   for(const sort of ['raw_total','raw_margin','scored_pg','allowed_pg','adjusted_margin','sos']){await page.locator('#stat-sort').selectOption(sort);const labels=await page.locator('#stats-body tr td:nth-child(2)').allTextContents();assert.deepEqual(labels,sort==='raw_total'?['T1','T1','3','—']:['T1','T1','—','—']);}
   await page.evaluate(()=>{data=window.originalData;SBMSAAdvanced.compute=window.originalCompute;resetDivision();render();setView('rankings');});
   // Hostile name is QA-only, injected in browser memory, never written into public data.

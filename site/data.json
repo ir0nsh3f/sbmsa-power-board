@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-12T22:12:15.369597Z",
+  "last_checked": "2026-09-12T22:43:27.933041Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -3165,38 +3165,38 @@
         {
           "team": "Chelsea",
           "coach": "Zarghouni",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 4,
+          "pa": 1,
+          "margin_sum": 3,
+          "capped_margin_sum": 3
         },
         {
           "team": "Holland Hooligans",
           "coach": "Blades",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 1,
+          "pa": 4,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Mexico",
           "coach": "Spradley",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
+          "gp": 1,
           "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 14,
+          "margin_sum": -14,
+          "capped_margin_sum": -3
         },
         {
           "team": "Real Madrid",
@@ -3237,14 +3237,14 @@
         {
           "team": "Vipers",
           "coach": "Ellis",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
+          "gp": 1,
+          "pf": 14,
           "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 14,
+          "capped_margin_sum": 3
         }
       ],
       "games": [
@@ -3266,6 +3266,20 @@
           "home": "Celtics",
           "away": "Real Madrid",
           "home_score": 7,
+          "away_score": 0,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "Chelsea",
+          "away": "Holland Hooligans",
+          "home_score": 4,
+          "away_score": 1,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "Vipers",
+          "away": "Mexico",
+          "home_score": 14,
           "away_score": 0,
           "date": "Sat 9/12"
         }
@@ -3328,8 +3342,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 1
         },
         {
           "home": "Vipers",
@@ -3340,8 +3354,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 14,
+          "away_score": 0
         },
         {
           "home": "Space City Strikers",
@@ -4110,13 +4124,13 @@
           "team": "Kinkaid Falcons",
           "coach": "Alonso",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 2,
+          "pa": 7,
+          "margin_sum": -5,
+          "capped_margin_sum": -3
         },
         {
           "team": "Liverpool",
@@ -4169,14 +4183,14 @@
         {
           "team": "Speedy Yetis",
           "coach": "Leung",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 7,
+          "pa": 2,
+          "margin_sum": 5,
+          "capped_margin_sum": 3
         },
         {
           "team": "Tigers",
@@ -4235,6 +4249,13 @@
           "away": "Red Fury",
           "home_score": 0,
           "away_score": 5,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "Speedy Yetis",
+          "away": "Kinkaid Falcons",
+          "home_score": 7,
+          "away_score": 2,
           "date": "Sat 9/12"
         }
       ],
@@ -4308,8 +4329,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 7,
+          "away_score": 2
         },
         {
           "home": "Seattle Sounders FC",
@@ -6002,6 +6023,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-12T22:12:15.369597Z",
-  "data_updated": "2026-09-12T20:33:10.755066Z"
+  "last_successful_check": "2026-09-12T22:43:27.933041Z",
+  "data_updated": "2026-09-12T22:43:27.933041Z"
 }

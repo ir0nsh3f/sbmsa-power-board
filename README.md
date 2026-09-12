@@ -16,7 +16,9 @@ GitHub Actions checks the eight official division pages every six hours, at 00:1
 
 ## Observed season history
 
-`history/index.json` links immutable `history/fall-2026/<UTC timestamp>-<result hash>.json` captures. Each accepted eight-division check records a capture only when normalized **result data** differs from the latest capture. Identical checks, row reordering, coach edits, field changes and unplayed schedule changes do not add points. New results, completed-game date/time corrections, record/score corrections and reversions do. The first capture is a baseline observed now, not fabricated opening-day history.
+Index schema 2 has a ranking-method registry and `ranking_method_id` per capture. Old immutable v1 captures and their original ranks are preserved byte-for-byte. First accepted v2 source check appends a `ranking-method-change` baseline even with unchanged results. Never report this as movement. Future charts must split at method boundaries and must not carry observations across them; no chart currently bridges these methods. Unknown historical weeks remain unknown.
+
+`history/index.json` links immutable `history/fall-2026/<UTC timestamp>-<result hash>.json` captures. Each accepted eight-division check records a capture when normalized **result data** or the ranking-method version differs from the latest capture. Identical checks, row reordering, coach edits, field changes and unplayed schedule changes do not add points. New results, completed-game date/time corrections, record/score corrections and reversions do. The first capture is a baseline observed now, not fabricated opening-day history.
 
 Every capture preserves public sport/division/source identity, W/L/T/GP, scoring totals, per-game-capped margin totals and every completed game's final score and source date/time (including normalized dates/offsets when available). `captured_at` is the UTC observation/check time, **not** a game's date or the unknown time SBMSA posted its score. Captures are cumulative observations: never sum games across captures. Use the latest captured version of a game when analyzing corrected results. Undated games cannot reliably enter dated recent-form windows.
 
@@ -40,9 +42,9 @@ Commands: `python scripts/projection_publication.py validate` and `python script
 
 ## Ranking method
 
-Within each sport/age group, rank teams that have played by `(wins + 0.5 × ties) / games played`, then by average per-game scoring margin. The default limits each game's contribution to ±21 points for football or ±3 goals for soccer. The alternative uses the raw per-game average. Equal values retain tied competition ranks; teams with no games remain unrated. Division filters preserve the combined rank.
+Default `opponent-ridge-margin-v2` jointly minimizes `½ Σ(clip(home−away, ±cap) − (r_home−r_away))² + 3/2 Σ r²` independently for each sport/age, caps 21 flag / 3 soccer. Ratings have point/goal strength-effect units, not average own-result units. W–L–T never drives sorting. GP0 is unrated. Raw only changes the descriptive Margin/G column; all rank consumers and history remain canonical power ranks. See [exact objective, priors, solver and limitations](site/power-method.html).
 
-The per-game method avoids rewarding teams simply for having played more games. It is not a strength-of-schedule model and does not establish equal difficulty across disconnected divisions. All rankings remain provisional. Caps are editorial choices, not league rules. Public official standings and completed-game totals are cross-checked before publishing.
+Opponent adjustments are solved simultaneously with fixed ridge shrinkage toward zero (three rating-zero pseudo-observations). Disconnected components, even within a division, share only an assumed zero baseline; no cross-component calibration is claimed. League-wide ranks remain provisional. Caps are editorial choices, not league rules. Public official standings and completed-game totals are cross-checked before publishing.
 
 ## Advanced stats and opponent guide
 
@@ -56,11 +58,11 @@ The Our Teams schedule uses only current public SBMSA fixtures for Buccaneers/Bu
 
 The **Schedule** tab uses the same JV Flag / 8U / 6U league buttons, division selector and team/official-coach search. It includes every official fixture in the eight collected divisions, grouped chronologically by Central date; completed scores are **away–home**. Default is the complete Upcoming list, not a highlight-only feed. Results shows only two valid final scores; All also shows past games awaiting results. Unscored same-day games remain upcoming; unknown dates sort last and unknown times first within a date. Original source maps are preserved. Expand a row for both coaches, GP, sample status, badge reason and official source. Our team markers use exact sport/division/team identities. Division filtering can focus on our team's actual divisional opponents without implying playoff relevance.
 
-`site/league-schedule.js` is a pure UMD model plus scoped renderer; `league-schedule.css` is scoped to the new view. It reuses schedule date, escaping and safe-URL helpers. Ranks always use **capped full sport/age competition ranks**, independent of Raw mode or filters; ties use the same 1e-9 tolerance as Rankings. Unplayed teams are unrated. Records/ranks are current totals, never reconstructed historical pregame stats.
+`site/league-schedule.js` is a pure UMD model plus scoped renderer; `league-schedule.css` is scoped to the new view. It reuses schedule date, escaping and safe-URL helpers. Ranks always use **opponent-adjusted full sport/age power competition ranks**, independent of descriptive Raw mode or filters; ties use the same 8-decimal rounding as Rankings. Unplayed teams are unrated. Records/ranks are current totals, never reconstructed historical pregame stats.
 
 Highlights are deliberately descriptive, not forecasts or simulated playoff/tiebreak stakes:
 - Eligibility: a dated upcoming fixture; both teams rated and **at least 3 GP each**. Completed, past-unscored, undated and small-sample games cannot earn badges.
-- **Top matchup** takes priority: both capped competition ranks ≤ `ceil(N/4)`, where N is all rated teams in this sport/age, including rated 1–2 GP teams. Ties at the cutoff are included, potentially expanding the qualifying set beyond a quarter. GP 1–2 teams count in N but cannot themselves earn a badge.
+- **Top matchup** takes priority: both power competition ranks ≤ `ceil(N/4)`, where N is all rated teams in this sport/age, including rated 1–2 GP teams. Ties at the cutoff are included, potentially expanding the qualifying set beyond a quarter. GP 1–2 teams count in N but cannot themselves earn a badge.
 - Otherwise **Close records**: same division and absolute win-rate gap ≤0.15 (15 percentage points; floating-point comparison tolerance 1e-12). Win rate is `(W + 0.5*T)/GP`. This does not predict a close game.
 - **Watchlist** is optional and includes only those upcoming highlights, still chronological. It can honestly be empty; there are no forced badges, hot streaks or fabricated stakes.
 
