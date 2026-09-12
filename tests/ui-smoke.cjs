@@ -9,7 +9,7 @@ const path=require('node:path');
  const site=path.join(__dirname,'../site');
  const server=http.createServer((req,res)=>{
   const requested=path.basename(req.url.split('?')[0]);
-  const name=['ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
+  const name=['power-method.html','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
   res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
   res.end(fs.readFileSync(path.join(site,name)));
  });
@@ -20,6 +20,30 @@ const path=require('node:path');
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(process.env.TEST_URL || `http://127.0.0.1:${server.address().port}/`);
   await page.waitForSelector('.row');
+  // Method disclosure is collapsed by default; equations stay readable on narrow screens.
+  const boardURL=page.url();
+  for(const width of [320,390,768,1400]){
+   await page.setViewportSize({width,height:1000});
+   const detail=page.locator('#power-explanation'),summary=detail.locator('summary');
+   assert.equal(await detail.getAttribute('open'),null);
+   await summary.focus();await page.keyboard.press('Enter');
+   assert.notEqual(await detail.getAttribute('open'),null);
+   assert.ok((await detail.innerText()).includes('not a one-pass standings calculation'));
+   for(const control of [summary,detail.locator('a')])assert.ok((await control.boundingBox()).height>=44);
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+   assert.ok(await detail.locator('p').evaluateAll(es=>es.every(e=>parseFloat(getComputedStyle(e).fontSize)>=12)));
+   await detail.screenshot({path:path.join(process.env.QA_DIR||'/tmp',`power-explanation-${width}.png`)});
+   await detail.locator('a').click();
+   assert.ok(page.url().includes('/power-method.html'));
+   assert.equal(await page.locator('[role="math"]').count(),3);
+   for(const e of await page.locator('[role="math"]').all())assert.ok((await e.getAttribute('aria-label')).length>30);
+   assert.equal(await page.locator('pre').count(),0,'No ASCII equation block');
+   assert.ok((await page.locator('body').innerText()).includes('mutually dependent'));
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Method page overflow');
+   assert.ok(await page.locator('.equation, .equation *').evaluateAll(es=>es.every(e=>parseFloat(getComputedStyle(e).fontSize)>=12&&e.scrollWidth<=e.clientWidth+1)),'Readable, unclipped formulas');
+   await page.screenshot({path:path.join(process.env.QA_DIR||'/tmp',`power-method-${width}.png`),fullPage:true});
+   await page.goto(boardURL);await page.waitForSelector('.row');
+  }
   // Independently compute expected identities outside the page; numerical Python parity is in ratings.test.cjs.
   const R=require('../site/ratings.js');
   const publication=await page.evaluate(()=>data);
