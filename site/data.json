@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-12T22:43:27.933041Z",
+  "last_checked": "2026-09-12T22:52:29.048307Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -5171,25 +5171,25 @@
           "team": "Lightning",
           "coach": "Roberts",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
+          "gp": 1,
           "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 9,
+          "margin_sum": -9,
+          "capped_margin_sum": -3
         },
         {
           "team": "New York Knights",
           "coach": "Lamb",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
+          "gp": 1,
+          "pf": 9,
           "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 9,
+          "capped_margin_sum": 3
         },
         {
           "team": "Regis Knights",
@@ -5224,6 +5224,13 @@
           "away": "Green Machine",
           "home_score": 0,
           "away_score": 10,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "New York Knights",
+          "away": "Lightning",
+          "home_score": 9,
+          "away_score": 0,
           "date": "Sat 9/12"
         }
       ],
@@ -5297,8 +5304,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 9,
+          "away_score": 0
         },
         {
           "home": "Bomb Pops",
@@ -6023,6 +6030,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-12T22:43:27.933041Z",
-  "data_updated": "2026-09-12T22:43:27.933041Z"
+  "last_successful_check": "2026-09-12T22:52:29.048307Z",
+  "data_updated": "2026-09-12T22:52:29.048307Z"
 }
