@@ -12,10 +12,10 @@ LEGACY_METHOD = {'id': 'win-rate-capped-margin-v1', 'caps': {'flag': 21, '8u': 3
           'order': ['(w + t/2) / gp descending', 'capped_margin_sum / gp descending'],
           'ties': 'competition', 'unplayed': 'unrated', 'scope': 'sport/age across divisions'}
 try:
-    from scripts.ratings import METHOD, compute
+    from scripts.ratings import METHOD, V2, compute
 except ModuleNotFoundError:
-    from ratings import METHOD, compute
-METHODS = {m['id']: m for m in (LEGACY_METHOD, METHOD)}
+    from ratings import METHOD, V2, compute
+METHODS = {m['id']: m for m in (LEGACY_METHOD, V2, METHOD)}
 TEAM_FIELDS = ('team', 'w', 'l', 't', 'gp', 'pf', 'pa', 'margin_sum', 'capped_margin_sum')
 GAME_FIELDS = ('home', 'away', 'home_score', 'away_score', 'date', 'time', 'date_iso', 'start_iso')
 
@@ -36,11 +36,11 @@ def result_data(divisions):
 def rank_points(divisions, method=None):
     method = method or METHOD
     if method != LEGACY_METHOD:
-        if method != METHODS['opponent-ridge-margin-v2']:
+        if method not in (V2, METHOD):
             raise ValueError('Unknown ranking method')
         return [dict(t, sport=s, team_id=[SEASON, s, t['division'], t['team']],
                      win_rate=t['rate'], capped_margin_per_game=t['capped_margin_sum']/t['gp'] if t['gp'] else None)
-                for s in ('flag', '8u', '6u') for t in compute(divisions, s)]
+                for s in ('flag', '8u', '6u') for t in compute(divisions, s, 'capped' if method == V2 else method['default_mode'])]
     points = []
     for sport in ('flag', '8u', '6u'):
         group = [dict(t, sport=sport, division=d['division'], team_id=[SEASON, sport, d['division'], t['team']])
@@ -100,7 +100,7 @@ def load_index(directory):
     index = json.loads(index_path.read_text()) if index_path.exists() else {'schema_version': 2, 'season': SEASON, 'ranking_methods': METHODS, 'captures': []}
     try:
         version = index['schema_version']
-        if index['season'] != SEASON or version not in (1, 2) or (version == 1 and index['ranking_method'] != LEGACY_METHOD) or (version == 2 and index['ranking_methods'] != METHODS):
+        if index['season'] != SEASON or version not in (1, 2) or (version == 1 and index['ranking_method'] != LEGACY_METHOD) or (version == 2 and any(METHODS.get(k) != v for k, v in index['ranking_methods'].items())):
             raise ValueError('History schema/season/method mismatch; review before rollover')
         seen = set()
         for entry in index['captures']:
@@ -120,6 +120,7 @@ def load_index(directory):
         if version == 1:
             index = {'schema_version': 2, 'season': SEASON, 'ranking_methods': METHODS,
                      'captures': [dict(e, ranking_method_id=LEGACY_METHOD['id'], change_reason='observed-results') for e in index['captures']]}
+        index['ranking_methods'] = METHODS
         return index
     except (KeyError, TypeError, OSError) as exc:
         raise ValueError('History archive incomplete or invalid; retain and investigate') from exc

@@ -19,7 +19,7 @@
     today = typeof today === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(today) ? today : chicagoDate(new Date(today));
     const ranks = new Map();
     for (const sport of new Set((data?.divisions || []).map(d => d.sport))) {
-      R.compute(data.divisions || [], sport).filter(t=>t.rank).forEach(t=>ranks.set(JSON.stringify([sport,t.division,t.team]),t.rankText));
+      R.compute(data.divisions || [], sport, data.ratingMode || 'raw').filter(t=>t.rank).forEach(t=>ranks.set(JSON.stringify([sport,t.division,t.team]),t.rankText));
     }
     const rows = [];
     for (const division of data?.divisions || []) {
@@ -117,8 +117,8 @@
   }
   function scheduleContent(rows, filter, layout, team) {
     return layout === 'glance' ? glanceTable(rows, filter, team) : `
-      <div class="sbmsa-schedule-scroll"><table><caption>Current power, not pre-game · disconnected comparisons provisional · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
-      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, independent of filters or descriptive Raw mode. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
+      <div class="sbmsa-schedule-scroll"><table><caption>Current power · selected mode · provisional · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
+      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, using the currently selected Raw (default) or capped mode, independent of filters. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
   }
   function renderHTML(rows, filter = 'Upcoming', layout = 'glance', team = 'all') {
     const missing = rows.filter(r => r.status === 'Awaiting result').length;
@@ -152,6 +152,7 @@
 .glance-result{display:block}.result-W{color:var(--green)}.result-L{color:var(--accent)}
 @media(max-width:700px){.sbmsa-schedules .glance-table th,.sbmsa-schedules .glance-table td{padding:5px 4px}.sbmsa-schedules .glance-table thead th:first-child{width:19%}.sbmsa-schedules .glance-table thead th:nth-child(2),.sbmsa-schedules .glance-table thead th:last-child{width:40.5%}.glance-fixture>span{display:block}}
 `;
+  const viewStates = new WeakMap();
   function render(data, containerElement, today) {
     const doc = containerElement.ownerDocument;
     if (!doc.getElementById('sbmsa-schedules-style')) {
@@ -161,14 +162,17 @@
     const rows = buildRows(data, today);
     containerElement.classList.add('sbmsa-schedules');
     // Listeners live only on replaceable descendants; no document/container handlers accumulate.
-    containerElement.innerHTML = renderHTML(rows);
+    const state=viewStates.get(containerElement)||{filter:'Upcoming',layout:'glance',team:'all'};
+    viewStates.set(containerElement,state);
+    containerElement.innerHTML = renderHTML(rows,state.filter,state.layout,state.team);
     const buttons = containerElement.querySelectorAll('[data-schedule-filter]');
     const body = containerElement.querySelector('[data-schedule-content]');
     const layouts = containerElement.querySelectorAll('[data-schedule-layout]');
-    let activeLayout = 'glance';
+    let activeLayout = state.layout;
     const select = containerElement.querySelector('[data-schedule-team]');
-    let activeFilter = 'Upcoming';
+    let activeFilter = state.filter;
     const update = () => {
+      Object.assign(state,{filter:activeFilter,layout:activeLayout,team:select.value});
       body.innerHTML = scheduleContent(rows, activeFilter, activeLayout, select.value);
     };
     for (const button of layouts) button.addEventListener('click', () => {

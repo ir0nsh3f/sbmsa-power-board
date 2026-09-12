@@ -2,12 +2,17 @@
 import json
 import math
 
-METHOD = {'id': 'opponent-ridge-margin-v2', 'caps': {'flag': 21, '8u': 3, '6u': 3},
+V2 = {'id': 'opponent-ridge-margin-v2', 'caps': {'flag': 21, '8u': 3, '6u': 3},
           'ridge': 3, 'tolerance': 1e-12, 'maxIterations': 10000, 'tieDecimals': 8}
 
 
-def compute(divisions, sport):
-    cap = METHOD['caps'][sport]
+METHOD = dict(V2, id='opponent-ridge-margin-v3', default_mode='raw', modes=['raw', 'capped'])
+
+
+def compute(divisions, sport, mode='raw'):
+    if mode not in ('raw', 'capped'):
+        raise ValueError('Unknown power-rating mode')
+    cap = METHOD['caps'][sport] if mode == 'capped' else float('inf')
     all_ = sorted((dict(t, division=d['division'], rank=None, rankText='Unrated', power=None,
                         component=None, rate=(t['w'] + .5*t['t'])/t['gp'] if t['gp'] else None)
                    for d in divisions if d['sport'] == sport for t in d['teams']),
@@ -75,4 +80,4 @@ def compute(divisions, sport):
 if __name__ == '__main__':
     import sys
     data = json.load(sys.stdin)
-    json.dump({s: compute(data['divisions'], s) for s in METHOD['caps']}, sys.stdout)
+    json.dump({s: compute(data['divisions'], s, data.get('ratingMode', 'raw')) for s in METHOD['caps']}, sys.stdout)

@@ -5,6 +5,30 @@ const R=require('../site/ratings.js');
 const game=(home,away,home_score,away_score)=>({home,away,home_score,away_score});
 const fixture=(games,sport='flag')=>[{sport,division:'D',teams:['A','B','Strong','Weak','Base','Idle'].map(team=>({team,gp:games.filter(g=>[g.home,g.away].includes(team)).length,w:0,l:0,t:0})),games}];
 const get=(rows,n)=>rows.find(t=>t.team===n);
+test('Raw is the power default, capped remains explicit and all linked consumers follow selected mode',()=>{
+ const d=fixture([game('A','B',50,0)]),raw=R.compute(d,'flag'),cap=R.compute(d,'flag','capped');
+ assert.ok(Math.abs(get(raw,'A').power-10)<1e-10);
+ assert.ok(Math.abs(get(cap,'A').power-4.2)<1e-10);
+ assert.throws(()=>R.compute(d,'flag','invalid'),/mode/);
+ const data=JSON.parse(fs.readFileSync('site/data.json')),L=require('../site/league-schedule.js'),S=require('../site/schedules.js');
+ for(const mode of ['raw','capped'])for(const sport of ['flag','8u','6u']){
+  data.ratingMode=mode;const expected=R.compute(data.divisions,sport,mode);
+  assert.deepEqual([...L.profiles(data,sport).teams.values()].map(t=>[t.team,t.rank,t.power]).sort(),expected.map(t=>[t.team,t.rank,t.power]).sort());
+  for(const r of S.buildRows(data).filter(r=>r.sport===sport)){const t=expected.find(t=>t.division===r.division&&t.team===r.opponent);assert.equal(r.opponentRank,t.rank?t.rankText:null);}
+ }
+});
+test('uncapped blowouts remain proportional, with Python parity in both modes',()=>{
+ for(const [sport,low,high] of [['flag',20,40],['8u',3,14],['6u',3,14]]){
+  const small=R.compute(fixture([game('A','B',low,0)],sport),sport),large=R.compute(fixture([game('A','B',high,0)],sport),sport);
+  assert.ok(Math.abs(get(large,'A').power/get(small,'A').power-high/low)<1e-10);
+  for(const mode of ['raw','capped']){
+   const divisions=fixture([game('A','B',high,0)],sport),js=R.compute(divisions,sport,mode);
+   const p=spawnSync('python',['-m','scripts.ratings'],{input:JSON.stringify({divisions,ratingMode:mode}),encoding:'utf8'});
+   assert.equal(p.status,0,p.stderr);const py=JSON.parse(p.stdout)[sport];
+   js.forEach((t,i)=>{assert.equal(t.rank,py[i].rank);if(t.power!==null)assert.ok(Math.abs(t.power-py[i].power)<1e-10);});
+  }
+ }
+});
 test('losing to weak penalizes; records cannot override game-based power',()=>{
  const d=fixture([game('A','Strong',0,10),game('B','Weak',0,10),game('Strong','Base',21,0),game('Weak','Base',0,21)]);
  const rows=R.compute(d,'flag');assert.ok(get(rows,'A').power>get(rows,'B').power);
@@ -24,7 +48,7 @@ test('zero and symmetric games tie; GP0 unrated; disconnected groups not calibra
 test('caps bound blowouts in every sport; units and ridge single-game solution',()=>{
  for(const sport of ['flag','8u','6u']){
   const cap=R.METHOD.caps[sport];
-  const a=R.compute(fixture([game('A','B',cap,0)],sport),sport),b=R.compute(fixture([game('A','B',cap*100,0)],sport),sport);
+  const a=R.compute(fixture([game('A','B',cap,0)],sport),sport,'capped'),b=R.compute(fixture([game('A','B',cap*100,0)],sport),sport,'capped');
   assert.deepEqual(a,b);assert.ok(Math.abs(get(a,'A').power-cap/5)<1e-10);
   assert.ok(Math.abs(get(a,'B').power+cap/5)<1e-10);
  }

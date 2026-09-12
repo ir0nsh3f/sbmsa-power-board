@@ -23,20 +23,27 @@ const path=require('node:path');
   // Independently compute expected identities outside the page; numerical Python parity is in ratings.test.cjs.
   const R=require('../site/ratings.js');
   const publication=await page.evaluate(()=>data);
+  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true','Raw default on load');
+  await page.locator('#capped').click();await page.reload();await page.waitForSelector('.row');
+  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true','Reload restores Raw default');
   for(const s of ['flag','8u','6u']){
+   for(const selected of ['capped','raw']){
+   await page.locator('#'+selected).click();
    await page.locator(`[data-sport="${s}"]`).click();
-   const expected=R.compute(publication.divisions,s);
+   const expected=R.compute(publication.divisions,s,selected);
    const identities=()=>page.locator('#rows .row').evaluateAll(es=>es.map(e=>[e.dataset.team,e.querySelector('.rank').textContent,e.querySelector('.diff').textContent]));
    const wanted=expected.map(t=>[t.team,t.rank?t.rankText:'—',t.power===null?'—':(t.power>0?'+':'')+Number(t.power.toFixed(2))]);
    assert.deepEqual(await identities(),wanted,s+' power ordering/value/ties');
    const spotlight=expected.find(t=>t.team===({flag:'Buccaneers','8u':'Arsenal','6u':'Vipers'})[s]);
    assert.ok((await page.locator('#focus').innerText()).includes(spotlight.rank?'Rank '+spotlight.rankText:'Unrated'));
-   await page.locator('#raw').click();assert.deepEqual(await identities(),wanted,'Raw never changes power');
+   const linked=await page.evaluate(()=>({league:[...SBMSALeagueSchedule.profiles(data,sport).teams.values()].map(t=>[t.team,t.rank,t.power]),our:SBMSASchedules.buildRows(data).filter(r=>r.sport===sport).map(r=>[r.division,r.opponent,r.opponentRank])}));
+   assert.deepEqual(linked.league.sort(),expected.map(t=>[t.team,t.rank,t.power]).sort());
+   for(const [division,name,rank] of linked.our){const t=expected.find(t=>t.team===name&&t.division===division);assert.equal(rank,t.rank?t.rankText:null);}
    if(expected.some(t=>t.gp)){
     const margins=await page.locator('#rows .result').allTextContents();
-    assert.deepEqual(margins,expected.map(t=>t.gp?(t.margin_sum/t.gp>0?'+':'')+Number((t.margin_sum/t.gp).toFixed(2)):'—'));
+    assert.deepEqual(margins,expected.map(t=>{const n=(selected==='raw'?t.margin_sum:t.capped_margin_sum)/t.gp;return t.gp?(n>0?'+':'')+Number(n.toFixed(2)):'—';}));
    }
-   await page.locator('#capped').click();
+   }
    if(s==='flag')for(const width of [320,390,768,1400]){
     await page.setViewportSize({width,height:1000});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
@@ -153,7 +160,7 @@ const path=require('node:path');
    if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`schedule-${width}.png`),fullPage:false});
   }
   // Schedule ranks must remain the capped full-field ranks even with Raw and board filters selected.
-  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode='capped';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.gp?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
+  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode=data.ratingMode||'raw';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.gp?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
   for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
   await page.evaluate(()=>{mode='raw';render();});
   await guide.locator('[data-schedule-layout="guide"]').click();
