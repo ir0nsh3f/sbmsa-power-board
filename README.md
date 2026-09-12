@@ -83,10 +83,20 @@ python -m pip install -r requirements.txt
 python -m unittest discover -s tests -v
 node --test tests/*.test.cjs
 python scripts/update_results.py
+python scripts/projection_publication.py summarize
+python scripts/projection_publication.py validate
 python -m http.server 8000 --directory site
 ```
 
 Open http://localhost:8000. The server is only needed for local viewing; GitHub hosts the public site even with the household PC off.
+
+## Last pregame model in Results
+
+Completed JV Flag Schedule disclosures retain the **latest observed-public** pre-kickoff forecast, independently of the future projection toggle. `scripts/projection_publication.py summarize` builds `site/projections/results.json` from every validated capture and publication receipt, matching exact season/sport/division/home/away/start identities. Both capture cutoff and observation must be strictly before kickoff. Equal observation instants select the lexicographically greatest capture path. Missing receipts, unknown kickoff and reschedules never inherit a model. Corrections may update results but do not refit or rewrite archived forecasts. First-forecast evaluation remains unchanged.
+
+The workflow rebuilds this compact summary even after a failed source check (using retained valid data), validates exact summary agreement, and deploys it alongside results. The browser loads one nonblocking, no-store summary request and rejects a mismatched source-check timestamp. Failed/missing history shows “No archived pregame model,” never a current refit. The displayed CT timestamp is a verified public observation, not an exact original publication time. Capture and receipt links retain provenance. Review November 30, 2026.
+
+Run `node tests/last-pregame-ui.cjs` alongside `ui-smoke.cjs`, `mobile-smoke.cjs`, `league-ui.cjs` and `projections-ui.cjs`; `QA_DIR` saves responsive screenshots.
 
 ## Browser regression checks
 

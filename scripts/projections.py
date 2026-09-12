@@ -173,6 +173,27 @@ def evaluate(directory,divisions):
                             margin_error=f['margin_home']-actual,total_error=f['total']-total))
     return sorted(out,key=lambda f:f['game_id'])
 
+def last_pregame(directory,divisions):
+    """Latest verified public observation, exact final-game identity; never refit.
+
+    Equal observation instants use lexicographically greatest capture path.
+    This presentation selection does not change first-forecast evaluation.
+    """
+    root=Path(directory);index=load_archive(root);latest={}
+    finals={tuple(identity(d,g)) for d in divisions if d['sport']=='flag'
+            for g in d.get('schedule',[]) if finished(g) and instant(g.get('start_iso'))}
+    for r in sorted(receipts(root,index),key=lambda r:(instant(r['observed_public_at']),r['capture_path'])):
+        snapshot=json.loads((root/r['capture_path']).read_text())
+        for f in snapshot['forecasts']:
+            gid=tuple(f['game_id']);start=instant(gid[-1])
+            if gid not in finals or not (instant(r['observed_public_at'])<start and
+                    instant(snapshot['training_cutoff'])<start and instant(snapshot['generated_at'])<start):continue
+            latest[gid]=dict(game_id=f['game_id'],margin_home=f['margin_home'],total=f['total'],
+                model_version=snapshot['model_version'],capture_path=r['capture_path'],sha256=r['sha256'],
+                observed_public_at=r['observed_public_at'],captured_at=snapshot['generated_at'])
+    return [latest[k] for k in sorted(latest)]
+
+
 def record(directory,divisions,generated_at):
     root=Path(directory);index=load_archive(root);receipts(root,index)
     snapshot=build(divisions,generated_at);key=digest(semantic(snapshot))

@@ -44,6 +44,8 @@ jobs:
         run: |
           python -c "import json; d=json.load(open('site/data.json')); assert len(d['divisions']) == 8; assert d['last_checked']; assert d['last_successful_check']; assert d['data_updated']"
           python -c "import json,hashlib; from scripts.history import load_index,result_data,encoded,SEASON; i=load_index('site/history'); d=json.load(open('site/data.json')); assert i['captures']; assert i['captures'][-1]['result_sha256'] == hashlib.sha256(encoded({'season':SEASON,'divisions':result_data(d['divisions'])})).hexdigest()"
+      - name: Build verified last public pregame result models
+        run: python scripts/projection_publication.py summarize
       - name: Validate projection history and exact current-data agreement
         run: python scripts/projection_publication.py validate
       - name: Preserve last check and data in repository

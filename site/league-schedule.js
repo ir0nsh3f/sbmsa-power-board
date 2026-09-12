@@ -69,12 +69,31 @@
     const signed=n=>n>0?'+'+n:String(n);
     return `<p class="league-projection-detail"><b>Experimental · very small sample</b><br>Home margin ${e(signed(f.margin_home))} (${e(signed(f.margin_range[0]))} to ${e(signed(f.margin_range[1]))}) · Total ${e(f.total)} (${e(f.total_range[0])}–${e(f.total_range[1])})<br>Approx. 95% model-based ranges · GP away ${e(f.gp_away)} / home ${e(f.gp_home)} · ${e(f.division_games)} division games.<br>Prior assumptions: prior-heavy at 0–2 GP; no home-field advantage or cross-division calibration.${f.gp_away===0||f.gp_home===0?' 0 GP team: prior-based extrapolation.':''} See Projection assumptions &amp; archive for the full model.</p>`;
   }
+  function lastPregameFor(row,payload){
+    if(row.sport!=='flag'||!row.completed||!Number.isFinite(row.start)||payload?.schema_version!==1||payload.season!=='fall-2026'||payload.selection!=='last-observed-public-pregame-v1'||!Array.isArray(payload.forecasts))return null;
+    const aware=v=>typeof v==='string'&&/(?:Z|[+-]\d{2}:\d{2})$/.test(v)?Date.parse(v):NaN;
+    const matches=payload.forecasts.filter(f=>{
+      const id=f?.game_id,observed=aware(f?.observed_public_at),captured=aware(f?.captured_at);
+      return Array.isArray(id)&&id.length===6&&id[0]==='fall-2026'&&id[1]===row.sport&&id[2]===row.division&&id[3]===row.home.team&&id[4]===row.away.team&&aware(id[5])===row.start&&
+        f.model_version==='flag-huber-ridge-v1'&&Number.isFinite(f.margin_home)&&Number.isFinite(f.total)&&f.total>=0&&
+        /^[a-f0-9]{64}$/.test(f.sha256)&&f.capture_path==='captures/'+f.sha256+'.json'&&captured<=observed&&observed<row.start;
+    });
+    return matches.length===1?matches[0]:null;
+  }
+  function lastPregameDetail(r,payload){
+    if(r.sport!=='flag'||!r.completed)return '';
+    const f=lastPregameFor(r,payload);
+    if(!f)return '<p class="league-pregame">No archived pregame model</p>';
+    const spread=Math.round(Math.abs(f.margin_home)),line=spread===0?'Pick’em':`${f.margin_home>0?r.home.team:r.away.team} −${spread}`;
+    const timestamp=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit'}).format(new Date(f.observed_public_at));
+    return `<div class="league-pregame"><p><b>Last pregame model</b> · ${e(line)} · Total ${e(Math.round(f.total))}</p><p>Observed public ${e(timestamp)} CT</p><p>Experimental · prior-heavy, not market lines. Latest verified public observation before this exact kickoff; not a final-score refit.</p><a href="./projections/${e(f.capture_path)}" target="_blank" rel="noopener noreferrer">Archived capture</a> · <a href="./projections/publication/${e(f.sha256)}.json" target="_blank" rel="noopener noreferrer">Publication receipt</a> · <a href="./projection-method.html">Model assumptions</a></div>`;
+  }
   function renderRows(rows,options={}){
     return groupDates(rows).map(g=>`<section class="league-day"><h3>${g.dateISO?e(new Intl.DateTimeFormat('en-US',{timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(g.dateISO+'T12:00:00Z'))):'Date TBD'}</h3>${g.rows.map(r=>{
       const identity=t=>`<span class="league-team"><b>${e(t.team)}</b> <small><span class="league-rank">${t.rank?'#':''}${e(t.rankText)}</span> · ${record(t)}</small></span>`;
       const field=e(r.location||'Field not listed');
       const map=r.location&&r.locationUrl?`<a class="field-map" href="${e(r.locationUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${field} in Google Maps (opens in a new tab)">${field}</a>`:field;
-      return `<details class="league-fixture${r.ourTeam?' league-fixture-ours':''}" data-league-fixture="${e(r.id)}"><summary title="Expand for coaches, games played and source"><span class="league-time">${e(r.timeLabel)}</span><span class="league-match">${identity(r.away)} <span class="league-at">@</span> ${identity(r.home)}${r.completed?` <b class="league-score">${r.awayScore}–${r.homeScore} Final</b>`:''}${projectionLine(r,options)}</span><span class="league-meta">${e(r.division)} · ${map}${r.ourTeam?' · <b class="league-ours">Our team</b>':''}${r.highlight?` · <b class="league-badge">${e(r.highlight.label)}</b>`:''}${r.status==='Awaiting result'?' · Awaiting result':''}<span class="league-expand" aria-hidden="true"> ▾</span></span></summary><div class="league-detail">${projectionLine(r,options,true)}${[r.away,r.home].map(t=>`<p><b>${e(t.team)}</b> · Coach: ${e(t.coach||'Not listed')} · ${t.gp??'—'} GP${t.gp===0?' · Unrated':t.gp<3?' · Small sample (fewer than 3 GP)':''}</p>`).join('')}${r.highlight?`<p>${e(r.highlight.reason)}</p>`:''}<p>${r.completed?'Final score shown away–home.':'No final score published.'} ${r.sourceUrl?`<a href="${e(r.sourceUrl)}" target="_blank" rel="noopener noreferrer">Official schedule</a>`:''}</p></div></details>`;
+      return `<details class="league-fixture${r.ourTeam?' league-fixture-ours':''}" data-league-fixture="${e(r.id)}"><summary title="Expand for coaches, games played and source"><span class="league-time">${e(r.timeLabel)}</span><span class="league-match">${identity(r.away)} <span class="league-at">@</span> ${identity(r.home)}${r.completed?` <b class="league-score">${r.awayScore}–${r.homeScore} Final</b>`:''}${projectionLine(r,options)}</span><span class="league-meta">${e(r.division)} · ${map}${r.ourTeam?' · <b class="league-ours">Our team</b>':''}${r.highlight?` · <b class="league-badge">${e(r.highlight.label)}</b>`:''}${r.status==='Awaiting result'?' · Awaiting result':''}<span class="league-expand" aria-hidden="true"> ▾</span></span></summary><div class="league-detail">${lastPregameDetail(r,options.pregameResults)}${projectionLine(r,options,true)}${[r.away,r.home].map(t=>`<p><b>${e(t.team)}</b> · Coach: ${e(t.coach||'Not listed')} · ${t.gp??'—'} GP${t.gp===0?' · Unrated':t.gp<3?' · Small sample (fewer than 3 GP)':''}</p>`).join('')}${r.highlight?`<p>${e(r.highlight.reason)}</p>`:''}<p>${r.completed?'Final score shown away–home.':'No final score published.'} ${r.sourceUrl?`<a href="${e(r.sourceUrl)}" target="_blank" rel="noopener noreferrer">Official schedule</a>`:''}</p></div></details>`;
     }).join('')}</section>`).join('')||'<p class="league-empty">No games match these filters. Try All or turn off Watchlist.</p>';
   }
   function projectionGuide(payload){
@@ -86,7 +105,7 @@
     const rows=buildRows(data,options.sport||'flag');
     const update=()=>{
       const shown=filterRows(rows,{...options,...state});
-      container.querySelector('[data-league-content]').innerHTML=renderRows(shown,{showProjections:state.showProjections,projections:data.projections});
+      container.querySelector('[data-league-content]').innerHTML=renderRows(shown,{showProjections:state.showProjections,projections:data.projections,pregameResults:data.pregameResults});
       container.querySelector('[data-league-projections]')?.setAttribute('aria-pressed',String(state.showProjections));
       const guide=container.querySelector('[data-projection-guide]');if(guide)guide.hidden=!state.showProjections;
       const caution=container.querySelector('[data-projection-caution]');if(caution)caution.hidden=!state.showProjections;
@@ -102,5 +121,5 @@
     container.querySelector('[data-league-projections]')?.addEventListener('click',()=>{state.showProjections=!state.showProjections;update();});
     update();
   }
-  return {profiles,highlight,buildRows,filterRows,groupDates,projectionFor,renderRows,render};
+  return {profiles,highlight,buildRows,filterRows,groupDates,projectionFor,lastPregameFor,renderRows,render};
 });

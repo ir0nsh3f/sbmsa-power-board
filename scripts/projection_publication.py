@@ -8,12 +8,22 @@ import time
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 try:
-    from scripts.projections import load_archive, receipts, observe_public, build, semantic, evaluate
+    from scripts.projections import load_archive, receipts, observe_public, build, semantic, evaluate, last_pregame, atomic_write, encoded
 except ModuleNotFoundError:
-    from projections import load_archive, receipts, observe_public, build, semantic, evaluate
+    from projections import load_archive, receipts, observe_public, build, semantic, evaluate, last_pregame, atomic_write, encoded
 
 ROOT=Path(__file__).resolve().parents[1]/'site'
 PUBLIC='https://ir0nsh3f.github.io/sbmsa-power-board/projections/'
+
+def result_payload(root):
+    root=Path(root);data=json.loads((root/'data.json').read_text())
+    return dict(schema_version=1,season='fall-2026',selection='last-observed-public-pregame-v1',
+                source_checked_at=data['last_successful_check'],
+                forecasts=last_pregame(root/'projections',data['divisions']))
+
+def summarize(root=ROOT):
+    root=Path(root)
+    atomic_write(root/'projections/results.json',encoded(result_payload(root)))
 
 def validate(root=ROOT):
     root=Path(root);directory=root/'projections';index=load_archive(directory);receipts(directory,index)
@@ -23,6 +33,8 @@ def validate(root=ROOT):
     entry=next(e for e in index['captures'] if e['path']==current['capture_path'])
     snapshot=json.loads((directory/entry['path']).read_text())
     assert semantic(expected)==semantic(snapshot) and current['captured_at']==snapshot['generated_at']
+    if (directory/'results.json').exists():
+        assert json.loads((directory/'results.json').read_text())==result_payload(root)
     return index
 
 def observe(root=ROOT):
@@ -45,8 +57,9 @@ def observe(root=ROOT):
     print(json.dumps({'validated_captures':len(index['captures']),'publication_receipts':len(receipts(directory,index))}))
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('command',choices=['validate','observe','evaluate']);args=parser.parse_args()
-    if args.command=='observe':observe()
+    parser=argparse.ArgumentParser();parser.add_argument('command',choices=['validate','observe','evaluate','summarize']);args=parser.parse_args()
+    if args.command=='summarize':summarize()
+    elif args.command=='observe':observe()
     elif args.command=='validate':
         index=validate();print(json.dumps({'validated_captures':len(index['captures'])}))
     else:
