@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-13T02:16:02.231178Z",
+  "last_checked": "2026-09-13T04:47:14.754244Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -23,14 +23,14 @@
         {
           "team": "Chargers",
           "coach": "Smith",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 22,
+          "gp": 2,
+          "pf": 61,
           "pa": 6,
-          "margin_sum": 16,
-          "capped_margin_sum": 16
+          "margin_sum": 55,
+          "capped_margin_sum": 37
         },
         {
           "team": "Cowboys",
@@ -84,13 +84,13 @@
           "team": "Saints",
           "coach": "Davidson",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 8,
-          "pa": 25,
-          "margin_sum": -17,
-          "capped_margin_sum": -17
+          "pa": 64,
+          "margin_sum": -56,
+          "capped_margin_sum": -38
         },
         {
           "team": "Texans",
@@ -165,6 +165,13 @@
           "away": "Eagles",
           "home_score": 7,
           "away_score": 26,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "Saints",
+          "away": "Chargers",
+          "home_score": 0,
+          "away_score": 39,
           "date": "Sat 9/12"
         }
       ],
@@ -262,8 +269,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7799997,-95.5529332,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T13:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 39
         },
         {
           "home": "Eagles",
@@ -6065,6 +6072,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-13T02:16:02.231178Z",
-  "data_updated": "2026-09-13T02:16:02.231178Z"
+  "last_successful_check": "2026-09-13T04:47:14.754244Z",
+  "data_updated": "2026-09-13T04:47:14.754244Z"
 }
