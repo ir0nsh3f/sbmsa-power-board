@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-13T20:49:50.822760Z",
+  "last_checked": "2026-09-14T04:55:51.330936Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -4163,14 +4163,14 @@
         {
           "team": "Liverpool",
           "coach": "Hadidi",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
+          "gp": 1,
+          "pf": 8,
           "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 8,
+          "capped_margin_sum": 3
         },
         {
           "team": "Red Fury",
@@ -4224,13 +4224,13 @@
           "team": "Tigers",
           "coach": "Murphy",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
+          "gp": 1,
           "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 8,
+          "margin_sum": -8,
+          "capped_margin_sum": -3
         },
         {
           "team": "Turbo Turtles",
@@ -4277,6 +4277,13 @@
           "away": "Red Fury",
           "home_score": 0,
           "away_score": 5,
+          "date": "Sat 9/12"
+        },
+        {
+          "home": "Liverpool",
+          "away": "Tigers",
+          "home_score": 8,
+          "away_score": 0,
           "date": "Sat 9/12"
         },
         {
@@ -4340,8 +4347,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T12:15:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 8,
+          "away_score": 0
         },
         {
           "home": "San Jose",
@@ -6079,6 +6086,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-13T20:49:50.822760Z",
-  "data_updated": "2026-09-13T20:49:50.822760Z"
+  "last_successful_check": "2026-09-14T04:55:51.330936Z",
+  "data_updated": "2026-09-14T04:55:51.330936Z"
 }
