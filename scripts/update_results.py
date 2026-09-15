@@ -11,9 +11,11 @@ import time
 from urllib.request import Request, urlopen
 
 try:
+    from scripts.soccer_projections import record as record_soccer
     from scripts.history import record_history
     from scripts.projections import record as record_projections, load_archive, receipts
 except ModuleNotFoundError:  # Direct CLI execution places scripts/ on sys.path.
+    from soccer_projections import record as record_soccer
     from history import record_history
     from projections import record as record_projections, load_archive, receipts
 
@@ -43,9 +45,10 @@ SOURCES = [
     ('flag','Mahomes',707765), ('flag','Burrow',707766), ('flag','Jackson',707767),
     ('8u','Pulisic',710191), ('8u','Messi',710190),
     ('6u','Messi',710199), ('6u','Haaland',710198), ('6u','Mbappe',742279),
+    ('5ug','Akers',710194), ('5ug','Boxx',710195),
 ]
 # Fixed Fall 2026 division rosters; update deliberately after a source review.
-EXPECTED_TEAM_COUNTS = {707765:9,707766:9,707767:10,710191:10,710190:9,710199:12,710198:12,742279:12}
+EXPECTED_TEAM_COUNTS = {707765:9,707766:9,707767:10,710191:10,710190:9,710199:12,710198:12,742279:12,710194:12,710195:12}
 DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / 'site/data.json'
 
 
@@ -85,6 +88,7 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
         receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
         record_history(output.parent / 'history', payload)
         record_projections(output.parent / 'projections', divisions, now)
+        record_soccer(output.parent / 'soccer-projections', divisions, now)
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary = None
     try:

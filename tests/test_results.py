@@ -34,7 +34,7 @@ class ResultsTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             payload = results.update_results(Path(tmp)/'data.json',fetch=lambda u:synthetic_page())
             self.assertEqual(payload['status'],'error')
-            self.assertEqual(len(payload['errors']),8)
+            self.assertEqual(len(payload['errors']),len(results.SOURCES))
             self.assertEqual(payload['divisions'],[])
             self.assertIsNone(payload['last_successful_check'])
             self.assertIsNone(payload['data_updated'])
@@ -84,7 +84,7 @@ class ResultsTests(unittest.TestCase):
             fetch = lambda url: synthetic_page()
             first = results.update_results(output,fetch=fetch,now='2026-09-08T12:00:00Z')
             self.assertEqual(first['status'],'ok')
-            self.assertEqual(len(first['divisions']),8)
+            self.assertEqual(len(first['divisions']),len(results.SOURCES))
             second = results.update_results(output,fetch=fetch,now='2026-09-08T13:00:00Z')
             self.assertEqual(second['data_updated'],first['data_updated'])
             self.assertEqual(second['last_successful_check'],'2026-09-08T13:00:00Z')
@@ -100,7 +100,7 @@ class ResultsTests(unittest.TestCase):
             self.assertEqual({str(p):p.read_bytes() for p in (Path(tmp)/'projections').rglob('*.json')},forecasts)
             changed = results.update_results(output,fetch=lambda u: synthetic_page(games=((0,0),(31,0))),now='2026-09-08T15:00:00Z')
             self.assertEqual(changed['data_updated'],'2026-09-08T15:00:00Z')
-            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections'})
+            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections', Path(tmp)/'soccer-projections'})
             self.assertEqual(list(Path(tmp).rglob('*.tmp')), [])
 
     def test_network_retry_timeout_and_cli_exit_code(self):

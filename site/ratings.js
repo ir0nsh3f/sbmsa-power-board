@@ -6,13 +6,14 @@
   'use strict';
   const V2={id:'opponent-ridge-margin-v2',caps:{flag:21,'8u':3,'6u':3},ridge:3,tolerance:1e-12,maxIterations:10000,tieDecimals:8};
   const METHOD={...V2,id:'opponent-ridge-margin-v3',default_mode:'raw',modes:['raw','capped']};
+  const CAPS={...METHOD.caps,'5ug':3}; // Preserve historical method metadata.
   const key=(division,team)=>JSON.stringify([division,team]);
   const compare=(a,b)=>a<b?-1:a>b?1:0;
   function compute(divisions,sport,mode='raw'){
     if(!['raw','capped'].includes(mode))throw Error('Unknown power-rating mode');
     const all=divisions.filter(d=>d.sport===sport).flatMap(d=>d.teams.map(t=>({...t,division:d.division,rank:null,rankText:'Unrated',power:null,component:null,rate:t.gp?(t.w+.5*t.t)/t.gp:null}))).sort((a,b)=>compare(key(a.division,a.team),key(b.division,b.team)));
-    const ids=new Map(all.map((t,i)=>[key(t.division,t.team),i])),edges=all.map(()=>[]),rhs=all.map(()=>0),cap=mode==='capped'?METHOD.caps[sport]:Infinity;
-    if(!METHOD.caps[sport])throw Error('Unknown power-rating sport');
+    const ids=new Map(all.map((t,i)=>[key(t.division,t.team),i])),edges=all.map(()=>[]),rhs=all.map(()=>0),cap=mode==='capped'?CAPS[sport]:Infinity;
+    if(!CAPS[sport])throw Error('Unknown power-rating sport');
     const games=[];
     for(const d of divisions.filter(d=>d.sport===sport))for(const g of d.games||[]){
       if(![g.home_score,g.away_score].every(Number.isFinite))continue;

@@ -8,7 +8,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   await page.goto(process.env.TEST_URL||`http://127.0.0.1:${server.address().port}/`);await page.waitForSelector('.row');
   assert.equal(await page.locator('#tab-league-schedule').count(),1,'League Schedule tab exists');
   await page.locator('#tab-league-schedule').click();assert.equal(await page.locator('[data-league-filter="Upcoming"]').getAttribute('aria-pressed'),'true');
-  await page.locator('#tab-league-schedule').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rankings','Last tab wraps to first, not body');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-league-schedule');
+  await page.locator('#tab-rainbow-unicorns').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rankings','Last tab wraps to first, not body');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rainbow-unicorns');await page.locator('#tab-league-schedule').click();
   // Independently derive exact favorites from each fixture's source identity.
  async function checkFavoriteFill(){
   const checks=await page.locator('[data-league-fixture]').evaluateAll(es=>es.map(el=>{

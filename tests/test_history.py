@@ -50,7 +50,7 @@ class HistoryTests(unittest.TestCase):
         self.assertEqual(point['captured_at'], payload['last_successful_check'])
         snapshot = json.loads((self.history / point['path']).read_text())
         self.assertEqual(snapshot['captured_at'], '2026-09-08T12:00:00Z')
-        self.assertEqual(len(snapshot['divisions']), 8)
+        self.assertEqual(len(snapshot['divisions']), len(results.SOURCES))
         self.assertEqual(snapshot['divisions'][0]['teams'][0]['pf'], 30)
         self.assertEqual(snapshot['divisions'][0]['games'][0]['date_iso'], '2026-09-05')
         leaders = [t for t in point['teams'] if t['sport'] == 'flag' and t['team'] == 'A']
@@ -167,7 +167,7 @@ class HistoryTests(unittest.TestCase):
         self.collect()
         changed = synthetic_page(games=((0, 0), (30, 0), (1, 0)), records=[(2, 0, 1, 3), (0, 2, 1, 3)])
         self.collect('2026-09-08T14:00:00Z', changed)
-        self.assertEqual(self.index()['captures'][-1]['completed_games'], 24)
+        self.assertEqual(self.index()['captures'][-1]['completed_games'], 3 * len(results.SOURCES))
         with self.assertRaises(ValueError):
             self.collect('2026-09-08T13:00:00Z')
         self.assertEqual(len(self.index()['captures']), 2)

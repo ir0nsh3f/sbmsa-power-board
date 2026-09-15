@@ -58,7 +58,7 @@
     }
     return rows.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
   }
-  const sportNames = {flag:'JV Flag Football', '8u':'8U Boys Soccer', '6u':'6U Boys Soccer'};
+  const sportNames = {flag:'JV Flag Football', '8u':'8U Boys Soccer', '6u':'6U Boys Soccer','5ug':'5U Girls Soccer'};
   function escapeHTML(value) {
     return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }

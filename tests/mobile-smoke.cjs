@@ -11,7 +11,7 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
   const metrics=()=>page.evaluate(()=>({firstRow:document.querySelector('.row').getBoundingClientRect().top+scrollY-[...document.querySelectorAll('#publication .warning')].reduce((n,e)=>n+e.getBoundingClientRect().height+10,0),row:document.querySelector('.row').getBoundingClientRect().height,page:document.documentElement.scrollHeight}));
   console.log('390px layout',await metrics());
   assert.ok((await metrics()).firstRow<=600,'Rankings must start within 600px at 390px');
-  assert.equal(await page.getByRole('tab').count(),4,'Separate views');
+  assert.equal(await page.getByRole('tab').count(),5,'Separate views');
   for(const width of [320,390,600]){
    await page.setViewportSize({width,height:844});
    const m=await metrics();assert.ok(m.firstRow<=(width===320?700:600),`First ranking at ${m.firstRow}px (${width})`);assert.ok(m.row<=(width===320?72:60),`Compact row ${m.row}px`);

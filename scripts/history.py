@@ -40,7 +40,7 @@ def rank_points(divisions, method=None):
             raise ValueError('Unknown ranking method')
         return [dict(t, sport=s, team_id=[SEASON, s, t['division'], t['team']],
                      win_rate=t['rate'], capped_margin_per_game=t['capped_margin_sum']/t['gp'] if t['gp'] else None)
-                for s in ('flag', '8u', '6u') for t in compute(divisions, s, 'capped' if method == V2 else method['default_mode'])]
+                for s in ('flag', '8u', '6u', '5ug') for t in compute(divisions, s, 'capped' if method == V2 else method['default_mode'])]
     points = []
     for sport in ('flag', '8u', '6u'):
         group = [dict(t, sport=sport, division=d['division'], team_id=[SEASON, sport, d['division'], t['team']])

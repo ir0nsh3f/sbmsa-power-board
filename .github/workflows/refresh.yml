@@ -42,17 +42,19 @@ jobs:
         run: python scripts/update_results.py
       - name: Validate publishable payload
         run: |
-          python -c "import json; d=json.load(open('site/data.json')); assert len(d['divisions']) == 8; assert d['last_checked']; assert d['last_successful_check']; assert d['data_updated']"
+          python -c "import json; d=json.load(open('site/data.json')); assert {(x['sport'],x['division']) for x in d['divisions']} == {(s,n) for s,n,_ in __import__('scripts.update_results',fromlist=['SOURCES']).SOURCES}; assert d['last_checked']; assert d['last_successful_check']; assert d['data_updated']"
           python -c "import json,hashlib; from scripts.history import load_index,result_data,encoded,SEASON; i=load_index('site/history'); d=json.load(open('site/data.json')); assert i['captures']; assert i['captures'][-1]['result_sha256'] == hashlib.sha256(encoded({'season':SEASON,'divisions':result_data(d['divisions'])})).hexdigest()"
       - name: Build verified last public pregame result models
         run: python scripts/projection_publication.py summarize
       - name: Validate projection history and exact current-data agreement
-        run: python scripts/projection_publication.py validate
+        run: |
+          python scripts/projection_publication.py validate
+          python scripts/soccer_projections.py validate
       - name: Preserve last check and data in repository
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data.json site/history/ site/projections/
+          git add site/data.json site/history/ site/projections/ site/soccer-projections/
           if ! git diff --cached --quiet; then
             git commit -m 'Update official results check'
             git push
@@ -69,7 +71,8 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: |
           python scripts/projection_publication.py observe
-          git add site/projections/publication/
+          python scripts/soccer_projections.py observe
+          git add site/projections/publication/ site/soccer-projections/publication/
           if ! git diff --cached --quiet; then
             git commit -m 'Preserve observed public forecast receipts'
             git push

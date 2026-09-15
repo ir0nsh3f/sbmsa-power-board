@@ -12,7 +12,10 @@ METHOD = dict(V2, id='opponent-ridge-margin-v3', default_mode='raw', modes=['raw
 def compute(divisions, sport, mode='raw'):
     if mode not in ('raw', 'capped'):
         raise ValueError('Unknown power-rating mode')
-    cap = METHOD['caps'][sport] if mode == 'capped' else float('inf')
+    caps = dict(METHOD['caps'], **{'5ug': 3})  # Scope extension; archived method metadata is immutable.
+    if sport not in caps:
+        raise ValueError('Unknown power-rating sport')
+    cap = caps[sport] if mode == 'capped' else float('inf')
     all_ = sorted((dict(t, division=d['division'], rank=None, rankText='Unrated', power=None,
                         component=None, rate=(t['w'] + .5*t['t'])/t['gp'] if t['gp'] else None)
                    for d in divisions if d['sport'] == sport for t in d['teams']),
