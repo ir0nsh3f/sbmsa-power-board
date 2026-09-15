@@ -19,6 +19,34 @@ class SoccerModel(unittest.TestCase):
             (root/one['capture_path']).write_text('{}')
             with self.assertRaises(ValueError):m.load_archive(root)
 
+    def test_v2_prior_three_preserves_real_v1_archive(self):
+        import json, shutil, tempfile
+        from scripts import soccer_projections as m
+        self.assertEqual(m.MODEL['prior_games'],3)
+        self.assertEqual(m.MODEL['id'],'5ug-gamma-poisson-v2')
+        source=Path(__file__).resolve().parents[1]/'site/soccer-projections'
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)/'archive';shutil.copytree(source,root)
+            immutable={p:p.read_bytes() for folder in ('captures','publication') for p in (root/folder).glob('*.json')}
+            old=next(json.loads(raw) for p,raw in immutable.items() if p.parent.name=='captures' and json.loads(raw)['model']['id']=='5ug-gamma-poisson-v1')
+            self.assertEqual(dict(m.build(old['inputs'],old['generated_at'],model=old['model']),inputs=old['inputs']),old)
+            from datetime import timedelta
+            checked=(max(m.instant(json.loads(raw)['generated_at']) for p,raw in immutable.items() if p.parent.name=='captures')+timedelta(minutes=1)).isoformat()
+            new=m.record(root,old['inputs'],checked)
+            self.assertEqual(new['model'],m.MODEL)
+            self.assertEqual(m.load_archive(root)['model'],m.MODEL)
+            for p,raw in immutable.items():self.assertEqual(p.read_bytes(),raw)
+            with self.assertRaises(ValueError):m.build(old['inputs'],old['generated_at'],model=dict(old['model'],prior_games=7))
+        past=[dict(home='A',away='B',home_score=5,away_score=1,start_iso=f'2026-09-0{i}T12:00:00Z') for i in range(1,5)]
+        future=dict(home='A',away='B',home_score=None,away_score=None,start_iso='2026-09-16T12:00:00Z')
+        ds=[dict(sport='5ug',division='Boxx',teams=[dict(team='A'),dict(team='B')],schedule=past+[future])]
+        oldf=m.build(ds,'2026-09-15T12:00:00Z',model=old['model'])['forecasts'][0]
+        newf=m.build(ds,'2026-09-15T12:00:00Z')['forecasts'][0]
+        self.assertAlmostEqual(oldf['margin_home'],16/12)
+        self.assertAlmostEqual(newf['margin_home'],16/7)
+        self.assertGreater(newf['margin_home'],oldf['margin_home'])
+        self.assertEqual(newf['total'],oldf['total'])
+
     def test_temporal_edges_and_withholding(self):
         from scripts.soccer_projections import build
         past=[dict(home='A',away='B',home_score=3,away_score=1,start_iso=f'2026-09-0{i}T12:00:00Z') for i in range(1,5)]
