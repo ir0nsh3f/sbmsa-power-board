@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-15T03:11:41.967023Z",
+  "last_checked": "2026-09-15T04:54:08.422889Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7087,26 +7087,26 @@
         {
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 3,
-          "pa": 6,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "gp": 2,
+          "pf": 7,
+          "pa": 7,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         },
         {
           "team": "Flower Power",
           "coach": "Thompson",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
-          "pa": 5,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "gp": 2,
+          "pf": 5,
+          "pa": 9,
+          "margin_sum": -4,
+          "capped_margin_sum": -4
         },
         {
           "team": "Glitter Dumplings",
@@ -7259,6 +7259,13 @@
           "home_score": 1,
           "away_score": 5,
           "date": "Mon 9/14"
+        },
+        {
+          "home": "Dallas Cowgirls",
+          "away": "Flower Power",
+          "home_score": 4,
+          "away_score": 1,
+          "date": "Mon 9/14"
         }
       ],
       "schedule": [
@@ -7343,8 +7350,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-14",
           "start_iso": "2026-09-14T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 1
         },
         {
           "home": "Lucky Charms",
@@ -8057,6 +8064,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-15T03:11:41.967023Z",
-  "data_updated": "2026-09-15T02:18:02.949549Z"
+  "last_successful_check": "2026-09-15T04:54:08.422889Z",
+  "data_updated": "2026-09-15T04:54:08.422889Z"
 }
