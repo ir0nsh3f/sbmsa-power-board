@@ -181,7 +181,10 @@ def last_pregame(directory,divisions):
     """
     root=Path(directory);index=load_archive(root);latest={}
     finals={tuple(identity(d,g)) for d in divisions if d['sport']=='flag'
-            for g in d.get('schedule',[]) if finished(g) and instant(g.get('start_iso'))}
+            for g in d.get('schedule',[]) if (finished(g) or
+                (g.get('home_score') is None and g.get('away_score') is None and
+                 (g.get('home_outcome'),g.get('away_outcome')) in (('W','L'),('L','W'))))
+            and instant(g.get('start_iso'))}
     for r in sorted(receipts(root,index),key=lambda r:(instant(r['observed_public_at']),r['capture_path'])):
         snapshot=json.loads((root/r['capture_path']).read_text())
         for f in snapshot['forecasts']:

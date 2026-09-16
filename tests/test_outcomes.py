@@ -60,6 +60,24 @@ class OutcomeTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Cannot reconcile standings'):
             parse(page(row(hs='L',aws='W'),((1,0,0,1),(0,1,0,1))))
 
+    def test_outcome_final_retains_pregame_evidence_without_numeric_evaluation(self):
+        from scripts import projections as P
+        from test_projections import division, NOW
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);d=division();capture=P.record(root,[d],NOW)
+            P.observe_public(root,capture['capture_path'],(root/capture['capture_path']).read_bytes(),'2026-09-10T03:00:00Z','https://example.org/run')
+            for h,a in [('W','L'),('L','W')]:
+                d['schedule'][-1].update(home_score=None,away_score=None,home_outcome=h,away_outcome=a)
+                selected=P.last_pregame(root,[d])
+                self.assertEqual(len(selected),1)
+                self.assertEqual(selected[0]['capture_path'],capture['capture_path'])
+                self.assertEqual(P.evaluate(root,[d]),[])
+            d['schedule'][-1]['away_outcome']='L'
+            d['schedule'][-1]['home_outcome']='L'
+            self.assertEqual(P.last_pregame(root,[d]),[])
+
     def test_projection_models_exclude_outcomes_even_future_dated(self):
         from scripts import projections, soccer_projections
         import tempfile
