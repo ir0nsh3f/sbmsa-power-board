@@ -1,9 +1,7 @@
 {
-  "last_checked": "2026-09-16T21:18:02.157937Z",
-  "status": "error",
-  "errors": [
-    "6u Haaland: ValueError: Malformed or partial score"
-  ],
+  "last_checked": "2026-09-16T23:14:06.408756Z",
+  "status": "ok",
+  "errors": [],
   "divisions": [
     {
       "sport": "flag",
@@ -4139,14 +4137,16 @@
         {
           "team": "Blue Jays",
           "coach": "Cardoso",
-          "w": 0,
-          "l": 1,
+          "w": 1,
+          "l": 0,
           "t": 0,
           "gp": 1,
-          "pf": 1,
-          "pa": 4,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0,
+          "scored_gp": 0,
+          "outcome_only_gp": 1
         },
         {
           "team": "Cannonballs",
@@ -4211,14 +4211,16 @@
         {
           "team": "San Jose",
           "coach": "Wynne",
-          "w": 1,
-          "l": 0,
+          "w": 0,
+          "l": 1,
           "t": 0,
           "gp": 1,
-          "pf": 4,
-          "pa": 1,
-          "margin_sum": 3,
-          "capped_margin_sum": 3
+          "pf": 0,
+          "pa": 0,
+          "margin_sum": 0,
+          "capped_margin_sum": 0,
+          "scored_gp": 0,
+          "outcome_only_gp": 1
         },
         {
           "team": "Seattle Sounders FC",
@@ -4313,8 +4315,10 @@
         {
           "home": "San Jose",
           "away": "Blue Jays",
-          "home_score": 4,
-          "away_score": 1,
+          "home_score": null,
+          "away_score": null,
+          "home_outcome": "L",
+          "away_outcome": "W",
           "date": "Sat 9/12"
         },
         {
@@ -4390,8 +4394,10 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-12",
           "start_iso": "2026-09-12T14:45:00-05:00",
-          "home_score": 4,
-          "away_score": 1
+          "home_score": null,
+          "away_score": null,
+          "home_outcome": "L",
+          "away_outcome": "W"
         },
         {
           "home": "Speedy Yetis",
@@ -8123,6 +8129,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-16T11:32:56.716281Z",
-  "data_updated": "2026-09-16T04:49:06.176190Z"
+  "last_successful_check": "2026-09-16T23:14:06.408756Z",
+  "data_updated": "2026-09-16T23:14:06.408756Z"
 }

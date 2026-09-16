@@ -8,7 +8,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   await page.goto(process.env.TEST_URL||`http://127.0.0.1:${server.address().port}/`);await page.waitForSelector('.row');
   assert.equal(await page.locator('#tab-league-schedule').count(),1,'League Schedule tab exists');
   await page.locator('#tab-league-schedule').click();assert.equal(await page.locator('[data-league-filter="Upcoming"]').getAttribute('aria-pressed'),'true');
-  await page.locator('#tab-rainbow-unicorns').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rankings','Last tab wraps to first, not body');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rainbow-unicorns');await page.locator('#tab-league-schedule').click();
+  await page.locator('#tab-league-schedule').focus();await page.keyboard.press('ArrowRight');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-rankings','Last tab wraps to first, not body');await page.keyboard.press('ArrowLeft');assert.equal(await page.locator(':focus').getAttribute('id'),'tab-league-schedule');await page.locator('#tab-league-schedule').click();
   // Independently derive exact favorites from each fixture's source identity.
  async function checkFavoriteFill(){
   const checks=await page.locator('[data-league-fixture]').evaluateAll(es=>es.map(el=>{
@@ -36,7 +36,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
     for(const division of divisions)for(const filter of ['Upcoming','Results','All']){
      await page.locator('#division').selectOption(division);await page.locator(`[data-league-filter="${filter}"]`).click();
      const expected=await page.evaluate(({sport,division,filter})=>{
-      const today=SBMSASchedules.chicagoDate(new Date());return data.divisions.filter(d=>d.sport===sport&&(division==='all'||d.division===division)).flatMap(d=>d.schedule).filter(g=>{const done=[g.away_score,g.home_score].every(x=>Number.isInteger(x)&&x>=0);const date=g.start_iso?SBMSASchedules.chicagoDate(new Date(g.start_iso)):g.date_iso;return filter==='All'||(filter==='Results'?done:!done&&(!date||date>=today));}).length;
+      const today=SBMSASchedules.chicagoDate(new Date());return data.divisions.filter(d=>d.sport===sport&&(division==='all'||d.division===division)).flatMap(d=>d.schedule).filter(g=>{const done=[g.away_score,g.home_score].every(x=>Number.isInteger(x)&&x>=0)||(g.home_score===null&&g.away_score===null&&['W/L','L/W'].includes(g.home_outcome+'/'+g.away_outcome));const date=g.start_iso?SBMSASchedules.chicagoDate(new Date(g.start_iso)):g.date_iso;return filter==='All'||(filter==='Results'?done:!done&&(!date||date>=today));}).length;
      },{sport,division,filter});
      assert.equal(await page.locator('[data-league-fixture]').count(),expected,`${width}/${sport}/${division}/${filter}`);counts[`${sport}/${division}/${filter}`]=expected;await checkFavoriteFill();
      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No page overflow');

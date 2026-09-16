@@ -27,9 +27,9 @@ def encoded(value):
 def result_data(divisions):
     """Explicit allowlist: no private feeds, check metadata or unplayed fixtures."""
     return [{'sport': d['sport'], 'division': d['division'], 'source_url': d['url'],
-             'teams': sorted(({k: t[k] for k in TEAM_FIELDS} for t in d['teams']), key=lambda t: t['team']),
-             'games': sorted(({k: g.get(k) for k in GAME_FIELDS} for g in d['schedule']
-                              if g['home_score'] is not None and g['away_score'] is not None), key=lambda g: (g['date_iso'] or '', g['start_iso'] or '', encoded(g)))}
+             'teams': sorted(({k: t[k] for k in TEAM_FIELDS + tuple(k for k in ('scored_gp', 'outcome_only_gp') if k in t)} for t in d['teams']), key=lambda t: t['team']),
+             'games': sorted(({k: g.get(k) for k in GAME_FIELDS + tuple(k for k in ('home_outcome', 'away_outcome') if k in g)} for g in d['schedule']
+                              if (g['home_score'] is not None and g['away_score'] is not None) or (g.get('home_outcome'), g.get('away_outcome')) in (('W','L'),('L','W'))), key=lambda g: (g['date_iso'] or '', g['start_iso'] or '', encoded(g)))}
             for d in sorted(divisions, key=lambda d: (d['sport'], d['division']))]
 
 
@@ -39,7 +39,7 @@ def rank_points(divisions, method=None):
         if method not in (V2, METHOD):
             raise ValueError('Unknown ranking method')
         return [dict(t, sport=s, team_id=[SEASON, s, t['division'], t['team']],
-                     win_rate=t['rate'], capped_margin_per_game=t['capped_margin_sum']/t['gp'] if t['gp'] else None)
+                     win_rate=t['rate'], capped_margin_per_game=t['capped_margin_sum']/t.get('scored_gp', t['gp']) if t.get('scored_gp', t['gp']) else None)
                 for s in ('flag', '8u', '6u', '5ug') for t in compute(divisions, s, 'capped' if method == V2 else method['default_mode'])]
     points = []
     for sport in ('flag', '8u', '6u'):

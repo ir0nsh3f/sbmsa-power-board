@@ -156,6 +156,17 @@ def safe_location_url(value, source_url):
         return None
 
 
+def parse_result(hs, aws):
+    """Only paired W/L or two numeric scores; no inferred classification/score."""
+    if (hs, aws) in (('W', 'L'), ('L', 'W')):
+        return dict(home_score=None, away_score=None, home_outcome=hs, away_outcome=aws)
+    if not hs and not aws:
+        return dict(home_score=None, away_score=None)
+    if any(not s.isascii() or not s.isdigit() for s in (hs, aws)):
+        raise ValueError('Malformed or partial score')
+    return dict(home_score=int(hs), away_score=int(aws))
+
+
 def parse_schedule(table, teams, source_url=''):
     entries = []
     seen = set()
@@ -176,16 +187,14 @@ def parse_schedule(table, teams, source_url=''):
             raise ValueError('Duplicate game in schedule')
         seen.add(key)
         hs, aws = get('HomeScoreLabel'), get('AwayScoreLabel')
-        if (hs or aws) and any(not s.isascii() or not s.isdigit() for s in (hs, aws)):
-            raise ValueError('Malformed or partial score')
+        result = parse_result(hs, aws)
         link = row.select_one('a[id$=LocationLink]')
         entries.append({'home':get('HomeLabel'), 'away':get('AwayLabel'),
                         'date':date_label, 'time':time_label,
                         'location':get('ScheduleLabel') or get('LocationLabel') or get('LocationLink'),
                         'location_url':safe_location_url(link.get('href') if link else None, source_url),
                         'date_iso':date_iso, 'start_iso':start_iso,
-                        'home_score':int(hs) if hs else None,
-                        'away_score':int(aws) if aws else None})
+                        **result})
     return entries
 
 
@@ -234,14 +243,15 @@ def parse_division(html, sport, division, url):
         home, away = get('HomeLabel'), get('AwayLabel')
         if home not in teams or away not in teams or home == away:
             raise ValueError('Unknown or self-playing team')
-        if any(not score.isascii() or not score.isdigit() for score in (hs,aws)):
-            raise ValueError('Malformed or partial score')
+        result = parse_result(hs, aws)
         key = (get('DateLabel'),get('TimeLabel'),*sorted((home,away)))
         if key in seen:
             raise ValueError('Duplicate game')
         seen.add(key)
-        hs, aws = int(hs), int(aws)
-        games.append({'home':home,'away':away,'home_score':hs,'away_score':aws,'date':get('DateLabel')})
+        games.append({'home':home,'away':away,**result,'date':get('DateLabel')})
+        if 'home_outcome' in result:
+            continue
+        hs, aws = result['home_score'], result['away_score']
         for name, pf, pa in ((home,hs,aws),(away,aws,hs)):
             team = teams[name]
             team['pf'] += pf
@@ -249,8 +259,13 @@ def parse_division(html, sport, division, url):
             team['margin_sum'] += pf-pa
             team['capped_margin_sum'] += max(-cap, min(cap,pf-pa))
     for name, team in teams.items():
-        played = [(g['home_score'],g['away_score']) if g['home']==name else (g['away_score'],g['home_score']) for g in games if name in (g['home'],g['away'])]
-        actual = (sum(a>b for a,b in played), sum(a<b for a,b in played), sum(a==b for a,b in played),len(played))
+        meetings = [g for g in games if name in (g['home'],g['away'])]
+        played = [(g['home_score'],g['away_score']) if g['home']==name else (g['away_score'],g['home_score']) for g in meetings if g['home_score'] is not None]
+        outcomes = [g['home_outcome'] if g['home']==name else g['away_outcome'] for g in meetings if 'home_outcome' in g]
+        if outcomes:
+            team['scored_gp'] = len(played)
+            team['outcome_only_gp'] = len(outcomes)
+        actual = (sum(a>b for a,b in played)+outcomes.count('W'), sum(a<b for a,b in played)+outcomes.count('L'), sum(a==b for a,b in played),len(meetings))
         if name in official_goals and official_goals[name] != (team['pf'],team['pa']):
             raise ValueError(f'Cannot reconcile goals for {name}')
         if actual != tuple(team[k] for k in ('w','l','t','gp')):

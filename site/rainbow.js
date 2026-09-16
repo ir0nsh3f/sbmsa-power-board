@@ -3,7 +3,7 @@
 'use strict';
 const team='Rainbow Unicorns';
 function nextTwo(divisions,now=Date.now()){
- return divisions.filter(d=>d.sport==='5ug'&&d.division==='Boxx').flatMap(d=>(d.schedule||[]).filter(g=>[g.home,g.away].includes(team)&&g.home_score===null&&g.away_score===null&&Number.isFinite(Date.parse(g.start_iso))&&Date.parse(g.start_iso)>now+30*60000).map(g=>({...g,division:d.division,url:d.url}))).sort((a,b)=>Date.parse(a.start_iso)-Date.parse(b.start_iso)||a.home.localeCompare(b.home)||a.away.localeCompare(b.away)).slice(0,2);
+ return divisions.filter(d=>d.sport==='5ug'&&d.division==='Boxx').flatMap(d=>(d.schedule||[]).filter(g=>[g.home,g.away].includes(team)&&g.home_score===null&&g.away_score===null&&!g.home_outcome&&!g.away_outcome&&Number.isFinite(Date.parse(g.start_iso))&&Date.parse(g.start_iso)>now+30*60000).map(g=>({...g,division:d.division,url:d.url}))).sort((a,b)=>Date.parse(a.start_iso)-Date.parse(b.start_iso)||a.home.localeCompare(b.home)||a.away.localeCompare(b.away)).slice(0,2);
 }
 const half=n=>Math.floor(n*2+.5)/2;
 function line(f,home,away){const spread=half(Math.abs(f.margin_home));return (spread?(f.margin_home>0?home:away)+' −'+spread:'Pick’em')+' · Total '+half(f.total)+' goals';}

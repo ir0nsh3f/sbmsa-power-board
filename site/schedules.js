@@ -32,24 +32,27 @@
         const venue = game.home === favorite.team ? 'Home' : 'Away';
         const scoreFor = venue === 'Home' ? game.home_score : game.away_score;
         const scoreAgainst = venue === 'Home' ? game.away_score : game.home_score;
-        const completed = [scoreFor, scoreAgainst].every(s => Number.isInteger(s) && s >= 0);
+        const outcomeOnly=game.home_score===null&&game.away_score===null&&['W/L','L/W'].includes(game.home_outcome+'/'+game.away_outcome);
+        const completed = outcomeOnly || [scoreFor, scoreAgainst].every(s => Number.isInteger(s) && s >= 0);
         const start = typeof game.start_iso === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/.test(game.start_iso) ? Date.parse(game.start_iso) : NaN;
         const dateISO = Number.isFinite(start) ? chicagoDate(new Date(start)) : /^\d{4}-\d{2}-\d{2}$/.test(game.date_iso || '') ? game.date_iso : null;
         const timeLabel = Number.isFinite(start) ? new Intl.DateTimeFormat('en-US', {timeZone:'America/Chicago',hour:'numeric',minute:'2-digit'}).format(new Date(start)) + ' CT' : game.time ? game.time + ' CT' : 'Time TBD';
         // Within each CT calendar day, date-only entries precede timed entries.
         // UTC instants preserve chronology through the repeated fall DST hour.
         const sortTime = Number.isFinite(start) ? new Date(start).toISOString() : '';
-        const status = completed ? (scoreFor > scoreAgainst ? 'W' : scoreFor < scoreAgainst ? 'L' : 'T')
+        const status = outcomeOnly ? (venue === 'Home' ? game.home_outcome : game.away_outcome) : completed ? (scoreFor > scoreAgainst ? 'W' : scoreFor < scoreAgainst ? 'L' : 'T')
           : dateISO && dateISO < today ? 'Awaiting result' : !dateISO ? 'Time TBD' : 'Upcoming';
-        const average = value => Number.isFinite(value) && Number.isFinite(team?.gp) && team.gp > 0 ? value / team.gp : null;
+        const scoredGP=team?.scored_gp ?? team?.gp;
+        const average = value => Number.isFinite(value) && Number.isFinite(scoredGP) && scoredGP > 0 ? value / scoredGP : null;
         const record = team && ['w','l','t'].every(k => Number.isInteger(team[k]) && team[k] >= 0) ? `${team.w}–${team.l}–${team.t}` : null;
         rows.push({...favorite, opponent, opponentCoach:team?.coach || null, sourceUrl:division.url,
           ourCoach:(division.teams || []).find(t => t.team === favorite.team)?.coach || null,
           opponentRank:ranks.get(JSON.stringify([division.sport,division.division,opponent])) || null,
+          opponentScoredGP:scoredGP, opponentMissingScore:team?.outcome_only_gp||0,
           opponentGP:Number.isInteger(team?.gp) && team.gp >= 0 ? team.gp : null,
           cappedMargin:average(team?.capped_margin_sum),
           venue, scoreFor:completed ? scoreFor : null, scoreAgainst:completed ? scoreAgainst : null,
-          completed, dateISO, timeLabel, sortKey:(dateISO || '9999-99-99') + 'T' + sortTime,
+          outcomeOnly, completed, dateISO, timeLabel, sortKey:(dateISO || '9999-99-99') + 'T' + sortTime,
           location:game.location || null, locationUrl:safeLocationURL(game.location_url), dateLabel:dateISO || game.date || 'Date TBD',
           status, opponentRecord:record, scoredPerGame:average(team?.pf),
           allowedPerGame:average(team?.pa), scoredLabel:favorite.sport === 'flag' ? 'PF/G' : 'GF/G',
@@ -103,12 +106,12 @@
       return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
         <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${fieldHTML(r)}</small></td>
         <th scope="row" class="fixture-match"><strong>${escapeHTML(r.team)}</strong> <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs <strong>${escapeHTML(r.opponent)}</strong> · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
-        <td class="fixture-strength"><div class="strength-line"><b>Power rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
-        <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+' '+r.scoreFor+'–'+r.scoreAgainst : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
+        <td class="fixture-strength"><div class="strength-line"><b>Power rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}${r.opponentMissingScore?` · ${r.opponentScoredGP} scored · score unavailable`:''}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
+        <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+(r.outcomeOnly?' · score unavailable':' '+r.scoreFor+'–'+r.scoreAgainst) : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.outcomeOnly ? 'Official W/L; score unavailable.' : r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
     }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
   function glanceTable(rows, filter, team = 'all') {
-    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}"><strong>${escapeHTML(r.team)}</strong><span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${escapeHTML(r.opponent)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.scoreFor}–${r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
+    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}"><strong>${escapeHTML(r.team)}</strong><span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${escapeHTML(r.opponent)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.outcomeOnly?'· score unavailable':r.scoreFor+'–'+r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
     const body = groupDates(rows, filter, team).map(g => {
       const date = g.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'numeric',day:'numeric'}).format(new Date(g.dateISO+'T12:00:00Z')) : 'Date TBD';
       return `<tr><th scope="row">${escapeHTML(date)}</th><td>${cell(g.Dexter)}</td><td>${cell(g.Beckham)}</td></tr>`;
@@ -118,7 +121,7 @@
   function scheduleContent(rows, filter, layout, team) {
     return layout === 'glance' ? glanceTable(rows, filter, team) : `
       <div class="sbmsa-schedule-scroll"><table><caption>Current power · selected mode · provisional · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
-      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, using the currently selected Raw (default) or capped mode, independent of filters. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per game; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
+      <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, using the currently selected Raw (default) or capped mode, independent of filters. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per numerically scored game; official W/L-only results count in records but not scoring, power or margin models; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
   }
   function renderHTML(rows, filter = 'Upcoming', layout = 'glance', team = 'all') {
     const missing = rows.filter(r => r.status === 'Awaiting result').length;

@@ -232,7 +232,8 @@ def build(divisions,generated_at):
         for g in d.get('schedule',[]):
             start=instant(g.get('start_iso'))
             if (start is None or start<=cutoff+timedelta(minutes=CONFIG['lead_minutes']) or
-                g.get('home_score') is not None or g.get('away_score') is not None):continue
+                g.get('home_score') is not None or g.get('away_score') is not None or
+                g.get('home_outcome') is not None or g.get('away_outcome') is not None):continue
             forecasts.append(dict(game_id=identity(d,g),**predict(g['home'],g['away'])))
     forecasts.sort(key=lambda f:(f['game_id'][-1],f['game_id']))
     return dict(schema_version=1,season=SEASON,model_version=VERSION,config=CONFIG.copy(),

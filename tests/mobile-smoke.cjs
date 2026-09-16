@@ -3,7 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert=require('node:assert/strict');
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
- const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
+ const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['rainbow.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  try{
   browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -11,7 +11,7 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
   const metrics=()=>page.evaluate(()=>({firstRow:document.querySelector('.row').getBoundingClientRect().top+scrollY-[...document.querySelectorAll('#publication .warning')].reduce((n,e)=>n+e.getBoundingClientRect().height+10,0),row:document.querySelector('.row').getBoundingClientRect().height,page:document.documentElement.scrollHeight}));
   console.log('390px layout',await metrics());
   assert.ok((await metrics()).firstRow<=600,'Rankings must start within 600px at 390px');
-  assert.equal(await page.getByRole('tab').count(),5,'Separate views');
+  assert.equal(await page.getByRole('tab').count(),4,'Separate views');
   for(const width of [320,390,600]){
    await page.setViewportSize({width,height:844});
    const m=await metrics();assert.ok(m.firstRow<=(width===320?700:600),`First ranking at ${m.firstRow}px (${width})`);assert.ok(m.row<=(width===320?72:60),`Compact row ${m.row}px`);

@@ -94,7 +94,7 @@ def build(divisions, checked, model=None):
     for d in ds:
         for g in d.get('schedule',[]):
             start=instant(g.get('start_iso'))
-            if not start or start<=cutoff+timedelta(minutes=model['cutoff_minutes']) or any(g.get(k) is not None for k in ('home_score','away_score')):
+            if not start or start<=cutoff+timedelta(minutes=model['cutoff_minutes']) or any(g.get(k) is not None for k in ('home_score','away_score','home_outcome','away_outcome')):
                 continue
             h,a=stats[d['division'],g['home']],stats[d['division'],g['away']]
             hm,hv=rate(h,a);am,av=rate(a,h)
@@ -159,7 +159,7 @@ def load_archive(directory):
 def record(directory,divisions,checked):
     directory=Path(directory);index=load_archive(directory)
     inputs=[dict(sport=d['sport'],division=d['division'],teams=[{'team':t['team']} for t in d['teams']],
-                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso')} for g in d.get('schedule',[])]) for d in divisions if d['sport']=='5ug']
+                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso') + tuple(k for k in ('home_outcome','away_outcome') if k in g)} for g in d.get('schedule',[])]) for d in divisions if d['sport']=='5ug']
     p=build(inputs,checked)
     previous=json.loads((directory/index['captures'][-1]['path']).read_text()) if index['captures'] else None
     if previous and instant(checked)<instant(previous['generated_at']):

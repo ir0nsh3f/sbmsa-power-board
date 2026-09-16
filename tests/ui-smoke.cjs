@@ -65,7 +65,7 @@ const path=require('node:path');
    for(const [division,name,rank] of linked.our){const t=expected.find(t=>t.team===name&&t.division===division);assert.equal(rank,t.rank?t.rankText:null);}
    if(expected.some(t=>t.gp)){
     const margins=await page.locator('#rows .result').allTextContents();
-    assert.deepEqual(margins,expected.map(t=>{const n=(selected==='raw'?t.margin_sum:t.capped_margin_sum)/t.gp;return t.gp?(n>0?'+':'')+Number(n.toFixed(2)):'—';}));
+    assert.deepEqual(margins,expected.map(t=>{const gp=t.scored_gp??t.gp,n=(selected==='raw'?t.margin_sum:t.capped_margin_sum)/gp;return gp?(n>0?'+':'')+Number(n.toFixed(2)):'—';}));
    }
    }
    if(s==='flag')for(const width of [320,390,768,1400]){
@@ -77,7 +77,7 @@ const path=require('node:path');
   await page.locator('[data-sport="flag"]').click();
   assert.equal(await page.locator('button').filter({hasText:/Reload published data/i}).count(),0,'Redundant reload button must be absent');
   assert.equal(await page.locator('#advanced').count(),1,'Advanced stats section must exist');
-  assert.equal(await page.getByRole('tab').count(),5,'Five separate dashboard views');
+  assert.equal(await page.getByRole('tab').count(),4,'Four original-board views; 5U lives on its standalone site');
   assert.equal(await page.locator('#advanced').isVisible(),false,'Inactive advanced panel is hidden');
   for(const [sport,team,coach] of [['flag','Buccaneers','Wells'],['8u','Arsenal','Klupchak'],['6u','Vipers','Ellis']]){
    await page.getByRole('tab',{name:'Advanced',exact:true}).click();
@@ -87,7 +87,7 @@ const path=require('node:path');
    assert.equal(await page.locator('#stats-body tr').count(),await page.locator('.row').count(),'Advanced stats must include the entire filtered field');
    assert.ok((await page.locator('#stats-body').innerText()).includes(coach),'Advanced stats must retain coaches');
    assert.ok((await page.locator('#stats-head').innerText()).includes(sport==='flag'?'PF/G':'GF/G'),'Sport-specific scoring labels');
-   const summary=await page.evaluate(({sport,team})=>{const d=data.divisions.find(d=>d.sport===sport&&d.teams.some(t=>t.team===team));const t=d.teams.find(t=>t.team===team);return {gp:t.gp,pf:t.pf,pa:t.pa};},{sport,team});
+   const summary=await page.evaluate(({sport,team})=>{const d=data.divisions.find(d=>d.sport===sport&&d.teams.some(t=>t.team===team));const t=d.teams.find(t=>t.team===team);return {gp:t.scored_gp??t.gp,pf:t.pf,pa:t.pa};},{sport,team});
    const statsRow=page.locator('#stats-body tr').filter({hasText:team}).first();
    const cells=await statsRow.locator('td').allTextContents();
    assert.equal(cells[6],summary.gp?(summary.pf/summary.gp).toFixed(1):'—');
@@ -95,7 +95,7 @@ const path=require('node:path');
    for(const sort of ['raw_total','raw_margin','scored_pg','allowed_pg','adjusted_margin','sos','board']){
     await page.locator('#stat-sort').selectOption(sort);
     const actual=await page.locator('#stats-body tr').evaluateAll(rows=>rows.map(r=>({team:r.dataset.team,value:r.dataset.metric,rank:r.dataset.metricRank,label:r.cells[1].textContent})));
-    const expected=await page.evaluate(sort=>{const stats=SBMSAAdvanced.compute(data.divisions,sport);return rankings().map(t=>{const st=stats[JSON.stringify([t.division,t.team])];return {team:t.team,value:!t.gp?null:sort==='board'?t.rank:sort==='raw_total'?t.margin_sum:st[sort]};}).sort((a,b)=>a.value==null?(b.value==null?a.team.localeCompare(b.team):1):b.value==null?-1:(sort==='board'||sort==='allowed_pg'?a.value-b.value:b.value-a.value)||a.team.localeCompare(b.team));},sort);
+    const expected=await page.evaluate(sort=>{const stats=SBMSAAdvanced.compute(data.divisions,sport);return rankings().map(t=>{const st=stats[JSON.stringify([t.division,t.team])];return {team:t.team,value:!t.gp?null:sort==='board'?t.rank:sort==='raw_total'?((t.scored_gp??t.gp)?t.margin_sum:null):st[sort]};}).sort((a,b)=>a.value==null?(b.value==null?a.team.localeCompare(b.team):1):b.value==null?-1:(sort==='board'||sort==='allowed_pg'?a.value-b.value:b.value-a.value)||a.team.localeCompare(b.team));},sort);
     assert.deepEqual(actual.map(r=>r.team),expected.map(r=>r.team),sport+'/'+sort+' order');
     let rank=0;for(let i=0;i<actual.length;i++){const r=actual[i],v=expected[i].value;if(v==null){assert.equal(r.label,'—');continue;}if(i===0||Math.abs(v-expected[i-1].value)>1e-9)rank=i+1;assert.equal(+r.rank,rank);assert.equal(+r.value,v);const tied=expected.filter(x=>x.value!=null&&Math.abs(x.value-v)<=1e-9).length>1;assert.equal(r.label,(tied?'T':'')+rank);}
    }
@@ -184,7 +184,7 @@ const path=require('node:path');
    if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`schedule-${width}.png`),fullPage:false});
   }
   // Schedule ranks must remain the capped full-field ranks even with Raw and board filters selected.
-  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode=data.ratingMode||'raw';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.gp?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
+  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode=data.ratingMode||'raw';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.rank?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
   for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
   await page.evaluate(()=>{mode='raw';render();});
   await guide.locator('[data-schedule-layout="guide"]').click();
