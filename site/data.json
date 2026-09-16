@@ -1,7 +1,9 @@
 {
-  "last_checked": "2026-09-16T11:32:56.716281Z",
-  "status": "ok",
-  "errors": [],
+  "last_checked": "2026-09-16T16:55:09.182745Z",
+  "status": "error",
+  "errors": [
+    "6u Haaland: ValueError: Malformed or partial score"
+  ],
   "divisions": [
     {
       "sport": "flag",
