@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-17T01:46:56.531884Z",
+  "last_checked": "2026-09-17T03:26:34.069124Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -12,13 +12,13 @@
           "team": "Bengals",
           "coach": "Smith",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 14,
-          "pa": 18,
-          "margin_sum": -4,
-          "capped_margin_sum": -4
+          "gp": 2,
+          "pf": 34,
+          "pa": 45,
+          "margin_sum": -11,
+          "capped_margin_sum": -11
         },
         {
           "team": "Chargers",
@@ -48,13 +48,13 @@
           "team": "Eagles",
           "coach": "Canova",
           "w": 2,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 51,
-          "pa": 15,
-          "margin_sum": 36,
-          "capped_margin_sum": 36
+          "gp": 3,
+          "pf": 65,
+          "pa": 41,
+          "margin_sum": 24,
+          "capped_margin_sum": 24
         },
         {
           "team": "Falcons",
@@ -71,14 +71,14 @@
         {
           "team": "Jets",
           "coach": "Mendrek-Laske",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 21,
-          "pa": 21,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 3,
+          "pf": 47,
+          "pa": 35,
+          "margin_sum": 12,
+          "capped_margin_sum": 12
         },
         {
           "team": "Saints",
@@ -95,14 +95,14 @@
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 14,
-          "pa": 0,
-          "margin_sum": 14,
-          "capped_margin_sum": 14
+          "gp": 2,
+          "pf": 41,
+          "pa": 20,
+          "margin_sum": 21,
+          "capped_margin_sum": 21
         },
         {
           "team": "Titans",
@@ -173,6 +173,20 @@
           "home_score": 0,
           "away_score": 39,
           "date": "Sat 9/12"
+        },
+        {
+          "home": "Eagles",
+          "away": "Jets",
+          "home_score": 14,
+          "away_score": 26,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Texans",
+          "away": "Bengals",
+          "home_score": 27,
+          "away_score": 20,
+          "date": "Wed 9/16"
         }
       ],
       "schedule": [
@@ -281,8 +295,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 14,
+          "away_score": 26
         },
         {
           "home": "Texans",
@@ -293,8 +307,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 27,
+          "away_score": 20
         },
         {
           "home": "Falcons",
@@ -642,14 +656,14 @@
         {
           "team": "Bills",
           "coach": "Lamb",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "gp": 2,
-          "pf": 42,
-          "pa": 13,
-          "margin_sum": 29,
-          "capped_margin_sum": 29
+          "gp": 3,
+          "pf": 56,
+          "pa": 25,
+          "margin_sum": 31,
+          "capped_margin_sum": 31
         },
         {
           "team": "Broncos",
@@ -691,13 +705,13 @@
           "team": "Mustangs",
           "coach": "Brown",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 18,
-          "pa": 25,
-          "margin_sum": -7,
-          "capped_margin_sum": -7
+          "gp": 3,
+          "pf": 30,
+          "pa": 39,
+          "margin_sum": -9,
+          "capped_margin_sum": -9
         },
         {
           "team": "Oilers",
@@ -786,6 +800,13 @@
           "away": "49ers",
           "home_score": 0,
           "away_score": 27,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Mustangs",
+          "away": "Bills",
+          "home_score": 12,
+          "away_score": 14,
           "date": "Wed 9/16"
         }
       ],
@@ -919,8 +940,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 14
         },
         {
           "home": "Spartans",
@@ -1281,13 +1302,13 @@
           "team": "Jaguars",
           "coach": "Benitez",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
-          "pf": 7,
-          "pa": 38,
-          "margin_sum": -31,
-          "capped_margin_sum": -31
+          "gp": 3,
+          "pf": 15,
+          "pa": 64,
+          "margin_sum": -49,
+          "capped_margin_sum": -49
         },
         {
           "team": "Packers",
@@ -1328,14 +1349,14 @@
         {
           "team": "Seahawks",
           "coach": "Shea",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 12,
-          "pa": 37,
-          "margin_sum": -25,
-          "capped_margin_sum": -25
+          "gp": 3,
+          "pf": 38,
+          "pa": 45,
+          "margin_sum": -7,
+          "capped_margin_sum": -7
         },
         {
           "team": "Steelers",
@@ -1426,6 +1447,13 @@
           "away": "Steelers",
           "home_score": 41,
           "away_score": 0,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Seahawks",
+          "away": "Jaguars",
+          "home_score": 26,
+          "away_score": 8,
           "date": "Wed 9/16"
         }
       ],
@@ -1583,8 +1611,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 26,
+          "away_score": 8
         },
         {
           "home": "Giants",
@@ -1920,14 +1948,14 @@
         {
           "team": "Arsenal",
           "coach": "Klupchak",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 9,
+          "pa": 2,
+          "margin_sum": 7,
+          "capped_margin_sum": 3
         },
         {
           "team": "Brazil",
@@ -2005,13 +2033,13 @@
           "team": "New York",
           "coach": "Norfleet",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 2,
+          "pa": 9,
+          "margin_sum": -7,
+          "capped_margin_sum": -3
         },
         {
           "team": "Sounders",
@@ -2047,6 +2075,13 @@
           "date": "Tue 9/15"
         },
         {
+          "home": "New York",
+          "away": "Arsenal",
+          "home_score": 2,
+          "away_score": 9,
+          "date": "Wed 9/16"
+        },
+        {
           "home": "Spain",
           "away": "Brazil",
           "home_score": 6,
@@ -2076,8 +2111,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 9
         },
         {
           "home": "Spain",
@@ -8192,6 +8227,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-17T01:46:56.531884Z",
-  "data_updated": "2026-09-17T01:46:56.531884Z"
+  "last_successful_check": "2026-09-17T03:26:34.069124Z",
+  "data_updated": "2026-09-17T03:26:34.069124Z"
 }
