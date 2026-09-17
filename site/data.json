@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-17T16:59:55.437872Z",
+  "last_checked": "2026-09-17T21:22:06.316442Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -1285,13 +1285,13 @@
           "team": "Gamblers",
           "coach": "Eisterhold",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 43,
-          "pa": 61,
-          "margin_sum": -18,
-          "capped_margin_sum": -10
+          "gp": 3,
+          "pf": 49,
+          "pa": 86,
+          "margin_sum": -37,
+          "capped_margin_sum": -29
         },
         {
           "team": "Giants",
@@ -1320,14 +1320,14 @@
         {
           "team": "Packers",
           "coach": "Martin",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 32,
-          "pa": 47,
-          "margin_sum": -15,
-          "capped_margin_sum": -4
+          "gp": 3,
+          "pf": 57,
+          "pa": 53,
+          "margin_sum": 4,
+          "capped_margin_sum": 15
         },
         {
           "team": "Patriots",
@@ -1454,6 +1454,13 @@
           "away": "Steelers",
           "home_score": 41,
           "away_score": 0,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Packers",
+          "away": "Gamblers",
+          "home_score": 25,
+          "away_score": 6,
           "date": "Wed 9/16"
         },
         {
@@ -1606,8 +1613,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 25,
+          "away_score": 6
         },
         {
           "home": "Seahawks",
@@ -6290,14 +6297,14 @@
         {
           "team": "Goalden Girls",
           "coach": "Wilson",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 1,
-          "gp": 1,
-          "pf": 4,
-          "pa": 4,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 2,
+          "pf": 7,
+          "pa": 6,
+          "margin_sum": 1,
+          "capped_margin_sum": 1
         },
         {
           "team": "Gummy Bears",
@@ -6375,13 +6382,13 @@
           "team": "The Kicking Queens",
           "coach": "Bassitt",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 3,
-          "pa": 4,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "gp": 2,
+          "pf": 5,
+          "pa": 7,
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         }
       ],
       "games": [
@@ -6425,6 +6432,13 @@
           "away": "Gummy Bears",
           "home_score": 1,
           "away_score": 3,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Goalden Girls",
+          "away": "The Kicking Queens",
+          "home_score": 3,
+          "away_score": 2,
           "date": "Wed 9/16"
         },
         {
@@ -6529,8 +6543,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 2
         },
         {
           "home": "Glitter Goals",
@@ -8241,6 +8255,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-17T16:59:55.437872Z",
-  "data_updated": "2026-09-17T16:59:55.437872Z"
+  "last_successful_check": "2026-09-17T21:22:06.316442Z",
+  "data_updated": "2026-09-17T21:22:06.316442Z"
 }
