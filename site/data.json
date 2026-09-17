@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-17T04:52:14.574299Z",
+  "last_checked": "2026-09-17T11:41:31.401007Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -6259,14 +6259,14 @@
         {
           "team": "Glitter Goals",
           "coach": "Tran",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
+          "gp": 2,
+          "pf": 10,
           "pa": 3,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "margin_sum": 7,
+          "capped_margin_sum": 4
         },
         {
           "team": "Glittery Dragons",
@@ -6356,13 +6356,13 @@
           "team": "The Blue Belles",
           "coach": "Levey",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
+          "gp": 1,
           "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 6,
+          "margin_sum": -6,
+          "capped_margin_sum": -3
         },
         {
           "team": "The Kicking Queens",
@@ -6418,6 +6418,13 @@
           "away": "Gummy Bears",
           "home_score": 1,
           "away_score": 3,
+          "date": "Wed 9/16"
+        },
+        {
+          "home": "Glitter Goals",
+          "away": "The Blue Belles",
+          "home_score": 6,
+          "away_score": 0,
           "date": "Wed 9/16"
         }
       ],
@@ -6527,8 +6534,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-16",
           "start_iso": "2026-09-16T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 0
         },
         {
           "home": "Shooting Stars",
@@ -8227,6 +8234,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-17T04:52:14.574299Z",
-  "data_updated": "2026-09-17T03:26:34.069124Z"
+  "last_successful_check": "2026-09-17T11:41:31.401007Z",
+  "data_updated": "2026-09-17T11:41:31.401007Z"
 }
