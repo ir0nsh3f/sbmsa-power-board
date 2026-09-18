@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-18T01:06:09.394342Z",
+  "last_checked": "2026-09-18T01:41:47.988604Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -3325,25 +3325,25 @@
           "team": "The Rams",
           "coach": "Kleider",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 1,
-          "gp": 1,
-          "pf": 4,
-          "pa": 4,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 2,
+          "pf": 7,
+          "pa": 10,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Vipers",
           "coach": "Ellis",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 14,
-          "pa": 0,
-          "margin_sum": 14,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 20,
+          "pa": 3,
+          "margin_sum": 17,
+          "capped_margin_sum": 6
         }
       ],
       "games": [
@@ -3422,6 +3422,13 @@
           "away": "Argentina FC",
           "home_score": 2,
           "away_score": 0,
+          "date": "Thu 9/17"
+        },
+        {
+          "home": "The Rams",
+          "away": "Vipers",
+          "home_score": 3,
+          "away_score": 6,
           "date": "Thu 9/17"
         }
       ],
@@ -3567,8 +3574,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 6
         },
         {
           "home": "Bayern Eagles",
@@ -4292,10 +4299,10 @@
           "coach": "Johnson",
           "w": 1,
           "l": 0,
-          "t": 0,
-          "gp": 1,
-          "pf": 5,
-          "pa": 0,
+          "t": 1,
+          "gp": 2,
+          "pf": 7,
+          "pa": 2,
           "margin_sum": 5,
           "capped_margin_sum": 3
         },
@@ -4366,10 +4373,10 @@
           "coach": "Guffey",
           "w": 0,
           "l": 0,
-          "t": 1,
-          "gp": 1,
-          "pf": 2,
-          "pa": 2,
+          "t": 2,
+          "gp": 2,
+          "pf": 4,
+          "pa": 4,
           "margin_sum": 0,
           "capped_margin_sum": 0
         }
@@ -4432,6 +4439,13 @@
           "home_score": 4,
           "away_score": 1,
           "date": "Wed 9/16"
+        },
+        {
+          "home": "Red Fury",
+          "away": "USA Screaming Eagles",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Thu 9/17"
         }
       ],
       "schedule": [
@@ -4542,8 +4556,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "San Jose",
@@ -6275,14 +6289,14 @@
         {
           "team": "Fearless Gummy Bears",
           "coach": "Norman",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
-          "pa": 1,
-          "margin_sum": 3,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 8,
+          "pa": 3,
+          "margin_sum": 5,
+          "capped_margin_sum": 5
         },
         {
           "team": "Glitter Goals",
@@ -6360,13 +6374,13 @@
           "team": "Sirens",
           "coach": "Taylor",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 6,
-          "pa": 0,
-          "margin_sum": 6,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 8,
+          "pa": 4,
+          "margin_sum": 4,
+          "capped_margin_sum": 1
         },
         {
           "team": "Sparkly Lovebugs",
@@ -6467,6 +6481,13 @@
           "away": "Sparkly Lovebugs",
           "home_score": 5,
           "away_score": 2,
+          "date": "Thu 9/17"
+        },
+        {
+          "home": "Sirens",
+          "away": "Fearless Gummy Bears",
+          "home_score": 2,
+          "away_score": 4,
           "date": "Thu 9/17"
         }
       ],
@@ -6600,8 +6621,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 4
         },
         {
           "home": "The Blue Belles",
@@ -8283,6 +8304,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-18T01:06:09.394342Z",
-  "data_updated": "2026-09-18T01:06:09.394342Z"
+  "last_successful_check": "2026-09-18T01:41:47.988604Z",
+  "data_updated": "2026-09-18T01:41:47.988604Z"
 }
