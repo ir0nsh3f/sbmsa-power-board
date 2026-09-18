@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-18T16:24:09.022879Z",
+  "last_checked": "2026-09-18T20:54:23.657260Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2429,6 +2429,18 @@
           "away_score": null
         },
         {
+          "home": "New York",
+          "away": "Galaticos",
+          "date": "Mon 10/12",
+          "time": "7:00 PM",
+          "location": "PC-8u #1",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
+          "date_iso": "2026-10-12",
+          "start_iso": "2026-10-12T19:00:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
           "home": "Germany",
           "away": "Sounders",
           "date": "Tue 10/13",
@@ -2473,18 +2485,6 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
-          "home": "New York",
-          "away": "Galaticos",
-          "date": "Fri 10/16",
-          "time": "5:45 PM",
-          "location": "PC-8u #1",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-16",
-          "start_iso": "2026-10-16T17:45:00-05:00",
           "home_score": null,
           "away_score": null
         },
@@ -2991,18 +2991,6 @@
           "away_score": null
         },
         {
-          "home": "Barcelona",
-          "away": "France",
-          "date": "Thu 10/8",
-          "time": "7:00 PM",
-          "location": "PC-8u #1",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-08",
-          "start_iso": "2026-10-08T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
           "home": "Holland",
           "away": "Argentina",
           "date": "Thu 10/8",
@@ -3191,6 +3179,18 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-24",
           "start_iso": "2026-10-24T16:00:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
+          "home": "Barcelona",
+          "away": "France",
+          "date": "Mon 10/26",
+          "time": "7:00 PM",
+          "location": "SBEC 8U #5",
+          "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
+          "date_iso": "2026-10-26",
+          "start_iso": "2026-10-26T19:00:00-05:00",
           "home_score": null,
           "away_score": null
         }
@@ -8304,6 +8304,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-18T16:24:09.022879Z",
-  "data_updated": "2026-09-18T01:41:47.988604Z"
+  "last_successful_check": "2026-09-18T20:54:23.657260Z",
+  "data_updated": "2026-09-18T20:54:23.657260Z"
 }
