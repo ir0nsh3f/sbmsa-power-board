@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-17T21:22:06.316442Z",
+  "last_checked": "2026-09-18T01:06:09.394342Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -3217,13 +3217,13 @@
           "team": "Argentina FC",
           "coach": "Albano",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 1,
-          "gp": 1,
+          "gp": 2,
           "pf": 4,
-          "pa": 4,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 6,
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         },
         {
           "team": "Bayern Eagles",
@@ -3240,14 +3240,14 @@
         {
           "team": "Bulls FC",
           "coach": "Belock",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 1,
-          "gp": 1,
-          "pf": 1,
+          "gp": 2,
+          "pf": 3,
           "pa": 1,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 2,
+          "capped_margin_sum": 2
         },
         {
           "team": "Celtics",
@@ -3416,6 +3416,13 @@
           "home_score": 1,
           "away_score": 3,
           "date": "Wed 9/16"
+        },
+        {
+          "home": "Bulls FC",
+          "away": "Argentina FC",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Thu 9/17"
         }
       ],
       "schedule": [
@@ -3548,8 +3555,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "The Rams",
@@ -5232,14 +5239,14 @@
         {
           "team": "BHE Lions",
           "coach": "Valdez",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 0,
+          "gp": 2,
+          "pf": 2,
           "pa": 9,
-          "margin_sum": -9,
-          "capped_margin_sum": -3
+          "margin_sum": -7,
+          "capped_margin_sum": -1
         },
         {
           "team": "Barcelona",
@@ -5341,13 +5348,13 @@
           "team": "Lightning",
           "coach": "Roberts",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 0,
-          "pa": 9,
-          "margin_sum": -9,
-          "capped_margin_sum": -3
+          "pa": 11,
+          "margin_sum": -11,
+          "capped_margin_sum": -5
         },
         {
           "team": "New York Knights",
@@ -5444,6 +5451,13 @@
           "home_score": 0,
           "away_score": 5,
           "date": "Wed 9/16"
+        },
+        {
+          "home": "Lightning",
+          "away": "BHE Lions",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Thu 9/17"
         }
       ],
       "schedule": [
@@ -5576,8 +5590,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Barcelona",
@@ -6333,14 +6347,14 @@
         {
           "team": "Shooting Stars",
           "coach": "Kim",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 5,
+          "pa": 2,
+          "margin_sum": 3,
+          "capped_margin_sum": 3
         },
         {
           "team": "Sirens",
@@ -6358,13 +6372,13 @@
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 0,
-          "pa": 6,
-          "margin_sum": -6,
-          "capped_margin_sum": -3
+          "gp": 2,
+          "pf": 2,
+          "pa": 11,
+          "margin_sum": -9,
+          "capped_margin_sum": -6
         },
         {
           "team": "The Blue Belles",
@@ -6447,6 +6461,13 @@
           "home_score": 6,
           "away_score": 0,
           "date": "Wed 9/16"
+        },
+        {
+          "home": "Shooting Stars",
+          "away": "Sparkly Lovebugs",
+          "home_score": 5,
+          "away_score": 2,
+          "date": "Thu 9/17"
         }
       ],
       "schedule": [
@@ -6567,8 +6588,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 2
         },
         {
           "home": "Sirens",
@@ -7301,13 +7322,13 @@
           "team": "Lady Tigers",
           "coach": "Blanco",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 4,
-          "pa": 0,
-          "margin_sum": 4,
-          "capped_margin_sum": 3
+          "pa": 2,
+          "margin_sum": 2,
+          "capped_margin_sum": 1
         },
         {
           "team": "Lucky Charms",
@@ -7360,14 +7381,14 @@
         {
           "team": "Red Hots",
           "coach": "Lakin",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
+          "gp": 2,
+          "pf": 6,
           "pa": 3,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "margin_sum": 3,
+          "capped_margin_sum": 3
         },
         {
           "team": "Sparkly Rainbows",
@@ -7457,6 +7478,13 @@
           "home_score": 1,
           "away_score": 0,
           "date": "Tue 9/15"
+        },
+        {
+          "home": "Red Hots",
+          "away": "Lady Tigers",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Thu 9/17"
         }
       ],
       "schedule": [
@@ -7577,8 +7605,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "The Pink Flamingos",
@@ -8255,6 +8283,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-17T21:22:06.316442Z",
-  "data_updated": "2026-09-17T21:22:06.316442Z"
+  "last_successful_check": "2026-09-18T01:06:09.394342Z",
+  "data_updated": "2026-09-18T01:06:09.394342Z"
 }
