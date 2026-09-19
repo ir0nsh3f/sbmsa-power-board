@@ -15,7 +15,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    const [sport,division,index]=JSON.parse(el.dataset.leagueFixture);
    const game=data.divisions.find(d=>d.sport===sport&&d.division===division).schedule[index];
    const favorite={flag:['Burrow','Buccaneers'],'8u':['Pulisic','Arsenal'],'6u':['Messi','Vipers']}[sport];
-   const expected=division===favorite[0]&&[game.home,game.away].includes(favorite[1]);
+   const expected=(division===favorite[0]&&[game.home,game.away].includes(favorite[1]))||(sport==='8u'&&division==='Messi'&&[game.home,game.away].includes('Celtic'));
    const fill=getComputedStyle(el).backgroundColor;
    const transparent=c=>c==='rgba(0, 0, 0, 0)'||c==='transparent';
    const bg=node=>{while(node){const c=getComputedStyle(node).backgroundColor;if(!transparent(c))return c;node=node.parentElement;}};

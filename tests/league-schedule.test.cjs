@@ -73,7 +73,8 @@ test('favorite block class matches exact sport/division/team, home or away, thro
 test('favorite release versions CSS and renderer for returning clients',()=>{
  const html=fs.readFileSync(require.resolve('../site/index.html'),'utf8');
  assert.ok(html.includes('league-schedule.css?v=20260916-outcomes-1'));
- for(const asset of ['league-schedule.js','schedules.js','advanced.js','rainbow.js'])assert.ok(html.includes(asset+'?v=20260916-outcomes-1'));
+ assert.ok(html.includes('league-schedule.js?v=20260918-followed-1'));
+ for(const asset of ['schedules.js','advanced.js','rainbow.js'])assert.ok(html.includes(asset+'?v=20260916-outcomes-1'));
 });
 const team=(team,gp=3,w=3,margin=9)=>({team,coach:team+' coach',gp,w,l:gp-w,t:0,capped_margin_sum:margin});
 test('capped profiles use full sport competition ties and exclude unrated from denominator',()=>{
