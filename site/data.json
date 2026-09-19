@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-18T20:54:23.657260Z",
+  "last_checked": "2026-09-19T00:24:58.341157Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2690,26 +2690,26 @@
         {
           "team": "France",
           "coach": "Miller",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 4,
+          "pa": 1,
+          "margin_sum": 3,
+          "capped_margin_sum": 3
         },
         {
           "team": "Holland",
           "coach": "Montgomery",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 0,
-          "pf": 0,
-          "pa": 0,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 1,
+          "pf": 1,
+          "pa": 4,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Ireland",
@@ -2760,7 +2760,15 @@
           "capped_margin_sum": 0
         }
       ],
-      "games": [],
+      "games": [
+        {
+          "home": "France",
+          "away": "Holland",
+          "home_score": 4,
+          "away_score": 1,
+          "date": "Fri 9/18"
+        }
+      ],
       "schedule": [
         {
           "home": "France",
@@ -2771,8 +2779,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-09-18",
           "start_iso": "2026-09-18T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 1
         },
         {
           "home": "Ireland",
@@ -5279,10 +5287,10 @@
           "coach": "Young-John",
           "w": 0,
           "l": 2,
-          "t": 0,
-          "gp": 2,
-          "pf": 1,
-          "pa": 9,
+          "t": 1,
+          "gp": 3,
+          "pf": 2,
+          "pa": 10,
           "margin_sum": -8,
           "capped_margin_sum": -6
         },
@@ -5351,10 +5359,10 @@
           "coach": "Creps",
           "w": 1,
           "l": 1,
-          "t": 0,
-          "gp": 2,
-          "pf": 10,
-          "pa": 3,
+          "t": 1,
+          "gp": 3,
+          "pf": 11,
+          "pa": 4,
           "margin_sum": 7,
           "capped_margin_sum": 0
         },
@@ -5472,6 +5480,13 @@
           "home_score": 0,
           "away_score": 2,
           "date": "Thu 9/17"
+        },
+        {
+          "home": "Green Machine",
+          "away": "Bomb Pops",
+          "home_score": 1,
+          "away_score": 1,
+          "date": "Fri 9/18"
         }
       ],
       "schedule": [
@@ -5628,8 +5643,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-18",
           "start_iso": "2026-09-18T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 1
         },
         {
           "home": "Green Army",
@@ -7379,13 +7394,13 @@
           "team": "Queen Bees",
           "coach": "Duffy",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
+          "gp": 2,
           "pf": 3,
-          "pa": 4,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "pa": 6,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Rainbow Unicorns",
@@ -7426,14 +7441,14 @@
         {
           "team": "The Pink Flamingos",
           "coach": "Long",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 1,
+          "gp": 2,
+          "pf": 3,
           "pa": 4,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         }
       ],
       "games": [
@@ -7503,6 +7518,13 @@
         {
           "home": "Red Hots",
           "away": "Lady Tigers",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Thu 9/17"
+        },
+        {
+          "home": "The Pink Flamingos",
+          "away": "Queen Bees",
           "home_score": 2,
           "away_score": 0,
           "date": "Thu 9/17"
@@ -7638,8 +7660,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Flower Power",
@@ -8304,6 +8326,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-18T20:54:23.657260Z",
-  "data_updated": "2026-09-18T20:54:23.657260Z"
+  "last_successful_check": "2026-09-19T00:24:58.341157Z",
+  "data_updated": "2026-09-19T00:24:58.341157Z"
 }
