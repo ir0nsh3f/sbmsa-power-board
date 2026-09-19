@@ -11,11 +11,11 @@ import time
 from urllib.request import Request, urlopen
 
 try:
-    from scripts.soccer_projections import record as record_soccer
+    from scripts.soccer_projections import record as record_soccer, AGE_MODELS, archive_name
     from scripts.history import record_history
     from scripts.projections import record as record_projections, load_archive, receipts
 except ModuleNotFoundError:  # Direct CLI execution places scripts/ on sys.path.
-    from soccer_projections import record as record_soccer
+    from soccer_projections import record as record_soccer, AGE_MODELS, archive_name
     from history import record_history
     from projections import record as record_projections, load_archive, receipts
 
@@ -89,6 +89,8 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
         record_history(output.parent / 'history', payload)
         record_projections(output.parent / 'projections', divisions, now)
         record_soccer(output.parent / 'soccer-projections', divisions, now)
+        for model in AGE_MODELS.values():
+            record_soccer(output.parent / archive_name(model), divisions, now, model)
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary = None
     try:

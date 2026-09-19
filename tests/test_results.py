@@ -100,7 +100,7 @@ class ResultsTests(unittest.TestCase):
             self.assertEqual({str(p):p.read_bytes() for p in (Path(tmp)/'projections').rglob('*.json')},forecasts)
             changed = results.update_results(output,fetch=lambda u: synthetic_page(games=((0,0),(31,0))),now='2026-09-08T15:00:00Z')
             self.assertEqual(changed['data_updated'],'2026-09-08T15:00:00Z')
-            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections', Path(tmp)/'soccer-projections'})
+            self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections', Path(tmp)/'soccer-projections', Path(tmp)/'soccer-projections-8u', Path(tmp)/'soccer-projections-6u'})
             self.assertEqual(list(Path(tmp).rglob('*.tmp')), [])
 
     def test_network_retry_timeout_and_cli_exit_code(self):

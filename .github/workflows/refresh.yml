@@ -54,7 +54,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data.json site/history/ site/projections/ site/soccer-projections/
+          git add site/data.json site/history/ site/projections/ site/soccer-projections/ site/soccer-projections-8u/ site/soccer-projections-6u/
           if ! git diff --cached --quiet; then
             git commit -m 'Update official results check'
             git push
@@ -72,7 +72,7 @@ jobs:
         run: |
           python scripts/projection_publication.py observe
           python scripts/soccer_projections.py observe
-          git add site/projections/publication/ site/soccer-projections/publication/
+          git add site/projections/publication/ site/soccer-projections/publication/ site/soccer-projections-8u/publication/ site/soccer-projections-6u/publication/
           if ! git diff --cached --quiet; then
             git commit -m 'Preserve observed public forecast receipts'
             git push

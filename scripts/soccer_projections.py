@@ -8,7 +8,8 @@ LEGACY_MODEL = dict(id='5ug-gamma-poisson-v1', sport='5ug', season='fall-2026',
 
 
 MODEL = dict(LEGACY_MODEL, id='5ug-gamma-poisson-v2', prior_games=3)
-RECOGNIZED_MODELS = {m['id']:m for m in (LEGACY_MODEL, MODEL)}
+AGE_MODELS = {s:dict(MODEL, id=s+'-gamma-poisson-v1', sport=s) for s in ('8u','6u')}
+RECOGNIZED_MODELS = {m['id']:m for m in (LEGACY_MODEL, MODEL, *AGE_MODELS.values())}
 
 
 def recognized(model):
@@ -62,7 +63,7 @@ def build(divisions, checked, model=None):
     if cutoff is None:
         raise ValueError('Aware actual collection time required')
     training=[]
-    ds=sorted((d for d in divisions if d['sport']=='5ug'),key=lambda d:d['division'])
+    ds=sorted((d for d in divisions if d['sport']==model['sport']),key=lambda d:d['division'])
     stats={}
     for d in ds:
         for t in d['teams']:
@@ -82,7 +83,8 @@ def build(divisions, checked, model=None):
     result=dict(schema_version=1,model=dict(model),generated_at=checked,training_cutoff=checked,
                 training=training,pooled_games=len(training),pooled_goals_per_team=mu,forecasts=[])
     if len(training)<model['minimum_pooled_games'] or not mu:
-        result['withheld']='Too few scored 5U Girls games (minimum 4 with a positive pooled goal rate).'
+        label={'5ug':'5U Girls','8u':'8U','6u':'6U'}[model['sport']]
+        result['withheld']=f'Too few scored {label} games (minimum 4 with a positive pooled goal rate).'
         return result
     # Baseline uncertainty: empirical second moment, with an overdispersed floor.
     baseline_var=max(mu+mu*mu/2,sum((x-mu)**2 for x in goals)/len(goals))/len(goals)
@@ -104,7 +106,7 @@ def build(divisions, checked, model=None):
                 for y,py in enumerate(ap):
                     margins[x-y]=margins.get(x-y,0)+px*py
                     totals[x+y]=totals.get(x+y,0)+px*py
-            result['forecasts'].append(dict(fixture_id=['fall-2026','5ug',d['division'],g['home'],g['away'],g['start_iso']],
+            result['forecasts'].append(dict(fixture_id=[model['season'],model['sport'],d['division'],g['home'],g['away'],g['start_iso']],
                 home_mean=hm,away_mean=am,margin_home=hm-am,total=hm+am,
                 margin_range=interval(margins),total_range=interval(totals),home_gp=h['gp'],away_gp=a['gp'],
                 division_games=sum(t['division']==d['division'] for t in training)))
@@ -143,12 +145,14 @@ def load_archive(directory):
         p=json.loads(raw)
         if p['generated_at']!=e['captured_at'] or dict(build(p['inputs'],p['generated_at'],model=p['model']),inputs=p['inputs'])!=p:
             raise ValueError('Soccer capture not reproducible')
+        if p['model']['sport'] != index['model']['sport']:
+            raise ValueError('Mixed soccer age archive')
         seen.add(name);capture_models[name]=p['model']['id']
     if {p.stem for p in (directory/'captures').glob('*.json')}!=seen:
         raise ValueError('Unindexed soccer capture; preserve and investigate')
     for path in (directory/'publication').glob('*.json'):
         r=json.loads(path.read_text())
-        if path.stem not in seen or r.get('capture_sha256')!=path.stem or r.get('model_id')!=capture_models.get(path.stem) or r.get('sport')!='5ug' or r.get('capture_path')!=f'captures/{path.stem}.json' or instant(r.get('observed_public_at')) is None:
+        if path.stem not in seen or r.get('capture_sha256')!=path.stem or r.get('model_id')!=capture_models.get(path.stem) or r.get('sport')!=RECOGNIZED_MODELS[capture_models[path.stem]]['sport'] or r.get('capture_path')!=f'captures/{path.stem}.json' or instant(r.get('observed_public_at')) is None:
             raise ValueError('Invalid soccer publication receipt')
         e=next(e for e in index['captures'] if e['sha256']==path.stem)
         if instant(r['observed_public_at'])<instant(e['captured_at']):
@@ -156,11 +160,14 @@ def load_archive(directory):
     return index
 
 
-def record(directory,divisions,checked):
+def record(directory,divisions,checked,model=None):
+    model=recognized(MODEL if model is None else model)
     directory=Path(directory);index=load_archive(directory)
+    if index['captures'] and index['model']['sport']!=model['sport']:
+        raise ValueError('Cannot mix soccer age archives')
     inputs=[dict(sport=d['sport'],division=d['division'],teams=[{'team':t['team']} for t in d['teams']],
-                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso') + tuple(k for k in ('home_outcome','away_outcome') if k in g)} for g in d.get('schedule',[])]) for d in divisions if d['sport']=='5ug']
-    p=build(inputs,checked)
+                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso') + tuple(k for k in ('home_outcome','away_outcome') if k in g)} for g in d.get('schedule',[])]) for d in divisions if d['sport']==model['sport']]
+    p=build(inputs,checked,model)
     previous=json.loads((directory/index['captures'][-1]['path']).read_text()) if index['captures'] else None
     if previous and instant(checked)<instant(previous['generated_at']):
         raise ValueError('Soccer collection predates capture')
@@ -171,7 +178,7 @@ def record(directory,divisions,checked):
         e=dict(path=f'captures/{digest}.json',sha256=digest,captured_at=checked)
         atomic_write(directory/e['path'],raw,immutable=True)
         try:
-            atomic_write(directory/'index.json',encoded(dict(index,model=MODEL,captures=index['captures']+[e])))
+            atomic_write(directory/'index.json',encoded(dict(index,model=model,captures=index['captures']+[e])))
         except Exception:
             (directory/e['path']).unlink()
             raise
@@ -180,9 +187,14 @@ def record(directory,divisions,checked):
     return current
 
 
-def validate(root):
-    root=Path(root);directory=root/'soccer-projections';index=load_archive(directory)
-    d=json.loads((root/'data.json').read_text());p=build(d['divisions'],d['last_successful_check'])
+def archive_name(model):
+    return 'soccer-projections'+('' if model['sport']=='5ug' else '-'+model['sport'])
+
+
+def validate(root,model=None):
+    model=recognized(MODEL if model is None else model)
+    root=Path(root);directory=root/archive_name(model);index=load_archive(directory)
+    d=json.loads((root/'data.json').read_text());p=build(d['divisions'],d['last_successful_check'],model)
     current=json.loads((directory/'current.json').read_text())
     e=next(e for e in index['captures'] if e['path']==current['capture_path'])
     expected=dict({k:v for k,v in p.items() if k!='training'},capture_path=e['path'],captured_at=e['captured_at'])
@@ -191,21 +203,22 @@ def validate(root):
     return index
 
 
-def observe(root):
+def observe(root,model=None):
     import os,time
     from urllib.request import urlopen
     from datetime import timezone
-    root=Path(root);index=validate(root);directory=root/'soccer-projections'
+    model=recognized(MODEL if model is None else model)
+    root=Path(root);index=validate(root,model);directory=root/archive_name(model)
     run='https://github.com/ir0nsh3f/sbmsa-power-board/actions/runs/'+os.environ['GITHUB_RUN_ID']
     for e in index['captures']:
         path=directory/'publication'/f"{e['sha256']}.json"
         if path.exists():continue
         for attempt in range(6):
             try:
-                with urlopen('https://ir0nsh3f.github.io/sbmsa-power-board/soccer-projections/'+e['path']+'?check='+str(time.time_ns()),timeout=30) as r:raw=r.read()
+                with urlopen('https://ir0nsh3f.github.io/sbmsa-power-board/'+archive_name(model)+'/'+e['path']+'?check='+str(time.time_ns()),timeout=30) as r:raw=r.read()
                 if hashlib.sha256(raw).hexdigest()!=e['sha256']:
                     raise ValueError('Public soccer capture bytes differ')
-                receipt=dict(schema_version=1,model_id=json.loads(raw)['model']['id'],sport='5ug',capture_path=e['path'],capture_sha256=e['sha256'],observed_public_at=datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),run_url=run)
+                receipt=dict(schema_version=1,model_id=json.loads(raw)['model']['id'],sport=json.loads(raw)['model']['sport'],capture_path=e['path'],capture_sha256=e['sha256'],observed_public_at=datetime.now(timezone.utc).isoformat().replace('+00:00','Z'),run_url=run)
                 atomic_write(path,encoded(receipt),immutable=True)
                 break
             except (OSError,ValueError):
@@ -217,6 +230,8 @@ def observe(root):
 if __name__=='__main__':
     import sys
     root=Path(__file__).resolve().parents[1]/'site'
-    if sys.argv[1:]==['observe']:observe(root)
-    elif sys.argv[1:]==['validate']:validate(root)
+    if sys.argv[1:]==['observe']:
+        for model in (MODEL,*AGE_MODELS.values()):observe(root,model)
+    elif sys.argv[1:]==['validate']:
+        for model in (MODEL,*AGE_MODELS.values()):validate(root,model)
     else:raise SystemExit('Usage: soccer_projections.py validate|observe')

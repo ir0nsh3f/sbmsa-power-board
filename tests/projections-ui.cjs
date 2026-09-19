@@ -49,9 +49,9 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    await page.locator('#division').selectOption('all');await page.locator('#search').fill('Buccaneers');assert.equal(await page.locator('.league-projection b').count(),await page.evaluate(()=>data.projections.forecasts.filter(f=>f.game_id.includes('Buccaneers')&&Date.parse(f.game_id[5])>Date.now()).length));await page.locator('#search').fill('');
    await page.locator('[data-league-filter="Results"]').click();assert.equal(await page.locator('.league-projection').count(),0);await page.locator('[data-league-filter="Upcoming"]').click();
    await page.locator('[data-league-watch]').click();const watch=await ids();await toggle.click();assert.deepEqual(await ids(),watch);await page.locator('[data-league-watch]').click();
-   for(const sport of ['8u','6u']){await page.locator(`[data-sport="${sport}"]`).click();assert.equal(await page.locator('[data-league-projections]').count(),0);assert.equal(await page.locator('.league-projection').count(),0);}
+   for(const sport of ['8u','6u']){await page.locator(`[data-sport="${sport}"]`).click();assert.equal(await page.locator('[data-league-projections]').count(),1);assert.equal(await page.locator('.league-projection').count(),0);}
    await page.locator('[data-sport="flag"]').click();await page.locator('[data-league-projections]').click();await page.reload();await page.waitForSelector('[data-league-fixture]');assert.equal(await page.locator('[data-league-projections]').getAttribute('aria-pressed'),'false');
   }
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({widths:countReport,errors,verified:'real current projections, exact identity, sample GP, default off, filters, chronology, watchlist unchanged, soccer excluded, overflow, 44px controls'}));
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({widths:countReport,errors,verified:'real current projections, exact identity, sample GP, default off, filters, chronology, watchlist unchanged, soccer has separate opt-in payloads, overflow, 44px controls'}));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});
