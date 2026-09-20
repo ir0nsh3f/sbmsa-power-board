@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-20T01:38:17.284331Z",
+  "last_checked": "2026-09-20T04:53:36.352028Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -4394,13 +4394,13 @@
           "team": "Kinkaid Falcons",
           "coach": "Alonso",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 1,
-          "gp": 2,
-          "pf": 4,
-          "pa": 9,
-          "margin_sum": -5,
-          "capped_margin_sum": -3
+          "gp": 3,
+          "pf": 6,
+          "pa": 12,
+          "margin_sum": -6,
+          "capped_margin_sum": -4
         },
         {
           "team": "Liverpool",
@@ -4491,14 +4491,14 @@
         {
           "team": "USA Screaming Eagles",
           "coach": "Guffey",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 2,
-          "gp": 2,
-          "pf": 4,
-          "pa": 4,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 3,
+          "pf": 7,
+          "pa": 6,
+          "margin_sum": 1,
+          "capped_margin_sum": 1
         }
       ],
       "games": [
@@ -4579,6 +4579,13 @@
           "away": "Blue Jays",
           "home_score": 14,
           "away_score": 0,
+          "date": "Sat 9/19"
+        },
+        {
+          "home": "Kinkaid Falcons",
+          "away": "USA Screaming Eagles",
+          "home_score": 2,
+          "away_score": 3,
           "date": "Sat 9/19"
         }
       ],
@@ -4738,8 +4745,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 3
         },
         {
           "home": "Turbo Turtles",
@@ -8536,6 +8543,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-20T01:38:17.284331Z",
-  "data_updated": "2026-09-20T01:38:17.284331Z"
+  "last_successful_check": "2026-09-20T04:53:36.352028Z",
+  "data_updated": "2026-09-20T04:53:36.352028Z"
 }
