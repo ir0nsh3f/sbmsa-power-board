@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-20T11:23:10.827136Z",
+  "last_checked": "2026-09-20T16:06:07.395740Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7529,26 +7529,26 @@
         {
           "team": "Flower Power",
           "coach": "Thompson",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 5,
-          "pa": 9,
-          "margin_sum": -4,
-          "capped_margin_sum": -4
+          "gp": 3,
+          "pf": 7,
+          "pa": 10,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Glitter Dumplings",
           "coach": "Friedman",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 1,
-          "pa": 4,
-          "margin_sum": -3,
-          "capped_margin_sum": -2
+          "gp": 3,
+          "pf": 2,
+          "pa": 6,
+          "margin_sum": -4,
+          "capped_margin_sum": -3
         },
         {
           "team": "Lady Tigers",
@@ -7601,26 +7601,26 @@
         {
           "team": "Rainbow Unicorns",
           "coach": "Loftis",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 5,
+          "gp": 3,
+          "pf": 7,
           "pa": 5,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "margin_sum": 2,
+          "capped_margin_sum": 2
         },
         {
           "team": "Red Hots",
           "coach": "Lakin",
           "w": 2,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 6,
-          "pa": 3,
-          "margin_sum": 3,
-          "capped_margin_sum": 3
+          "pa": 5,
+          "margin_sum": 1,
+          "capped_margin_sum": 1
         },
         {
           "team": "Sparkly Rainbows",
@@ -7726,6 +7726,13 @@
           "date": "Thu 9/17"
         },
         {
+          "home": "Flower Power",
+          "away": "Glitter Dumplings",
+          "home_score": 2,
+          "away_score": 1,
+          "date": "Sat 9/19"
+        },
+        {
           "home": "Queen Bees",
           "away": "Lucky Charms",
           "home_score": 1,
@@ -7743,6 +7750,13 @@
           "home": "Lady Tigers",
           "away": "The Pink Flamingos",
           "home_score": 3,
+          "away_score": 0,
+          "date": "Sat 9/19"
+        },
+        {
+          "home": "Rainbow Unicorns",
+          "away": "Red Hots",
+          "home_score": 2,
           "away_score": 0,
           "date": "Sat 9/19"
         }
@@ -7889,8 +7903,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T09:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 1
         },
         {
           "home": "Queen Bees",
@@ -7949,8 +7963,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T12:15:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Cotton Candy Crushers",
@@ -8543,6 +8557,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-20T11:23:10.827136Z",
-  "data_updated": "2026-09-20T04:53:36.352028Z"
+  "last_successful_check": "2026-09-20T16:06:07.395740Z",
+  "data_updated": "2026-09-20T16:06:07.395740Z"
 }
