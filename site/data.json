@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-20T16:06:07.395740Z",
+  "last_checked": "2026-09-20T20:49:03.195577Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -4216,12 +4216,12 @@
         {
           "home": "The Rams",
           "away": "Bulls FC",
-          "date": "Wed 10/21",
-          "time": "5:30 PM",
-          "location": "PSE Field #4",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-21",
-          "start_iso": "2026-10-21T17:30:00-05:00",
+          "date": "Tue 10/20",
+          "time": "6:45 PM",
+          "location": "SBE 6U #2",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
+          "date_iso": "2026-10-20",
+          "start_iso": "2026-10-20T18:45:00-05:00",
           "home_score": null,
           "away_score": null
         },
@@ -6484,14 +6484,14 @@
         {
           "team": "Glitter Goals",
           "coach": "Tran",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "gp": 2,
-          "pf": 10,
-          "pa": 3,
-          "margin_sum": 7,
-          "capped_margin_sum": 4
+          "gp": 3,
+          "pf": 14,
+          "pa": 5,
+          "margin_sum": 9,
+          "capped_margin_sum": 6
         },
         {
           "team": "Glittery Dragons",
@@ -6569,13 +6569,13 @@
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
-          "pf": 2,
-          "pa": 11,
-          "margin_sum": -9,
-          "capped_margin_sum": -6
+          "gp": 3,
+          "pf": 4,
+          "pa": 15,
+          "margin_sum": -11,
+          "capped_margin_sum": -8
         },
         {
           "team": "The Blue Belles",
@@ -6692,6 +6692,13 @@
           "away": "Sirens",
           "home_score": 3,
           "away_score": 3,
+          "date": "Sat 9/19"
+        },
+        {
+          "home": "Sparkly Lovebugs",
+          "away": "Glitter Goals",
+          "home_score": 2,
+          "away_score": 4,
           "date": "Sat 9/19"
         },
         {
@@ -6880,8 +6887,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T13:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 4
         },
         {
           "home": "Fearless Gummy Bears",
@@ -8557,6 +8564,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-20T16:06:07.395740Z",
-  "data_updated": "2026-09-20T16:06:07.395740Z"
+  "last_successful_check": "2026-09-20T20:49:03.195577Z",
+  "data_updated": "2026-09-20T20:49:03.195577Z"
 }
