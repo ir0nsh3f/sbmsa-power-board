@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-21T12:47:52.255588Z",
+  "last_checked": "2026-09-21T21:59:05.547834Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -4370,13 +4370,13 @@
           "team": "Cannonballs",
           "coach": "Suszko",
           "w": 0,
-          "l": 0,
+          "l": 1,
           "t": 1,
-          "gp": 1,
-          "pf": 2,
-          "pa": 2,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 2,
+          "pf": 5,
+          "pa": 6,
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         },
         {
           "team": "Ireland",
@@ -4405,14 +4405,14 @@
         {
           "team": "Liverpool",
           "coach": "Hadidi",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 8,
-          "pa": 0,
-          "margin_sum": 8,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 12,
+          "pa": 3,
+          "margin_sum": 9,
+          "capped_margin_sum": 4
         },
         {
           "team": "Red Fury",
@@ -4582,6 +4582,13 @@
           "date": "Sat 9/19"
         },
         {
+          "home": "Liverpool",
+          "away": "Cannonballs",
+          "home_score": 4,
+          "away_score": 3,
+          "date": "Sat 9/19"
+        },
+        {
           "home": "Kinkaid Falcons",
           "away": "USA Screaming Eagles",
           "home_score": 2,
@@ -4733,8 +4740,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T13:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 3
         },
         {
           "home": "Kinkaid Falcons",
@@ -5406,14 +5413,14 @@
         {
           "team": "Barcelona",
           "coach": "Brown",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 9,
+          "gp": 3,
+          "pf": 20,
           "pa": 4,
-          "margin_sum": 5,
-          "capped_margin_sum": 1
+          "margin_sum": 16,
+          "capped_margin_sum": 4
         },
         {
           "team": "Bomb Pops",
@@ -5467,13 +5474,13 @@
           "team": "Golden Dragons",
           "coach": "Guinn",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 0,
-          "pa": 10,
-          "margin_sum": -10,
-          "capped_margin_sum": -4
+          "pa": 21,
+          "margin_sum": -21,
+          "capped_margin_sum": -7
         },
         {
           "team": "Green Army",
@@ -5612,6 +5619,13 @@
           "away": "BHE Lions",
           "home_score": 0,
           "away_score": 2,
+          "date": "Thu 9/17"
+        },
+        {
+          "home": "Barcelona",
+          "away": "Golden Dragons",
+          "home_score": 11,
+          "away_score": 0,
           "date": "Thu 9/17"
         },
         {
@@ -5799,8 +5813,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-17",
           "start_iso": "2026-09-17T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 11,
+          "away_score": 0
         },
         {
           "home": "Green Machine",
@@ -8571,6 +8585,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-21T12:47:52.255588Z",
-  "data_updated": "2026-09-21T04:55:24.788125Z"
+  "last_successful_check": "2026-09-21T21:59:05.547834Z",
+  "data_updated": "2026-09-21T21:59:05.547834Z"
 }
