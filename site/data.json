@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-20T20:49:03.195577Z",
+  "last_checked": "2026-09-21T04:55:24.788125Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7512,26 +7512,26 @@
         {
           "team": "Cotton Candy Crushers",
           "coach": "Hansen",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 5,
+          "gp": 2,
+          "pf": 7,
           "pa": 1,
-          "margin_sum": 4,
-          "capped_margin_sum": 3
+          "margin_sum": 6,
+          "capped_margin_sum": 5
         },
         {
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 7,
-          "pa": 7,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 9,
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         },
         {
           "team": "Flower Power",
@@ -7747,6 +7747,13 @@
           "date": "Sat 9/19"
         },
         {
+          "home": "Cotton Candy Crushers",
+          "away": "Dallas Cowgirls",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Sat 9/19"
+        },
+        {
           "home": "Maple Magic",
           "away": "Sparkly Rainbows",
           "home_score": 6,
@@ -7934,8 +7941,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T11:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Maple Magic",
@@ -8564,6 +8571,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-20T20:49:03.195577Z",
-  "data_updated": "2026-09-20T20:49:03.195577Z"
+  "last_successful_check": "2026-09-21T04:55:24.788125Z",
+  "data_updated": "2026-09-21T04:55:24.788125Z"
 }
