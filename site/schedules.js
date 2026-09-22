@@ -47,6 +47,7 @@
         const record = team && ['w','l','t'].every(k => Number.isInteger(team[k]) && team[k] >= 0) ? `${team.w}–${team.l}–${team.t}` : null;
         rows.push({...favorite, opponent, opponentCoach:team?.coach || null, sourceUrl:division.url,
           ourCoach:(division.teams || []).find(t => t.team === favorite.team)?.coach || null,
+          ourRank:ranks.get(JSON.stringify([division.sport,division.division,favorite.team])) || null,
           opponentRank:ranks.get(JSON.stringify([division.sport,division.division,opponent])) || null,
           opponentScoredGP:scoredGP, opponentMissingScore:team?.outcome_only_gp||0,
           opponentGP:Number.isInteger(team?.gp) && team.gp >= 0 ? team.gp : null,
@@ -85,6 +86,11 @@
     const url = r.location && safeLocationURL(r.locationUrl);
     return url ? `<a class="field-map" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" aria-label="${label} in Google Maps (opens in a new tab)">${label}</a>` : label;
   }
+  function rankedName(name, rank) {
+    const label = rank ? (rank.startsWith('T') ? 'T#'+rank.slice(1) : '#'+rank) : '—';
+    const explanation = rank ? 'Power rank '+rank+' · current selected mode' : 'Unrated · no numerically scored game evidence';
+    return `<strong><span class="schedule-rank" title="${escapeHTML(explanation)}" aria-label="${escapeHTML(explanation)}">${escapeHTML(label)}</span> ${escapeHTML(name)}</strong>`;
+  }
   const teamKey = r => `${r.sport}|${r.division}|${r.team}`;
   function filterRows(rows, filter = 'Upcoming', team = 'all') {
     return rows.filter(r => (team === 'all' || teamKey(r) === team) && (filter === 'All' || (filter === 'Results' ? r.completed : !r.completed && r.status !== 'Awaiting result')));
@@ -102,25 +108,24 @@
       const source = safeSourceURL(r.sourceUrl);
       const avg = n => Number.isFinite(n) ? n.toFixed(1) : '—';
       const date = r.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(r.dateISO+'T12:00:00Z')) : r.dateLabel;
-      const rank = r.opponentRank || (r.opponentGP === 0 ? 'Unrated' : '—');
       return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
         <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${fieldHTML(r)}</small></td>
-        <th scope="row" class="fixture-match"><strong>${escapeHTML(r.team)}</strong> <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs <strong>${escapeHTML(r.opponent)}</strong> · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
-        <td class="fixture-strength"><div class="strength-line"><b>Power rank ${escapeHTML(rank)}</b><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}${r.opponentMissingScore?` · ${r.opponentScoredGP} scored · score unavailable`:''}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
+        <th scope="row" class="fixture-match">${rankedName(r.team,r.ourRank)} <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs ${rankedName(r.opponent,r.opponentRank)} · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
+        <td class="fixture-strength"><div class="strength-line"><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}${r.opponentMissingScore?` · ${r.opponentScoredGP} scored · score unavailable`:''}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
         <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+(r.outcomeOnly?' · score unavailable':' '+r.scoreFor+'–'+r.scoreAgainst) : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.outcomeOnly ? 'Official W/L; score unavailable.' : r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
     }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
   function glanceTable(rows, filter, team = 'all') {
-    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}"><strong>${escapeHTML(r.team)}</strong><span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${escapeHTML(r.opponent)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.outcomeOnly?'· score unavailable':r.scoreFor+'–'+r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
+    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}">${rankedName(r.team,r.ourRank)}<span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${rankedName(r.opponent,r.opponentRank)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.outcomeOnly?'· score unavailable':r.scoreFor+'–'+r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
     const body = groupDates(rows, filter, team).map(g => {
       const date = g.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'numeric',day:'numeric'}).format(new Date(g.dateISO+'T12:00:00Z')) : 'Date TBD';
       return `<tr><th scope="row">${escapeHTML(date)}</th><td>${cell(g.Dexter)}</td><td>${cell(g.Beckham)}</td></tr>`;
     }).join('') || `<tr><td colspan="3">No ${filter === 'Results' ? 'published results' : filter === 'All' ? 'games' : 'upcoming games'} listed in this view.</td></tr>`;
-    return `<div class="sbmsa-schedule-scroll"><table class="glance-table"><caption>Fall 2026 · vs = home, @ = away · scores us–them</caption><thead><tr><th scope="col">Date</th><th scope="col">Dexter</th><th scope="col">Beckham</th></tr></thead><tbody>${body}</tbody></table></div>`;
+    return `<div class="sbmsa-schedule-scroll"><table class="glance-table"><caption>Fall 2026 · Latest power, not kickoff ranks · T# tied; — unrated · vs home/@ away · scores us–them</caption><thead><tr><th scope="col">Date</th><th scope="col">Dexter</th><th scope="col">Beckham</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
   function scheduleContent(rows, filter, layout, team) {
     return layout === 'glance' ? glanceTable(rows, filter, team) : `
-      <div class="sbmsa-schedule-scroll"><table><caption>Current power · selected mode · provisional · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
+      <div class="sbmsa-schedule-scroll"><table><caption>Latest power · selected mode, not kickoff ranks · T# tied; — unrated · scores us–them</caption><thead><tr>${['When / field','Our team vs opponent','Opponent strength · current season','Status'].map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${tableBody(rows, filter, team)}</tbody></table></div>
       <details class="schedule-method"><summary>Strength guide &amp; sources</summary><p class="sbmsa-schedule-note">Opponent records and scoring reflect latest published season totals, not pre-game stats at each historical fixture. Small samples are provisional. Power rank uses the shared joint opponent-adjusted ridge model across the same sport/age, using the currently selected Raw (default) or capped mode, independent of filters. Disconnected result groups (even within a division) share only an assumed zero baseline; overall comparisons are provisional. T means tied competition rank. Caps: ±21 points in flag, ±3 goals in soccer per game. No division-strength adjustment or prediction. GP = games played; PF/PA = points scored/allowed; GF/GA = goals scored/allowed; /G = per numerically scored game; official W/L-only results count in records but not scoring, power or margin models; Cap Δ/G = capped average margin. — means unavailable; unplayed teams are unrated. Past unscored games are awaiting results, not assumed draws. Official source and both coaches are in each fixture’s Details.</p></details>`;
   }
   function renderHTML(rows, filter = 'Upcoming', layout = 'glance', team = 'all') {
@@ -150,10 +155,10 @@
 .sbmsa-schedules .glance-table thead th:first-child{width:17%}
 .sbmsa-schedules .glance-table thead th:nth-child(2),.sbmsa-schedules .glance-table thead th:last-child{width:41.5%}
 .glance-table tbody th{font-weight:normal;color:var(--muted)}
-.glance-fixture{line-height:1.4}.glance-fixture>strong{display:block}.glance-fixture>span{margin-right:4px}.glance-time{white-space:nowrap}
+.schedule-rank{color:var(--green);white-space:nowrap;font-variant-numeric:tabular-nums}.glance-fixture{line-height:1.4}.glance-fixture>strong{display:block}.glance-fixture>span{margin-right:4px}.glance-time{white-space:nowrap}
 .glance-fixture+.glance-fixture{border-top:1px dashed var(--line);margin-top:6px;padding-top:6px}
 .glance-result{display:block}.result-W{color:var(--green)}.result-L{color:var(--accent)}
-@media(max-width:700px){.sbmsa-schedules .glance-table th,.sbmsa-schedules .glance-table td{padding:5px 4px}.sbmsa-schedules .glance-table thead th:first-child{width:19%}.sbmsa-schedules .glance-table thead th:nth-child(2),.sbmsa-schedules .glance-table thead th:last-child{width:40.5%}.glance-fixture>span{display:block}}
+@media(max-width:700px){.sbmsa-schedules .glance-table th,.sbmsa-schedules .glance-table td{padding:5px 4px}.sbmsa-schedules .glance-table thead th:first-child{width:16%}.sbmsa-schedules .glance-table thead th:nth-child(2),.sbmsa-schedules .glance-table thead th:last-child{width:42%}.glance-fixture>span{display:block}}
 `;
   const viewStates = new WeakMap();
   function render(data, containerElement, today) {
