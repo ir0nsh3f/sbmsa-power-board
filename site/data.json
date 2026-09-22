@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-21T21:59:05.547834Z",
+  "last_checked": "2026-09-22T04:56:07.133230Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -6522,14 +6522,14 @@
         {
           "team": "Goalden Girls",
           "coach": "Wilson",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 1,
-          "gp": 3,
-          "pf": 12,
+          "gp": 4,
+          "pf": 14,
           "pa": 8,
-          "margin_sum": 4,
-          "capped_margin_sum": 4
+          "margin_sum": 6,
+          "capped_margin_sum": 6
         },
         {
           "team": "Gummy Bears",
@@ -6583,13 +6583,13 @@
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 4,
-          "pa": 15,
-          "margin_sum": -11,
-          "capped_margin_sum": -8
+          "pa": 17,
+          "margin_sum": -13,
+          "capped_margin_sum": -10
         },
         {
           "team": "The Blue Belles",
@@ -6721,6 +6721,13 @@
           "home_score": 2,
           "away_score": 1,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Goalden Girls",
+          "away": "Sparkly Lovebugs",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Mon 9/21"
         }
       ],
       "schedule": [
@@ -6925,8 +6932,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-21",
           "start_iso": "2026-09-21T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Glitter Goals",
@@ -7527,13 +7534,13 @@
           "team": "Cotton Candy Crushers",
           "coach": "Hansen",
           "w": 2,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 7,
-          "pa": 1,
-          "margin_sum": 6,
-          "capped_margin_sum": 5
+          "pa": 7,
+          "margin_sum": 0,
+          "capped_margin_sum": 2
         },
         {
           "team": "Dallas Cowgirls",
@@ -7550,14 +7557,14 @@
         {
           "team": "Flower Power",
           "coach": "Thompson",
-          "w": 1,
+          "w": 2,
           "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 7,
+          "gp": 4,
+          "pf": 9,
           "pa": 10,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         },
         {
           "team": "Glitter Dumplings",
@@ -7598,14 +7605,14 @@
         {
           "team": "Maple Magic",
           "coach": "Ball",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 0,
-          "gp": 3,
-          "pf": 15,
+          "gp": 4,
+          "pf": 21,
           "pa": 5,
-          "margin_sum": 10,
-          "capped_margin_sum": 7
+          "margin_sum": 16,
+          "capped_margin_sum": 10
         },
         {
           "team": "Queen Bees",
@@ -7635,13 +7642,13 @@
           "team": "Red Hots",
           "coach": "Lakin",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 6,
-          "pa": 5,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "pa": 7,
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         },
         {
           "team": "Sparkly Rainbows",
@@ -7787,6 +7794,20 @@
           "home_score": 2,
           "away_score": 0,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Cotton Candy Crushers",
+          "away": "Maple Magic",
+          "home_score": 0,
+          "away_score": 6,
+          "date": "Mon 9/21"
+        },
+        {
+          "home": "Red Hots",
+          "away": "Flower Power",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Mon 9/21"
         }
       ],
       "schedule": [
@@ -8003,8 +8024,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-21",
           "start_iso": "2026-09-21T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 6
         },
         {
           "home": "Red Hots",
@@ -8015,8 +8036,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-21",
           "start_iso": "2026-09-21T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Dallas Cowgirls",
@@ -8585,6 +8606,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-21T21:59:05.547834Z",
-  "data_updated": "2026-09-21T21:59:05.547834Z"
+  "last_successful_check": "2026-09-22T04:56:07.133230Z",
+  "data_updated": "2026-09-22T04:56:07.133230Z"
 }
