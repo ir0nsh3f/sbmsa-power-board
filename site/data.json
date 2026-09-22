@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-22T11:37:55.615998Z",
+  "last_checked": "2026-09-22T16:57:29.505165Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -8071,6 +8071,18 @@
           "away_score": null
         },
         {
+          "home": "Maple Magic",
+          "away": "Dallas Cowgirls",
+          "date": "Thu 9/24",
+          "time": "5:30 PM",
+          "location": "PS Field 3",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=Pine%20Shadows%20Elementry%2CHouston%2CTX%2077024",
+          "date_iso": "2026-09-24",
+          "start_iso": "2026-09-24T17:30:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
           "home": "The Pink Flamingos",
           "away": "Rainbow Unicorns",
           "date": "Thu 9/24",
@@ -8100,7 +8112,7 @@
           "date": "Sat 9/26",
           "time": "8:30 AM",
           "location": "SBE 6U #5",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
+          "location_url": null,
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T08:30:00-05:00",
           "home_score": null,
@@ -8613,6 +8625,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-22T11:37:55.615998Z",
-  "data_updated": "2026-09-22T11:37:55.615998Z"
+  "last_successful_check": "2026-09-22T16:57:29.505165Z",
+  "data_updated": "2026-09-22T16:57:29.505165Z"
 }
