@@ -15,6 +15,20 @@ test('highlight rules prioritize top matchup, require 3 GP each, exclude unknown
  for(const status of ['Final','Awaiting result','Date TBD'])assert.equal(L.highlight({...row,status},8),null);
  assert.equal(L.highlight({...row,dateISO:null},8),null);
 });
+test('boys highlight only top matchups, retaining girls close-record behavior and favorite fills',()=>{
+ const a={team:'A',rank:3,rankText:'3',gp:3,rate:.75,division:'A'},b={...a,team:'B',rank:2,rankText:'2',rate:.60};
+ for(const sport of ['flag','8u','6u','5ug']){
+  const row={sport,away:a,home:b,status:'Upcoming',dateISO:'2099-09-10',ourTeam:true};
+  row.highlight=L.highlight(row,8);
+  assert.equal(row.highlight?.label??null,sport==='5ug'?'Close records':null);
+  assert.equal(L.filterRows([row],{watchlist:true}).length,sport==='5ug'?1:0);
+  assert.match(L.renderRows([row]),/league-fixture-ours/);
+  const top={...row,away:{...a,rank:2}};top.highlight=L.highlight(top,8);
+  assert.equal(top.highlight.label,'Top matchup');
+  assert.deepEqual(L.filterRows([row,top],{watchlist:true}),sport==='5ug'?[row,top]:[top]);
+  for(const gp of [0,1,2])assert.equal(L.highlight({...top,home:{...b,gp}},8),null);
+ }
+});
 test('all official fixtures retained with exact counts and no premature highlights',()=>{
  const data=JSON.parse(fs.readFileSync(require.resolve('./fixtures/league-baseline-20260909.json')));
  const counts={flag:[112,99,13],'8u':[81,81,0],'6u':[198,198,0]};
@@ -72,7 +86,8 @@ test('favorite block class matches exact sport/division/team, home or away, thro
 });
 test('favorite release versions CSS and renderer for returning clients',()=>{
  const html=fs.readFileSync(require.resolve('../site/index.html'),'utf8');
- for(const asset of ['league-schedule.css','league-schedule.js','schedules.js','schedule-links.js'])assert.ok(html.includes(asset+'?v=20260922-name-ranks-1'));
+ for(const asset of ['league-schedule.css','schedules.js','schedule-links.js'])assert.ok(html.includes(asset+'?v=20260922-name-ranks-1'));
+ assert.ok(html.includes('league-schedule.js?v=20260922-top-only-1'));
  for(const asset of ['advanced.js','rainbow.js'])assert.ok(html.includes(asset+'?v=20260916-outcomes-1'));
 });
 const team=(team,gp=3,w=3,margin=9)=>({team,coach:team+' coach',gp,w,l:gp-w,t:0,capped_margin_sum:margin});

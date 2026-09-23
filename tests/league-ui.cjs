@@ -61,6 +61,18 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   assert.equal(await page.locator('#raw').isVisible(),false);
   for(const sport of ['flag','8u','6u']){await page.locator(`[data-sport="${sport}"]`).click();for(const filter of ['Upcoming','Results','All']){await page.locator(`[data-league-filter="${filter}"]`).click();await checkFavoriteFill();}}
   await page.evaluate(()=>location.hash='league-schedule');await page.reload();await page.waitForSelector('[data-league-fixture]');assert.ok(await page.locator('#league-schedule').isVisible());
+  for(const age of ['flag','8u','6u']){
+   await page.locator(`[data-sport="${age}"]`).click();
+   assert.ok(!(await page.locator('#league-schedule').textContent()).includes('Close records'));
+   const checks=await page.evaluate(age=>{
+    const L=SBMSALeagueSchedule,rows=L.buildRows(data,age);
+    const a={team:'A',rank:3,rankText:'3',gp:3,rate:.5,division:'A'},b={...a,team:'B'};
+    const row={sport:age,away:a,home:b,status:'Upcoming',dateISO:'2099-09-10'};
+    row.highlight=L.highlight(row,8);
+    return {labels:rows.filter(r=>r.highlight).map(r=>r.highlight.label),close:row.highlight,watch:L.filterRows([row],{watchlist:true}).length,html:L.renderRows([row])};
+   },age);
+   assert.ok(checks.labels.every(x=>x==='Top matchup'));assert.equal(checks.close,null);assert.equal(checks.watch,0);assert.ok(!checks.html.includes('league-badge'));
+  }
   // QA-only eligible records; never persisted or published as real results.
   await page.evaluate(()=>{window.originalLeagueData=data;data={...data,divisions:[{sport:'flag',division:'Burrow',url:'https://example.org',teams:[{team:'Buccaneers',coach:'Wells',gp:3,w:3,l:0,t:0,pf:30,pa:0,margin_sum:30,capped_margin_sum:30},{team:'Bears',coach:'Test coach',gp:3,w:3,l:0,t:0,pf:30,pa:0,margin_sum:30,capped_margin_sum:30}],games:[{home:'Buccaneers',away:'Bears',home_score:0,away_score:0}],schedule:[{away:'Bears',home:'Buccaneers',date_iso:'2099-09-10',location:'QA only'}]}]};sport='flag';resetDivision();render();});
   for(const width of [320,390,768,1400]){
