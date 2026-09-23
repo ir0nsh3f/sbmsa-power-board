@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-23T16:57:46.909398Z",
+  "last_checked": "2026-09-23T21:30:04.125345Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7609,13 +7609,13 @@
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
-          "pf": 7,
-          "pa": 9,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "gp": 4,
+          "pf": 8,
+          "pa": 13,
+          "margin_sum": -5,
+          "capped_margin_sum": -5
         },
         {
           "team": "Flower Power",
@@ -7632,14 +7632,14 @@
         {
           "team": "Glitter Dumplings",
           "coach": "Friedman",
-          "w": 1,
+          "w": 2,
           "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 2,
-          "pa": 6,
-          "margin_sum": -4,
-          "capped_margin_sum": -3
+          "gp": 4,
+          "pf": 6,
+          "pa": 7,
+          "margin_sum": -1,
+          "capped_margin_sum": 0
         },
         {
           "team": "Lady Tigers",
@@ -7680,14 +7680,14 @@
         {
           "team": "Queen Bees",
           "coach": "Duffy",
-          "w": 0,
-          "l": 4,
+          "w": 1,
+          "l": 3,
           "t": 0,
           "gp": 4,
-          "pf": 6,
-          "pa": 17,
-          "margin_sum": -11,
-          "capped_margin_sum": -9
+          "pf": 10,
+          "pa": 13,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Rainbow Unicorns",
@@ -7716,14 +7716,14 @@
         {
           "team": "Sparkly Rainbows",
           "coach": "Jeffus",
-          "w": 2,
-          "l": 2,
+          "w": 1,
+          "l": 3,
           "t": 0,
           "gp": 4,
-          "pf": 13,
-          "pa": 16,
-          "margin_sum": -3,
-          "capped_margin_sum": 0
+          "pf": 9,
+          "pa": 20,
+          "margin_sum": -11,
+          "capped_margin_sum": -6
         },
         {
           "team": "The Pink Flamingos",
@@ -7873,10 +7873,17 @@
           "date": "Mon 9/21"
         },
         {
+          "home": "Dallas Cowgirls",
+          "away": "Glitter Dumplings",
+          "home_score": 1,
+          "away_score": 4,
+          "date": "Tue 9/22"
+        },
+        {
           "home": "Sparkly Rainbows",
           "away": "Queen Bees",
-          "home_score": 6,
-          "away_score": 2,
+          "home_score": 2,
+          "away_score": 6,
           "date": "Tue 9/22"
         }
       ],
@@ -8118,8 +8125,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-22",
           "start_iso": "2026-09-22T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 4
         },
         {
           "home": "Sparkly Rainbows",
@@ -8130,8 +8137,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-22",
           "start_iso": "2026-09-22T17:30:00-05:00",
-          "home_score": 6,
-          "away_score": 2
+          "home_score": 2,
+          "away_score": 6
         },
         {
           "home": "Maple Magic",
@@ -8688,6 +8695,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-23T16:57:46.909398Z",
-  "data_updated": "2026-09-23T16:57:46.909398Z"
+  "last_successful_check": "2026-09-23T21:30:04.125345Z",
+  "data_updated": "2026-09-23T21:30:04.125345Z"
 }
