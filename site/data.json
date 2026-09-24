@@ -1,7 +1,9 @@
 {
-  "last_checked": "2026-09-24T11:45:37.183623Z",
-  "status": "ok",
-  "errors": [],
+  "last_checked": "2026-09-24T17:11:06.659185Z",
+  "status": "error",
+  "errors": [
+    "6u Mbappe: ValueError: Malformed or partial score"
+  ],
   "divisions": [
     {
       "sport": "flag",
