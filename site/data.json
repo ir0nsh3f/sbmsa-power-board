@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-23T21:30:04.125345Z",
+  "last_checked": "2026-09-24T04:50:14.069374Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -12,25 +12,25 @@
           "team": "Bengals",
           "coach": "Smith",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 34,
-          "pa": 45,
-          "margin_sum": -11,
-          "capped_margin_sum": -11
+          "pa": 57,
+          "margin_sum": -23,
+          "capped_margin_sum": -23
         },
         {
           "team": "Chargers",
           "coach": "Smith",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 0,
-          "gp": 3,
-          "pf": 95,
+          "gp": 4,
+          "pf": 121,
           "pa": 24,
-          "margin_sum": 71,
-          "capped_margin_sum": 53
+          "margin_sum": 97,
+          "capped_margin_sum": 74
         },
         {
           "team": "Cowboys",
@@ -48,13 +48,13 @@
           "team": "Eagles",
           "coach": "Canova",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 65,
-          "pa": 41,
-          "margin_sum": 24,
-          "capped_margin_sum": 24
+          "gp": 4,
+          "pf": 77,
+          "pa": 60,
+          "margin_sum": 17,
+          "capped_margin_sum": 17
         },
         {
           "team": "Falcons",
@@ -72,13 +72,13 @@
           "team": "Jets",
           "coach": "Mendrek-Laske",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 47,
-          "pa": 35,
-          "margin_sum": 12,
-          "capped_margin_sum": 12
+          "pa": 61,
+          "margin_sum": -14,
+          "capped_margin_sum": -9
         },
         {
           "team": "Saints",
@@ -95,26 +95,26 @@
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "gp": 2,
-          "pf": 41,
-          "pa": 20,
-          "margin_sum": 21,
-          "capped_margin_sum": 21
+          "gp": 3,
+          "pf": 60,
+          "pa": 32,
+          "margin_sum": 28,
+          "capped_margin_sum": 28
         },
         {
           "team": "Titans",
           "coach": "Flynn",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 12,
+          "gp": 3,
+          "pf": 24,
           "pa": 34,
-          "margin_sum": -22,
-          "capped_margin_sum": -22
+          "margin_sum": -10,
+          "capped_margin_sum": -10
         }
       ],
       "games": [
@@ -201,6 +201,27 @@
           "home_score": 34,
           "away_score": 18,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Titans",
+          "away": "Bengals",
+          "home_score": 12,
+          "away_score": 0,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Eagles",
+          "away": "Texans",
+          "home_score": 12,
+          "away_score": 19,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Chargers",
+          "away": "Jets",
+          "home_score": 26,
+          "away_score": 0,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -357,8 +378,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 0
         },
         {
           "home": "Eagles",
@@ -369,8 +390,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 19
         },
         {
           "home": "Chargers",
@@ -381,8 +402,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 26,
+          "away_score": 0
         },
         {
           "home": "Cowboys",
@@ -683,13 +704,13 @@
           "team": "Broncos",
           "coach": "Boeker",
           "w": 0,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 6,
-          "pa": 82,
-          "margin_sum": -76,
-          "capped_margin_sum": -63
+          "pa": 115,
+          "margin_sum": -109,
+          "capped_margin_sum": -84
         },
         {
           "team": "Buccaneers",
@@ -706,14 +727,14 @@
         {
           "team": "Lions",
           "coach": "Harper",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "gp": 2,
-          "pf": 50,
+          "gp": 3,
+          "pf": 83,
           "pa": 0,
-          "margin_sum": 50,
-          "capped_margin_sum": 42
+          "margin_sum": 83,
+          "capped_margin_sum": 63
         },
         {
           "team": "Mustangs",
@@ -836,6 +857,13 @@
           "home_score": 18,
           "away_score": 6,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Lions",
+          "away": "Broncos",
+          "home_score": 33,
+          "away_score": 0,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -992,8 +1020,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 33,
+          "away_score": 0
         },
         {
           "home": "Oilers",
@@ -1293,14 +1321,14 @@
         {
           "team": "Dolphins",
           "coach": "Dewan",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 1,
-          "gp": 3,
-          "pf": 49,
+          "gp": 4,
+          "pf": 80,
           "pa": 31,
-          "margin_sum": 18,
-          "capped_margin_sum": 18
+          "margin_sum": 49,
+          "capped_margin_sum": 39
         },
         {
           "team": "Gamblers",
@@ -1317,86 +1345,86 @@
         {
           "team": "Giants",
           "coach": "Bellow",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 1,
-          "gp": 3,
-          "pf": 72,
-          "pa": 55,
-          "margin_sum": 17,
-          "capped_margin_sum": 9
+          "gp": 4,
+          "pf": 91,
+          "pa": 67,
+          "margin_sum": 24,
+          "capped_margin_sum": 16
         },
         {
           "team": "Jaguars",
           "coach": "Benitez",
           "w": 0,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 3,
-          "pf": 15,
-          "pa": 64,
-          "margin_sum": -49,
-          "capped_margin_sum": -49
+          "gp": 4,
+          "pf": 27,
+          "pa": 83,
+          "margin_sum": -56,
+          "capped_margin_sum": -56
         },
         {
           "team": "Packers",
           "coach": "Martin",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 57,
-          "pa": 53,
-          "margin_sum": 4,
-          "capped_margin_sum": 15
+          "gp": 4,
+          "pf": 69,
+          "pa": 67,
+          "margin_sum": 2,
+          "capped_margin_sum": 13
         },
         {
           "team": "Patriots",
           "coach": "Fersen",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 45,
-          "pa": 67,
-          "margin_sum": -22,
-          "capped_margin_sum": -22
+          "pa": 98,
+          "margin_sum": -53,
+          "capped_margin_sum": -43
         },
         {
           "team": "Raiders",
           "coach": "Nunn",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 0,
-          "gp": 3,
-          "pf": 56,
-          "pa": 7,
-          "margin_sum": 49,
-          "capped_margin_sum": 49
+          "gp": 4,
+          "pf": 70,
+          "pa": 19,
+          "margin_sum": 51,
+          "capped_margin_sum": 51
         },
         {
           "team": "Seahawks",
           "coach": "Shea",
-          "w": 1,
+          "w": 2,
           "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 38,
+          "gp": 4,
+          "pf": 79,
           "pa": 45,
-          "margin_sum": -7,
-          "capped_margin_sum": -7
+          "margin_sum": 34,
+          "capped_margin_sum": 14
         },
         {
           "team": "Steelers",
           "coach": "Lemming",
           "w": 0,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 32,
-          "pa": 97,
-          "margin_sum": -65,
-          "capped_margin_sum": -45
+          "pa": 138,
+          "margin_sum": -106,
+          "capped_margin_sum": -66
         }
       ],
       "games": [
@@ -1504,6 +1532,34 @@
           "home_score": 0,
           "away_score": 18,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Jaguars",
+          "away": "Giants",
+          "home_score": 12,
+          "away_score": 19,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Steelers",
+          "away": "Seahawks",
+          "home_score": 0,
+          "away_score": 41,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Dolphins",
+          "away": "Patriots",
+          "home_score": 31,
+          "away_score": 0,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Raiders",
+          "away": "Packers",
+          "home_score": 14,
+          "away_score": 12,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -1696,8 +1752,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 19
         },
         {
           "home": "Steelers",
@@ -1708,8 +1764,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 41
         },
         {
           "home": "Dolphins",
@@ -1720,8 +1776,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 31,
+          "away_score": 0
         },
         {
           "home": "Raiders",
@@ -1732,8 +1788,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 14,
+          "away_score": 12
         },
         {
           "home": "Gamblers",
@@ -2022,37 +2078,37 @@
           "team": "Canada",
           "coach": "Lorenzo",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
-          "pa": 10,
-          "margin_sum": -6,
-          "capped_margin_sum": -3
+          "gp": 2,
+          "pf": 7,
+          "pa": 22,
+          "margin_sum": -15,
+          "capped_margin_sum": -6
         },
         {
           "team": "Dinoscores",
           "coach": "Urban",
-          "w": 0,
+          "w": 1,
           "l": 0,
           "t": 1,
-          "gp": 1,
-          "pf": 2,
-          "pa": 2,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 2,
+          "pf": 5,
+          "pa": 4,
+          "margin_sum": 1,
+          "capped_margin_sum": 1
         },
         {
           "team": "Dortmund",
           "coach": "Mena",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 3,
-          "pa": 2,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "gp": 2,
+          "pf": 5,
+          "pa": 5,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         },
         {
           "team": "Galaticos",
@@ -2105,14 +2161,14 @@
         {
           "team": "Spain",
           "coach": "Amacker",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 0,
-          "gp": 2,
-          "pf": 8,
-          "pa": 7,
-          "margin_sum": 1,
-          "capped_margin_sum": 0
+          "gp": 3,
+          "pf": 20,
+          "pa": 10,
+          "margin_sum": 10,
+          "capped_margin_sum": 3
         }
       ],
       "games": [
@@ -2157,6 +2213,20 @@
           "home_score": 2,
           "away_score": 5,
           "date": "Sat 9/19"
+        },
+        {
+          "home": "Spain",
+          "away": "Canada",
+          "home_score": 12,
+          "away_score": 3,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Dinoscores",
+          "away": "Dortmund",
+          "home_score": 3,
+          "away_score": 2,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -2241,8 +2311,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 3
         },
         {
           "home": "Dinoscores",
@@ -2253,8 +2323,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 2
         },
         {
           "home": "New York",
@@ -3297,13 +3367,13 @@
           "team": "America",
           "coach": "Doffing",
           "w": 0,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 3,
-          "pf": 3,
-          "pa": 15,
-          "margin_sum": -12,
-          "capped_margin_sum": -8
+          "gp": 4,
+          "pf": 5,
+          "pa": 20,
+          "margin_sum": -15,
+          "capped_margin_sum": -11
         },
         {
           "team": "Argentina FC",
@@ -3416,14 +3486,14 @@
         {
           "team": "The Rams",
           "coach": "Kleider",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 1,
-          "gp": 3,
-          "pf": 13,
-          "pa": 13,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 4,
+          "pf": 18,
+          "pa": 15,
+          "margin_sum": 3,
+          "capped_margin_sum": 3
         },
         {
           "team": "Vipers",
@@ -3571,6 +3641,13 @@
           "home_score": 0,
           "away_score": 3,
           "date": "Tue 9/22"
+        },
+        {
+          "home": "The Rams",
+          "away": "America",
+          "home_score": 5,
+          "away_score": 2,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -3811,8 +3888,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 2
         },
         {
           "home": "Vipers",
@@ -4377,27 +4454,27 @@
           "team": "Blue Jays",
           "coach": "Cardoso",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 0,
-          "pa": 14,
-          "margin_sum": -14,
-          "capped_margin_sum": -3,
-          "scored_gp": 1,
+          "pa": 26,
+          "margin_sum": -26,
+          "capped_margin_sum": -6,
+          "scored_gp": 2,
           "outcome_only_gp": 1
         },
         {
           "team": "Cannonballs",
           "coach": "Suszko",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 1,
-          "gp": 2,
-          "pf": 5,
-          "pa": 6,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "gp": 3,
+          "pf": 7,
+          "pa": 7,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         },
         {
           "team": "Ireland",
@@ -4426,26 +4503,26 @@
         {
           "team": "Liverpool",
           "coach": "Hadidi",
-          "w": 2,
+          "w": 3,
           "l": 0,
           "t": 0,
-          "gp": 2,
-          "pf": 12,
+          "gp": 3,
+          "pf": 24,
           "pa": 3,
-          "margin_sum": 9,
-          "capped_margin_sum": 4
+          "margin_sum": 21,
+          "capped_margin_sum": 7
         },
         {
           "team": "Red Fury",
           "coach": "Johnson",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 1,
-          "gp": 2,
-          "pf": 7,
-          "pa": 2,
-          "margin_sum": 5,
-          "capped_margin_sum": 3
+          "gp": 3,
+          "pf": 8,
+          "pa": 4,
+          "margin_sum": 4,
+          "capped_margin_sum": 2
         },
         {
           "team": "San Jose",
@@ -4629,6 +4706,20 @@
           "home_score": 5,
           "away_score": 1,
           "date": "Tue 9/22"
+        },
+        {
+          "home": "Cannonballs",
+          "away": "Red Fury",
+          "home_score": 2,
+          "away_score": 1,
+          "date": "Wed 9/23"
+        },
+        {
+          "home": "Blue Jays",
+          "away": "Liverpool",
+          "home_score": 0,
+          "away_score": 12,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -4823,8 +4914,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 1
         },
         {
           "home": "Blue Jays",
@@ -4835,8 +4926,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 12
         },
         {
           "home": "Kinkaid Falcons",
@@ -5485,13 +5576,13 @@
           "team": "Canada Raptors",
           "coach": "Guner",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 1,
-          "pa": 15,
-          "margin_sum": -14,
-          "capped_margin_sum": -5
+          "pa": 22,
+          "margin_sum": -21,
+          "capped_margin_sum": -8
         },
         {
           "team": "England Lions",
@@ -5556,14 +5647,14 @@
         {
           "team": "New York Knights",
           "coach": "Lamb",
-          "w": 2,
+          "w": 3,
           "l": 1,
           "t": 0,
-          "gp": 3,
-          "pf": 15,
+          "gp": 4,
+          "pf": 22,
           "pa": 9,
-          "margin_sum": 6,
-          "capped_margin_sum": 2
+          "margin_sum": 13,
+          "capped_margin_sum": 5
         },
         {
           "team": "Regis Knights",
@@ -5718,6 +5809,13 @@
           "home_score": 4,
           "away_score": 0,
           "date": "Tue 9/22"
+        },
+        {
+          "home": "Canada Raptors",
+          "away": "New York Knights",
+          "home_score": 0,
+          "away_score": 7,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -5982,8 +6080,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 7
         },
         {
           "home": "Barcelona",
@@ -6644,25 +6742,25 @@
           "team": "The Blue Belles",
           "coach": "Levey",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
+          "gp": 3,
           "pf": 2,
-          "pa": 11,
-          "margin_sum": -9,
-          "capped_margin_sum": -6
+          "pa": 13,
+          "margin_sum": -11,
+          "capped_margin_sum": -8
         },
         {
           "team": "The Kicking Queens",
           "coach": "Bassitt",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 5,
+          "gp": 3,
+          "pf": 7,
           "pa": 7,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         }
       ],
       "games": [
@@ -6791,6 +6889,13 @@
           "home_score": 0,
           "away_score": 3,
           "date": "Tue 9/22"
+        },
+        {
+          "home": "The Kicking Queens",
+          "away": "The Blue Belles",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Wed 9/23"
         }
       ],
       "schedule": [
@@ -7043,8 +7148,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-23",
           "start_iso": "2026-09-23T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Shooting Stars",
@@ -8695,6 +8800,6 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-23T21:30:04.125345Z",
-  "data_updated": "2026-09-23T21:30:04.125345Z"
+  "last_successful_check": "2026-09-24T04:50:14.069374Z",
+  "data_updated": "2026-09-24T04:50:14.069374Z"
 }
