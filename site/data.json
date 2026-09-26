@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-26T11:24:34.952027Z",
+  "last_checked": "2026-09-26T16:23:22.501540Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2880,14 +2880,14 @@
         {
           "team": "Juve",
           "coach": "Kilgore",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 0,
-          "gp": 1,
-          "pf": 13,
-          "pa": 0,
-          "margin_sum": 13,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 18,
+          "pa": 1,
+          "margin_sum": 17,
+          "capped_margin_sum": 6
         },
         {
           "team": "Three Lions",
@@ -2905,13 +2905,13 @@
           "team": "USA",
           "coach": "Taylor",
           "w": 0,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 1,
-          "pf": 1,
-          "pa": 3,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "gp": 2,
+          "pf": 2,
+          "pa": 8,
+          "margin_sum": -6,
+          "capped_margin_sum": -5
         }
       ],
       "games": [
@@ -2956,6 +2956,13 @@
           "home_score": 0,
           "away_score": 13,
           "date": "Thu 9/24"
+        },
+        {
+          "home": "USA",
+          "away": "Juve",
+          "home_score": 1,
+          "away_score": 5,
+          "date": "Fri 9/25"
         },
         {
           "home": "Holland",
@@ -3047,8 +3054,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-25",
           "start_iso": "2026-09-25T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 5
         },
         {
           "home": "Holland",
@@ -3505,13 +3512,13 @@
           "team": "Real Madrid",
           "coach": "Akerman",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
-          "pf": 3,
-          "pa": 12,
-          "margin_sum": -9,
-          "capped_margin_sum": -4
+          "gp": 4,
+          "pf": 4,
+          "pa": 20,
+          "margin_sum": -16,
+          "capped_margin_sum": -7
         },
         {
           "team": "Space City Strikers",
@@ -3528,14 +3535,14 @@
         {
           "team": "The Rams",
           "coach": "Kleider",
-          "w": 2,
+          "w": 3,
           "l": 1,
           "t": 1,
-          "gp": 4,
-          "pf": 18,
-          "pa": 15,
-          "margin_sum": 3,
-          "capped_margin_sum": 3
+          "gp": 5,
+          "pf": 26,
+          "pa": 16,
+          "margin_sum": 10,
+          "capped_margin_sum": 6
         },
         {
           "team": "Vipers",
@@ -3697,6 +3704,13 @@
           "home_score": 6,
           "away_score": 2,
           "date": "Thu 9/24"
+        },
+        {
+          "home": "The Rams",
+          "away": "Real Madrid",
+          "home_score": 8,
+          "away_score": 1,
+          "date": "Sat 9/26"
         }
       ],
       "schedule": [
@@ -3961,8 +3975,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 8,
+          "away_score": 1
         },
         {
           "home": "Bayern Eagles",
@@ -4518,10 +4532,10 @@
           "coach": "Suszko",
           "w": 1,
           "l": 1,
-          "t": 1,
-          "gp": 3,
-          "pf": 7,
-          "pa": 7,
+          "t": 2,
+          "gp": 4,
+          "pf": 9,
+          "pa": 9,
           "margin_sum": 0,
           "capped_margin_sum": 0
         },
@@ -4542,10 +4556,10 @@
           "coach": "Alonso",
           "w": 0,
           "l": 2,
-          "t": 2,
-          "gp": 4,
-          "pf": 9,
-          "pa": 15,
+          "t": 3,
+          "gp": 5,
+          "pf": 11,
+          "pa": 17,
           "margin_sum": -6,
           "capped_margin_sum": -4
         },
@@ -4783,6 +4797,13 @@
           "home_score": 0,
           "away_score": 7,
           "date": "Thu 9/24"
+        },
+        {
+          "home": "Kinkaid Falcons",
+          "away": "Cannonballs",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Sat 9/26"
         }
       ],
       "schedule": [
@@ -5037,8 +5058,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T09:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "Turbo Turtles",
@@ -5615,32 +5636,32 @@
           "team": "Bomb Pops",
           "coach": "Young-John",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 1,
-          "gp": 3,
+          "gp": 4,
           "pf": 2,
-          "pa": 10,
-          "margin_sum": -8,
-          "capped_margin_sum": -6,
+          "pa": 13,
+          "margin_sum": -11,
+          "capped_margin_sum": -9,
           "reported_record": {
             "w": 0,
-            "l": 3,
+            "l": 4,
             "t": 1,
-            "gp": 4
+            "gp": 5
           },
           "unknown_gp": 1
         },
         {
           "team": "Brazil",
           "coach": "Grygar",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 2,
-          "gp": 4,
-          "pf": 8,
+          "gp": 5,
+          "pf": 11,
           "pa": 10,
-          "margin_sum": -2,
-          "capped_margin_sum": 0
+          "margin_sum": 1,
+          "capped_margin_sum": 3
         },
         {
           "team": "Canada Raptors",
@@ -5670,13 +5691,13 @@
           "team": "Golden Dragons",
           "coach": "Guinn",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
+          "gp": 5,
           "pf": 0,
-          "pa": 25,
-          "margin_sum": -25,
-          "capped_margin_sum": -10
+          "pa": 32,
+          "margin_sum": -32,
+          "capped_margin_sum": -13
         },
         {
           "team": "Green Army",
@@ -5693,14 +5714,14 @@
         {
           "team": "Green Machine",
           "coach": "Creps",
-          "w": 1,
+          "w": 2,
           "l": 1,
           "t": 2,
-          "gp": 4,
-          "pf": 11,
+          "gp": 5,
+          "pf": 18,
           "pa": 4,
-          "margin_sum": 7,
-          "capped_margin_sum": 0
+          "margin_sum": 14,
+          "capped_margin_sum": 3
         },
         {
           "team": "Lightning",
@@ -5914,6 +5935,20 @@
           "home_score": 1,
           "away_score": 0,
           "date": "Fri 9/25"
+        },
+        {
+          "home": "Brazil",
+          "away": "Bomb Pops",
+          "home_score": 3,
+          "away_score": 0,
+          "date": "Sat 9/26"
+        },
+        {
+          "home": "Golden Dragons",
+          "away": "Green Machine",
+          "home_score": 0,
+          "away_score": 7,
+          "date": "Sat 9/26"
         }
       ],
       "schedule": [
@@ -6230,8 +6265,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 0
         },
         {
           "home": "Golden Dragons",
@@ -6242,8 +6277,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T09:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 7
         },
         {
           "home": "Green Army",
@@ -8923,8 +8958,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-26T11:24:34.952027Z",
-  "data_updated": "2026-09-26T04:57:41.706503Z",
+  "last_successful_check": "2026-09-26T16:23:22.501540Z",
+  "data_updated": "2026-09-26T16:23:22.501540Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
