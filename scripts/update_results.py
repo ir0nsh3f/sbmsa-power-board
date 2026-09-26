@@ -83,6 +83,8 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
         payload.setdefault('data_updated',None)
     else:
         payload['divisions'] = divisions
+        payload['warnings'] = [f"{d['sport']} {d['division']}: {g['away']} @ {g['home']} ({g['date_iso']}): {g['result_note']}. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
+                               for d in divisions for g in d['schedule'] if g.get('result_status') == 'unknown']
         payload['last_successful_check'] = now
         payload['data_updated'] = previous.get('data_updated') if previous.get('divisions') == divisions else now
         receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
@@ -158,6 +160,21 @@ def safe_location_url(value, source_url):
         return None
 
 
+def fixture_result(hs, aws, url, home, away, date, time, location):
+    """Reviewed September 25, 2026; never generalize contradictory outcomes.
+
+    Re-review November 30. Valid subsequent source results resolve naturally.
+    """
+    if ((hs, aws) == ('L', 'L') and
+            (url, home, away, date, time, location) == (
+                'https://sbmsa.net/sites/sbmsa/schedule/742279/',
+                'Bomb Pops', 'Lightning', 'Mon 9/21', '5:30 PM', 'PSE Field #1')):
+        return dict(home_score=None, away_score=None, result_status='unknown',
+                    result_note='Result unknown — source lists L/L',
+                    source_home_marker='L', source_away_marker='L')
+    return parse_result(hs, aws)
+
+
 def parse_result(hs, aws):
     """Only paired W/L or two numeric scores; no inferred classification/score."""
     if (hs, aws) in (('W', 'L'), ('L', 'W')):
@@ -189,7 +206,8 @@ def parse_schedule(table, teams, source_url=''):
             raise ValueError('Duplicate game in schedule')
         seen.add(key)
         hs, aws = get('HomeScoreLabel'), get('AwayScoreLabel')
-        result = parse_result(hs, aws)
+        result = fixture_result(hs, aws, source_url, home, away, date_label, time_label,
+                                get('ScheduleLabel') or get('LocationLabel') or get('LocationLink'))
         link = row.select_one('a[id$=LocationLink]')
         entries.append({'home':get('HomeLabel'), 'away':get('AwayLabel'),
                         'date':date_label, 'time':time_label,
@@ -245,7 +263,10 @@ def parse_division(html, sport, division, url):
         home, away = get('HomeLabel'), get('AwayLabel')
         if home not in teams or away not in teams or home == away:
             raise ValueError('Unknown or self-playing team')
-        result = parse_result(hs, aws)
+        result = fixture_result(hs, aws, url, home, away, get('DateLabel'), get('TimeLabel'),
+                                get('ScheduleLabel') or get('LocationLabel') or get('LocationLink'))
+        if result.get('result_status') == 'unknown':
+            continue
         key = (get('DateLabel'),get('TimeLabel'),*sorted((home,away)))
         if key in seen:
             raise ValueError('Duplicate game')
@@ -260,6 +281,10 @@ def parse_division(html, sport, division, url):
             team['pa'] += pa
             team['margin_sum'] += pf-pa
             team['capped_margin_sum'] += max(-cap, min(cap,pf-pa))
+    entries = parse_schedule(schedule, teams, url)
+    unknown = [g for g in entries if g.get('result_status') == 'unknown']
+    if unknown and (sport, division) != ('6u', 'Mbappe'):
+        raise ValueError('Quarantine source/division mismatch')
     for name, team in teams.items():
         meetings = [g for g in games if name in (g['home'],g['away'])]
         played = [(g['home_score'],g['away_score']) if g['home']==name else (g['away_score'],g['home_score']) for g in meetings if g['home_score'] is not None]
@@ -270,9 +295,17 @@ def parse_division(html, sport, division, url):
         actual = (sum(a>b for a,b in played)+outcomes.count('W'), sum(a<b for a,b in played)+outcomes.count('L'), sum(a==b for a,b in played),len(meetings))
         if name in official_goals and official_goals[name] != (team['pf'],team['pa']):
             raise ValueError(f'Cannot reconcile goals for {name}')
-        if actual != tuple(team[k] for k in ('w','l','t','gp')):
+        affected = any(name in (g['home'], g['away']) for g in unknown)
+        reported = tuple(team[k] for k in ('w','l','t','gp'))
+        # Only the observed one additional L and GP for EACH affected team.
+        expected = (actual[0], actual[1]+1, actual[2], actual[3]+1) if affected else actual
+        if expected != reported:
             raise ValueError(f'Cannot reconcile standings and games for {name}')
-    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':parse_schedule(schedule, teams, url)}
+        if affected:
+            team['reported_record'] = dict(zip(('w','l','t','gp'), reported))
+            team.update(zip(('w','l','t','gp'), actual))
+            team['unknown_gp'] = 1
+    return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':entries}
 
 
 if __name__ == '__main__':

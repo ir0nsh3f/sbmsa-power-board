@@ -96,7 +96,7 @@ def build(divisions, checked, model=None):
     for d in ds:
         for g in d.get('schedule',[]):
             start=instant(g.get('start_iso'))
-            if not start or start<=cutoff+timedelta(minutes=model['cutoff_minutes']) or any(g.get(k) is not None for k in ('home_score','away_score','home_outcome','away_outcome')):
+            if not start or start<=cutoff+timedelta(minutes=model['cutoff_minutes']) or any(g.get(k) is not None for k in ('home_score','away_score','home_outcome','away_outcome','result_status')):
                 continue
             h,a=stats[d['division'],g['home']],stats[d['division'],g['away']]
             hm,hv=rate(h,a);am,av=rate(a,h)
@@ -166,7 +166,7 @@ def record(directory,divisions,checked,model=None):
     if index['captures'] and index['model']['sport']!=model['sport']:
         raise ValueError('Cannot mix soccer age archives')
     inputs=[dict(sport=d['sport'],division=d['division'],teams=[{'team':t['team']} for t in d['teams']],
-                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso') + tuple(k for k in ('home_outcome','away_outcome') if k in g)} for g in d.get('schedule',[])]) for d in divisions if d['sport']==model['sport']]
+                 schedule=[{k:g.get(k) for k in ('home','away','home_score','away_score','start_iso') + tuple(k for k in ('home_outcome','away_outcome','result_status') if k in g)} for g in d.get('schedule',[])]) for d in divisions if d['sport']==model['sport']]
     p=build(inputs,checked,model)
     previous=json.loads((directory/index['captures'][-1]['path']).read_text()) if index['captures'] else None
     if previous and instant(checked)<instant(previous['generated_at']):
