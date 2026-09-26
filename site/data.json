@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-26T00:07:22.873993Z",
+  "last_checked": "2026-09-26T04:57:41.706503Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -1322,13 +1322,13 @@
           "team": "Dolphins",
           "coach": "Dewan",
           "w": 3,
-          "l": 0,
-          "t": 1,
+          "l": 1,
+          "t": 0,
           "gp": 4,
-          "pf": 80,
-          "pa": 31,
-          "margin_sum": 49,
-          "capped_margin_sum": 39
+          "pf": 62,
+          "pa": 14,
+          "margin_sum": 48,
+          "capped_margin_sum": 38
         },
         {
           "team": "Gamblers",
@@ -1345,14 +1345,14 @@
         {
           "team": "Giants",
           "coach": "Bellow",
-          "w": 2,
+          "w": 3,
           "l": 1,
-          "t": 1,
+          "t": 0,
           "gp": 4,
-          "pf": 91,
-          "pa": 67,
-          "margin_sum": 24,
-          "capped_margin_sum": 16
+          "pf": 74,
+          "pa": 49,
+          "margin_sum": 25,
+          "capped_margin_sum": 17
         },
         {
           "team": "Jaguars",
@@ -1522,8 +1522,8 @@
         {
           "home": "Giants",
           "away": "Dolphins",
-          "home_score": 18,
-          "away_score": 18,
+          "home_score": 1,
+          "away_score": 0,
           "date": "Sat 9/19"
         },
         {
@@ -1728,8 +1728,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7798931,-95.5552647,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-09-19",
           "start_iso": "2026-09-19T09:00:00-05:00",
-          "home_score": 18,
-          "away_score": 18
+          "home_score": 1,
+          "away_score": 0
         },
         {
           "home": "Patriots",
@@ -2055,36 +2055,36 @@
           "coach": "Klupchak",
           "w": 2,
           "l": 0,
-          "t": 0,
-          "gp": 2,
-          "pf": 14,
-          "pa": 4,
+          "t": 1,
+          "gp": 3,
+          "pf": 18,
+          "pa": 8,
           "margin_sum": 10,
           "capped_margin_sum": 6
         },
         {
           "team": "Brazil",
           "coach": "Ford",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 2,
-          "pa": 6,
-          "margin_sum": -4,
-          "capped_margin_sum": -3
+          "gp": 2,
+          "pf": 11,
+          "pa": 8,
+          "margin_sum": 3,
+          "capped_margin_sum": 0
         },
         {
           "team": "Canada",
           "coach": "Lorenzo",
           "w": 0,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 2,
-          "pf": 7,
-          "pa": 22,
-          "margin_sum": -15,
-          "capped_margin_sum": -6
+          "gp": 3,
+          "pf": 9,
+          "pa": 31,
+          "margin_sum": -22,
+          "capped_margin_sum": -9
         },
         {
           "team": "Dinoscores",
@@ -2115,10 +2115,10 @@
           "coach": "Walker",
           "w": 2,
           "l": 0,
-          "t": 0,
-          "gp": 2,
-          "pf": 17,
-          "pa": 6,
+          "t": 1,
+          "gp": 3,
+          "pf": 21,
+          "pa": 10,
           "margin_sum": 11,
           "capped_margin_sum": 6
         },
@@ -2241,6 +2241,20 @@
           "home_score": 7,
           "away_score": 2,
           "date": "Thu 9/24"
+        },
+        {
+          "home": "Galaticos",
+          "away": "Arsenal",
+          "home_score": 4,
+          "away_score": 4,
+          "date": "Fri 9/25"
+        },
+        {
+          "home": "Brazil",
+          "away": "Canada",
+          "home_score": 9,
+          "away_score": 2,
+          "date": "Fri 9/25"
         }
       ],
       "schedule": [
@@ -2373,8 +2387,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-25",
           "start_iso": "2026-09-25T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 4
         },
         {
           "home": "Brazil",
@@ -2385,8 +2399,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-09-25",
           "start_iso": "2026-09-25T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 9,
+          "away_score": 2
         },
         {
           "home": "Spain",
@@ -2842,14 +2856,14 @@
         {
           "team": "Holland",
           "coach": "Montgomery",
-          "w": 0,
+          "w": 1,
           "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 1,
-          "pa": 4,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "gp": 2,
+          "pf": 7,
+          "pa": 6,
+          "margin_sum": 1,
+          "capped_margin_sum": 0
         },
         {
           "team": "Ireland",
@@ -2879,13 +2893,13 @@
           "team": "Three Lions",
           "coach": "Novak",
           "w": 1,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 1,
-          "pf": 4,
-          "pa": 1,
-          "margin_sum": 3,
-          "capped_margin_sum": 3
+          "gp": 2,
+          "pf": 6,
+          "pa": 7,
+          "margin_sum": -1,
+          "capped_margin_sum": 0
         },
         {
           "team": "USA",
@@ -2942,6 +2956,13 @@
           "home_score": 0,
           "away_score": 13,
           "date": "Thu 9/24"
+        },
+        {
+          "home": "Holland",
+          "away": "Three Lions",
+          "home_score": 6,
+          "away_score": 2,
+          "date": "Fri 9/25"
         }
       ],
       "schedule": [
@@ -3038,8 +3059,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-25",
           "start_iso": "2026-09-25T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 2
         },
         {
           "home": "Juve",
@@ -8902,8 +8923,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-26T00:07:22.873993Z",
-  "data_updated": "2026-09-26T00:07:22.873993Z",
+  "last_successful_check": "2026-09-26T04:57:41.706503Z",
+  "data_updated": "2026-09-26T04:57:41.706503Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
