@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-28T13:54:09.160832Z",
+  "last_checked": "2026-09-28T23:16:11.445493Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -6479,18 +6479,6 @@
           "away_score": null
         },
         {
-          "home": "Lightning",
-          "away": "Golden Dragons",
-          "date": "Fri 10/2",
-          "time": "5:45 PM",
-          "location": "SBE 6U #1",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-02",
-          "start_iso": "2026-10-02T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
           "home": "Regis Knights",
           "away": "BHE Lions",
           "date": "Sat 10/3",
@@ -6641,6 +6629,18 @@
           "time": "5:30 PM",
           "location": "PSE Field #1",
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+          "date_iso": "2026-10-13",
+          "start_iso": "2026-10-13T17:30:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
+          "home": "Lightning",
+          "away": "Golden Dragons",
+          "date": "Tue 10/13",
+          "time": "5:30 PM",
+          "location": "SWMS - 6U",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=9810%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-13",
           "start_iso": "2026-10-13T17:30:00-05:00",
           "home_score": null,
@@ -9154,8 +9154,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-28T13:54:09.160832Z",
-  "data_updated": "2026-09-28T05:23:28.505073Z",
+  "last_successful_check": "2026-09-28T23:16:11.445493Z",
+  "data_updated": "2026-09-28T23:16:11.445493Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
