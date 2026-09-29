@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-29T05:43:49.361811Z",
+  "last_checked": "2026-09-29T12:52:13.698338Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -6958,10 +6958,10 @@
           "coach": "Vaughn",
           "w": 0,
           "l": 4,
-          "t": 0,
-          "gp": 4,
-          "pf": 2,
-          "pa": 32,
+          "t": 1,
+          "gp": 5,
+          "pf": 3,
+          "pa": 33,
           "margin_sum": -30,
           "capped_margin_sum": -12
         },
@@ -6970,10 +6970,10 @@
           "coach": "Kim",
           "w": 1,
           "l": 2,
-          "t": 0,
-          "gp": 3,
-          "pf": 7,
-          "pa": 9,
+          "t": 1,
+          "gp": 4,
+          "pf": 8,
+          "pa": 10,
           "margin_sum": -2,
           "capped_margin_sum": -1
         },
@@ -7186,6 +7186,13 @@
           "away": "Glitter Goals",
           "home_score": 5,
           "away_score": 0,
+          "date": "Sat 9/26"
+        },
+        {
+          "home": "Lollipops",
+          "away": "Shooting Stars",
+          "home_score": 1,
+          "away_score": 1,
           "date": "Sat 9/26"
         },
         {
@@ -7489,8 +7496,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-26",
           "start_iso": "2026-09-26T11:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 1
         },
         {
           "home": "The Blue Belles",
@@ -9154,8 +9161,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-29T05:43:49.361811Z",
-  "data_updated": "2026-09-28T23:16:11.445493Z",
+  "last_successful_check": "2026-09-29T12:52:13.698338Z",
+  "data_updated": "2026-09-29T12:52:13.698338Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
