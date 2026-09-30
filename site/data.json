@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-09-30T12:34:37.223826Z",
+  "last_checked": "2026-09-30T22:15:50.789019Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -8134,26 +8134,26 @@
         {
           "team": "Maple Magic",
           "coach": "Ball",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 0,
-          "gp": 5,
-          "pf": 27,
-          "pa": 5,
-          "margin_sum": 22,
-          "capped_margin_sum": 13
+          "gp": 6,
+          "pf": 32,
+          "pa": 7,
+          "margin_sum": 25,
+          "capped_margin_sum": 16
         },
         {
           "team": "Queen Bees",
           "coach": "Duffy",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 15,
-          "pa": 15,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 6,
+          "pf": 17,
+          "pa": 20,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         },
         {
           "team": "Rainbow Unicorns",
@@ -8400,6 +8400,13 @@
           "home_score": 5,
           "away_score": 2,
           "date": "Sat 9/26"
+        },
+        {
+          "home": "Maple Magic",
+          "away": "Queen Bees",
+          "home_score": 5,
+          "away_score": 2,
+          "date": "Tue 9/29"
         }
       ],
       "schedule": [
@@ -8760,8 +8767,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-29",
           "start_iso": "2026-09-29T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 2
         },
         {
           "home": "Cotton Candy Crushers",
@@ -9210,8 +9217,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-09-30T12:34:37.223826Z",
-  "data_updated": "2026-09-30T05:32:00.072542Z",
+  "last_successful_check": "2026-09-30T22:15:50.789019Z",
+  "data_updated": "2026-09-30T22:15:50.789019Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
