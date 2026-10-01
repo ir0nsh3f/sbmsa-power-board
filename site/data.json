@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-01T13:13:47.815065Z",
+  "last_checked": "2026-10-01T22:41:09.722416Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -95,26 +95,26 @@
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 0,
-          "gp": 3,
-          "pf": 60,
-          "pa": 32,
-          "margin_sum": 28,
-          "capped_margin_sum": 28
+          "gp": 4,
+          "pf": 73,
+          "pa": 44,
+          "margin_sum": 29,
+          "capped_margin_sum": 29
         },
         {
           "team": "Titans",
           "coach": "Flynn",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
-          "pf": 24,
-          "pa": 34,
-          "margin_sum": -10,
-          "capped_margin_sum": -10
+          "gp": 4,
+          "pf": 36,
+          "pa": 47,
+          "margin_sum": -11,
+          "capped_margin_sum": -11
         }
       ],
       "games": [
@@ -229,6 +229,13 @@
           "home_score": 19,
           "away_score": 24,
           "date": "Sat 9/26"
+        },
+        {
+          "home": "Texans",
+          "away": "Titans",
+          "home_score": 13,
+          "away_score": 12,
+          "date": "Wed 9/30"
         }
       ],
       "schedule": [
@@ -433,8 +440,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-30",
           "start_iso": "2026-09-30T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 13,
+          "away_score": 12
         },
         {
           "home": "Chargers",
@@ -3422,11 +3429,11 @@
           "home": "Argentina",
           "away": "Three Lions",
           "date": "Sat 10/17",
-          "time": "9:45 AM",
-          "location": "PC-8u #1",
+          "time": "2:45 PM",
+          "location": "PC-8u #3",
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
-          "start_iso": "2026-10-17T09:45:00-05:00",
+          "start_iso": "2026-10-17T14:45:00-05:00",
           "home_score": null,
           "away_score": null
         },
@@ -7031,26 +7038,26 @@
         {
           "team": "Disco Dolphins",
           "coach": "Kennedy",
-          "w": 2,
+          "w": 3,
           "l": 2,
           "t": 0,
-          "gp": 4,
-          "pf": 14,
-          "pa": 9,
-          "margin_sum": 5,
-          "capped_margin_sum": 1
+          "gp": 5,
+          "pf": 19,
+          "pa": 10,
+          "margin_sum": 9,
+          "capped_margin_sum": 4
         },
         {
           "team": "Fearless Gummy Bears",
           "coach": "Norman",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 0,
-          "gp": 5,
-          "pf": 19,
+          "gp": 6,
+          "pf": 20,
           "pa": 5,
-          "margin_sum": 14,
-          "capped_margin_sum": 12
+          "margin_sum": 15,
+          "capped_margin_sum": 13
         },
         {
           "team": "Glitter Goals",
@@ -7116,13 +7123,13 @@
           "team": "Shooting Stars",
           "coach": "Kim",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 1,
-          "gp": 4,
-          "pf": 8,
-          "pa": 10,
-          "margin_sum": -2,
-          "capped_margin_sum": -1
+          "gp": 5,
+          "pf": 9,
+          "pa": 15,
+          "margin_sum": -6,
+          "capped_margin_sum": -4
         },
         {
           "team": "Sirens",
@@ -7140,37 +7147,37 @@
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
+          "gp": 5,
           "pf": 4,
-          "pa": 17,
-          "margin_sum": -13,
-          "capped_margin_sum": -10
+          "pa": 19,
+          "margin_sum": -15,
+          "capped_margin_sum": -12
         },
         {
           "team": "The Blue Belles",
           "coach": "Levey",
-          "w": 0,
+          "w": 1,
           "l": 3,
           "t": 1,
-          "gp": 4,
-          "pf": 2,
+          "gp": 5,
+          "pf": 4,
           "pa": 13,
-          "margin_sum": -11,
-          "capped_margin_sum": -8
+          "margin_sum": -9,
+          "capped_margin_sum": -6
         },
         {
           "team": "The Kicking Queens",
           "coach": "Bassitt",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 7,
-          "pa": 7,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "pa": 8,
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         }
       ],
       "games": [
@@ -7357,10 +7364,31 @@
           "date": "Sat 9/26"
         },
         {
+          "home": "The Kicking Queens",
+          "away": "Fearless Gummy Bears",
+          "home_score": 0,
+          "away_score": 1,
+          "date": "Wed 9/30"
+        },
+        {
           "home": "Glittery Dragons",
           "away": "Sirens",
           "home_score": 0,
           "away_score": 4,
+          "date": "Wed 9/30"
+        },
+        {
+          "home": "Shooting Stars",
+          "away": "Disco Dolphins",
+          "home_score": 1,
+          "away_score": 5,
+          "date": "Wed 9/30"
+        },
+        {
+          "home": "The Blue Belles",
+          "away": "Sparkly Lovebugs",
+          "home_score": 2,
+          "away_score": 0,
           "date": "Wed 9/30"
         }
       ],
@@ -7686,8 +7714,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-09-30",
           "start_iso": "2026-09-30T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 1
         },
         {
           "home": "Glittery Dragons",
@@ -7710,8 +7738,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-30",
           "start_iso": "2026-09-30T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 5
         },
         {
           "home": "The Blue Belles",
@@ -7722,8 +7750,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-09-30",
           "start_iso": "2026-09-30T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "Glitter Goals",
@@ -9322,8 +9350,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-01T13:13:47.815065Z",
-  "data_updated": "2026-10-01T05:52:56.499376Z",
+  "last_successful_check": "2026-10-01T22:41:09.722416Z",
+  "data_updated": "2026-10-01T22:41:09.722416Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
