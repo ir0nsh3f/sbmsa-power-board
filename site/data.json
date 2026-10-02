@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-02T12:34:26.837864Z",
+  "last_checked": "2026-10-02T22:14:01.567054Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -718,13 +718,13 @@
           "team": "Broncos",
           "coach": "Boeker",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
-          "pf": 6,
-          "pa": 115,
-          "margin_sum": -109,
-          "capped_margin_sum": -84
+          "gp": 5,
+          "pf": 12,
+          "pa": 145,
+          "margin_sum": -133,
+          "capped_margin_sum": -105
         },
         {
           "team": "Buccaneers",
@@ -753,14 +753,14 @@
         {
           "team": "Mustangs",
           "coach": "Brown",
-          "w": 1,
+          "w": 2,
           "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 42,
-          "pa": 63,
-          "margin_sum": -21,
-          "capped_margin_sum": -21
+          "gp": 5,
+          "pf": 72,
+          "pa": 69,
+          "margin_sum": 3,
+          "capped_margin_sum": 0
         },
         {
           "team": "Oilers",
@@ -905,6 +905,13 @@
           "away": "Lions",
           "home_score": 0,
           "away_score": 1,
+          "date": "Wed 9/30"
+        },
+        {
+          "home": "Mustangs",
+          "away": "Broncos",
+          "home_score": 30,
+          "away_score": 6,
           "date": "Wed 9/30"
         },
         {
@@ -1136,8 +1143,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-09-30",
           "start_iso": "2026-09-30T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 30,
+          "away_score": 6
         },
         {
           "home": "Buccaneers",
@@ -8979,7 +8986,7 @@
           "date": "Tue 9/29",
           "time": "5:30 PM",
           "location": "SBE 6U #2",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
+          "location_url": null,
           "date_iso": "2026-09-29",
           "start_iso": "2026-09-29T17:30:00-05:00",
           "home_score": null,
@@ -9003,7 +9010,7 @@
           "date": "Tue 9/29",
           "time": "6:45 PM",
           "location": "SBE 6U #5",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
+          "location_url": null,
           "date_iso": "2026-09-29",
           "start_iso": "2026-09-29T18:45:00-05:00",
           "home_score": null,
@@ -9420,8 +9427,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-02T12:34:26.837864Z",
-  "data_updated": "2026-10-02T05:36:51.776294Z",
+  "last_successful_check": "2026-10-02T22:14:01.567054Z",
+  "data_updated": "2026-10-02T22:14:01.567054Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
