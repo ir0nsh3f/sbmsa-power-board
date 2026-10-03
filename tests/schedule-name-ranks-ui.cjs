@@ -11,7 +11,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  for(const width of [320,390,1400]){
   const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(url);await page.waitForSelector('.row');
-  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('#capped').getAttribute('aria-pressed'),'true');
   for(const input of ['raw','capped']){
    await page.locator('.section-links [data-view="rankings"]').click();await page.locator('#'+input).click();
    await page.locator('.section-links [data-view="team-schedules"]').click();
@@ -45,10 +45,10 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
    await page.locator('.league-selected-team a[href="#league-schedule"]').click();await page.waitForFunction(()=>!document.querySelector('.league-selected-team'));
    await page.locator('.section-links [data-view="rankings"]').click();await page.locator('#search').fill('');await page.locator('#division').selectOption('all');
   }
-  // A direct bookmark defaults to Results, while the power mode still defaults Raw on load.
+  // A direct bookmark defaults to Results, while the power mode still defaults capped on load.
   await page.goto(url+'#league-schedule?sport=8u&division=Pulisic&team=Arsenal');await page.reload();await page.waitForSelector('.league-selected-team');
   assert.equal(await page.locator('[data-league-filter="Results"]').getAttribute('aria-pressed'),'true');
-  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('#capped').getAttribute('aria-pressed'),'true');
   assert.deepEqual(errors,[]);console.log(JSON.stringify({width,adjacentRanks:true,exactResultsLinks:true,rawCap:true,noOverflow:true}));await page.close();
  }
  }finally{if(browser)await browser.close();server.close();}

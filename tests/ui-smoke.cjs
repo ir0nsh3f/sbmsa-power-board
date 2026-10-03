@@ -47,9 +47,10 @@ const path=require('node:path');
   // Independently compute expected identities outside the page; numerical Python parity is in ratings.test.cjs.
   const R=require('../site/ratings.js');
   const publication=await page.evaluate(()=>data);
-  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true','Raw default on load');
-  await page.locator('#capped').click();await page.reload();await page.waitForSelector('.row');
-  assert.equal(await page.locator('#raw').getAttribute('aria-pressed'),'true','Reload restores Raw default');
+  assert.equal(await page.locator('#capped').getAttribute('aria-pressed'),'true','Capped default on load');
+  assert.equal(await page.evaluate(()=>data.ratingMode),'capped');
+  await page.locator('#raw').click();await page.reload();await page.waitForSelector('.row');
+  assert.equal(await page.locator('#capped').getAttribute('aria-pressed'),'true','Reload restores Capped default');
   for(const s of ['flag','8u','6u']){
    for(const selected of ['capped','raw']){
    await page.locator('#'+selected).click();
