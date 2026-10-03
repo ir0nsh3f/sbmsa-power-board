@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-02T22:14:01.567054Z",
+  "last_checked": "2026-10-03T05:18:15.356678Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2144,26 +2144,26 @@
         {
           "team": "Arsenal",
           "coach": "Klupchak",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 1,
-          "gp": 4,
-          "pf": 21,
-          "pa": 9,
-          "margin_sum": 12,
-          "capped_margin_sum": 8
+          "gp": 5,
+          "pf": 25,
+          "pa": 11,
+          "margin_sum": 14,
+          "capped_margin_sum": 10
         },
         {
           "team": "Brazil",
           "coach": "Ford",
           "w": 1,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 4,
-          "pf": 13,
-          "pa": 13,
-          "margin_sum": 0,
-          "capped_margin_sum": -3
+          "gp": 5,
+          "pf": 15,
+          "pa": 21,
+          "margin_sum": -6,
+          "capped_margin_sum": -6
         },
         {
           "team": "Canada",
@@ -2181,13 +2181,13 @@
           "team": "Dinoscores",
           "coach": "Urban",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 1,
-          "gp": 4,
-          "pf": 15,
-          "pa": 14,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "gp": 5,
+          "pf": 17,
+          "pa": 18,
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         },
         {
           "team": "Dortmund",
@@ -2204,14 +2204,14 @@
         {
           "team": "Galaticos",
           "coach": "Walker",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 2,
-          "gp": 5,
-          "pf": 30,
-          "pa": 13,
-          "margin_sum": 17,
-          "capped_margin_sum": 9
+          "gp": 6,
+          "pf": 38,
+          "pa": 15,
+          "margin_sum": 23,
+          "capped_margin_sum": 12
         },
         {
           "team": "Germany",
@@ -2388,6 +2388,20 @@
           "home_score": 2,
           "away_score": 2,
           "date": "Thu 10/1"
+        },
+        {
+          "home": "Galaticos",
+          "away": "Brazil",
+          "home_score": 8,
+          "away_score": 2,
+          "date": "Fri 10/2"
+        },
+        {
+          "home": "Dinoscores",
+          "away": "Arsenal",
+          "home_score": 2,
+          "away_score": 4,
+          "date": "Fri 10/2"
         }
       ],
       "schedule": [
@@ -2616,8 +2630,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-02",
           "start_iso": "2026-10-02T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 8,
+          "away_score": 2
         },
         {
           "home": "Dinoscores",
@@ -2628,8 +2642,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-02",
           "start_iso": "2026-10-02T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 4
         },
         {
           "home": "Germany",
@@ -3668,13 +3682,13 @@
           "team": "Mexico",
           "coach": "Spradley",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 1,
-          "gp": 5,
-          "pf": 7,
-          "pa": 40,
-          "margin_sum": -33,
-          "capped_margin_sum": -12
+          "gp": 6,
+          "pf": 8,
+          "pa": 45,
+          "margin_sum": -37,
+          "capped_margin_sum": -15
         },
         {
           "team": "Real Madrid",
@@ -3703,14 +3717,14 @@
         {
           "team": "The Rams",
           "coach": "Kleider",
-          "w": 4,
+          "w": 5,
           "l": 1,
           "t": 1,
-          "gp": 6,
-          "pf": 33,
-          "pa": 19,
-          "margin_sum": 14,
-          "capped_margin_sum": 9
+          "gp": 7,
+          "pf": 38,
+          "pa": 20,
+          "margin_sum": 18,
+          "capped_margin_sum": 12
         },
         {
           "team": "Vipers",
@@ -3949,6 +3963,13 @@
           "home_score": 6,
           "away_score": 4,
           "date": "Thu 10/1"
+        },
+        {
+          "home": "Mexico",
+          "away": "The Rams",
+          "home_score": 1,
+          "away_score": 5,
+          "date": "Fri 10/2"
         }
       ],
       "schedule": [
@@ -4345,8 +4366,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-02",
           "start_iso": "2026-10-02T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 5
         },
         {
           "home": "Bayern Eagles",
@@ -4354,7 +4375,7 @@
           "date": "Fri 10/2",
           "time": "5:45 PM",
           "location": "PSE Field #4",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
+          "location_url": null,
           "date_iso": "2026-10-02",
           "start_iso": "2026-10-02T17:45:00-05:00",
           "home_score": null,
@@ -9427,8 +9448,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-02T22:14:01.567054Z",
-  "data_updated": "2026-10-02T22:14:01.567054Z",
+  "last_successful_check": "2026-10-03T05:18:15.356678Z",
+  "data_updated": "2026-10-03T05:18:15.356678Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
