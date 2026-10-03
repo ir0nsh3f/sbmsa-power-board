@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-03T14:43:19.467327Z",
+  "last_checked": "2026-10-03T16:17:32.200348Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -23,14 +23,14 @@
         {
           "team": "Chargers",
           "coach": "Smith",
-          "w": 4,
+          "w": 5,
           "l": 0,
           "t": 0,
-          "gp": 4,
-          "pf": 121,
-          "pa": 24,
-          "margin_sum": 97,
-          "capped_margin_sum": 74
+          "gp": 5,
+          "pf": 153,
+          "pa": 45,
+          "margin_sum": 108,
+          "capped_margin_sum": 85
         },
         {
           "team": "Cowboys",
@@ -48,13 +48,13 @@
           "team": "Eagles",
           "coach": "Canova",
           "w": 2,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 77,
-          "pa": 60,
-          "margin_sum": 17,
-          "capped_margin_sum": 17
+          "gp": 5,
+          "pf": 98,
+          "pa": 92,
+          "margin_sum": 6,
+          "capped_margin_sum": 6
         },
         {
           "team": "Falcons",
@@ -236,6 +236,13 @@
           "home_score": 13,
           "away_score": 12,
           "date": "Wed 9/30"
+        },
+        {
+          "home": "Chargers",
+          "away": "Eagles",
+          "home_score": 32,
+          "away_score": 21,
+          "date": "Sat 10/3"
         }
       ],
       "schedule": [
@@ -452,8 +459,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7798931,-95.5552647,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T09:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 32,
+          "away_score": 21
         },
         {
           "home": "Bengals",
@@ -1396,14 +1403,14 @@
         {
           "team": "Gamblers",
           "coach": "Eisterhold",
-          "w": 1,
+          "w": 2,
           "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 67,
-          "pa": 117,
-          "margin_sum": -50,
-          "capped_margin_sum": -42
+          "gp": 5,
+          "pf": 87,
+          "pa": 136,
+          "margin_sum": -49,
+          "capped_margin_sum": -41
         },
         {
           "team": "Giants",
@@ -1481,13 +1488,13 @@
           "team": "Steelers",
           "coach": "Lemming",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
-          "pf": 32,
-          "pa": 138,
-          "margin_sum": -106,
-          "capped_margin_sum": -66
+          "gp": 5,
+          "pf": 51,
+          "pa": 158,
+          "margin_sum": -107,
+          "capped_margin_sum": -67
         }
       ],
       "games": [
@@ -1651,6 +1658,13 @@
           "home_score": 19,
           "away_score": 32,
           "date": "Wed 9/30"
+        },
+        {
+          "home": "Steelers",
+          "away": "Gamblers",
+          "home_score": 19,
+          "away_score": 20,
+          "date": "Sat 10/3"
         }
       ],
       "schedule": [
@@ -1939,8 +1953,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7799997,-95.5529332,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T09:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 19,
+          "away_score": 20
         },
         {
           "home": "Chiefs",
@@ -2980,25 +2994,25 @@
           "team": "Celtic",
           "coach": "Moore",
           "w": 1,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 4,
+          "gp": 5,
           "pf": 3,
-          "pa": 17,
-          "margin_sum": -14,
-          "capped_margin_sum": -8
+          "pa": 25,
+          "margin_sum": -22,
+          "capped_margin_sum": -11
         },
         {
           "team": "France",
           "coach": "Miller",
-          "w": 3,
+          "w": 4,
           "l": 0,
           "t": 0,
-          "gp": 3,
-          "pf": 25,
+          "gp": 4,
+          "pf": 33,
           "pa": 2,
-          "margin_sum": 23,
-          "capped_margin_sum": 9
+          "margin_sum": 31,
+          "capped_margin_sum": 12
         },
         {
           "team": "Holland",
@@ -3152,6 +3166,13 @@
           "home_score": 1,
           "away_score": 2,
           "date": "Thu 10/1"
+        },
+        {
+          "home": "France",
+          "away": "Celtic",
+          "home_score": 8,
+          "away_score": 0,
+          "date": "Sat 10/3"
         }
       ],
       "schedule": [
@@ -3320,8 +3341,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 8,
+          "away_score": 0
         },
         {
           "home": "Argentina",
@@ -5940,14 +5961,14 @@
         {
           "team": "BHE Lions",
           "coach": "Valdez",
-          "w": 2,
+          "w": 3,
           "l": 3,
           "t": 1,
-          "gp": 6,
-          "pf": 9,
-          "pa": 24,
-          "margin_sum": -15,
-          "capped_margin_sum": -4
+          "gp": 7,
+          "pf": 13,
+          "pa": 26,
+          "margin_sum": -13,
+          "capped_margin_sum": -2
         },
         {
           "team": "Barcelona",
@@ -6087,13 +6108,13 @@
           "team": "Regis Knights",
           "coach": "Thibodeaux",
           "w": 3,
-          "l": 1,
+          "l": 2,
           "t": 1,
-          "gp": 5,
-          "pf": 14,
-          "pa": 5,
-          "margin_sum": 9,
-          "capped_margin_sum": 8
+          "gp": 6,
+          "pf": 16,
+          "pa": 9,
+          "margin_sum": 7,
+          "capped_margin_sum": 6
         }
       ],
       "games": [
@@ -6313,6 +6334,13 @@
           "home_score": 2,
           "away_score": 2,
           "date": "Thu 10/1"
+        },
+        {
+          "home": "Regis Knights",
+          "away": "BHE Lions",
+          "home_score": 2,
+          "away_score": 4,
+          "date": "Sat 10/3"
         }
       ],
       "schedule": [
@@ -6725,8 +6753,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 4
         },
         {
           "home": "Bomb Pops",
@@ -9448,8 +9476,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-03T14:43:19.467327Z",
-  "data_updated": "2026-10-03T05:18:15.356678Z",
+  "last_successful_check": "2026-10-03T16:17:32.200348Z",
+  "data_updated": "2026-10-03T16:17:32.200348Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
