@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-04T12:21:16.553564Z",
+  "last_checked": "2026-10-04T21:24:48.438691Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2204,13 +2204,13 @@
           "team": "Canada",
           "coach": "Lorenzo",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
-          "pf": 12,
-          "pa": 39,
-          "margin_sum": -27,
-          "capped_margin_sum": -12
+          "gp": 5,
+          "pf": 16,
+          "pa": 45,
+          "margin_sum": -29,
+          "capped_margin_sum": -14
         },
         {
           "team": "Dinoscores",
@@ -2251,14 +2251,14 @@
         {
           "team": "Germany",
           "coach": "McRae",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 0,
-          "gp": 2,
-          "pf": 3,
-          "pa": 10,
-          "margin_sum": -7,
-          "capped_margin_sum": -4
+          "gp": 3,
+          "pf": 9,
+          "pa": 14,
+          "margin_sum": -5,
+          "capped_margin_sum": -2
         },
         {
           "team": "New York",
@@ -2435,6 +2435,13 @@
           "home": "Dinoscores",
           "away": "Arsenal",
           "home_score": 2,
+          "away_score": 4,
+          "date": "Fri 10/2"
+        },
+        {
+          "home": "Germany",
+          "away": "Canada",
+          "home_score": 6,
           "away_score": 4,
           "date": "Fri 10/2"
         }
@@ -2689,8 +2696,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-02",
           "start_iso": "2026-10-02T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 4
         },
         {
           "home": "Canada",
@@ -7279,26 +7286,26 @@
         {
           "team": "Glitter Goals",
           "coach": "Tran",
-          "w": 4,
+          "w": 5,
           "l": 2,
           "t": 0,
-          "gp": 6,
-          "pf": 18,
+          "gp": 7,
+          "pf": 25,
           "pa": 14,
-          "margin_sum": 4,
-          "capped_margin_sum": 3
+          "margin_sum": 11,
+          "capped_margin_sum": 6
         },
         {
           "team": "Glittery Dragons",
           "coach": "Gittemeier",
-          "w": 1,
+          "w": 2,
           "l": 2,
           "t": 2,
-          "gp": 5,
-          "pf": 14,
-          "pa": 15,
-          "margin_sum": -1,
-          "capped_margin_sum": -3
+          "gp": 6,
+          "pf": 19,
+          "pa": 17,
+          "margin_sum": 2,
+          "capped_margin_sum": 0
         },
         {
           "team": "Goalden Girls",
@@ -7328,13 +7335,13 @@
           "team": "Lollipops",
           "coach": "Vaughn",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 1,
-          "gp": 5,
+          "gp": 6,
           "pf": 3,
-          "pa": 33,
-          "margin_sum": -30,
-          "capped_margin_sum": -12
+          "pa": 40,
+          "margin_sum": -37,
+          "capped_margin_sum": -15
         },
         {
           "team": "Shooting Stars",
@@ -7364,13 +7371,13 @@
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 5,
-          "pf": 4,
-          "pa": 19,
-          "margin_sum": -15,
-          "capped_margin_sum": -12
+          "gp": 6,
+          "pf": 6,
+          "pa": 24,
+          "margin_sum": -18,
+          "capped_margin_sum": -15
         },
         {
           "team": "The Blue Belles",
@@ -7609,6 +7616,13 @@
           "date": "Wed 9/30"
         },
         {
+          "home": "Glitter Goals",
+          "away": "Lollipops",
+          "home_score": 7,
+          "away_score": 0,
+          "date": "Thu 10/1"
+        },
+        {
           "home": "Goalden Girls",
           "away": "Gummy Bears",
           "home_score": 0,
@@ -7620,6 +7634,13 @@
           "away": "The Blue Belles",
           "home_score": 1,
           "away_score": 2,
+          "date": "Sat 10/3"
+        },
+        {
+          "home": "Sparkly Lovebugs",
+          "away": "Glittery Dragons",
+          "home_score": 2,
+          "away_score": 5,
           "date": "Sat 10/3"
         },
         {
@@ -8014,8 +8035,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-01",
           "start_iso": "2026-10-01T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 7,
+          "away_score": 0
         },
         {
           "home": "Goalden Girls",
@@ -8050,8 +8071,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T11:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 5
         },
         {
           "home": "Disco Dolphins",
@@ -8460,13 +8481,13 @@
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 5,
+          "gp": 6,
           "pf": 8,
-          "pa": 19,
-          "margin_sum": -11,
-          "capped_margin_sum": -8
+          "pa": 20,
+          "margin_sum": -12,
+          "capped_margin_sum": -9
         },
         {
           "team": "Flower Power",
@@ -8531,14 +8552,14 @@
         {
           "team": "Queen Bees",
           "coach": "Duffy",
-          "w": 2,
+          "w": 3,
           "l": 4,
           "t": 0,
-          "gp": 6,
-          "pf": 17,
+          "gp": 7,
+          "pf": 18,
           "pa": 20,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         },
         {
           "team": "Rainbow Unicorns",
@@ -8832,6 +8853,13 @@
           "home": "Rainbow Unicorns",
           "away": "Cotton Candy Crushers",
           "home_score": 2,
+          "away_score": 0,
+          "date": "Sat 10/3"
+        },
+        {
+          "home": "Queen Bees",
+          "away": "Dallas Cowgirls",
+          "home_score": 1,
           "away_score": 0,
           "date": "Sat 10/3"
         }
@@ -9314,8 +9342,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T14:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 0
         },
         {
           "home": "Lucky Charms",
@@ -9644,8 +9672,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-04T12:21:16.553564Z",
-  "data_updated": "2026-10-04T05:51:58.485063Z",
+  "last_successful_check": "2026-10-04T21:24:48.438691Z",
+  "data_updated": "2026-10-04T21:24:48.438691Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
