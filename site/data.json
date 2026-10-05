@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-04T21:24:48.438691Z",
+  "last_checked": "2026-10-05T05:39:19.142982Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2205,10 +2205,10 @@
           "coach": "Lorenzo",
           "w": 0,
           "l": 5,
-          "t": 0,
-          "gp": 5,
-          "pf": 16,
-          "pa": 45,
+          "t": 1,
+          "gp": 6,
+          "pf": 18,
+          "pa": 47,
           "margin_sum": -29,
           "capped_margin_sum": -14
         },
@@ -2229,10 +2229,10 @@
           "coach": "Mena",
           "w": 1,
           "l": 1,
-          "t": 0,
-          "gp": 2,
-          "pf": 5,
-          "pa": 5,
+          "t": 1,
+          "gp": 3,
+          "pf": 7,
+          "pa": 7,
           "margin_sum": 0,
           "capped_margin_sum": 0
         },
@@ -2444,6 +2444,13 @@
           "home_score": 6,
           "away_score": 4,
           "date": "Fri 10/2"
+        },
+        {
+          "home": "Canada",
+          "away": "Dortmund",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Sat 10/3"
         }
       ],
       "schedule": [
@@ -2708,8 +2715,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-03",
           "start_iso": "2026-10-03T16:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "Spain",
@@ -9238,18 +9245,6 @@
           "away_score": null
         },
         {
-          "home": "Dallas Cowgirls",
-          "away": "Red Hots",
-          "date": "Tue 9/29",
-          "time": "5:30 PM",
-          "location": "SBE 6U #5",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
-          "date_iso": "2026-09-29",
-          "start_iso": "2026-09-29T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
           "home": "The Pink Flamingos",
           "away": "Glitter Dumplings",
           "date": "Tue 9/29",
@@ -9358,6 +9353,18 @@
           "away_score": null
         },
         {
+          "home": "The Pink Flamingos",
+          "away": "Glitter Dumplings",
+          "date": "Mon 10/5",
+          "time": "6:45 PM",
+          "location": "SWMS - 6U",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=9810%20Neuens%20Rd%2CHouston%2CTX%2077080",
+          "date_iso": "2026-10-05",
+          "start_iso": "2026-10-05T18:45:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
           "home": "Maple Magic",
           "away": "Rainbow Unicorns",
           "date": "Tue 10/6",
@@ -9390,6 +9397,18 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-07",
           "start_iso": "2026-10-07T18:45:00-05:00",
+          "home_score": null,
+          "away_score": null
+        },
+        {
+          "home": "Dallas Cowgirls",
+          "away": "Red Hots",
+          "date": "Thu 10/8",
+          "time": "5:30 PM",
+          "location": "SWMS - 6U",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=9810%20Neuens%20Rd%2CHouston%2CTX%2077080",
+          "date_iso": "2026-10-08",
+          "start_iso": "2026-10-08T17:30:00-05:00",
           "home_score": null,
           "away_score": null
         },
@@ -9672,8 +9691,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-04T21:24:48.438691Z",
-  "data_updated": "2026-10-04T21:24:48.438691Z",
+  "last_successful_check": "2026-10-05T05:39:19.142982Z",
+  "data_updated": "2026-10-05T05:39:19.142982Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
