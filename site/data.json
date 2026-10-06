@@ -1,7 +1,18 @@
 {
-  "last_checked": "2026-10-06T00:03:08.945145Z",
-  "status": "ok",
-  "errors": [],
+  "last_checked": "2026-10-06T06:20:25.498564Z",
+  "status": "error",
+  "errors": [
+    "flag Mahomes: HTTPError: HTTP Error 503: Service Unavailable",
+    "flag Burrow: HTTPError: HTTP Error 503: Service Unavailable",
+    "flag Jackson: HTTPError: HTTP Error 503: Service Unavailable",
+    "8u Pulisic: HTTPError: HTTP Error 503: Service Unavailable",
+    "8u Messi: HTTPError: HTTP Error 503: Service Unavailable",
+    "6u Messi: HTTPError: HTTP Error 503: Service Unavailable",
+    "6u Haaland: HTTPError: HTTP Error 503: Service Unavailable",
+    "6u Mbappe: HTTPError: HTTP Error 503: Service Unavailable",
+    "5ug Akers: HTTPError: HTTP Error 503: Service Unavailable",
+    "5ug Boxx: HTTPError: HTTP Error 503: Service Unavailable"
+  ],
   "divisions": [
     {
       "sport": "flag",
