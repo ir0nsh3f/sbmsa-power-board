@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-06T18:21:43.346154Z",
+  "last_checked": "2026-10-07T03:10:15.656528Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -12,61 +12,61 @@
           "team": "Bengals",
           "coach": "Smith",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 4,
-          "pf": 40,
-          "pa": 72,
-          "margin_sum": -32,
-          "capped_margin_sum": -32
+          "gp": 5,
+          "pf": 60,
+          "pa": 98,
+          "margin_sum": -38,
+          "capped_margin_sum": -38
         },
         {
           "team": "Chargers",
           "coach": "Smith",
           "w": 5,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 5,
-          "pf": 153,
-          "pa": 45,
-          "margin_sum": 108,
-          "capped_margin_sum": 85
+          "gp": 6,
+          "pf": 172,
+          "pa": 65,
+          "margin_sum": 107,
+          "capped_margin_sum": 84
         },
         {
           "team": "Cowboys",
           "coach": "Buzan",
-          "w": 0,
+          "w": 1,
           "l": 4,
           "t": 0,
-          "gp": 4,
-          "pf": 51,
-          "pa": 105,
-          "margin_sum": -54,
-          "capped_margin_sum": -54
+          "gp": 5,
+          "pf": 77,
+          "pa": 125,
+          "margin_sum": -48,
+          "capped_margin_sum": -48
         },
         {
           "team": "Eagles",
           "coach": "Canova",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 98,
-          "pa": 92,
-          "margin_sum": 6,
-          "capped_margin_sum": 6
+          "gp": 6,
+          "pf": 112,
+          "pa": 107,
+          "margin_sum": 5,
+          "capped_margin_sum": 5
         },
         {
           "team": "Falcons",
           "coach": "Berry",
-          "w": 4,
+          "w": 5,
           "l": 1,
           "t": 0,
-          "gp": 5,
-          "pf": 93,
-          "pa": 66,
-          "margin_sum": 27,
-          "capped_margin_sum": 15
+          "gp": 6,
+          "pf": 108,
+          "pa": 80,
+          "margin_sum": 28,
+          "capped_margin_sum": 16
         },
         {
           "team": "Jets",
@@ -84,37 +84,37 @@
           "team": "Saints",
           "coach": "Davidson",
           "w": 1,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 4,
-          "pf": 29,
-          "pa": 109,
-          "margin_sum": -80,
-          "capped_margin_sum": -50
+          "gp": 5,
+          "pf": 47,
+          "pa": 135,
+          "margin_sum": -88,
+          "capped_margin_sum": -58
         },
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 4,
+          "w": 5,
           "l": 0,
           "t": 0,
-          "gp": 4,
-          "pf": 73,
-          "pa": 44,
-          "margin_sum": 29,
-          "capped_margin_sum": 29
+          "gp": 5,
+          "pf": 93,
+          "pa": 63,
+          "margin_sum": 30,
+          "capped_margin_sum": 30
         },
         {
           "team": "Titans",
           "coach": "Flynn",
-          "w": 1,
+          "w": 2,
           "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 36,
-          "pa": 47,
-          "margin_sum": -11,
-          "capped_margin_sum": -11
+          "gp": 5,
+          "pf": 62,
+          "pa": 65,
+          "margin_sum": -3,
+          "capped_margin_sum": -3
         }
       ],
       "games": [
@@ -257,6 +257,34 @@
           "home_score": 0,
           "away_score": 21,
           "date": "Sat 10/3"
+        },
+        {
+          "home": "Saints",
+          "away": "Titans",
+          "home_score": 18,
+          "away_score": 26,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Texans",
+          "away": "Chargers",
+          "home_score": 20,
+          "away_score": 19,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Bengals",
+          "away": "Cowboys",
+          "home_score": 20,
+          "away_score": 26,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Eagles",
+          "away": "Falcons",
+          "home_score": 14,
+          "away_score": 15,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -509,8 +537,8 @@
           "location_url": "https://www.google.com/maps/dir//29.7742164,-95.5951236/@29.7741651,-95.5958579,243m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 18,
+          "away_score": 26
         },
         {
           "home": "Texans",
@@ -521,8 +549,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 20,
+          "away_score": 19
         },
         {
           "home": "Bengals",
@@ -533,8 +561,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 20,
+          "away_score": 26
         },
         {
           "home": "Eagles",
@@ -545,8 +573,8 @@
           "location_url": "https://www.google.com/maps/dir//29.7742164,-95.5951236/@29.7741651,-95.5958579,243m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 14,
+          "away_score": 15
         },
         {
           "home": "Saints",
@@ -714,98 +742,98 @@
         {
           "team": "Bears",
           "coach": "Brown",
-          "w": 3,
+          "w": 4,
           "l": 1,
           "t": 0,
-          "gp": 4,
-          "pf": 58,
+          "gp": 5,
+          "pf": 77,
           "pa": 1,
-          "margin_sum": 57,
-          "capped_margin_sum": 52
+          "margin_sum": 76,
+          "capped_margin_sum": 71
         },
         {
           "team": "Bills",
           "coach": "Lamb",
           "w": 4,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 4,
-          "pf": 80,
-          "pa": 25,
-          "margin_sum": 55,
-          "capped_margin_sum": 52
+          "gp": 5,
+          "pf": 93,
+          "pa": 39,
+          "margin_sum": 54,
+          "capped_margin_sum": 51
         },
         {
           "team": "Broncos",
           "coach": "Boeker",
           "w": 0,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 5,
+          "gp": 6,
           "pf": 12,
-          "pa": 145,
-          "margin_sum": -133,
-          "capped_margin_sum": -105
+          "pa": 167,
+          "margin_sum": -155,
+          "capped_margin_sum": -126
         },
         {
           "team": "Buccaneers",
           "coach": "Wells",
           "w": 1,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 4,
+          "gp": 5,
           "pf": 59,
-          "pa": 62,
-          "margin_sum": -3,
-          "capped_margin_sum": -10
+          "pa": 81,
+          "margin_sum": -22,
+          "capped_margin_sum": -29
         },
         {
           "team": "Lions",
           "coach": "Harper",
-          "w": 4,
+          "w": 5,
           "l": 0,
           "t": 0,
-          "gp": 4,
-          "pf": 84,
+          "gp": 5,
+          "pf": 112,
           "pa": 0,
-          "margin_sum": 84,
-          "capped_margin_sum": 64
+          "margin_sum": 112,
+          "capped_margin_sum": 85
         },
         {
           "team": "Mustangs",
           "coach": "Brown",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
+          "gp": 6,
           "pf": 72,
-          "pa": 69,
-          "margin_sum": 3,
-          "capped_margin_sum": 0
+          "pa": 97,
+          "margin_sum": -25,
+          "capped_margin_sum": -21
         },
         {
           "team": "Oilers",
           "coach": "Fatjo",
-          "w": 2,
+          "w": 3,
           "l": 2,
           "t": 0,
-          "gp": 4,
-          "pf": 39,
-          "pa": 78,
-          "margin_sum": -39,
-          "capped_margin_sum": -34
+          "gp": 5,
+          "pf": 53,
+          "pa": 91,
+          "margin_sum": -38,
+          "capped_margin_sum": -33
         },
         {
           "team": "Spartans",
           "coach": "Devine",
-          "w": 1,
+          "w": 2,
           "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 36,
+          "gp": 6,
+          "pf": 58,
           "pa": 76,
-          "margin_sum": -40,
-          "capped_margin_sum": -37
+          "margin_sum": -18,
+          "capped_margin_sum": -16
         }
       ],
       "games": [
@@ -948,6 +976,34 @@
           "home_score": 0,
           "away_score": 14,
           "date": "Wed 9/30"
+        },
+        {
+          "home": "Lions",
+          "away": "Mustangs",
+          "home_score": 28,
+          "away_score": 0,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Buccaneers",
+          "away": "Bears",
+          "home_score": 0,
+          "away_score": 19,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Broncos",
+          "away": "Spartans",
+          "home_score": 0,
+          "away_score": 22,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Oilers",
+          "away": "Bills",
+          "home_score": 14,
+          "away_score": 13,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -1200,8 +1256,8 @@
           "location_url": "https://www.google.com/maps/dir//29.7742164,-95.5951236/@29.7741651,-95.5958579,243m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 28,
+          "away_score": 0
         },
         {
           "home": "Buccaneers",
@@ -1212,8 +1268,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 19
         },
         {
           "home": "Broncos",
@@ -1224,8 +1280,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 22
         },
         {
           "home": "Oilers",
@@ -1236,8 +1292,8 @@
           "location_url": "https://www.google.com/maps/dir//29.7742164,-95.5951236/@29.7741651,-95.5958579,243m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 14,
+          "away_score": 13
         },
         {
           "home": "Mustangs",
@@ -2228,25 +2284,25 @@
           "team": "Dortmund",
           "coach": "Mena",
           "w": 1,
-          "l": 1,
+          "l": 2,
           "t": 1,
-          "gp": 3,
-          "pf": 7,
-          "pa": 7,
-          "margin_sum": 0,
-          "capped_margin_sum": 0
+          "gp": 4,
+          "pf": 11,
+          "pa": 16,
+          "margin_sum": -5,
+          "capped_margin_sum": -3
         },
         {
           "team": "Galaticos",
           "coach": "Walker",
-          "w": 4,
+          "w": 5,
           "l": 0,
           "t": 2,
-          "gp": 6,
-          "pf": 38,
-          "pa": 15,
-          "margin_sum": 23,
-          "capped_margin_sum": 12
+          "gp": 7,
+          "pf": 47,
+          "pa": 19,
+          "margin_sum": 28,
+          "capped_margin_sum": 15
         },
         {
           "team": "Germany",
@@ -2275,26 +2331,26 @@
         {
           "team": "Sounders",
           "coach": "Zabor",
-          "w": 1,
+          "w": 2,
           "l": 0,
           "t": 2,
-          "gp": 3,
-          "pf": 7,
-          "pa": 6,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "gp": 4,
+          "pf": 11,
+          "pa": 9,
+          "margin_sum": 2,
+          "capped_margin_sum": 2
         },
         {
           "team": "Spain",
           "coach": "Amacker",
           "w": 2,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 22,
-          "pa": 15,
-          "margin_sum": 7,
-          "capped_margin_sum": 0
+          "gp": 5,
+          "pf": 25,
+          "pa": 19,
+          "margin_sum": 6,
+          "capped_margin_sum": -1
         }
       ],
       "games": [
@@ -2451,6 +2507,20 @@
           "home_score": 2,
           "away_score": 2,
           "date": "Sat 10/3"
+        },
+        {
+          "home": "Spain",
+          "away": "Sounders",
+          "home_score": 3,
+          "away_score": 4,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "Dortmund",
+          "away": "Galaticos",
+          "home_score": 4,
+          "away_score": 9,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -2727,8 +2797,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 4
         },
         {
           "home": "Dortmund",
@@ -2739,8 +2809,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 9
         },
         {
           "home": "New York",
@@ -3016,14 +3086,14 @@
         {
           "team": "Barcelona",
           "coach": "Parker",
-          "w": 1,
+          "w": 2,
           "l": 2,
           "t": 0,
-          "gp": 3,
-          "pf": 8,
+          "gp": 4,
+          "pf": 10,
           "pa": 22,
-          "margin_sum": -14,
-          "capped_margin_sum": -3
+          "margin_sum": -12,
+          "capped_margin_sum": -1
         },
         {
           "team": "Celtic",
@@ -3053,13 +3123,13 @@
           "team": "Holland",
           "coach": "Montgomery",
           "w": 2,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 3,
+          "gp": 4,
           "pf": 13,
-          "pa": 6,
-          "margin_sum": 7,
-          "capped_margin_sum": 3
+          "pa": 8,
+          "margin_sum": 5,
+          "capped_margin_sum": 1
         },
         {
           "team": "Ireland",
@@ -3229,6 +3299,13 @@
           "home_score": 0,
           "away_score": 5,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "Holland",
+          "away": "Barcelona",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -3445,8 +3522,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Ireland",
@@ -3674,38 +3751,38 @@
         {
           "team": "America",
           "coach": "Doffing",
-          "w": 0,
+          "w": 1,
           "l": 5,
           "t": 1,
-          "gp": 6,
-          "pf": 9,
-          "pa": 28,
-          "margin_sum": -19,
-          "capped_margin_sum": -14
+          "gp": 7,
+          "pf": 13,
+          "pa": 30,
+          "margin_sum": -17,
+          "capped_margin_sum": -12
         },
         {
           "team": "Argentina FC",
           "coach": "Albano",
           "w": 1,
-          "l": 2,
+          "l": 3,
           "t": 3,
-          "gp": 6,
+          "gp": 7,
           "pf": 15,
-          "pa": 15,
-          "margin_sum": 0,
-          "capped_margin_sum": -1
+          "pa": 17,
+          "margin_sum": -2,
+          "capped_margin_sum": -3
         },
         {
           "team": "Bayern Eagles",
           "coach": "Suarez",
-          "w": 3,
+          "w": 4,
           "l": 1,
           "t": 1,
-          "gp": 5,
-          "pf": 34,
+          "gp": 6,
+          "pf": 36,
           "pa": 8,
-          "margin_sum": 26,
-          "capped_margin_sum": 7
+          "margin_sum": 28,
+          "capped_margin_sum": 9
         },
         {
           "team": "Bulls FC",
@@ -3735,13 +3812,13 @@
           "team": "Chelsea",
           "coach": "Zarghouni",
           "w": 2,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 6,
-          "pf": 15,
-          "pa": 18,
-          "margin_sum": -3,
-          "capped_margin_sum": -3
+          "gp": 7,
+          "pf": 17,
+          "pa": 22,
+          "margin_sum": -5,
+          "capped_margin_sum": -5
         },
         {
           "team": "Holland Hooligans",
@@ -4082,6 +4159,20 @@
           "home_score": 4,
           "away_score": 3,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "Bayern Eagles",
+          "away": "Argentina FC",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "America",
+          "away": "Chelsea",
+          "home_score": 4,
+          "away_score": 2,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -4562,8 +4653,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "America",
@@ -4574,8 +4665,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 2
         },
         {
           "home": "Bulls FC",
@@ -4900,14 +4991,14 @@
           "team": "Blue Jays",
           "coach": "Cardoso",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 1,
-          "gp": 6,
+          "gp": 7,
           "pf": 6,
-          "pa": 42,
-          "margin_sum": -36,
-          "capped_margin_sum": -12,
-          "scored_gp": 5,
+          "pa": 49,
+          "margin_sum": -43,
+          "capped_margin_sum": -15,
+          "scored_gp": 6,
           "outcome_only_gp": 1
         },
         {
@@ -4937,14 +5028,14 @@
         {
           "team": "Kinkaid Falcons",
           "coach": "Alonso",
-          "w": 0,
+          "w": 1,
           "l": 2,
           "t": 4,
-          "gp": 6,
-          "pf": 12,
+          "gp": 7,
+          "pf": 19,
           "pa": 18,
-          "margin_sum": -6,
-          "capped_margin_sum": -4
+          "margin_sum": 1,
+          "capped_margin_sum": -1
         },
         {
           "team": "Liverpool",
@@ -5285,6 +5376,13 @@
           "home_score": 1,
           "away_score": 1,
           "date": "Sat 10/3"
+        },
+        {
+          "home": "Kinkaid Falcons",
+          "away": "Blue Jays",
+          "home_score": 7,
+          "away_score": 0,
+          "date": "Mon 10/5"
         },
         {
           "home": "Seattle Sounders FC",
@@ -5721,8 +5819,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-05",
           "start_iso": "2026-10-05T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 7,
+          "away_score": 0
         },
         {
           "home": "Seattle Sounders FC",
@@ -6131,18 +6229,18 @@
           "team": "Bomb Pops",
           "coach": "Young-John",
           "w": 0,
-          "l": 4,
+          "l": 5,
           "t": 2,
-          "gp": 6,
+          "gp": 7,
           "pf": 5,
-          "pa": 23,
-          "margin_sum": -18,
-          "capped_margin_sum": -12,
+          "pa": 25,
+          "margin_sum": -20,
+          "capped_margin_sum": -14,
           "reported_record": {
             "w": 0,
-            "l": 5,
+            "l": 6,
             "t": 2,
-            "gp": 7
+            "gp": 8
           },
           "unknown_gp": 1
         },
@@ -6162,13 +6260,13 @@
           "team": "Canada Raptors",
           "coach": "Guner",
           "w": 1,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 6,
-          "pf": 2,
-          "pa": 30,
-          "margin_sum": -28,
-          "capped_margin_sum": -14
+          "gp": 7,
+          "pf": 3,
+          "pa": 35,
+          "margin_sum": -32,
+          "capped_margin_sum": -17
         },
         {
           "team": "England Lions",
@@ -6240,26 +6338,26 @@
         {
           "team": "New York Knights",
           "coach": "Lamb",
-          "w": 5,
+          "w": 6,
           "l": 3,
           "t": 0,
-          "gp": 8,
-          "pf": 33,
+          "gp": 9,
+          "pf": 35,
           "pa": 19,
-          "margin_sum": 14,
-          "capped_margin_sum": 5
+          "margin_sum": 16,
+          "capped_margin_sum": 7
         },
         {
           "team": "Regis Knights",
           "coach": "Thibodeaux",
-          "w": 3,
+          "w": 4,
           "l": 2,
           "t": 1,
-          "gp": 6,
-          "pf": 16,
-          "pa": 9,
-          "margin_sum": 7,
-          "capped_margin_sum": 6
+          "gp": 7,
+          "pf": 21,
+          "pa": 10,
+          "margin_sum": 11,
+          "capped_margin_sum": 9
         }
       ],
       "games": [
@@ -6521,6 +6619,20 @@
           "home_score": 1,
           "away_score": 4,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "Regis Knights",
+          "away": "Canada Raptors",
+          "home_score": 5,
+          "away_score": 1,
+          "date": "Tue 10/6"
+        },
+        {
+          "home": "New York Knights",
+          "away": "Bomb Pops",
+          "home_score": 2,
+          "away_score": 0,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -7005,8 +7117,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 1
         },
         {
           "home": "New York Knights",
@@ -7017,8 +7129,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 0
         },
         {
           "home": "BHE Lions",
@@ -8605,10 +8717,10 @@
           "coach": "Blanco",
           "w": 3,
           "l": 2,
-          "t": 0,
-          "gp": 5,
-          "pf": 11,
-          "pa": 5,
+          "t": 1,
+          "gp": 6,
+          "pf": 12,
+          "pa": 6,
           "margin_sum": 6,
           "capped_margin_sum": 4
         },
@@ -8641,10 +8753,10 @@
           "coach": "Duffy",
           "w": 3,
           "l": 4,
-          "t": 0,
-          "gp": 7,
-          "pf": 18,
-          "pa": 20,
+          "t": 1,
+          "gp": 8,
+          "pf": 19,
+          "pa": 21,
           "margin_sum": -2,
           "capped_margin_sum": -2
         },
@@ -8963,6 +9075,13 @@
           "home_score": 1,
           "away_score": 1,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "Queen Bees",
+          "away": "Lady Tigers",
+          "home_score": 1,
+          "away_score": 1,
+          "date": "Tue 10/6"
         }
       ],
       "schedule": [
@@ -9479,8 +9598,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 1
         },
         {
           "home": "Sparkly Rainbows",
@@ -9797,8 +9916,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-06T18:21:43.346154Z",
-  "data_updated": "2026-10-06T18:21:43.346154Z",
+  "last_successful_check": "2026-10-07T03:10:15.656528Z",
+  "data_updated": "2026-10-07T03:10:15.656528Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
