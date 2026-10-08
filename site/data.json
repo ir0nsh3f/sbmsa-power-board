@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-08T06:03:36.806400Z",
+  "last_checked": "2026-10-08T13:28:29.244853Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2285,10 +2285,10 @@
           "coach": "Mena",
           "w": 1,
           "l": 2,
-          "t": 1,
-          "gp": 4,
-          "pf": 11,
-          "pa": 16,
+          "t": 2,
+          "gp": 5,
+          "pf": 12,
+          "pa": 17,
           "margin_sum": -5,
           "capped_margin_sum": -3
         },
@@ -2321,10 +2321,10 @@
           "coach": "Norfleet",
           "w": 2,
           "l": 2,
-          "t": 0,
-          "gp": 4,
-          "pf": 11,
-          "pa": 15,
+          "t": 1,
+          "gp": 5,
+          "pf": 12,
+          "pa": 16,
           "margin_sum": -4,
           "capped_margin_sum": 0
         },
@@ -2521,6 +2521,13 @@
           "home_score": 4,
           "away_score": 9,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "New York",
+          "away": "Dortmund",
+          "home_score": 1,
+          "away_score": 1,
+          "date": "Wed 10/7"
         },
         {
           "home": "Germany",
@@ -2828,8 +2835,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-07",
           "start_iso": "2026-10-07T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 1
         },
         {
           "home": "Germany",
@@ -9972,8 +9979,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-08T06:03:36.806400Z",
-  "data_updated": "2026-10-08T06:03:36.806400Z",
+  "last_successful_check": "2026-10-08T13:28:29.244853Z",
+  "data_updated": "2026-10-08T13:28:29.244853Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
