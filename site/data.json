@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-08T13:28:29.244853Z",
+  "last_checked": "2026-10-08T23:20:55.673153Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -8802,14 +8802,14 @@
         {
           "team": "Maple Magic",
           "coach": "Ball",
-          "w": 6,
+          "w": 7,
           "l": 0,
           "t": 0,
-          "gp": 6,
-          "pf": 32,
+          "gp": 7,
+          "pf": 37,
           "pa": 7,
-          "margin_sum": 25,
-          "capped_margin_sum": 16
+          "margin_sum": 30,
+          "capped_margin_sum": 19
         },
         {
           "team": "Queen Bees",
@@ -8827,13 +8827,13 @@
           "team": "Rainbow Unicorns",
           "coach": "Loftis",
           "w": 3,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 7,
+          "gp": 8,
           "pf": 13,
-          "pa": 17,
-          "margin_sum": -4,
-          "capped_margin_sum": -4
+          "pa": 22,
+          "margin_sum": -9,
+          "capped_margin_sum": -7
         },
         {
           "team": "Red Hots",
@@ -9138,6 +9138,13 @@
           "home_score": 1,
           "away_score": 1,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "Maple Magic",
+          "away": "Rainbow Unicorns",
+          "home_score": 5,
+          "away_score": 0,
+          "date": "Tue 10/6"
         },
         {
           "home": "Queen Bees",
@@ -9649,8 +9656,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 0
         },
         {
           "home": "Queen Bees",
@@ -9755,18 +9762,6 @@
           "time": "6:45 PM",
           "location": "SBE 6U #2",
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-15",
-          "start_iso": "2026-10-15T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
-          "home": "Red Hots",
-          "away": "Sparkly Rainbows",
-          "date": "Thu 10/15",
-          "time": "6:45 PM",
-          "location": "SBE 6U #5",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T18:45:00-05:00",
           "home_score": null,
@@ -9975,12 +9970,24 @@
           "start_iso": "2026-10-26T17:30:00-05:00",
           "home_score": null,
           "away_score": null
+        },
+        {
+          "home": "Red Hots",
+          "away": "Sparkly Rainbows",
+          "date": "Mon 10/26",
+          "time": "6:45 PM",
+          "location": "PSE Field #2",
+          "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
+          "date_iso": "2026-10-26",
+          "start_iso": "2026-10-26T18:45:00-05:00",
+          "home_score": null,
+          "away_score": null
         }
       ]
     }
   ],
-  "last_successful_check": "2026-10-08T13:28:29.244853Z",
-  "data_updated": "2026-10-08T13:28:29.244853Z",
+  "last_successful_check": "2026-10-08T23:20:55.673153Z",
+  "data_updated": "2026-10-08T23:20:55.673153Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
