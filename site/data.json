@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-09T13:16:30.018825Z",
+  "last_checked": "2026-10-09T22:38:23.466459Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7466,24 +7466,24 @@
           "away_score": null
         },
         {
-          "home": "Green Army",
-          "away": "Brazil",
+          "home": "BHE Lions",
+          "away": "New York Knights",
           "date": "Fri 10/23",
           "time": "5:45 PM",
-          "location": "PSE Field #4",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
+          "location": "PSE Field #2",
+          "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-23",
           "start_iso": "2026-10-23T17:45:00-05:00",
           "home_score": null,
           "away_score": null
         },
         {
-          "home": "BHE Lions",
-          "away": "New York Knights",
+          "home": "Green Army",
+          "away": "Brazil",
           "date": "Fri 10/23",
           "time": "5:45 PM",
-          "location": "SBE 6U #1",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
+          "location": "PSE Field #4",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-23",
           "start_iso": "2026-10-23T17:45:00-05:00",
           "home_score": null,
@@ -7632,13 +7632,13 @@
           "team": "Lollipops",
           "coach": "Vaughn",
           "w": 0,
-          "l": 5,
+          "l": 6,
           "t": 1,
-          "gp": 6,
+          "gp": 7,
           "pf": 3,
-          "pa": 40,
-          "margin_sum": -37,
-          "capped_margin_sum": -15
+          "pa": 43,
+          "margin_sum": -40,
+          "capped_margin_sum": -18
         },
         {
           "team": "Shooting Stars",
@@ -7691,14 +7691,14 @@
         {
           "team": "The Kicking Queens",
           "coach": "Bassitt",
-          "w": 1,
+          "w": 2,
           "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 7,
+          "gp": 6,
+          "pf": 10,
           "pa": 11,
-          "margin_sum": -4,
-          "capped_margin_sum": -4
+          "margin_sum": -1,
+          "capped_margin_sum": -1
         }
       ],
       "games": [
@@ -7967,6 +7967,13 @@
           "home_score": 0,
           "away_score": 5,
           "date": "Mon 10/5"
+        },
+        {
+          "home": "The Kicking Queens",
+          "away": "Lollipops",
+          "home_score": 3,
+          "away_score": 0,
+          "date": "Tue 10/6"
         },
         {
           "home": "Goalden Girls",
@@ -8442,8 +8449,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-06",
           "start_iso": "2026-10-06T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 0
         },
         {
           "home": "Glittery Dragons",
@@ -9809,8 +9816,8 @@
           "away": "Dallas Cowgirls",
           "date": "Thu 10/15",
           "time": "6:45 PM",
-          "location": "SBE 6U #2",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
+          "location": "SBE 6U #5",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T18:45:00-05:00",
           "home_score": null,
@@ -9973,18 +9980,6 @@
           "away_score": null
         },
         {
-          "home": "Dallas Cowgirls",
-          "away": "The Pink Flamingos",
-          "date": "Sat 10/24",
-          "time": "12:15 PM",
-          "location": "SBE 6U #5",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
-          "date_iso": "2026-10-24",
-          "start_iso": "2026-10-24T12:15:00-05:00",
-          "home_score": null,
-          "away_score": null
-        },
-        {
           "home": "Glitter Dumplings",
           "away": "Red Hots",
           "date": "Sat 10/24",
@@ -10031,12 +10026,24 @@
           "start_iso": "2026-10-26T18:45:00-05:00",
           "home_score": null,
           "away_score": null
+        },
+        {
+          "home": "Dallas Cowgirls",
+          "away": "The Pink Flamingos",
+          "date": "Tue 10/27",
+          "time": "5:30 PM",
+          "location": "SBE 6U #5",
+          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
+          "date_iso": "2026-10-27",
+          "start_iso": "2026-10-27T17:30:00-05:00",
+          "home_score": null,
+          "away_score": null
         }
       ]
     }
   ],
-  "last_successful_check": "2026-10-09T13:16:30.018825Z",
-  "data_updated": "2026-10-09T06:08:19.253224Z",
+  "last_successful_check": "2026-10-09T22:38:23.466459Z",
+  "data_updated": "2026-10-09T22:38:23.466459Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
