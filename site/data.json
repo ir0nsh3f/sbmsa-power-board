@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-09T06:08:19.253224Z",
+  "last_checked": "2026-10-09T13:16:30.018825Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -10035,7 +10035,7 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-09T06:08:19.253224Z",
+  "last_successful_check": "2026-10-09T13:16:30.018825Z",
   "data_updated": "2026-10-09T06:08:19.253224Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
