@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-09T22:38:23.466459Z",
+  "last_checked": "2026-10-10T05:52:14.763211Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -7585,10 +7585,10 @@
           "coach": "Tran",
           "w": 5,
           "l": 2,
-          "t": 0,
-          "gp": 7,
-          "pf": 25,
-          "pa": 14,
+          "t": 1,
+          "gp": 8,
+          "pf": 28,
+          "pa": 17,
           "margin_sum": 11,
           "capped_margin_sum": 6
         },
@@ -7597,10 +7597,10 @@
           "coach": "Gittemeier",
           "w": 2,
           "l": 2,
-          "t": 2,
-          "gp": 6,
-          "pf": 19,
-          "pa": 17,
+          "t": 3,
+          "gp": 7,
+          "pf": 22,
+          "pa": 20,
           "margin_sum": 2,
           "capped_margin_sum": 0
         },
@@ -7645,10 +7645,10 @@
           "coach": "Kim",
           "w": 1,
           "l": 4,
-          "t": 1,
-          "gp": 6,
-          "pf": 9,
-          "pa": 19,
+          "t": 2,
+          "gp": 7,
+          "pf": 12,
+          "pa": 22,
           "margin_sum": -10,
           "capped_margin_sum": -7
         },
@@ -7657,10 +7657,10 @@
           "coach": "Taylor",
           "w": 4,
           "l": 1,
-          "t": 1,
-          "gp": 6,
-          "pf": 29,
-          "pa": 7,
+          "t": 2,
+          "gp": 7,
+          "pf": 32,
+          "pa": 10,
           "margin_sum": 22,
           "capped_margin_sum": 10
         },
@@ -7974,6 +7974,20 @@
           "home_score": 3,
           "away_score": 0,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "Glittery Dragons",
+          "away": "Shooting Stars",
+          "home_score": 3,
+          "away_score": 3,
+          "date": "Wed 10/7"
+        },
+        {
+          "home": "Glitter Goals",
+          "away": "Sirens",
+          "home_score": 3,
+          "away_score": 3,
+          "date": "Wed 10/7"
         },
         {
           "home": "Goalden Girls",
@@ -8461,8 +8475,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-07",
           "start_iso": "2026-10-07T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 3
         },
         {
           "home": "Glitter Goals",
@@ -8473,8 +8487,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-07",
           "start_iso": "2026-10-07T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 3
         },
         {
           "home": "Goalden Girls",
@@ -8799,13 +8813,13 @@
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
           "w": 1,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 6,
-          "pf": 8,
-          "pa": 20,
-          "margin_sum": -12,
-          "capped_margin_sum": -9
+          "gp": 7,
+          "pf": 10,
+          "pa": 25,
+          "margin_sum": -15,
+          "capped_margin_sum": -12
         },
         {
           "team": "Flower Power",
@@ -8822,14 +8836,14 @@
         {
           "team": "Glitter Dumplings",
           "coach": "Friedman",
-          "w": 2,
+          "w": 3,
           "l": 3,
           "t": 1,
-          "gp": 6,
-          "pf": 7,
-          "pa": 10,
-          "margin_sum": -3,
-          "capped_margin_sum": -2
+          "gp": 7,
+          "pf": 9,
+          "pa": 11,
+          "margin_sum": -2,
+          "capped_margin_sum": -1
         },
         {
           "team": "Lady Tigers",
@@ -8894,26 +8908,26 @@
         {
           "team": "Red Hots",
           "coach": "Lakin",
-          "w": 2,
+          "w": 3,
           "l": 4,
           "t": 0,
-          "gp": 6,
-          "pf": 7,
-          "pa": 12,
-          "margin_sum": -5,
-          "capped_margin_sum": -5
+          "gp": 7,
+          "pf": 12,
+          "pa": 14,
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         },
         {
           "team": "Sparkly Rainbows",
           "coach": "Jeffus",
           "w": 2,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 7,
-          "pf": 14,
-          "pa": 31,
-          "margin_sum": -17,
-          "capped_margin_sum": -10
+          "gp": 8,
+          "pf": 15,
+          "pa": 33,
+          "margin_sum": -18,
+          "capped_margin_sum": -11
         },
         {
           "team": "The Pink Flamingos",
@@ -9208,6 +9222,20 @@
           "home_score": 1,
           "away_score": 1,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "Sparkly Rainbows",
+          "away": "Glitter Dumplings",
+          "home_score": 1,
+          "away_score": 2,
+          "date": "Wed 10/7"
+        },
+        {
+          "home": "Dallas Cowgirls",
+          "away": "Red Hots",
+          "home_score": 2,
+          "away_score": 5,
+          "date": "Thu 10/8"
         }
       ],
       "schedule": [
@@ -9736,8 +9764,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-07",
           "start_iso": "2026-10-07T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 2
         },
         {
           "home": "Dallas Cowgirls",
@@ -9748,8 +9776,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9810%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-08",
           "start_iso": "2026-10-08T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 5
         },
         {
           "home": "The Pink Flamingos",
@@ -10042,8 +10070,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-09T22:38:23.466459Z",
-  "data_updated": "2026-10-09T22:38:23.466459Z",
+  "last_successful_check": "2026-10-10T05:52:14.763211Z",
+  "data_updated": "2026-10-10T05:52:14.763211Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
