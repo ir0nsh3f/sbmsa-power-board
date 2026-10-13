@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-13T00:39:25.487905Z",
+  "last_checked": "2026-10-13T14:11:05.723494Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -2295,14 +2295,14 @@
         {
           "team": "Galaticos",
           "coach": "Walker",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 2,
-          "gp": 7,
-          "pf": 47,
-          "pa": 19,
-          "margin_sum": 28,
-          "capped_margin_sum": 15
+          "gp": 8,
+          "pf": 52,
+          "pa": 21,
+          "margin_sum": 31,
+          "capped_margin_sum": 18
         },
         {
           "team": "Germany",
@@ -2320,13 +2320,13 @@
           "team": "New York",
           "coach": "Norfleet",
           "w": 2,
-          "l": 2,
+          "l": 3,
           "t": 1,
-          "gp": 5,
-          "pf": 12,
-          "pa": 16,
-          "margin_sum": -4,
-          "capped_margin_sum": 0
+          "gp": 6,
+          "pf": 14,
+          "pa": 21,
+          "margin_sum": -7,
+          "capped_margin_sum": -3
         },
         {
           "team": "Sounders",
@@ -2542,6 +2542,13 @@
           "home_score": 1,
           "away_score": 2,
           "date": "Thu 10/8"
+        },
+        {
+          "home": "New York",
+          "away": "Galaticos",
+          "home_score": 2,
+          "away_score": 5,
+          "date": "Mon 10/12"
         }
       ],
       "schedule": [
@@ -2878,8 +2885,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-12",
           "start_iso": "2026-10-12T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 5
         },
         {
           "home": "Germany",
@@ -10070,8 +10077,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-13T00:39:25.487905Z",
-  "data_updated": "2026-10-10T21:43:22.972732Z",
+  "last_successful_check": "2026-10-13T14:11:05.723494Z",
+  "data_updated": "2026-10-13T14:11:05.723494Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ]
