@@ -9,6 +9,11 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto(url+'#league-schedule');await page.waitForSelector('[data-league-fixture]');await page.locator(`[data-sport="${sport}"]`).click();
    const toggle=page.locator('[data-league-projections]');assert.equal(await toggle.count(),1,'Soccer toggle present');assert.equal(await toggle.getAttribute('aria-pressed'),'false');assert.equal(await page.locator('.league-projection').count(),0);
+   const withheld=await page.evaluate(s=>data.division_status&&SBMSAFreshness.sourceTime(data,s)===null,sport);
+   if(withheld){
+    const current=await (await page.request.get(url+'soccer-projections-'+sport+'/current.json')).json();assert.equal(current.status,'withheld');assert.deepEqual(current.forecasts,[]);assert.equal(current.generated_at,null);
+    await toggle.click();assert.equal(await page.locator('.league-projection b').count(),0);assert.match(await page.locator('#publication>strong').innerText(),/stale.*mixed freshness/);assert.deepEqual(errors,[]);report.push({width,sport,withheld:true});await page.close();continue;
+   }
    await page.waitForFunction(s=>data.soccerAgeProjections?.[s],sport);
    const ids=()=>page.locator('[data-league-fixture]').evaluateAll(es=>es.map(e=>e.dataset.leagueFixture));const before=await ids();await toggle.click();assert.deepEqual(await ids(),before);
    const actual=await page.locator('.league-projection b').evaluateAll(es=>es.map(e=>{const row=e.closest('[data-league-fixture]'),[s,d,i]=JSON.parse(row.dataset.leagueFixture),g=data.divisions.find(x=>x.sport===s&&x.division===d).schedule[i],p=data.soccerAgeProjections[s],f=p.forecasts.find(f=>f.fixture_id[2]===d&&f.fixture_id[3]===g.home&&f.fixture_id[4]===g.away&&Date.parse(f.fixture_id[5])===Date.parse(g.start_iso));return {text:e.parentElement.innerText,detail:row.querySelector('.league-projection-detail').textContent,f,model:p.model};}));

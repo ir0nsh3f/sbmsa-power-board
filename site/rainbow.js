@@ -11,7 +11,9 @@ function render(data,container,now=Date.now()){
  if(!container||!data)return;
  const S=globalThis.SBMSASchedules,e=S.escapeHTML,rows=nextTwo(data.divisions,now),d=data.divisions.find(d=>d.sport==='5ug'&&d.division==='Boxx');
  const ranks=globalThis.SBMSARatings.compute(data.divisions,'5ug',data.ratingMode||'raw');
- const p=data.soccerProjections?.generated_at===data.last_successful_check?data.soccerProjections:null;
+ const coverage=Object.entries(data.division_status||{}).filter(([k])=>k.startsWith('5ug|')).map(([,v])=>v);
+ const checked=coverage.length?(coverage.every(v=>v.status==='ok'&&v.last_successful_check===coverage[0].last_successful_check)?coverage[0].last_successful_check:null):data.last_successful_check;
+ const p=data.soccerProjections?.generated_at&&data.soccerProjections.generated_at===checked?data.soccerProjections:null;
  const date=s=>new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(s));
  container.innerHTML=`<h2>Rainbow Unicorns</h2><p>5U Girls Soccer · Boxx · Coach ${e(d?.teams.find(t=>t.team===team)?.coach||'Not listed')} · Fall 2026</p><p><b>Next two games · Central time.</b> Only dated, unplayed kickoffs more than 30 minutes away. Undated games cannot be ordered; past unscored games are not treated as future.</p><p class="rainbow-caution"><b>Experimental · enormous uncertainty at low GP.</b> These are strongly shrunk goal estimates, not betting odds or a fair betting-cover line. No shot-based xG or calibration. Ranks are separate, current-season ${e(data.ratingMode||'raw')} power.</p>`+rows.map(g=>{
  const opponent=g.home===team?g.away:g.home,t=ranks.find(t=>t.division==='Boxx'&&t.team===opponent),id=['fall-2026','5ug','Boxx',g.home,g.away,g.start_iso];

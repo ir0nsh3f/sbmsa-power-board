@@ -37,7 +37,7 @@ class ScheduleTests(unittest.TestCase):
             self.assertTrue(all(len(d['schedule']) == 1 for d in first['divisions']))
             bad_url = f'https://sbmsa.net/sites/sbmsa/schedule/{results.SOURCES[0][2]}/'
             current = results.update_results(output, fetch=lambda url: page(row(away='Unknown' if url == bad_url else 'B')), now='2026-09-08T13:00:00Z')
-            self.assertEqual(current['status'], 'error')
+            self.assertEqual(current['status'], 'partial')
             self.assertEqual(len(current['errors']), 1)
             for key in ('divisions', 'data_updated', 'last_successful_check'):
                 self.assertEqual(current[key], first[key])

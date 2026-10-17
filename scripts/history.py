@@ -89,6 +89,8 @@ def atomic_write(path, content, *, immutable=False):
 def snapshot_entry(snapshot, path, version=2):
     extra = {} if version == 1 else {'ranking_method_id': snapshot['ranking_method']['id'],
                                     'change_reason': snapshot.get('change_reason', 'observed-results')}
+    if 'source_coverage' in snapshot:
+        extra['source_coverage'] = snapshot['source_coverage']
     return dict(extra, **{'captured_at': snapshot['captured_at'], 'path': path,
             'result_sha256': snapshot['result_sha256'], 'teams': rank_points(snapshot['divisions'], snapshot['ranking_method']),
             'completed_games': sum(len(d['games']) for d in snapshot['divisions'])})
@@ -128,20 +130,30 @@ def load_index(directory):
 
 
 def record_history(directory, payload):
-    if payload.get('status') != 'ok' or payload.get('errors') or not payload.get('divisions') or payload.get('last_successful_check') != payload.get('last_checked'):
-        raise ValueError('Only a complete accepted collection may enter history')
+    if payload.get('status') not in ('ok', 'partial') or not payload.get('divisions'):
+        raise ValueError('Only accepted division collections may enter history')
+    coverage = payload.get('division_status')
+    if payload['status'] == 'partial' and not coverage:
+        raise ValueError('Partial history requires explicit source coverage')
+    if not coverage and (payload.get('errors') or payload.get('last_successful_check') != payload.get('last_checked')):
+        raise ValueError('Legacy history requires a complete accepted collection')
     directory = Path(directory)
     data = result_data(payload['divisions'])
     digest = hashlib.sha256(encoded({'season': SEASON, 'divisions': data})).hexdigest()
     index = load_index(directory)
     captures = index['captures']
-    captured_at = payload['last_successful_check']
+    captured_at = payload['last_checked']
     observed = datetime.fromisoformat(captured_at.replace('Z', '+00:00'))
     if observed.tzinfo is None:
         raise ValueError('Capture time must include timezone')
     if captures and observed < datetime.fromisoformat(captures[-1]['captured_at'].replace('Z', '+00:00')):
         raise ValueError('Capture time predates the latest observation')
-    if captures and captures[-1]['result_sha256'] == digest and captures[-1]['ranking_method_id'] == METHOD['id']:
+    def states(c):
+        return {k:v['status'] for k,v in c.items()} if c else {}
+    previous_coverage = captures[-1].get('source_coverage', {}) if captures else {}
+    coverage_changed = any(v != 'ok' for v in states(coverage).values()) or any(v != 'ok' for v in states(previous_coverage).values())
+    coverage_changed = coverage_changed and states(coverage) != states(previous_coverage)
+    if captures and not coverage_changed and captures[-1]['result_sha256'] == digest and captures[-1]['ranking_method_id'] == METHOD['id']:
         return captures[-1]
     stamp = datetime.fromisoformat(captured_at.replace('Z', '+00:00')).astimezone(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     path = f'{SEASON}/{stamp}-{digest[:16]}.json'
@@ -149,6 +161,9 @@ def record_history(directory, payload):
                 'capture_semantics': 'observed verified results; not game-day or source-posted time',
                 'result_sha256': digest, 'ranking_method': METHOD, 'divisions': data,
                 'change_reason': 'ranking-method-change' if captures and captures[-1]['ranking_method_id'] != METHOD['id'] else 'observed-results'}
+    if coverage:
+        snapshot['source_coverage'] = coverage
+        snapshot['capture_semantics'] = 'Composite accepted results at attempt time; each division source timestamp and status is explicit in source_coverage. Retained divisions are not new observations.'
     entry = snapshot_entry(snapshot, path)
     created = False
     try:

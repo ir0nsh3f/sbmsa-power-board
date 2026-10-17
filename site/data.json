@@ -1,6 +1,6 @@
 {
-  "last_checked": "2026-10-17T19:36:22.613882Z",
-  "status": "error",
+  "last_checked": "2026-10-17T19:46:41.125462Z",
+  "status": "partial",
   "errors": [
     "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays",
     "6u Mbappe: ValueError: Cannot reconcile goals for Bomb Pops"
@@ -26,14 +26,14 @@
         {
           "team": "Chargers",
           "coach": "Smith",
-          "w": 5,
+          "w": 6,
           "l": 1,
           "t": 0,
-          "gp": 6,
-          "pf": 172,
-          "pa": 65,
-          "margin_sum": 107,
-          "capped_margin_sum": 84
+          "gp": 7,
+          "pf": 194,
+          "pa": 85,
+          "margin_sum": 109,
+          "capped_margin_sum": 86
         },
         {
           "team": "Cowboys",
@@ -63,13 +63,13 @@
           "team": "Falcons",
           "coach": "Berry",
           "w": 5,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 6,
-          "pf": 108,
-          "pa": 80,
-          "margin_sum": 28,
-          "capped_margin_sum": 16
+          "gp": 7,
+          "pf": 128,
+          "pa": 102,
+          "margin_sum": 26,
+          "capped_margin_sum": 14
         },
         {
           "team": "Jets",
@@ -288,6 +288,13 @@
           "home_score": 14,
           "away_score": 15,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "Chargers",
+          "away": "Falcons",
+          "home_score": 22,
+          "away_score": 20,
+          "date": "Wed 10/14"
         }
       ],
       "schedule": [
@@ -600,8 +607,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 22,
+          "away_score": 20
         },
         {
           "home": "Jets",
@@ -746,25 +753,25 @@
           "team": "Bears",
           "coach": "Brown",
           "w": 4,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 5,
-          "pf": 77,
-          "pa": 1,
-          "margin_sum": 76,
-          "capped_margin_sum": 71
+          "gp": 6,
+          "pf": 91,
+          "pa": 17,
+          "margin_sum": 74,
+          "capped_margin_sum": 69
         },
         {
           "team": "Bills",
           "coach": "Lamb",
-          "w": 4,
+          "w": 5,
           "l": 1,
           "t": 0,
-          "gp": 5,
-          "pf": 93,
-          "pa": 39,
-          "margin_sum": 54,
-          "capped_margin_sum": 51
+          "gp": 6,
+          "pf": 109,
+          "pa": 53,
+          "margin_sum": 56,
+          "capped_margin_sum": 53
         },
         {
           "team": "Broncos",
@@ -782,37 +789,37 @@
           "team": "Buccaneers",
           "coach": "Wells",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 5,
+          "gp": 6,
           "pf": 59,
-          "pa": 81,
-          "margin_sum": -22,
-          "capped_margin_sum": -29
+          "pa": 112,
+          "margin_sum": -53,
+          "capped_margin_sum": -50
         },
         {
           "team": "Lions",
           "coach": "Harper",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 0,
-          "gp": 5,
-          "pf": 112,
+          "gp": 6,
+          "pf": 143,
           "pa": 0,
-          "margin_sum": 112,
-          "capped_margin_sum": 85
+          "margin_sum": 143,
+          "capped_margin_sum": 106
         },
         {
           "team": "Mustangs",
           "coach": "Brown",
           "w": 2,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 6,
-          "pf": 72,
-          "pa": 97,
-          "margin_sum": -25,
-          "capped_margin_sum": -21
+          "gp": 7,
+          "pf": 78,
+          "pa": 105,
+          "margin_sum": -27,
+          "capped_margin_sum": -23
         },
         {
           "team": "Oilers",
@@ -829,14 +836,14 @@
         {
           "team": "Spartans",
           "coach": "Devine",
-          "w": 2,
+          "w": 3,
           "l": 4,
           "t": 0,
-          "gp": 6,
-          "pf": 58,
-          "pa": 76,
-          "margin_sum": -18,
-          "capped_margin_sum": -16
+          "gp": 7,
+          "pf": 66,
+          "pa": 82,
+          "margin_sum": -16,
+          "capped_margin_sum": -14
         }
       ],
       "games": [
@@ -1007,6 +1014,27 @@
           "home_score": 14,
           "away_score": 13,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "Mustangs",
+          "away": "Spartans",
+          "home_score": 6,
+          "away_score": 8,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Bills",
+          "away": "Bears",
+          "home_score": 16,
+          "away_score": 14,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Lions",
+          "away": "Buccaneers",
+          "home_score": 31,
+          "away_score": 0,
+          "date": "Sat 10/17"
         }
       ],
       "schedule": [
@@ -1307,8 +1335,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 8
         },
         {
           "home": "Bills",
@@ -1319,8 +1347,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 16,
+          "away_score": 14
         },
         {
           "home": "Lions",
@@ -1331,8 +1359,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7799997,-95.5529332,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T12:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 31,
+          "away_score": 0
         },
         {
           "home": "49ers",
@@ -1452,14 +1480,14 @@
         {
           "team": "Chiefs",
           "coach": "Gillespie",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 0,
-          "gp": 5,
-          "pf": 161,
-          "pa": 52,
-          "margin_sum": 109,
-          "capped_margin_sum": 78
+          "gp": 6,
+          "pf": 194,
+          "pa": 64,
+          "margin_sum": 130,
+          "capped_margin_sum": 99
         },
         {
           "team": "Dolphins",
@@ -1477,85 +1505,85 @@
           "team": "Gamblers",
           "coach": "Eisterhold",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 87,
-          "pa": 136,
-          "margin_sum": -49,
-          "capped_margin_sum": -41
+          "gp": 6,
+          "pf": 99,
+          "pa": 163,
+          "margin_sum": -64,
+          "capped_margin_sum": -56
         },
         {
           "team": "Giants",
           "coach": "Bellow",
           "w": 3,
-          "l": 2,
+          "l": 3,
           "t": 0,
-          "gp": 5,
-          "pf": 86,
-          "pa": 62,
-          "margin_sum": 24,
-          "capped_margin_sum": 16
+          "gp": 6,
+          "pf": 98,
+          "pa": 81,
+          "margin_sum": 17,
+          "capped_margin_sum": 9
         },
         {
           "team": "Jaguars",
           "coach": "Benitez",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 5,
-          "pf": 52,
-          "pa": 95,
-          "margin_sum": -43,
-          "capped_margin_sum": -43
+          "gp": 6,
+          "pf": 64,
+          "pa": 128,
+          "margin_sum": -64,
+          "capped_margin_sum": -64
         },
         {
           "team": "Packers",
           "coach": "Martin",
-          "w": 2,
+          "w": 3,
           "l": 3,
           "t": 0,
-          "gp": 5,
-          "pf": 88,
-          "pa": 99,
-          "margin_sum": -11,
-          "capped_margin_sum": 0
+          "gp": 6,
+          "pf": 107,
+          "pa": 111,
+          "margin_sum": -4,
+          "capped_margin_sum": 7
         },
         {
           "team": "Patriots",
           "coach": "Fersen",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 5,
-          "pf": 57,
-          "pa": 123,
-          "margin_sum": -66,
-          "capped_margin_sum": -56
+          "gp": 6,
+          "pf": 69,
+          "pa": 162,
+          "margin_sum": -93,
+          "capped_margin_sum": -77
         },
         {
           "team": "Raiders",
           "coach": "Nunn",
-          "w": 4,
+          "w": 5,
           "l": 1,
           "t": 0,
-          "gp": 5,
-          "pf": 91,
-          "pa": 44,
-          "margin_sum": 47,
-          "capped_margin_sum": 47
+          "gp": 6,
+          "pf": 118,
+          "pa": 56,
+          "margin_sum": 62,
+          "capped_margin_sum": 62
         },
         {
           "team": "Seahawks",
           "coach": "Shea",
-          "w": 3,
+          "w": 4,
           "l": 2,
           "t": 0,
-          "gp": 5,
-          "pf": 92,
-          "pa": 57,
-          "margin_sum": 35,
-          "capped_margin_sum": 15
+          "gp": 6,
+          "pf": 131,
+          "pa": 69,
+          "margin_sum": 62,
+          "capped_margin_sum": 36
         },
         {
           "team": "Steelers",
@@ -1745,6 +1773,34 @@
           "home_score": 25,
           "away_score": 21,
           "date": "Sat 10/3"
+        },
+        {
+          "home": "Gamblers",
+          "away": "Raiders",
+          "home_score": 12,
+          "away_score": 27,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Chiefs",
+          "away": "Jaguars",
+          "home_score": 33,
+          "away_score": 12,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Packers",
+          "away": "Giants",
+          "home_score": 19,
+          "away_score": 12,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Seahawks",
+          "away": "Patriots",
+          "home_score": 39,
+          "away_score": 12,
+          "date": "Wed 10/14"
         }
       ],
       "schedule": [
@@ -2057,8 +2113,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 27
         },
         {
           "home": "Chiefs",
@@ -2069,8 +2125,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 33,
+          "away_score": 12
         },
         {
           "home": "Packers",
@@ -2081,8 +2137,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 19,
+          "away_score": 12
         },
         {
           "home": "Seahawks",
@@ -2093,8 +2149,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 39,
+          "away_score": 12
         },
         {
           "home": "Steelers",
@@ -2238,86 +2294,86 @@
         {
           "team": "Arsenal",
           "coach": "Klupchak",
-          "w": 5,
+          "w": 7,
           "l": 0,
           "t": 1,
-          "gp": 6,
-          "pf": 28,
-          "pa": 12,
-          "margin_sum": 16,
-          "capped_margin_sum": 12
+          "gp": 8,
+          "pf": 46,
+          "pa": 16,
+          "margin_sum": 30,
+          "capped_margin_sum": 18
         },
         {
           "team": "Brazil",
           "coach": "Ford",
-          "w": 2,
+          "w": 3,
           "l": 4,
           "t": 0,
-          "gp": 6,
-          "pf": 17,
-          "pa": 22,
-          "margin_sum": -5,
-          "capped_margin_sum": -5
+          "gp": 7,
+          "pf": 19,
+          "pa": 23,
+          "margin_sum": -4,
+          "capped_margin_sum": -4
         },
         {
           "team": "Canada",
           "coach": "Lorenzo",
           "w": 0,
-          "l": 5,
+          "l": 6,
           "t": 1,
-          "gp": 6,
-          "pf": 18,
-          "pa": 47,
-          "margin_sum": -29,
-          "capped_margin_sum": -14
+          "gp": 7,
+          "pf": 21,
+          "pa": 59,
+          "margin_sum": -38,
+          "capped_margin_sum": -17
         },
         {
           "team": "Dinoscores",
           "coach": "Urban",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 1,
-          "gp": 6,
-          "pf": 18,
-          "pa": 20,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "gp": 7,
+          "pf": 19,
+          "pa": 24,
+          "margin_sum": -5,
+          "capped_margin_sum": -5
         },
         {
           "team": "Dortmund",
           "coach": "Mena",
           "w": 1,
-          "l": 2,
+          "l": 4,
           "t": 2,
-          "gp": 5,
-          "pf": 12,
-          "pa": 17,
-          "margin_sum": -5,
-          "capped_margin_sum": -3
+          "gp": 7,
+          "pf": 15,
+          "pa": 28,
+          "margin_sum": -13,
+          "capped_margin_sum": -9
         },
         {
           "team": "Galaticos",
           "coach": "Walker",
-          "w": 6,
+          "w": 7,
           "l": 0,
           "t": 2,
-          "gp": 8,
-          "pf": 52,
-          "pa": 21,
-          "margin_sum": 31,
-          "capped_margin_sum": 18
+          "gp": 9,
+          "pf": 54,
+          "pa": 22,
+          "margin_sum": 32,
+          "capped_margin_sum": 19
         },
         {
           "team": "Germany",
           "coach": "McRae",
           "w": 2,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 12,
-          "pa": 18,
-          "margin_sum": -6,
-          "capped_margin_sum": -3
+          "gp": 6,
+          "pf": 13,
+          "pa": 20,
+          "margin_sum": -7,
+          "capped_margin_sum": -4
         },
         {
           "team": "New York",
@@ -2334,26 +2390,26 @@
         {
           "team": "Sounders",
           "coach": "Zabor",
-          "w": 2,
+          "w": 3,
           "l": 1,
           "t": 2,
-          "gp": 5,
-          "pf": 12,
-          "pa": 11,
-          "margin_sum": 1,
-          "capped_margin_sum": 1
+          "gp": 6,
+          "pf": 17,
+          "pa": 13,
+          "margin_sum": 4,
+          "capped_margin_sum": 4
         },
         {
           "team": "Spain",
           "coach": "Amacker",
-          "w": 2,
-          "l": 3,
+          "w": 3,
+          "l": 4,
           "t": 0,
-          "gp": 5,
-          "pf": 25,
-          "pa": 19,
-          "margin_sum": 6,
-          "capped_margin_sum": -1
+          "gp": 7,
+          "pf": 30,
+          "pa": 22,
+          "margin_sum": 8,
+          "capped_margin_sum": 1
         }
       ],
       "games": [
@@ -2559,6 +2615,48 @@
           "home_score": 2,
           "away_score": 1,
           "date": "Tue 10/13"
+        },
+        {
+          "home": "Brazil",
+          "away": "Germany",
+          "home_score": 2,
+          "away_score": 1,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Dortmund",
+          "away": "Arsenal",
+          "home_score": 1,
+          "away_score": 6,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Spain",
+          "away": "Galaticos",
+          "home_score": 1,
+          "away_score": 2,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Spain",
+          "away": "Dinoscores",
+          "home_score": 4,
+          "away_score": 1,
+          "date": "Fri 10/16"
+        },
+        {
+          "home": "Dortmund",
+          "away": "Sounders",
+          "home_score": 2,
+          "away_score": 5,
+          "date": "Fri 10/16"
+        },
+        {
+          "home": "Canada",
+          "away": "Arsenal",
+          "home_score": 3,
+          "away_score": 12,
+          "date": "Fri 10/16"
         }
       ],
       "schedule": [
@@ -2919,8 +3017,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 1
         },
         {
           "home": "Dortmund",
@@ -2931,8 +3029,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 6
         },
         {
           "home": "Spain",
@@ -2943,8 +3041,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 2
         },
         {
           "home": "Spain",
@@ -2955,8 +3053,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-16",
           "start_iso": "2026-10-16T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 1
         },
         {
           "home": "Dortmund",
@@ -2967,8 +3065,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-16",
           "start_iso": "2026-10-16T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 5
         },
         {
           "home": "Canada",
@@ -2979,8 +3077,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-16",
           "start_iso": "2026-10-16T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 12
         },
         {
           "home": "New York",
@@ -3112,36 +3210,36 @@
         {
           "team": "Argentina",
           "coach": "Hand",
-          "w": 5,
+          "w": 6,
           "l": 0,
           "t": 0,
-          "gp": 5,
-          "pf": 29,
-          "pa": 7,
-          "margin_sum": 22,
-          "capped_margin_sum": 12
+          "gp": 6,
+          "pf": 31,
+          "pa": 8,
+          "margin_sum": 23,
+          "capped_margin_sum": 13
         },
         {
           "team": "Barcelona",
           "coach": "Parker",
           "w": 2,
-          "l": 2,
-          "t": 0,
-          "gp": 4,
-          "pf": 10,
-          "pa": 22,
-          "margin_sum": -12,
-          "capped_margin_sum": -1
+          "l": 3,
+          "t": 1,
+          "gp": 6,
+          "pf": 13,
+          "pa": 27,
+          "margin_sum": -14,
+          "capped_margin_sum": -3
         },
         {
           "team": "Celtic",
           "coach": "Moore",
           "w": 2,
           "l": 4,
-          "t": 0,
-          "gp": 6,
-          "pf": 8,
-          "pa": 29,
+          "t": 1,
+          "gp": 7,
+          "pf": 10,
+          "pa": 31,
           "margin_sum": -21,
           "capped_margin_sum": -10
         },
@@ -3149,73 +3247,73 @@
           "team": "France",
           "coach": "Miller",
           "w": 4,
-          "l": 0,
+          "l": 1,
           "t": 0,
-          "gp": 4,
-          "pf": 33,
-          "pa": 2,
-          "margin_sum": 31,
-          "capped_margin_sum": 12
+          "gp": 5,
+          "pf": 34,
+          "pa": 4,
+          "margin_sum": 30,
+          "capped_margin_sum": 11
         },
         {
           "team": "Holland",
           "coach": "Montgomery",
-          "w": 2,
+          "w": 3,
           "l": 3,
           "t": 0,
-          "gp": 5,
-          "pf": 13,
-          "pa": 11,
-          "margin_sum": 2,
-          "capped_margin_sum": -2
+          "gp": 6,
+          "pf": 15,
+          "pa": 12,
+          "margin_sum": 3,
+          "capped_margin_sum": -1
         },
         {
           "team": "Ireland",
           "coach": "Bishop",
           "w": 0,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 5,
+          "gp": 6,
           "pf": 8,
-          "pa": 39,
-          "margin_sum": -31,
-          "capped_margin_sum": -12
+          "pa": 46,
+          "margin_sum": -38,
+          "capped_margin_sum": -15
         },
         {
           "team": "Juve",
           "coach": "Kilgore",
-          "w": 4,
+          "w": 5,
           "l": 1,
           "t": 0,
-          "gp": 5,
-          "pf": 31,
+          "gp": 6,
+          "pf": 38,
           "pa": 4,
-          "margin_sum": 27,
-          "capped_margin_sum": 11
+          "margin_sum": 34,
+          "capped_margin_sum": 14
         },
         {
           "team": "Three Lions",
           "coach": "Novak",
-          "w": 1,
+          "w": 2,
           "l": 3,
           "t": 0,
-          "gp": 4,
-          "pf": 7,
-          "pa": 20,
-          "margin_sum": -13,
-          "capped_margin_sum": -6
+          "gp": 5,
+          "pf": 10,
+          "pa": 21,
+          "margin_sum": -11,
+          "capped_margin_sum": -4
         },
         {
           "team": "USA",
           "coach": "Taylor",
           "w": 1,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 4,
-          "pf": 7,
-          "pa": 12,
-          "margin_sum": -5,
-          "capped_margin_sum": -4
+          "gp": 5,
+          "pf": 8,
+          "pa": 14,
+          "margin_sum": -6,
+          "capped_margin_sum": -5
         }
       ],
       "games": [
@@ -3365,6 +3463,41 @@
           "home_score": 4,
           "away_score": 5,
           "date": "Tue 10/13"
+        },
+        {
+          "home": "France",
+          "away": "Argentina",
+          "home_score": 1,
+          "away_score": 2,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Juve",
+          "away": "Ireland",
+          "home_score": 7,
+          "away_score": 0,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Holland",
+          "away": "USA",
+          "home_score": 2,
+          "away_score": 1,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Three Lions",
+          "away": "Barcelona",
+          "home_score": 3,
+          "away_score": 1,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Celtic",
+          "away": "Barcelona",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Sat 10/17"
         }
       ],
       "schedule": [
@@ -3629,8 +3762,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 2
         },
         {
           "home": "Juve",
@@ -3641,8 +3774,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 7,
+          "away_score": 0
         },
         {
           "home": "Holland",
@@ -3653,8 +3786,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 1
         },
         {
           "home": "Three Lions",
@@ -3665,8 +3798,8 @@
           "location_url": "https://www.google.com/maps/place/9016+Westview+Dr,+Houston,+TX+77055/@29.795295,-95.5135747,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c45c8a720c8d:0xc4d2e9cf617cf539!8m2!3d29.7952904!4d-95.511386",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T19:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 1
         },
         {
           "home": "Celtic",
@@ -3677,8 +3810,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=3080%20Gessner%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "Argentina",
@@ -3822,26 +3955,26 @@
         {
           "team": "Argentina FC",
           "coach": "Albano",
-          "w": 1,
+          "w": 2,
           "l": 3,
-          "t": 3,
-          "gp": 7,
-          "pf": 15,
-          "pa": 17,
-          "margin_sum": -2,
-          "capped_margin_sum": -3
+          "t": 4,
+          "gp": 9,
+          "pf": 21,
+          "pa": 19,
+          "margin_sum": 2,
+          "capped_margin_sum": 0
         },
         {
           "team": "Bayern Eagles",
           "coach": "Suarez",
-          "w": 5,
+          "w": 6,
           "l": 1,
           "t": 1,
-          "gp": 7,
-          "pf": 39,
+          "gp": 8,
+          "pf": 41,
           "pa": 9,
-          "margin_sum": 30,
-          "capped_margin_sum": 11
+          "margin_sum": 32,
+          "capped_margin_sum": 13
         },
         {
           "team": "Bulls FC",
@@ -3858,24 +3991,24 @@
         {
           "team": "Celtics",
           "coach": "Shea",
-          "w": 8,
+          "w": 9,
           "l": 0,
           "t": 0,
-          "gp": 8,
-          "pf": 35,
-          "pa": 12,
-          "margin_sum": 23,
-          "capped_margin_sum": 19
+          "gp": 9,
+          "pf": 38,
+          "pa": 13,
+          "margin_sum": 25,
+          "capped_margin_sum": 21
         },
         {
           "team": "Chelsea",
           "coach": "Zarghouni",
-          "w": 2,
-          "l": 5,
+          "w": 3,
+          "l": 6,
           "t": 1,
-          "gp": 8,
-          "pf": 19,
-          "pa": 24,
+          "gp": 10,
+          "pf": 23,
+          "pa": 28,
           "margin_sum": -5,
           "capped_margin_sum": -5
         },
@@ -3883,71 +4016,71 @@
           "team": "Holland Hooligans",
           "coach": "Blades",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 3,
-          "gp": 8,
+          "gp": 9,
           "pf": 21,
-          "pa": 33,
-          "margin_sum": -12,
-          "capped_margin_sum": -9
+          "pa": 35,
+          "margin_sum": -14,
+          "capped_margin_sum": -11
         },
         {
           "team": "Mexico",
           "coach": "Spradley",
           "w": 0,
-          "l": 6,
+          "l": 7,
           "t": 1,
-          "gp": 7,
-          "pf": 8,
-          "pa": 50,
-          "margin_sum": -42,
-          "capped_margin_sum": -18
+          "gp": 8,
+          "pf": 9,
+          "pa": 53,
+          "margin_sum": -44,
+          "capped_margin_sum": -20
         },
         {
           "team": "Real Madrid",
           "coach": "Akerman",
           "w": 2,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 7,
+          "gp": 8,
           "pf": 9,
-          "pa": 36,
-          "margin_sum": -27,
-          "capped_margin_sum": -12
+          "pa": 40,
+          "margin_sum": -31,
+          "capped_margin_sum": -15
         },
         {
           "team": "Space City Strikers",
           "coach": "Palmer",
-          "w": 2,
+          "w": 3,
           "l": 3,
           "t": 3,
-          "gp": 8,
-          "pf": 18,
-          "pa": 19,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "gp": 9,
+          "pf": 22,
+          "pa": 22,
+          "margin_sum": 0,
+          "capped_margin_sum": 0
         },
         {
           "team": "The Rams",
           "coach": "Kleider",
           "w": 5,
-          "l": 1,
+          "l": 2,
           "t": 1,
-          "gp": 7,
-          "pf": 38,
-          "pa": 20,
-          "margin_sum": 18,
-          "capped_margin_sum": 12
+          "gp": 8,
+          "pf": 41,
+          "pa": 24,
+          "margin_sum": 17,
+          "capped_margin_sum": 11
         },
         {
           "team": "Vipers",
           "coach": "Ellis",
           "w": 6,
           "l": 3,
-          "t": 0,
-          "gp": 9,
-          "pf": 50,
-          "pa": 22,
+          "t": 1,
+          "gp": 10,
+          "pf": 52,
+          "pa": 24,
           "margin_sum": 28,
           "capped_margin_sum": 13
         }
@@ -4274,6 +4407,48 @@
           "home_score": 3,
           "away_score": 1,
           "date": "Tue 10/13"
+        },
+        {
+          "home": "Mexico",
+          "away": "Celtics",
+          "home_score": 1,
+          "away_score": 3,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Chelsea",
+          "away": "Argentina FC",
+          "home_score": 0,
+          "away_score": 4,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Space City Strikers",
+          "away": "The Rams",
+          "home_score": 4,
+          "away_score": 3,
+          "date": "Fri 10/16"
+        },
+        {
+          "home": "Argentina FC",
+          "away": "Vipers",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Sat 10/17"
+        },
+        {
+          "home": "Holland Hooligans",
+          "away": "Bayern Eagles",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Sat 10/17"
+        },
+        {
+          "home": "Chelsea",
+          "away": "Real Madrid",
+          "home_score": 4,
+          "away_score": 0,
+          "date": "Sat 10/17"
         }
       ],
       "schedule": [
@@ -4850,8 +5025,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 3
         },
         {
           "home": "Chelsea",
@@ -4862,8 +5037,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 4
         },
         {
           "home": "Space City Strikers",
@@ -4874,8 +5049,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-16",
           "start_iso": "2026-10-16T17:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 3
         },
         {
           "home": "Argentina FC",
@@ -4886,8 +5061,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "Holland Hooligans",
@@ -4898,8 +5073,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T11:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Chelsea",
@@ -4910,8 +5085,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T13:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 0
         },
         {
           "home": "America",
@@ -7639,74 +7814,74 @@
         {
           "team": "Disco Dolphins",
           "coach": "Kennedy",
-          "w": 4,
+          "w": 5,
           "l": 3,
           "t": 0,
-          "gp": 7,
-          "pf": 23,
+          "gp": 8,
+          "pf": 24,
           "pa": 16,
-          "margin_sum": 7,
-          "capped_margin_sum": 2
+          "margin_sum": 8,
+          "capped_margin_sum": 3
         },
         {
           "team": "Fearless Gummy Bears",
           "coach": "Norman",
           "w": 6,
           "l": 1,
-          "t": 0,
-          "gp": 7,
-          "pf": 21,
-          "pa": 7,
+          "t": 1,
+          "gp": 8,
+          "pf": 23,
+          "pa": 9,
           "margin_sum": 14,
           "capped_margin_sum": 12
         },
         {
           "team": "Glitter Goals",
           "coach": "Tran",
-          "w": 5,
+          "w": 6,
           "l": 2,
           "t": 1,
-          "gp": 8,
-          "pf": 28,
-          "pa": 17,
-          "margin_sum": 11,
-          "capped_margin_sum": 6
+          "gp": 9,
+          "pf": 30,
+          "pa": 18,
+          "margin_sum": 12,
+          "capped_margin_sum": 7
         },
         {
           "team": "Glittery Dragons",
           "coach": "Gittemeier",
           "w": 2,
           "l": 2,
-          "t": 3,
-          "gp": 7,
-          "pf": 22,
-          "pa": 20,
+          "t": 4,
+          "gp": 8,
+          "pf": 24,
+          "pa": 22,
           "margin_sum": 2,
           "capped_margin_sum": 0
         },
         {
           "team": "Goalden Girls",
           "coach": "Wilson",
-          "w": 3,
+          "w": 5,
           "l": 3,
           "t": 1,
-          "gp": 7,
-          "pf": 17,
-          "pa": 21,
-          "margin_sum": -4,
-          "capped_margin_sum": -1
+          "gp": 9,
+          "pf": 25,
+          "pa": 24,
+          "margin_sum": 1,
+          "capped_margin_sum": 4
         },
         {
           "team": "Gummy Bears",
           "coach": "Baker",
-          "w": 7,
+          "w": 8,
           "l": 0,
           "t": 1,
-          "gp": 8,
-          "pf": 35,
+          "gp": 9,
+          "pf": 38,
           "pa": 5,
-          "margin_sum": 30,
-          "capped_margin_sum": 20
+          "margin_sum": 33,
+          "capped_margin_sum": 23
         },
         {
           "team": "Lollipops",
@@ -7724,37 +7899,37 @@
           "team": "Shooting Stars",
           "coach": "Kim",
           "w": 1,
-          "l": 4,
+          "l": 6,
           "t": 2,
-          "gp": 7,
-          "pf": 12,
-          "pa": 22,
-          "margin_sum": -10,
-          "capped_margin_sum": -7
+          "gp": 9,
+          "pf": 14,
+          "pa": 28,
+          "margin_sum": -14,
+          "capped_margin_sum": -11
         },
         {
           "team": "Sirens",
           "coach": "Taylor",
           "w": 4,
-          "l": 1,
+          "l": 2,
           "t": 2,
-          "gp": 7,
-          "pf": 32,
-          "pa": 10,
-          "margin_sum": 22,
-          "capped_margin_sum": 10
+          "gp": 8,
+          "pf": 34,
+          "pa": 14,
+          "margin_sum": 20,
+          "capped_margin_sum": 8
         },
         {
           "team": "Sparkly Lovebugs",
           "coach": "Fitzgerald",
           "w": 0,
-          "l": 6,
+          "l": 7,
           "t": 0,
-          "gp": 6,
+          "gp": 7,
           "pf": 6,
-          "pa": 24,
-          "margin_sum": -18,
-          "capped_margin_sum": -15
+          "pa": 27,
+          "margin_sum": -21,
+          "capped_margin_sum": -18
         },
         {
           "team": "The Blue Belles",
@@ -7772,13 +7947,13 @@
           "team": "The Kicking Queens",
           "coach": "Bassitt",
           "w": 2,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 6,
+          "gp": 7,
           "pf": 10,
-          "pa": 11,
-          "margin_sum": -1,
-          "capped_margin_sum": -1
+          "pa": 12,
+          "margin_sum": -2,
+          "capped_margin_sum": -2
         }
       ],
       "games": [
@@ -8075,6 +8250,48 @@
           "home_score": 2,
           "away_score": 3,
           "date": "Wed 10/7"
+        },
+        {
+          "home": "Gummy Bears",
+          "away": "Sparkly Lovebugs",
+          "home_score": 3,
+          "away_score": 0,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Disco Dolphins",
+          "away": "The Kicking Queens",
+          "home_score": 1,
+          "away_score": 0,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Shooting Stars",
+          "away": "Glitter Goals",
+          "home_score": 1,
+          "away_score": 2,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Fearless Gummy Bears",
+          "away": "Glittery Dragons",
+          "home_score": 2,
+          "away_score": 2,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Sirens",
+          "away": "Goalden Girls",
+          "home_score": 2,
+          "away_score": 4,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Goalden Girls",
+          "away": "Shooting Stars",
+          "home_score": 4,
+          "away_score": 1,
+          "date": "Sat 10/17"
         }
       ],
       "schedule": [
@@ -8591,8 +8808,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 3,
+          "away_score": 0
         },
         {
           "home": "Disco Dolphins",
@@ -8603,8 +8820,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9900%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 0
         },
         {
           "home": "Shooting Stars",
@@ -8615,8 +8832,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 2
         },
         {
           "home": "Fearless Gummy Bears",
@@ -8627,8 +8844,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 2
         },
         {
           "home": "Lollipops",
@@ -8651,8 +8868,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 4
         },
         {
           "home": "Goalden Girls",
@@ -8663,8 +8880,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T09:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 1
         },
         {
           "home": "Glitter Goals",
@@ -8881,13 +9098,13 @@
           "team": "Cotton Candy Crushers",
           "coach": "Hansen",
           "w": 2,
-          "l": 4,
-          "t": 0,
-          "gp": 6,
+          "l": 5,
+          "t": 1,
+          "gp": 8,
           "pf": 9,
-          "pa": 16,
-          "margin_sum": -7,
-          "capped_margin_sum": -5
+          "pa": 21,
+          "margin_sum": -12,
+          "capped_margin_sum": -8
         },
         {
           "team": "Dallas Cowgirls",
@@ -8905,13 +9122,13 @@
           "team": "Flower Power",
           "coach": "Thompson",
           "w": 4,
-          "l": 3,
+          "l": 4,
           "t": 0,
-          "gp": 7,
-          "pf": 16,
-          "pa": 12,
-          "margin_sum": 4,
-          "capped_margin_sum": 3
+          "gp": 8,
+          "pf": 17,
+          "pa": 16,
+          "margin_sum": 1,
+          "capped_margin_sum": 0
         },
         {
           "team": "Glitter Dumplings",
@@ -8930,8 +9147,8 @@
           "coach": "Blanco",
           "w": 3,
           "l": 2,
-          "t": 1,
-          "gp": 6,
+          "t": 2,
+          "gp": 7,
           "pf": 12,
           "pa": 6,
           "margin_sum": 6,
@@ -8952,74 +9169,74 @@
         {
           "team": "Maple Magic",
           "coach": "Ball",
-          "w": 7,
+          "w": 8,
           "l": 0,
           "t": 0,
-          "gp": 7,
-          "pf": 37,
-          "pa": 7,
-          "margin_sum": 30,
-          "capped_margin_sum": 19
+          "gp": 8,
+          "pf": 41,
+          "pa": 8,
+          "margin_sum": 33,
+          "capped_margin_sum": 22
         },
         {
           "team": "Queen Bees",
           "coach": "Duffy",
-          "w": 3,
+          "w": 4,
           "l": 4,
           "t": 1,
-          "gp": 8,
-          "pf": 19,
-          "pa": 21,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "gp": 9,
+          "pf": 25,
+          "pa": 23,
+          "margin_sum": 2,
+          "capped_margin_sum": 1
         },
         {
           "team": "Rainbow Unicorns",
           "coach": "Loftis",
           "w": 3,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 8,
-          "pf": 13,
-          "pa": 22,
-          "margin_sum": -9,
-          "capped_margin_sum": -7
+          "gp": 9,
+          "pf": 15,
+          "pa": 28,
+          "margin_sum": -13,
+          "capped_margin_sum": -10
         },
         {
           "team": "Red Hots",
           "coach": "Lakin",
-          "w": 3,
+          "w": 4,
           "l": 4,
           "t": 0,
-          "gp": 7,
-          "pf": 12,
+          "gp": 8,
+          "pf": 17,
           "pa": 14,
-          "margin_sum": -2,
-          "capped_margin_sum": -2
+          "margin_sum": 3,
+          "capped_margin_sum": 1
         },
         {
           "team": "Sparkly Rainbows",
           "coach": "Jeffus",
           "w": 2,
-          "l": 6,
+          "l": 7,
           "t": 0,
-          "gp": 8,
+          "gp": 9,
           "pf": 15,
-          "pa": 33,
-          "margin_sum": -18,
-          "capped_margin_sum": -11
+          "pa": 35,
+          "margin_sum": -20,
+          "capped_margin_sum": -13
         },
         {
           "team": "The Pink Flamingos",
           "coach": "Long",
-          "w": 3,
+          "w": 4,
           "l": 4,
           "t": 1,
-          "gp": 8,
-          "pf": 12,
+          "gp": 9,
+          "pf": 14,
           "pa": 17,
-          "margin_sum": -5,
-          "capped_margin_sum": -4
+          "margin_sum": -3,
+          "capped_margin_sum": -2
         }
       ],
       "games": [
@@ -9330,6 +9547,41 @@
           "home_score": 2,
           "away_score": 0,
           "date": "Tue 10/13"
+        },
+        {
+          "home": "Rainbow Unicorns",
+          "away": "Queen Bees",
+          "home_score": 2,
+          "away_score": 6,
+          "date": "Tue 10/13"
+        },
+        {
+          "home": "Cotton Candy Crushers",
+          "away": "Lady Tigers",
+          "home_score": 0,
+          "away_score": 0,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Flower Power",
+          "away": "Maple Magic",
+          "home_score": 1,
+          "away_score": 4,
+          "date": "Thu 10/15"
+        },
+        {
+          "home": "Sparkly Rainbows",
+          "away": "The Pink Flamingos",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Sat 10/17"
+        },
+        {
+          "home": "Red Hots",
+          "away": "Cotton Candy Crushers",
+          "home_score": 5,
+          "away_score": 0,
+          "date": "Sat 10/17"
         }
       ],
       "schedule": [
@@ -9906,8 +10158,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-13",
           "start_iso": "2026-10-13T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 6
         },
         {
           "home": "Cotton Candy Crushers",
@@ -9918,8 +10170,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=9810%20Neuens%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 0
         },
         {
           "home": "Flower Power",
@@ -9930,8 +10182,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-15",
           "start_iso": "2026-10-15T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 4
         },
         {
           "home": "Lady Tigers",
@@ -9954,8 +10206,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T08:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Rainbow Unicorns",
@@ -9978,8 +10230,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T09:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 5,
+          "away_score": 0
         },
         {
           "home": "Queen Bees",
@@ -10165,8 +10417,80 @@
     }
   ],
   "last_successful_check": "2026-10-14T21:40:58.558458Z",
-  "data_updated": "2026-10-14T17:10:11.692495Z",
+  "data_updated": "2026-10-17T19:46:41.125462Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
-  ]
+  ],
+  "division_status": {
+    "flag|Mahomes": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "flag|Burrow": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "flag|Jackson": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "8u|Pulisic": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "8u|Messi": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "6u|Messi": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "6u|Haaland": {
+      "status": "error",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-14T21:40:58.558458Z",
+      "data_updated": "2026-10-14T17:10:11.692495Z",
+      "error": "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays"
+    },
+    "6u|Mbappe": {
+      "status": "error",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-14T21:40:58.558458Z",
+      "data_updated": "2026-10-14T17:10:11.692495Z",
+      "error": "6u Mbappe: ValueError: Cannot reconcile goals for Bomb Pops"
+    },
+    "5ug|Akers": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    },
+    "5ug|Boxx": {
+      "status": "ok",
+      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "error": null
+    }
+  }
 }

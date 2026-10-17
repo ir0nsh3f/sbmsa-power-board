@@ -3,7 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const assert=require('node:assert/strict');
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 (async()=>{
- const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['rainbow.js','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
+ const server=http.createServer((req,res)=>{const requested=path.basename(req.url.split('?')[0]);const name=['freshness.js','rainbow.js','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');res.end(fs.readFileSync(path.join(__dirname,'../site',name)));});
  await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
  try{
   browser=await chromium.launch({args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:390,height:844}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -37,7 +37,7 @@ const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
   await page.locator('#publication-details summary').click();assert.ok(await page.locator('.timestamps').isVisible());
   await page.evaluate(()=>publication());assert.ok(await page.locator('.timestamps').isVisible(),'Refresh preserves expanded details');
   await page.locator('#publication-details summary').click();
-  await page.evaluate(()=>{window.savedPublication={status:data.status,last_successful_check:data.last_successful_check,errors:data.errors};data.status='error';data.last_successful_check='2000-01-01';data.errors=['QA source failure'];publication();});
+  await page.evaluate(()=>{window.savedPublication={status:data.status,last_successful_check:data.last_successful_check,errors:data.errors,division_status:data.division_status};delete data.division_status;data.status='error';data.last_successful_check='2000-01-01';data.errors=['QA source failure'];publication();});
   assert.ok((await page.locator('#publication').innerText()).includes('Stale:'));assert.ok(await page.getByText('QA source failure',{exact:true}).isVisible());
   await page.evaluate(()=>{Object.assign(data,window.savedPublication);publication();});
   await page.locator('[data-sport="flag"]').click();await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(process.env.QA_DIR||'/tmp','sbmsa-tabs-mobile.png'),fullPage:true});

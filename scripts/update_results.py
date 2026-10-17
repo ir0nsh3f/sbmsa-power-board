@@ -12,11 +12,13 @@ from urllib.request import Request, urlopen
 
 try:
     from scripts.soccer_projections import record as record_soccer, AGE_MODELS, archive_name
-    from scripts.history import record_history
+    from scripts.history import record_history, atomic_write, encoded
+    from scripts.freshness import source_time, withheld
     from scripts.projections import record as record_projections, load_archive, receipts
 except ModuleNotFoundError:  # Direct CLI execution places scripts/ on sys.path.
     from soccer_projections import record as record_soccer, AGE_MODELS, archive_name
-    from history import record_history
+    from history import record_history, atomic_write, encoded
+    from freshness import source_time, withheld
     from projections import record as record_projections, load_archive, receipts
 
 
@@ -36,7 +38,7 @@ def fetch_html(url):
 def main():
     payload = update_results()
     print(json.dumps({'status':payload['status'],'errors':payload['errors']}))
-    return 0 if payload['status'] == 'ok' else 1
+    return 0 if payload['status'] in ('ok', 'partial') else 1
 
 
 from bs4 import BeautifulSoup
@@ -53,46 +55,65 @@ DEFAULT_OUTPUT = Path(__file__).resolve().parents[1] / 'site/data.json'
 
 
 def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
-    """All-or-nothing refresh; failures retain the last trustworthy divisions."""
+    """Validate each division independently; never relabel retained source data fresh."""
     fetch = fetch or fetch_html
     # Timestamp is the end of actual source collection, not the beginning of fetches.
     supplied_now = now
     now = now or datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
     output = Path(output)
     previous = json.loads(output.read_text()) if output.exists() else {}
-    divisions, errors = [], []
+    divisions, errors, coverage = [], [], {}
+    accepted = 0
     for sport, division, identifier in SOURCES:
         url = f'https://sbmsa.net/sites/sbmsa/schedule/{identifier}/'
+        key = sport + '|' + division
+        prior = next((d for d in previous.get('divisions',[]) if (d['sport'],d['division']) == (sport,division)),None)
+        meta = previous.get('division_status', {}).get(key, {})
+        coverage[key] = dict(status='error', last_checked=None,
+                             last_successful_check=meta.get('last_successful_check', previous.get('last_successful_check') if prior else None),
+                             data_updated=meta.get('data_updated', previous.get('data_updated') if prior else None), error=None)
         try:
             parsed = parse_division(fetch(url), sport, division, url)
             if len(parsed['teams']) != EXPECTED_TEAM_COUNTS[identifier]:
                 raise ValueError(f"Unexpected team count: expected {EXPECTED_TEAM_COUNTS[identifier]}, got {len(parsed['teams'])}")
-            prior = next((d for d in previous.get('divisions',[]) if (d['sport'],d['division']) == (sport,division)),None)
             if prior and {t['team'] for t in parsed['teams']} != {t['team'] for t in prior['teams']}:
                 raise ValueError('Team roster changed; verify official division before resetting baseline')
             divisions.append(parsed)
+            accepted += 1
+            coverage[key].update(status='ok', changed=parsed != prior)
         except Exception as exc:
-            errors.append(f'{sport} {division}: {type(exc).__name__}: {exc}')
+            error = f'{sport} {division}: {type(exc).__name__}: {exc}'
+            errors.append(error)
+            coverage[key]['error'] = error
+            if prior is not None:
+                divisions.append(prior)
     if supplied_now is None:
         now = datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
-    payload = dict(previous)
-    payload.update(last_checked=now,status='error' if errors else 'ok',errors=errors)
-    if errors:
-        payload.setdefault('divisions',[])
-        payload.setdefault('last_successful_check',None)
-        payload.setdefault('data_updated',None)
-    else:
-        payload['divisions'] = divisions
-        payload['warnings'] = [f"{d['sport']} {d['division']}: {g['away']} @ {g['home']} ({g['date_iso']}): {g['result_note']}. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
-                               for d in divisions for g in d['schedule'] if g.get('result_status') == 'unknown']
-        payload['last_successful_check'] = now
-        payload['data_updated'] = previous.get('data_updated') if previous.get('divisions') == divisions else now
-        receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
+    for meta in coverage.values():
+        meta['last_checked'] = now
+        if meta['status'] == 'ok':
+            meta['last_successful_check'] = now
+            if meta.pop('changed'):
+                meta['data_updated'] = now
+    payload = dict(previous, divisions=divisions, division_status=coverage,
+                   last_checked=now, status=('partial' if accepted else 'error') if errors else 'ok', errors=errors)
+    payload['last_successful_check'] = previous.get('last_successful_check') if errors else now
+    payload['data_updated'] = previous.get('data_updated') if previous.get('divisions', []) == divisions else now
+    payload['warnings'] = [f"{d['sport']} {d['division']}: {g['away']} @ {g['home']} ({g['date_iso']}): {g['result_note']}. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
+                           for d in divisions for g in d['schedule'] if g.get('result_status') == 'unknown']
+    receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
+    if accepted:
         record_history(output.parent / 'history', payload)
+    if source_time(payload, 'flag'):
         record_projections(output.parent / 'projections', divisions, now)
-        record_soccer(output.parent / 'soccer-projections', divisions, now)
-        for model in AGE_MODELS.values():
-            record_soccer(output.parent / archive_name(model), divisions, now, model)
+    elif coverage:
+        atomic_write(output.parent / 'projections/current.json', encoded(withheld(payload, 'flag')))
+    for sport, model in [('5ug', None), *[(m['sport'], m) for m in AGE_MODELS.values()]]:
+        directory = output.parent / (archive_name(model) if model else 'soccer-projections')
+        if source_time(payload, sport):
+            record_soccer(directory, divisions, now, model)
+        else:
+            atomic_write(directory / 'current.json', encoded(withheld(payload, sport)))
     output.parent.mkdir(parents=True,exist_ok=True)
     temporary = None
     try:

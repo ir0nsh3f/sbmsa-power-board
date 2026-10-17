@@ -2,6 +2,10 @@
 import argparse
 import hashlib
 import json
+try:
+    from scripts.freshness import source_time, withheld
+except ModuleNotFoundError:
+    from freshness import source_time, withheld
 import os
 from pathlib import Path
 import time
@@ -18,7 +22,8 @@ PUBLIC='https://ir0nsh3f.github.io/sbmsa-power-board/projections/'
 def result_payload(root):
     root=Path(root);data=json.loads((root/'data.json').read_text())
     return dict(schema_version=1,season='fall-2026',selection='last-observed-public-pregame-v1',
-                source_checked_at=data['last_successful_check'],
+                source_checked_at=source_time(data,'flag'),
+                **({'assembled_at':data['last_checked'], 'source_coverage':{k:v for k,v in data['division_status'].items() if k.startswith('flag|')}} if 'division_status' in data else {}),
                 forecasts=last_pregame(root/'projections',data['divisions']))
 
 def summarize(root=ROOT):
@@ -28,7 +33,13 @@ def summarize(root=ROOT):
 def validate(root=ROOT):
     root=Path(root);directory=root/'projections';index=load_archive(directory);receipts(directory,index)
     data=json.loads((root/'data.json').read_text());current=json.loads((directory/'current.json').read_text())
-    expected=build(data['divisions'],data['last_successful_check'])
+    checked=source_time(data,'flag')
+    if checked is None and 'division_status' in data:
+        assert current==withheld(data,'flag')
+        if (directory/'results.json').exists():
+            assert json.loads((directory/'results.json').read_text())==result_payload(root)
+        return index
+    expected=build(data['divisions'],checked)
     assert {k:v for k,v in current.items() if k in expected}=={k:v for k,v in expected.items() if k!='training'}
     entry=next(e for e in index['captures'] if e['path']==current['capture_path'])
     snapshot=json.loads((directory/entry['path']).read_text())

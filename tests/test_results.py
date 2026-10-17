@@ -97,7 +97,9 @@ class ResultsTests(unittest.TestCase):
             for key in ('divisions','data_updated','last_successful_check'):
                 self.assertEqual(error[key],second[key])
             self.assertEqual(json.loads(output.read_text()),error)
-            self.assertEqual({str(p):p.read_bytes() for p in (Path(tmp)/'projections').rglob('*.json')},forecasts)
+            for file, raw in forecasts.items():
+                if Path(file).name != 'current.json':self.assertEqual(Path(file).read_bytes(),raw)
+            self.assertEqual(json.loads((Path(tmp)/'projections/current.json').read_text())['status'],'withheld')
             changed = results.update_results(output,fetch=lambda u: synthetic_page(games=((0,0),(31,0))),now='2026-09-08T15:00:00Z')
             self.assertEqual(changed['data_updated'],'2026-09-08T15:00:00Z')
             self.assertEqual(set(Path(tmp).iterdir()), {output, Path(tmp)/'history', Path(tmp)/'projections', Path(tmp)/'soccer-projections', Path(tmp)/'soccer-projections-8u', Path(tmp)/'soccer-projections-6u'})

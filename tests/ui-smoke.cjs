@@ -9,7 +9,7 @@ const path=require('node:path');
  const site=path.join(__dirname,'../site');
  const server=http.createServer((req,res)=>{
   const requested=path.basename(req.url.split('?')[0]);
-  const name=['rainbow.js','soccer-method.html','power-method.html','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
+  const name=['freshness.js','rainbow.js','soccer-method.html','power-method.html','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
   res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
   res.end(fs.readFileSync(path.join(site,name)));
  });

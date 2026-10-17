@@ -76,7 +76,7 @@ class HistoryTests(unittest.TestCase):
         self.collect('2026-09-08T15:00:00Z')  # Exact rerun is idempotent.
         self.assertEqual(len(self.index()['captures']), 3)
 
-    def test_partial_failed_collection_does_not_append(self):
+    def test_partial_collection_appends_explicit_coverage(self):
         self.collect()
         before = (self.history / 'index.json').read_bytes()
         def fetch(url):
@@ -84,9 +84,11 @@ class HistoryTests(unittest.TestCase):
                 raise OSError('offline')
             return synthetic_page(games=((0, 0), (31, 0)))
         failed = results.update_results(self.output, fetch=fetch, now='2026-09-08T16:00:00Z')
-        self.assertEqual(failed['status'], 'error')
-        self.assertEqual((self.history / 'index.json').read_bytes(), before)
-        self.assertEqual(len(list(self.history.glob('fall-2026/*.json'))), 1)
+        self.assertEqual(failed['status'], 'partial')
+        self.assertNotEqual((self.history / 'index.json').read_bytes(), before)
+        self.assertEqual(len(list(self.history.glob('fall-2026/*.json'))), 2)
+        entry = self.index()['captures'][-1]
+        self.assertEqual(entry['source_coverage']['flag|Burrow']['last_successful_check'], '2026-09-08T12:00:00Z')
 
     def test_index_write_failure_keeps_previous_archive_and_current_payload(self):
         from scripts import history

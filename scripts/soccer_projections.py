@@ -117,6 +117,10 @@ def build(divisions, checked, model=None):
 # Separate directory and schema: no flag capture, receipt, or evaluator is touched.
 import hashlib
 import json
+try:
+    from scripts.freshness import source_time, withheld
+except ModuleNotFoundError:
+    from freshness import source_time, withheld
 from pathlib import Path
 try:
     from scripts.history import atomic_write, encoded
@@ -194,8 +198,13 @@ def archive_name(model):
 def validate(root,model=None):
     model=recognized(MODEL if model is None else model)
     root=Path(root);directory=root/archive_name(model);index=load_archive(directory)
-    d=json.loads((root/'data.json').read_text());p=build(d['divisions'],d['last_successful_check'],model)
+    d=json.loads((root/'data.json').read_text())
     current=json.loads((directory/'current.json').read_text())
+    checked=source_time(d,model['sport'])
+    if checked is None and 'division_status' in d:
+        if current != withheld(d,model['sport']):raise ValueError('Stale age must withhold new forecasts')
+        return index
+    p=build(d['divisions'],checked,model)
     e=next(e for e in index['captures'] if e['path']==current['capture_path'])
     expected=dict({k:v for k,v in p.items() if k!='training'},capture_path=e['path'],captured_at=e['captured_at'])
     if current!=expected or semantic(json.loads((directory/e['path']).read_text()))!=semantic(p):

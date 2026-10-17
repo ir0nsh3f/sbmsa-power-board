@@ -8,7 +8,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  const evidence=[];
  for(const width of [320,390,768,1400]){const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto(process.env.TEST_URL||`http://127.0.0.1:${server.address().port}/`);await page.waitForSelector('#rows .row');
- const actual=await page.evaluate(()=>data);assert.equal(actual.status,'ok');
+ const actual=await page.evaluate(()=>data);assert.ok(['ok','partial'].includes(actual.status));
  const affected=actual.divisions.flatMap(d=>d.schedule.filter(g=>g.home_outcome).map(g=>({d,g})));
  assert.ok(affected.length,'Expected fresh official outcome-only evidence');
  for(const {d,g} of affected){
