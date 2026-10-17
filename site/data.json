@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-17T19:46:41.125462Z",
+  "last_checked": "2026-10-17T20:02:02.663187Z",
   "status": "partial",
   "errors": [
     "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays",
@@ -7887,13 +7887,13 @@
           "team": "Lollipops",
           "coach": "Vaughn",
           "w": 0,
-          "l": 6,
+          "l": 7,
           "t": 1,
-          "gp": 7,
-          "pf": 3,
-          "pa": 43,
-          "margin_sum": -40,
-          "capped_margin_sum": -18
+          "gp": 8,
+          "pf": 4,
+          "pa": 45,
+          "margin_sum": -41,
+          "capped_margin_sum": -19
         },
         {
           "team": "Shooting Stars",
@@ -7934,14 +7934,14 @@
         {
           "team": "The Blue Belles",
           "coach": "Levey",
-          "w": 2,
+          "w": 3,
           "l": 4,
           "t": 1,
-          "gp": 7,
-          "pf": 6,
-          "pa": 19,
-          "margin_sum": -13,
-          "capped_margin_sum": -8
+          "gp": 8,
+          "pf": 8,
+          "pa": 20,
+          "margin_sum": -12,
+          "capped_margin_sum": -7
         },
         {
           "team": "The Kicking Queens",
@@ -8276,6 +8276,13 @@
           "home": "Fearless Gummy Bears",
           "away": "Glittery Dragons",
           "home_score": 2,
+          "away_score": 2,
+          "date": "Wed 10/14"
+        },
+        {
+          "home": "Lollipops",
+          "away": "The Blue Belles",
+          "home_score": 1,
           "away_score": 2,
           "date": "Wed 10/14"
         },
@@ -8856,8 +8863,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 2
         },
         {
           "home": "Sirens",
@@ -9121,14 +9128,14 @@
         {
           "team": "Flower Power",
           "coach": "Thompson",
-          "w": 4,
+          "w": 5,
           "l": 4,
           "t": 0,
-          "gp": 8,
-          "pf": 17,
-          "pa": 16,
-          "margin_sum": 1,
-          "capped_margin_sum": 0
+          "gp": 9,
+          "pf": 20,
+          "pa": 17,
+          "margin_sum": 3,
+          "capped_margin_sum": 2
         },
         {
           "team": "Glitter Dumplings",
@@ -9182,13 +9189,13 @@
           "team": "Queen Bees",
           "coach": "Duffy",
           "w": 4,
-          "l": 4,
+          "l": 5,
           "t": 1,
-          "gp": 9,
-          "pf": 25,
-          "pa": 23,
-          "margin_sum": 2,
-          "capped_margin_sum": 1
+          "gp": 10,
+          "pf": 26,
+          "pa": 26,
+          "margin_sum": 0,
+          "capped_margin_sum": -1
         },
         {
           "team": "Rainbow Unicorns",
@@ -9581,6 +9588,13 @@
           "away": "Cotton Candy Crushers",
           "home_score": 5,
           "away_score": 0,
+          "date": "Sat 10/17"
+        },
+        {
+          "home": "Queen Bees",
+          "away": "Flower Power",
+          "home_score": 1,
+          "away_score": 3,
           "date": "Sat 10/17"
         }
       ],
@@ -10242,8 +10256,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-17",
           "start_iso": "2026-10-17T11:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 3
         },
         {
           "home": "Maple Magic",
@@ -10417,79 +10431,79 @@
     }
   ],
   "last_successful_check": "2026-10-14T21:40:58.558458Z",
-  "data_updated": "2026-10-17T19:46:41.125462Z",
+  "data_updated": "2026-10-17T20:02:02.663187Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
   ],
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
       "data_updated": "2026-10-17T19:46:41.125462Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "error",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
       "last_successful_check": "2026-10-14T21:40:58.558458Z",
       "data_updated": "2026-10-14T17:10:11.692495Z",
       "error": "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays"
     },
     "6u|Mbappe": {
       "status": "error",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
       "last_successful_check": "2026-10-14T21:40:58.558458Z",
       "data_updated": "2026-10-14T17:10:11.692495Z",
       "error": "6u Mbappe: ValueError: Cannot reconcile goals for Bomb Pops"
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
-      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
+      "data_updated": "2026-10-17T20:02:02.663187Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-17T19:46:41.125462Z",
-      "last_successful_check": "2026-10-17T19:46:41.125462Z",
-      "data_updated": "2026-10-17T19:46:41.125462Z",
+      "last_checked": "2026-10-17T20:02:02.663187Z",
+      "last_successful_check": "2026-10-17T20:02:02.663187Z",
+      "data_updated": "2026-10-17T20:02:02.663187Z",
       "error": null
     }
   }
