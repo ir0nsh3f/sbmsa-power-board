@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-20T11:35:35.003388Z",
+  "last_checked": "2026-10-20T17:08:19.343328Z",
   "status": "partial",
   "errors": [
     "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays",
@@ -10557,71 +10557,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T04:33:09.589726Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T04:33:09.589726Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-17T20:10:39.040202Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-20T04:50:25.527109Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T04:33:09.589726Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T04:33:09.589726Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "error",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
       "last_successful_check": "2026-10-14T21:40:58.558458Z",
       "data_updated": "2026-10-14T17:10:11.692495Z",
       "error": "6u Haaland: ValueError: Cannot reconcile goals for Blue Jays"
     },
     "6u|Mbappe": {
       "status": "error",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
       "last_successful_check": "2026-10-14T21:40:58.558458Z",
       "data_updated": "2026-10-14T17:10:11.692495Z",
       "error": "6u Mbappe: ValueError: Cannot reconcile goals for Bomb Pops"
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T15:52:06.973846Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-20T11:35:35.003388Z",
-      "last_successful_check": "2026-10-20T11:35:35.003388Z",
+      "last_checked": "2026-10-20T17:08:19.343328Z",
+      "last_successful_check": "2026-10-20T17:08:19.343328Z",
       "data_updated": "2026-10-18T15:52:06.973846Z",
       "error": null
     }
