@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-22T05:28:42.133914Z",
+  "last_checked": "2026-10-22T11:51:44.706504Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -5503,14 +5503,14 @@
         {
           "team": "Liverpool",
           "coach": "Hadidi",
-          "w": 5,
+          "w": 6,
           "l": 2,
           "t": 0,
-          "gp": 7,
-          "pf": 38,
+          "gp": 8,
+          "pf": 40,
           "pa": 13,
-          "margin_sum": 25,
-          "capped_margin_sum": 10
+          "margin_sum": 27,
+          "capped_margin_sum": 12
         },
         {
           "team": "Red Fury",
@@ -5528,18 +5528,18 @@
           "team": "San Jose",
           "coach": "Wynne",
           "w": 0,
-          "l": 8,
+          "l": 9,
           "t": 1,
-          "gp": 9,
+          "gp": 10,
           "pf": 5,
-          "pa": 19,
-          "margin_sum": -14,
-          "capped_margin_sum": -13,
-          "scored_gp": 8,
+          "pa": 21,
+          "margin_sum": -16,
+          "capped_margin_sum": -15,
+          "scored_gp": 9,
           "outcome_only_gp": 1,
           "reported_goals": {
             "gf": 5,
-            "ga": 22
+            "ga": 24
           },
           "goal_residual": {
             "gf": 0,
@@ -5980,6 +5980,13 @@
           "home_score": 1,
           "away_score": 0,
           "date": "Tue 10/20"
+        },
+        {
+          "home": "San Jose",
+          "away": "Liverpool",
+          "home_score": 0,
+          "away_score": 2,
+          "date": "Wed 10/21"
         }
       ],
       "schedule": [
@@ -6630,8 +6637,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-21",
           "start_iso": "2026-10-21T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 2
         },
         {
           "home": "Kinkaid Falcons",
@@ -10900,83 +10907,83 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-22T05:28:42.133914Z",
-  "data_updated": "2026-10-22T05:15:38.672466Z",
+  "last_successful_check": "2026-10-22T11:51:44.706504Z",
+  "data_updated": "2026-10-22T11:51:44.706504Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 10/54; actual scored games 7/54. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
-    "6u Haaland: San Jose reported GF/GA 5/22; actual scored games 5/19. Reviewed score-unavailable accounting residual +0/+3 retained separately, not a played score or inferred result; numerical models exclude it.",
+    "6u Haaland: San Jose reported GF/GA 5/24; actual scored games 5/21. Reviewed score-unavailable accounting residual +0/+3 retained separately, not a played score or inferred result; numerical models exclude it.",
     "6u Mbappe: Bomb Pops reported GF/GA 17/30; actual scored games 14/27. Reviewed score-unavailable accounting residual +3/+3 retained separately, not a played score or inferred result; numerical models exclude it.",
     "6u Mbappe: Lightning reported GF/GA 15/40; actual scored games 12/37. Reviewed score-unavailable accounting residual +3/+3 retained separately, not a played score or inferred result; numerical models exclude it."
   ],
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-21T04:45:42.390161Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
-      "data_updated": "2026-10-22T05:15:38.672466Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
+      "data_updated": "2026-10-22T11:51:44.706504Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-22T05:28:42.133914Z",
-      "last_successful_check": "2026-10-22T05:28:42.133914Z",
+      "last_checked": "2026-10-22T11:51:44.706504Z",
+      "last_successful_check": "2026-10-22T11:51:44.706504Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     }
