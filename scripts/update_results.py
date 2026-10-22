@@ -101,6 +101,8 @@ def update_results(output=DEFAULT_OUTPUT, *, fetch=None, now=None):
     payload['data_updated'] = previous.get('data_updated') if previous.get('divisions', []) == divisions else now
     payload['warnings'] = [f"{d['sport']} {d['division']}: {g['away']} @ {g['home']} ({g['date_iso']}): {g['result_note']}. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All."
                            for d in divisions for g in d['schedule'] if g.get('result_status') == 'unknown']
+    payload['warnings'] += [f"{d['sport']} {d['division']}: {t['team']} reported GF/GA {t['reported_goals']['gf']}/{t['reported_goals']['ga']}; actual scored games {t['pf']}/{t['pa']}. Reviewed score-unavailable accounting residual +{t['goal_residual']['gf']}/+{t['goal_residual']['ga']} retained separately, not a played score or inferred result; numerical models exclude it."
+                            for d in divisions for t in d['teams'] if 'reported_goals' in t]
     receipts(output.parent / 'projections', load_archive(output.parent / 'projections'))
     if accepted:
         record_history(output.parent / 'history', payload)
@@ -239,6 +241,40 @@ def parse_schedule(table, teams, source_url=''):
     return entries
 
 
+def reconcile_goal_accounting(teams, official_goals, entries, sport, division, url):
+    """Exact reviewed residual accounting, never an inferred match score.
+
+    Review 2026-11-30. All other goals remain exact. A second unresolved
+    meeting, changed residual, source identity or marker requires new review.
+    """
+    residuals = {name: (gf-teams[name]['pf'], ga-teams[name]['pa'])
+                 for name, (gf, ga) in official_goals.items()}
+    discrepancies = {name: value for name, value in residuals.items() if value != (0, 0)}
+    if not discrepancies:
+        return
+    unresolved = [g for g in entries if 'home_outcome' in g or g.get('result_status') == 'unknown']
+    allowed = False
+    if len(unresolved) == 1:
+        g = unresolved[0]
+        identity = (sport, division, url, g['home'], g['away'], g['date'], g['time'], g['location'])
+        allowed = (identity == ('6u', 'Haaland', 'https://sbmsa.net/sites/sbmsa/schedule/710198/',
+                               'San Jose', 'Blue Jays', 'Sat 9/12', '2:45 PM', 'PSE Field #1')
+                   and (g.get('home_outcome'), g.get('away_outcome')) == ('L', 'W')
+                   and discrepancies == {'San Jose': (0, 3), 'Blue Jays': (3, 0)})
+        # The exact existing L/L quarantine remains contradictory as a RESULT.
+        # Reciprocal +3/+3 is only reported standings accounting, not a 3-3 draw.
+        allowed = allowed or (identity == ('6u', 'Mbappe', 'https://sbmsa.net/sites/sbmsa/schedule/742279/',
+                                          'Bomb Pops', 'Lightning', 'Mon 9/21', '5:30 PM', 'PSE Field #1')
+                              and g.get('result_status') == 'unknown'
+                              and (g.get('source_home_marker'), g.get('source_away_marker')) == ('L', 'L')
+                              and discrepancies == {'Bomb Pops': (3, 3), 'Lightning': (3, 3)})
+    if not allowed:
+        raise ValueError('Cannot reconcile goals for ' + next(iter(discrepancies)))
+    for name, (gf, ga) in discrepancies.items():
+        teams[name]['reported_goals'] = dict(zip(('gf', 'ga'), official_goals[name]))
+        teams[name]['goal_residual'] = dict(gf=gf, ga=ga)
+
+
 def parse_division(html, sport, division, url):
     soup = BeautifulSoup(html, 'html.parser')
     standings = soup.select_one('table[id*="standingsGrid"]')
@@ -314,8 +350,6 @@ def parse_division(html, sport, division, url):
             team['scored_gp'] = len(played)
             team['outcome_only_gp'] = len(outcomes)
         actual = (sum(a>b for a,b in played)+outcomes.count('W'), sum(a<b for a,b in played)+outcomes.count('L'), sum(a==b for a,b in played),len(meetings))
-        if name in official_goals and official_goals[name] != (team['pf'],team['pa']):
-            raise ValueError(f'Cannot reconcile goals for {name}')
         affected = any(name in (g['home'], g['away']) for g in unknown)
         reported = tuple(team[k] for k in ('w','l','t','gp'))
         # Only the observed one additional L and GP for EACH affected team.
@@ -326,6 +360,7 @@ def parse_division(html, sport, division, url):
             team['reported_record'] = dict(zip(('w','l','t','gp'), reported))
             team.update(zip(('w','l','t','gp'), actual))
             team['unknown_gp'] = 1
+    reconcile_goal_accounting(teams, official_goals, entries, sport, division, url)
     return {'sport':sport,'division':division,'url':url,'teams':sorted(teams.values(),key=lambda t:t['team']), 'games':games, 'schedule':entries}
 
 

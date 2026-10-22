@@ -26,7 +26,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    await page.locator('[data-projection-guide] summary').click();assert.match(await page.locator('[data-projection-guide]').innerText(),/trained separately/);
    const divisions=await page.locator('#division option').evaluateAll(es=>es.map(e=>e.value));
    for(const d of divisions){await page.locator('#division').selectOption(d);assert.equal(await page.locator('.league-projection b').count(),await page.evaluate(({sport,d})=>data.soccerAgeProjections[sport].forecasts.filter(f=>(d==='all'||f.fixture_id[2]===d)&&Date.parse(f.fixture_id[5])>Date.now()).length,{sport,d}));}
-   await page.locator('#division').selectOption('all');await page.locator('#search').fill(sport==='8u'?'Arsenal':'Vipers');const sample=await page.locator('.league-projection b').first().locator('..').innerText();report.push({width,sport,expected,divisions,sample});
+   await page.locator('#division').selectOption('all');const futureTeam=await page.evaluate(s=>data.soccerAgeProjections[s].forecasts.find(f=>Date.parse(f.fixture_id[5])>Date.now()).fixture_id[3],sport);await page.locator('#search').fill(futureTeam);const sample=await page.locator('.league-projection b').first().locator('..').innerText();report.push({width,sport,expected,divisions,sample});
    await page.locator('[data-league-filter="Results"]').click();assert.equal(await page.locator('.league-projection').count(),0);
    await page.reload();await page.waitForSelector('[data-league-fixture]');assert.equal(await page.locator('[data-league-projections]').getAttribute('aria-pressed'),'false');assert.deepEqual(errors,[]);await page.close();
   }
