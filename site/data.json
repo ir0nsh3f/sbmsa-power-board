@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-22T17:10:26.809379Z",
+  "last_checked": "2026-10-22T21:35:28.391439Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -84,25 +84,25 @@
           "team": "Saints",
           "coach": "Davidson",
           "w": 1,
-          "l": 4,
+          "l": 5,
           "t": 0,
-          "gp": 5,
-          "pf": 47,
-          "pa": 135,
-          "margin_sum": -88,
-          "capped_margin_sum": -58
+          "gp": 6,
+          "pf": 53,
+          "pa": 177,
+          "margin_sum": -124,
+          "capped_margin_sum": -79
         },
         {
           "team": "Texans",
           "coach": "Bormann",
-          "w": 6,
+          "w": 7,
           "l": 0,
           "t": 0,
-          "gp": 6,
-          "pf": 117,
-          "pa": 69,
-          "margin_sum": 48,
-          "capped_margin_sum": 48
+          "gp": 7,
+          "pf": 159,
+          "pa": 75,
+          "margin_sum": 84,
+          "capped_margin_sum": 69
         },
         {
           "team": "Titans",
@@ -285,6 +285,13 @@
           "home_score": 14,
           "away_score": 15,
           "date": "Tue 10/6"
+        },
+        {
+          "home": "Saints",
+          "away": "Texans",
+          "home_score": 6,
+          "away_score": 42,
+          "date": "Wed 10/14"
         },
         {
           "home": "Chargers",
@@ -620,8 +627,8 @@
           "location_url": "https://www.google.com.au/maps/dir/''/29.7810003,-95.5532311/@29.7792189,-95.5538665,708m/data=!3m1!1e3!4m2!4m1!3e0",
           "date_iso": "2026-10-14",
           "start_iso": "2026-10-14T18:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 42
         },
         {
           "home": "Chargers",
@@ -10907,8 +10914,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-22T17:10:26.809379Z",
-  "data_updated": "2026-10-22T11:51:44.706504Z",
+  "last_successful_check": "2026-10-22T21:35:28.391439Z",
+  "data_updated": "2026-10-22T21:35:28.391439Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 10/54; actual scored games 7/54. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -10919,71 +10926,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
-      "data_updated": "2026-10-22T05:15:38.672466Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
+      "data_updated": "2026-10-22T21:35:28.391439Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-21T04:45:42.390161Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T11:51:44.706504Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-22T17:10:26.809379Z",
-      "last_successful_check": "2026-10-22T17:10:26.809379Z",
+      "last_checked": "2026-10-22T21:35:28.391439Z",
+      "last_successful_check": "2026-10-22T21:35:28.391439Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     }
