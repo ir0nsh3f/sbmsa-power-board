@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-23T04:48:42.423078Z",
+  "last_checked": "2026-10-23T11:38:09.560265Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -10991,7 +10991,7 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-23T04:48:42.423078Z",
+  "last_successful_check": "2026-10-23T11:38:09.560265Z",
   "data_updated": "2026-10-23T04:48:42.423078Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
@@ -11003,71 +11003,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-22T21:35:28.391439Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-23T04:48:42.423078Z",
-      "last_successful_check": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T11:38:09.560265Z",
+      "last_successful_check": "2026-10-23T11:38:09.560265Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     }
