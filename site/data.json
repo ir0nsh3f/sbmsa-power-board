@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-23T11:38:09.560265Z",
+  "last_checked": "2026-10-23T17:06:27.826674Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -9622,13 +9622,13 @@
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
           "w": 2,
-          "l": 7,
+          "l": 8,
           "t": 0,
-          "gp": 9,
-          "pf": 12,
-          "pa": 28,
-          "margin_sum": -16,
-          "capped_margin_sum": -13
+          "gp": 10,
+          "pf": 13,
+          "pa": 31,
+          "margin_sum": -18,
+          "capped_margin_sum": -15
         },
         {
           "team": "Flower Power",
@@ -9645,14 +9645,14 @@
         {
           "team": "Glitter Dumplings",
           "coach": "Friedman",
-          "w": 4,
+          "w": 5,
           "l": 4,
           "t": 1,
-          "gp": 9,
-          "pf": 11,
-          "pa": 13,
-          "margin_sum": -2,
-          "capped_margin_sum": -1
+          "gp": 10,
+          "pf": 15,
+          "pa": 15,
+          "margin_sum": 0,
+          "capped_margin_sum": 1
         },
         {
           "team": "Lady Tigers",
@@ -9694,25 +9694,25 @@
           "team": "Queen Bees",
           "coach": "Duffy",
           "w": 4,
-          "l": 5,
+          "l": 6,
           "t": 1,
-          "gp": 10,
-          "pf": 26,
-          "pa": 26,
-          "margin_sum": 0,
-          "capped_margin_sum": -1
+          "gp": 11,
+          "pf": 28,
+          "pa": 30,
+          "margin_sum": -2,
+          "capped_margin_sum": -3
         },
         {
           "team": "Rainbow Unicorns",
           "coach": "Loftis",
-          "w": 3,
+          "w": 4,
           "l": 7,
           "t": 0,
-          "gp": 10,
-          "pf": 15,
-          "pa": 29,
-          "margin_sum": -14,
-          "capped_margin_sum": -11
+          "gp": 11,
+          "pf": 18,
+          "pa": 30,
+          "margin_sum": -12,
+          "capped_margin_sum": -9
         },
         {
           "team": "Red Hots",
@@ -10131,6 +10131,13 @@
           "date": "Sat 10/17"
         },
         {
+          "home": "Dallas Cowgirls",
+          "away": "Rainbow Unicorns",
+          "home_score": 1,
+          "away_score": 3,
+          "date": "Tue 10/20"
+        },
+        {
           "home": "Sparkly Rainbows",
           "away": "Lucky Charms",
           "home_score": 0,
@@ -10150,6 +10157,13 @@
           "home_score": 1,
           "away_score": 0,
           "date": "Tue 10/20"
+        },
+        {
+          "home": "Glitter Dumplings",
+          "away": "Queen Bees",
+          "home_score": 4,
+          "away_score": 2,
+          "date": "Thu 10/22"
         },
         {
           "home": "Maple Magic",
@@ -10853,8 +10867,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-20",
           "start_iso": "2026-10-20T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 1,
+          "away_score": 3
         },
         {
           "home": "Sparkly Rainbows",
@@ -10901,8 +10915,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-22",
           "start_iso": "2026-10-22T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 2
         },
         {
           "home": "Maple Magic",
@@ -10991,8 +11005,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-23T11:38:09.560265Z",
-  "data_updated": "2026-10-23T04:48:42.423078Z",
+  "last_successful_check": "2026-10-23T17:06:27.826674Z",
+  "data_updated": "2026-10-23T17:06:27.826674Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 10/54; actual scored games 7/54. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -11003,72 +11017,72 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-22T21:35:28.391439Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-23T11:38:09.560265Z",
-      "last_successful_check": "2026-10-23T11:38:09.560265Z",
-      "data_updated": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T17:06:27.826674Z",
+      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "data_updated": "2026-10-23T17:06:27.826674Z",
       "error": null
     }
   }
