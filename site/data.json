@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-23T17:06:27.826674Z",
+  "last_checked": "2026-10-23T21:24:23.703868Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -6938,13 +6938,13 @@
           "team": "Golden Dragons",
           "coach": "Guinn",
           "w": 0,
-          "l": 9,
+          "l": 10,
           "t": 0,
-          "gp": 9,
+          "gp": 10,
           "pf": 0,
-          "pa": 58,
-          "margin_sum": -58,
-          "capped_margin_sum": -24
+          "pa": 64,
+          "margin_sum": -64,
+          "capped_margin_sum": -27
         },
         {
           "team": "Green Army",
@@ -7000,14 +7000,14 @@
         {
           "team": "New York Knights",
           "coach": "Lamb",
-          "w": 6,
+          "w": 7,
           "l": 3,
           "t": 0,
-          "gp": 9,
-          "pf": 35,
+          "gp": 10,
+          "pf": 41,
           "pa": 19,
-          "margin_sum": 16,
-          "capped_margin_sum": 7
+          "margin_sum": 22,
+          "capped_margin_sum": 10
         },
         {
           "team": "Regis Knights",
@@ -7420,6 +7420,13 @@
           "away": "Canada Raptors",
           "home_score": 4,
           "away_score": 1,
+          "date": "Thu 10/22"
+        },
+        {
+          "home": "Golden Dragons",
+          "away": "New York Knights",
+          "home_score": 0,
+          "away_score": 6,
           "date": "Thu 10/22"
         }
       ],
@@ -8145,8 +8152,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-22",
           "start_iso": "2026-10-22T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 0,
+          "away_score": 6
         },
         {
           "home": "BHE Lions",
@@ -11005,8 +11012,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-23T17:06:27.826674Z",
-  "data_updated": "2026-10-23T17:06:27.826674Z",
+  "last_successful_check": "2026-10-23T21:24:23.703868Z",
+  "data_updated": "2026-10-23T21:24:23.703868Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 10/54; actual scored games 7/54. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -11017,71 +11024,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-22T21:35:28.391439Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-22T05:15:38.672466Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
-      "data_updated": "2026-10-23T04:48:42.423078Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
+      "data_updated": "2026-10-23T21:24:23.703868Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T04:48:42.423078Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-23T17:06:27.826674Z",
-      "last_successful_check": "2026-10-23T17:06:27.826674Z",
+      "last_checked": "2026-10-23T21:24:23.703868Z",
+      "last_successful_check": "2026-10-23T21:24:23.703868Z",
       "data_updated": "2026-10-23T17:06:27.826674Z",
       "error": null
     }
