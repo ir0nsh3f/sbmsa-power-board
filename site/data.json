@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-28T12:54:06.121602Z",
+  "last_checked": "2026-10-28T22:34:45.637169Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -5603,8 +5603,8 @@
           "away": "Bulls FC",
           "date": "Wed 10/28",
           "time": "6:45 PM",
-          "location": "SBE 6U #1",
-          "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
+          "location": "PSE Field #1",
+          "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-28",
           "start_iso": "2026-10-28T18:45:00-05:00",
           "home_score": null,
@@ -11348,8 +11348,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-28T12:54:06.121602Z",
-  "data_updated": "2026-10-28T05:41:32.412800Z",
+  "last_successful_check": "2026-10-28T22:34:45.637169Z",
+  "data_updated": "2026-10-28T22:34:45.637169Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 11/65; actual scored games 8/65. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -11360,71 +11360,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-24T20:48:51.213582Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-24T20:48:51.213582Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-24T15:56:51.014912Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-25T16:18:15.292669Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
-      "data_updated": "2026-10-28T05:41:32.412800Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
+      "data_updated": "2026-10-28T22:34:45.637169Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-28T12:54:06.121602Z",
-      "last_successful_check": "2026-10-28T12:54:06.121602Z",
+      "last_checked": "2026-10-28T22:34:45.637169Z",
+      "last_successful_check": "2026-10-28T22:34:45.637169Z",
       "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     }
