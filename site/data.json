@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-27T22:14:04.426553Z",
+  "last_checked": "2026-10-28T05:41:32.412800Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -4230,14 +4230,14 @@
         {
           "team": "Bayern Eagles",
           "coach": "Suarez",
-          "w": 8,
+          "w": 9,
           "l": 1,
           "t": 1,
-          "gp": 10,
-          "pf": 51,
-          "pa": 13,
-          "margin_sum": 38,
-          "capped_margin_sum": 17
+          "gp": 11,
+          "pf": 57,
+          "pa": 15,
+          "margin_sum": 42,
+          "capped_margin_sum": 20
         },
         {
           "team": "Bulls FC",
@@ -4327,13 +4327,13 @@
           "team": "The Rams",
           "coach": "Kleider",
           "w": 5,
-          "l": 4,
+          "l": 5,
           "t": 1,
-          "gp": 10,
-          "pf": 44,
-          "pa": 35,
-          "margin_sum": 9,
-          "capped_margin_sum": 6
+          "gp": 11,
+          "pf": 46,
+          "pa": 41,
+          "margin_sum": 5,
+          "capped_margin_sum": 3
         },
         {
           "team": "Vipers",
@@ -4796,6 +4796,13 @@
           "home_score": 2,
           "away_score": 3,
           "date": "Mon 10/26"
+        },
+        {
+          "home": "Bayern Eagles",
+          "away": "The Rams",
+          "home_score": 6,
+          "away_score": 2,
+          "date": "Tue 10/27"
         }
       ],
       "schedule": [
@@ -5588,8 +5595,8 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd.%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-27",
           "start_iso": "2026-10-27T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 6,
+          "away_score": 2
         },
         {
           "home": "Real Madrid",
@@ -5648,13 +5655,13 @@
           "team": "Ireland",
           "coach": "Ford",
           "w": 3,
-          "l": 6,
+          "l": 7,
           "t": 1,
-          "gp": 10,
-          "pf": 22,
-          "pa": 23,
-          "margin_sum": -1,
-          "capped_margin_sum": -4
+          "gp": 11,
+          "pf": 24,
+          "pa": 28,
+          "margin_sum": -4,
+          "capped_margin_sum": -7
         },
         {
           "team": "Kinkaid Falcons",
@@ -5671,26 +5678,26 @@
         {
           "team": "Liverpool",
           "coach": "Hadidi",
-          "w": 7,
+          "w": 8,
           "l": 2,
           "t": 1,
-          "gp": 10,
-          "pf": 49,
-          "pa": 17,
-          "margin_sum": 32,
-          "capped_margin_sum": 15
+          "gp": 11,
+          "pf": 54,
+          "pa": 19,
+          "margin_sum": 35,
+          "capped_margin_sum": 18
         },
         {
           "team": "Red Fury",
           "coach": "Johnson",
-          "w": 5,
+          "w": 6,
           "l": 2,
           "t": 3,
-          "gp": 10,
-          "pf": 24,
-          "pa": 15,
-          "margin_sum": 9,
-          "capped_margin_sum": 8
+          "gp": 11,
+          "pf": 28,
+          "pa": 17,
+          "margin_sum": 11,
+          "capped_margin_sum": 10
         },
         {
           "team": "San Jose",
@@ -5730,13 +5737,13 @@
           "team": "Speedy Yetis",
           "coach": "Leung",
           "w": 9,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 10,
-          "pf": 50,
-          "pa": 12,
-          "margin_sum": 38,
-          "capped_margin_sum": 20
+          "gp": 11,
+          "pf": 52,
+          "pa": 16,
+          "margin_sum": 36,
+          "capped_margin_sum": 18
         },
         {
           "team": "Tigers",
@@ -6225,6 +6232,20 @@
           "home_score": 6,
           "away_score": 0,
           "date": "Mon 10/26"
+        },
+        {
+          "home": "Red Fury",
+          "away": "Speedy Yetis",
+          "home_score": 4,
+          "away_score": 2,
+          "date": "Tue 10/27"
+        },
+        {
+          "home": "Ireland",
+          "away": "Liverpool",
+          "home_score": 2,
+          "away_score": 5,
+          "date": "Tue 10/27"
         }
       ],
       "schedule": [
@@ -7007,8 +7028,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-27",
           "start_iso": "2026-10-27T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 4,
+          "away_score": 2
         },
         {
           "home": "Ireland",
@@ -7019,8 +7040,8 @@
           "location_url": "https://www.google.com/maps/@29.8072742,-95.5362197,113m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI0MDgyOC4wIKXMDSoASAFQAw%3D%3D",
           "date_iso": "2026-10-27",
           "start_iso": "2026-10-27T18:45:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 5
         }
       ]
     },
@@ -9901,14 +9922,14 @@
         {
           "team": "Dallas Cowgirls",
           "coach": "Chapline",
-          "w": 2,
+          "w": 3,
           "l": 8,
           "t": 0,
-          "gp": 10,
-          "pf": 13,
-          "pa": 31,
-          "margin_sum": -18,
-          "capped_margin_sum": -15
+          "gp": 11,
+          "pf": 15,
+          "pa": 32,
+          "margin_sum": -17,
+          "capped_margin_sum": -14
         },
         {
           "team": "Flower Power",
@@ -10022,13 +10043,13 @@
           "team": "The Pink Flamingos",
           "coach": "Long",
           "w": 4,
-          "l": 5,
+          "l": 6,
           "t": 1,
-          "gp": 10,
-          "pf": 14,
-          "pa": 18,
-          "margin_sum": -4,
-          "capped_margin_sum": -3
+          "gp": 11,
+          "pf": 15,
+          "pa": 20,
+          "margin_sum": -5,
+          "capped_margin_sum": -4
         }
       ],
       "games": [
@@ -10486,6 +10507,13 @@
           "home_score": 3,
           "away_score": 1,
           "date": "Mon 10/26"
+        },
+        {
+          "home": "Dallas Cowgirls",
+          "away": "The Pink Flamingos",
+          "home_score": 2,
+          "away_score": 1,
+          "date": "Tue 10/27"
         }
       ],
       "schedule": [
@@ -11314,14 +11342,14 @@
           "location_url": "http://maps.google.com/maps?li=rwp&q=1700%20Campbell%20Rd%2CHouston%2CTX%2077080",
           "date_iso": "2026-10-27",
           "start_iso": "2026-10-27T17:30:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 2,
+          "away_score": 1
         }
       ]
     }
   ],
-  "last_successful_check": "2026-10-27T22:14:04.426553Z",
-  "data_updated": "2026-10-27T05:03:38.839608Z",
+  "last_successful_check": "2026-10-28T05:41:32.412800Z",
+  "data_updated": "2026-10-28T05:41:32.412800Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 11/65; actual scored games 8/65. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -11332,72 +11360,72 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-24T20:48:51.213582Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-24T20:48:51.213582Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-24T15:56:51.014912Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-25T16:18:15.292669Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
-      "data_updated": "2026-10-27T05:03:38.839608Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
+      "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
-      "data_updated": "2026-10-27T05:03:38.839608Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
+      "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-27T22:14:04.426553Z",
-      "last_successful_check": "2026-10-27T22:14:04.426553Z",
-      "data_updated": "2026-10-27T05:03:38.839608Z",
+      "last_checked": "2026-10-28T05:41:32.412800Z",
+      "last_successful_check": "2026-10-28T05:41:32.412800Z",
+      "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     }
   }
