@@ -86,7 +86,8 @@ test('favorite block class matches exact sport/division/team, home or away, thro
 });
 test('favorite release versions CSS and renderer for returning clients',()=>{
  const html=fs.readFileSync(require.resolve('../site/index.html'),'utf8');
- for(const asset of ['league-schedule.css','schedules.js','schedule-links.js'])assert.ok(html.includes(asset+'?v=20260922-name-ranks-1'));
+ for(const asset of ['league-schedule.css','schedule-links.js'])assert.ok(html.includes(asset+'?v=20260922-name-ranks-1'));
+ assert.ok(html.includes('schedules.js?v=20261029-playoffs-1'));
  assert.ok(html.includes('league-schedule.js?v=20260925-quarantine-1'));
  assert.ok(html.includes('advanced.js?v=20260916-outcomes-1'));
  for(const asset of ['freshness.js','rainbow.js'])assert.ok(html.includes(asset+'?v=20261017-partial-1'));

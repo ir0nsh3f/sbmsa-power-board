@@ -1,0 +1,5 @@
+const {test}=require('node:test'),a=require('node:assert/strict');
+const P=require('../site/playoffs.js'),S=require('../site/schedules.js');
+const fs=require('node:fs');const d=JSON.parse(fs.readFileSync('site/data.json'));d.playoffs=JSON.parse(fs.readFileSync('tests/fixtures/playoffs/baseline.json'));d.ratingMode='capped';
+test('official assignments only; cross-division ranks, no mutation',()=>{const before=JSON.stringify(d);const f=P.fixtures(d,{sport:'8u',division:'Pulisic',team:'Arsenal'});a.equal(f.length,3);a.equal(P.fixtures(d,{sport:'5ug',division:'Boxx',team:'Rainbow Unicorns'}).length,1);const rows=S.buildRows(d,'2026-10-29').filter(r=>r.playoff);a.equal(rows.length,6);a.ok(rows.every(r=>r.ourRank&&r.opponentRank));a.equal(JSON.stringify(d),before);a.match(S.renderHTML(rows),/Playoff/);a.match(S.renderHTML(rows,'Upcoming','guide'),/Playoff/);});
+test('postseason render retains TBD winner paths and official ranks not seeds',()=>{const html=P.html(d,d.playoffs.sources[0],[]);a.match(html,/Pool A/);a.match(html,/G1 Winner/);a.match(html,/CT/);a.match(html,/maps.google.com/);a.doesNotMatch(html,/prediction|Pick’em/);});

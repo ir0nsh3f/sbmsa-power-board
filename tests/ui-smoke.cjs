@@ -9,7 +9,7 @@ const path=require('node:path');
  const site=path.join(__dirname,'../site');
  const server=http.createServer((req,res)=>{
   const requested=path.basename(req.url.split('?')[0]);
-  const name=['freshness.js','rainbow.js','soccer-method.html','power-method.html','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
+  const name=['playoffs.js','playoffs.css','playoffs.json','freshness.js','rainbow.js','soccer-method.html','power-method.html','schedule-links.js','ratings.js','data.json','advanced.js','schedules.js','league-schedule.js','league-schedule.css'].includes(requested)?requested:'index.html';
   res.setHeader('Content-Type',name.endsWith('.css')?'text/css':name.endsWith('.json')?'application/json':name.endsWith('.js')?'application/javascript':'text/html');
   res.end(fs.readFileSync(path.join(site,name)));
  });
@@ -61,7 +61,7 @@ const path=require('node:path');
    assert.deepEqual(await identities(),wanted,s+' power ordering/value/ties');
    const spotlight=expected.find(t=>t.team===({flag:'Buccaneers','8u':'Arsenal','6u':'Vipers'})[s]);
    assert.ok((await page.locator('#focus').innerText()).includes(spotlight.rank?'Rank '+spotlight.rankText:'Unrated'));
-   const linked=await page.evaluate(()=>({league:[...SBMSALeagueSchedule.profiles(data,sport).teams.values()].map(t=>[t.team,t.rank,t.power]),our:SBMSASchedules.buildRows(data).filter(r=>r.sport===sport).map(r=>[r.division,r.opponent,r.opponentRank])}));
+   const linked=await page.evaluate(()=>({league:[...SBMSALeagueSchedule.profiles(data,sport).teams.values()].map(t=>[t.team,t.rank,t.power]),our:SBMSASchedules.buildRows(data).filter(r=>r.sport===sport).map(r=>[r.opponentDivision||r.division,r.opponent,r.opponentRank])}));
    assert.deepEqual(linked.league.sort(),expected.map(t=>[t.team,t.rank,t.power]).sort());
    for(const [division,name,rank] of linked.our){const t=expected.find(t=>t.team===name&&t.division===division);assert.equal(rank,t.rank?t.rankText:null);}
    if(expected.some(t=>t.gp)){
@@ -78,7 +78,7 @@ const path=require('node:path');
   await page.locator('[data-sport="flag"]').click();
   assert.equal(await page.locator('button').filter({hasText:/Reload published data/i}).count(),0,'Redundant reload button must be absent');
   assert.equal(await page.locator('#advanced').count(),1,'Advanced stats section must exist');
-  assert.equal(await page.getByRole('tab').count(),4,'Four original-board views; 5U lives on its standalone site');
+  assert.equal(await page.getByRole('tab').count(),5,'Five original-board views including Playoffs; 5U stays separate');
   assert.equal(await page.locator('#advanced').isVisible(),false,'Inactive advanced panel is hidden');
   for(const [sport,team,coach] of [['flag','Buccaneers','Wells'],['8u','Arsenal','Klupchak'],['6u','Vipers','Ellis']]){
    await page.getByRole('tab',{name:'Advanced',exact:true}).click();
@@ -185,7 +185,7 @@ const path=require('node:path');
    if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,`schedule-${width}.png`),fullPage:false});
   }
   // Schedule ranks must remain the capped full-field ranks even with Raw and board filters selected.
-  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode=data.ratingMode||'raw';const t=rankings().find(t=>t.team===r.opponent&&t.division===r.division);checks.push([r.opponentRank,t?.rank?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
+  const rankChecks=await page.evaluate(()=>{const before={sport,mode};const rows=SBMSASchedules.buildRows(data);const checks=[];for(const r of rows){sport=r.sport;mode=data.ratingMode||'raw';const t=rankings().find(t=>t.team===r.opponent&&t.division===(r.opponentDivision||r.division));checks.push([r.opponentRank,t?.rank?t.rankText:null]);}sport=before.sport;mode=before.mode;return checks;});
   for(const [actual,expected] of rankChecks)assert.equal(actual,expected);
   await page.evaluate(()=>{mode='raw';render();});
   await guide.locator('[data-schedule-layout="guide"]').click();
@@ -195,7 +195,8 @@ const path=require('node:path');
   await guide.getByRole('button',{name:'All',exact:true}).click();
   const expectedGames=await page.evaluate(()=>data.divisions.reduce((n,d)=>{const favorites={'flag|Burrow':'Buccaneers','8u|Pulisic':'Arsenal','6u|Messi':'Vipers'};const team=favorites[d.sport+'|'+d.division];return n+(team?(d.schedule||[]).filter(g=>g.home===team||g.away===team).length:0);},0));
   assert.ok(expectedGames>0,'Actual public schedules required');
-  assert.equal(await guide.locator('tbody tr').count(),expectedGames,'Every favorite fixture must appear in All view');
+  const playoffGames=await page.evaluate(()=>[{sport:'8u',division:'Pulisic',team:'Arsenal'},{sport:'6u',division:'Messi',team:'Vipers'}].reduce((n,i)=>n+SBMSAPlayoffs.fixtures(data,i).length,0));
+  assert.equal(await guide.locator('tbody tr').count(),expectedGames+playoffGames,'Every regular and officially assigned playoff fixture appears');
   await guide.getByRole('button',{name:'Results',exact:true}).click();
   assert.ok((await guide.innerText()).includes('34'),'Completed Buccaneers result is present');
   await guide.getByRole('button',{name:'Upcoming',exact:true}).click();

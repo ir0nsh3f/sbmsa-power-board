@@ -1,9 +1,9 @@
 (function (root, factory) {
   'use strict';
-  const api = factory(typeof module === 'object' && module.exports ? require('./ratings.js') : root.SBMSARatings);
+  const api = factory(typeof module === 'object' && module.exports ? require('./ratings.js') : root.SBMSARatings, typeof module === 'object' && module.exports ? require('./playoffs.js') : root.SBMSAPlayoffs);
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.SBMSASchedules = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function (R) {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (R, P) {
   'use strict';
   const favorites = [
     {sport:'flag', division:'Burrow', team:'Buccaneers', child:'Dexter'},
@@ -25,10 +25,13 @@
     for (const division of data?.divisions || []) {
       const favorite = favorites.find(f => f.sport === division.sport && f.division === division.division);
       if (!favorite) continue;
-      for (const game of division.schedule || []) {
+      const postseason=(P?.fixtures(data,favorite)||[]).map(g=>({...g,home:g.home.name||g.home.label,away:g.away.name||g.away.label,homeIdentity:g.home.identity,awayIdentity:g.away.identity}));
+      for (const game of [...(division.schedule || []),...postseason]) {
         if (game.home !== favorite.team && game.away !== favorite.team) continue;
         const opponent = game.home === favorite.team ? game.away : game.home;
-        const team = (division.teams || []).find(t => t.team === opponent);
+        const opponentIdentity=game.home === favorite.team?game.awayIdentity:game.homeIdentity;
+        const opponentDivision=game.playoff?(data.divisions||[]).find(d=>d.sport===opponentIdentity?.sport&&d.division===opponentIdentity?.division):division;
+        const team = (opponentDivision?.teams || []).find(t => t.team === opponent);
         const venue = game.home === favorite.team ? 'Home' : 'Away';
         const scoreFor = venue === 'Home' ? game.home_score : game.away_score;
         const scoreAgainst = venue === 'Home' ? game.away_score : game.home_score;
@@ -45,10 +48,10 @@
         const scoredGP=team?.scored_gp ?? team?.gp;
         const average = value => Number.isFinite(value) && Number.isFinite(scoredGP) && scoredGP > 0 ? value / scoredGP : null;
         const record = team && ['w','l','t'].every(k => Number.isInteger(team[k]) && team[k] >= 0) ? `${team.w}–${team.l}–${team.t}` : null;
-        rows.push({...favorite, opponent, opponentCoach:team?.coach || null, sourceUrl:division.url,
+        rows.push({...favorite, playoff:game.playoff||null, opponent, opponentDivision:opponentDivision?.division, opponentCoach:team?.coach || null, sourceUrl:game.source||division.url,
           ourCoach:(division.teams || []).find(t => t.team === favorite.team)?.coach || null,
           ourRank:ranks.get(JSON.stringify([division.sport,division.division,favorite.team])) || null,
-          opponentRank:ranks.get(JSON.stringify([division.sport,division.division,opponent])) || null,
+          opponentRank:ranks.get(JSON.stringify([division.sport,opponentDivision?.division,opponent])) || null,
           opponentScoredGP:scoredGP, opponentMissingScore:team?.outcome_only_gp||0,
           opponentGP:Number.isInteger(team?.gp) && team.gp >= 0 ? team.gp : null,
           cappedMargin:average(team?.capped_margin_sum),
@@ -110,13 +113,13 @@
       const date = r.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'short',day:'numeric'}).format(new Date(r.dateISO+'T12:00:00Z')) : r.dateLabel;
       return `<tr data-fixture-team="${escapeHTML(teamKey(r))}">
         <td class="fixture-date"><strong>${escapeHTML(date)}</strong><small>${escapeHTML(r.timeLabel)}</small><small>${fieldHTML(r)}</small></td>
-        <th scope="row" class="fixture-match">${rankedName(r.team,r.ourRank)} <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs ${rankedName(r.opponent,r.opponentRank)} · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
+        <th scope="row" class="fixture-match">${rankedName(r.team,r.ourRank)} <span class="fixture-child">· ${escapeHTML(r.child)}</span> <span class="fixture-versus">vs ${rankedName(r.opponent,r.opponentRank)} · ${escapeHTML(r.venue)}</span><small>${escapeHTML(sportNames[r.sport] || r.sport)} · ${escapeHTML(r.division)}${r.playoff?' · Playoff '+escapeHTML(r.playoff):''}</small><small class="fixture-coach">Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</small></th>
         <td class="fixture-strength"><div class="strength-line"><span>${escapeHTML(r.opponentRecord || 'Record unavailable')} <span class="record-label">W–L–T</span></span><span>GP ${r.opponentGP ?? '—'}${r.opponentMissingScore?` · ${r.opponentScoredGP} scored · score unavailable`:''}</span></div><div class="strength-line"><span>${r.scoredLabel} ${avg(r.scoredPerGame)}</span><span>${r.allowedLabel} ${avg(r.allowedPerGame)}</span><span>Cap Δ/G ${Number.isFinite(r.cappedMargin) && r.cappedMargin > 0 ? '+' : ''}${avg(r.cappedMargin)}</span></div>${r.opponentGP === 0 ? '<small>No completed games · strength not yet rated</small>' : ''}</td>
         <td class="fixture-result"><strong>${r.completed ? escapeHTML(r.status)+(r.outcomeOnly?' · score unavailable':' '+r.scoreFor+'–'+r.scoreAgainst) : escapeHTML(r.status)}</strong><details class="fixture-details"><summary>Details</summary><div><p>Our coach: ${escapeHTML(r.ourCoach || 'Not listed')}<br>Opponent coach: ${escapeHTML(r.opponentCoach || 'Not listed')}</p><p>${escapeHTML(r.dateLabel)} · ${escapeHTML(r.timeLabel)}<br>${fieldHTML(r)}<br>${r.outcomeOnly ? 'Official W/L; score unavailable.' : r.completed ? 'Score shown us–them.' : 'No final score published.'}</p>${source ? `<a href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">Public source</a>` : ''}</div></details></td></tr>`;
     }).join('') || '<tr><td colspan="4">No ' + (filter === 'All' ? 'games' : filter === 'Results' ? 'published results' : 'upcoming games') + ' listed in this view.</td></tr>';
   }
   function glanceTable(rows, filter, team = 'all') {
-    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}">${rankedName(r.team,r.ourRank)}<span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${rankedName(r.opponent,r.opponentRank)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.outcomeOnly?'· score unavailable':r.scoreFor+'–'+r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
+    const cell = fixtures => fixtures.map(r => `<div class="glance-fixture" data-fixture-team="${escapeHTML(teamKey(r))}">${rankedName(r.team,r.ourRank)}${r.playoff?'<small>Playoff · '+escapeHTML(r.playoff)+'</small>':''}<span class="glance-time">${escapeHTML(r.timeLabel.replace(/ CT$/, ''))}</span><span>${r.venue === 'Home' ? 'vs' : '@'} ${rankedName(r.opponent,r.opponentRank)}</span><small>${fieldHTML(r)}</small>${r.completed ? `<b class="glance-result result-${r.status}">${r.status} ${r.outcomeOnly?'· score unavailable':r.scoreFor+'–'+r.scoreAgainst}</b>` : r.status === 'Awaiting result' ? '<small>Awaiting result</small>' : ''}${!r.dateISO && r.dateLabel !== 'Date TBD' ? `<small>${escapeHTML(r.dateLabel)}</small>` : ''}</div>`).join('');
     const body = groupDates(rows, filter, team).map(g => {
       const date = g.dateISO ? new Intl.DateTimeFormat('en-US', {timeZone:'UTC',weekday:'short',month:'numeric',day:'numeric'}).format(new Date(g.dateISO+'T12:00:00Z')) : 'Date TBD';
       return `<tr><th scope="row">${escapeHTML(date)}</th><td>${cell(g.Dexter)}</td><td>${cell(g.Beckham)}</td></tr>`;

@@ -40,6 +40,8 @@ jobs:
         id: collect
         continue-on-error: true
         run: python scripts/update_results.py
+      - name: Check independent postseason sources (retain last good on source errors)
+        run: python scripts/playoffs.py
       - name: Validate publishable payload
         run: |
           python -c "import json; d=json.load(open('site/data.json')); assert {(x['sport'],x['division']) for x in d['divisions']} == {(s,n) for s,n,_ in __import__('scripts.update_results',fromlist=['SOURCES']).SOURCES}; assert d['last_checked']; assert d['last_successful_check']; assert d['data_updated']"
@@ -54,7 +56,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data.json site/history/ site/projections/ site/soccer-projections/ site/soccer-projections-8u/ site/soccer-projections-6u/
+          git add site/playoffs.json site/data.json site/history/ site/projections/ site/soccer-projections/ site/soccer-projections-8u/ site/soccer-projections-6u/
           if ! git diff --cached --quiet; then
             git commit -m 'Update official results check'
             git push
