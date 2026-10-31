@@ -1,5 +1,5 @@
 {
-  "last_checked": "2026-10-31T20:01:35.653308Z",
+  "last_checked": "2026-10-31T21:33:12.488875Z",
   "status": "ok",
   "errors": [],
   "divisions": [
@@ -839,13 +839,13 @@
           "team": "Bills",
           "coach": "Lamb",
           "w": 6,
-          "l": 1,
+          "l": 2,
           "t": 0,
-          "gp": 7,
-          "pf": 139,
-          "pa": 65,
-          "margin_sum": 74,
-          "capped_margin_sum": 71
+          "gp": 8,
+          "pf": 151,
+          "pa": 86,
+          "margin_sum": 65,
+          "capped_margin_sum": 62
         },
         {
           "team": "Broncos",
@@ -874,14 +874,14 @@
         {
           "team": "Lions",
           "coach": "Harper",
-          "w": 7,
+          "w": 8,
           "l": 0,
           "t": 0,
-          "gp": 7,
-          "pf": 165,
-          "pa": 6,
-          "margin_sum": 159,
-          "capped_margin_sum": 122
+          "gp": 8,
+          "pf": 186,
+          "pa": 18,
+          "margin_sum": 168,
+          "capped_margin_sum": 131
         },
         {
           "team": "Mustangs",
@@ -1164,6 +1164,13 @@
           "away": "Oilers",
           "home_score": 7,
           "away_score": 8,
+          "date": "Sat 10/31"
+        },
+        {
+          "home": "Bills",
+          "away": "Lions",
+          "home_score": 12,
+          "away_score": 21,
           "date": "Sat 10/31"
         }
       ],
@@ -1597,8 +1604,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7798931,-95.5552647,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-10-31",
           "start_iso": "2026-10-31T15:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 21
         }
       ]
     },
@@ -1659,25 +1666,25 @@
           "team": "Jaguars",
           "coach": "Benitez",
           "w": 2,
-          "l": 5,
+          "l": 6,
           "t": 0,
-          "gp": 7,
-          "pf": 91,
-          "pa": 128,
-          "margin_sum": -37,
-          "capped_margin_sum": -43
+          "gp": 8,
+          "pf": 103,
+          "pa": 141,
+          "margin_sum": -38,
+          "capped_margin_sum": -44
         },
         {
           "team": "Packers",
           "coach": "Martin",
-          "w": 4,
+          "w": 5,
           "l": 3,
           "t": 0,
-          "gp": 7,
-          "pf": 132,
-          "pa": 124,
-          "margin_sum": 8,
-          "capped_margin_sum": 19
+          "gp": 8,
+          "pf": 145,
+          "pa": 136,
+          "margin_sum": 9,
+          "capped_margin_sum": 20
         },
         {
           "team": "Patriots",
@@ -1993,6 +2000,13 @@
           "away": "Steelers",
           "home_score": 26,
           "away_score": 0,
+          "date": "Sat 10/31"
+        },
+        {
+          "home": "Jaguars",
+          "away": "Packers",
+          "home_score": 12,
+          "away_score": 13,
           "date": "Sat 10/31"
         },
         {
@@ -2469,8 +2483,8 @@
           "location_url": "https://www.google.com/maps/place/852+Attingham+Dr,+Houston,+TX+77024/@29.7799997,-95.5529332,17z/data=!3m1!4b1!4m5!3m4!1s0x8640c4b0fc266f79:0x235ad2e953eb0c5c!8m2!3d29.7798931!4d-95.553076",
           "date_iso": "2026-10-31",
           "start_iso": "2026-10-31T12:00:00-05:00",
-          "home_score": null,
-          "away_score": null
+          "home_score": 12,
+          "away_score": 13
         },
         {
           "home": "Dolphins",
@@ -11432,8 +11446,8 @@
       ]
     }
   ],
-  "last_successful_check": "2026-10-31T20:01:35.653308Z",
-  "data_updated": "2026-10-31T19:59:34.309723Z",
+  "last_successful_check": "2026-10-31T21:33:12.488875Z",
+  "data_updated": "2026-10-31T21:33:12.488875Z",
   "warnings": [
     "6u Mbappe: Lightning @ Bomb Pops (2026-09-21): Result unknown — source lists L/L. Excluded from verified records and models; official standings report one additional loss and GP for each team. See Schedule → All.",
     "6u Haaland: Blue Jays reported GF/GA 11/65; actual scored games 8/65. Reviewed score-unavailable accounting residual +3/+0 retained separately, not a played score or inferred result; numerical models exclude it.",
@@ -11444,71 +11458,71 @@
   "division_status": {
     "flag|Mahomes": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-29T05:47:17.749446Z",
       "error": null
     },
     "flag|Burrow": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
-      "data_updated": "2026-10-31T19:59:34.309723Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
+      "data_updated": "2026-10-31T21:33:12.488875Z",
       "error": null
     },
     "flag|Jackson": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
-      "data_updated": "2026-10-31T19:59:34.309723Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
+      "data_updated": "2026-10-31T21:33:12.488875Z",
       "error": null
     },
     "8u|Pulisic": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-25T16:18:15.292669Z",
       "error": null
     },
     "8u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "6u|Messi": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-29T05:47:17.749446Z",
       "error": null
     },
     "6u|Haaland": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     },
     "6u|Mbappe": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Akers": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-27T05:03:38.839608Z",
       "error": null
     },
     "5ug|Boxx": {
       "status": "ok",
-      "last_checked": "2026-10-31T20:01:35.653308Z",
-      "last_successful_check": "2026-10-31T20:01:35.653308Z",
+      "last_checked": "2026-10-31T21:33:12.488875Z",
+      "last_successful_check": "2026-10-31T21:33:12.488875Z",
       "data_updated": "2026-10-28T05:41:32.412800Z",
       "error": null
     }
