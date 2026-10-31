@@ -4,6 +4,24 @@ from pathlib import Path
 from scripts import playoffs as P
 FIX=Path(__file__).parent/'fixtures/playoffs'
 class Playoffs(unittest.TestCase):
+ def test_actual_scored_knockout_brackets(self):
+  for ident,finals in [('710238',2),('710227',4),('710219',3)]:
+   spec=next(s for s in P.SOURCES if s['id']==ident)
+   d=P.parse((FIX/(ident+'-20261031.html')).read_text(),spec)
+   self.assertEqual(sum(g['home_score'] is not None for g in d['games']),finals)
+  rainbow=next(g for g in d['games'] if g['number']=='G1')
+  self.assertIsNone(rainbow['home_score'])
+ def test_scored_bracket_rejects_disagreement(self):
+  spec=next(s for s in P.SOURCES if s['id']=='710238')
+  original=(FIX/'710238-20261031.html').read_text()
+  for replacement in ['(7) Celtic (9)','(7) Wrong Team (1)','(7) Celtic','(7) Celtic (W)']:
+   s=BeautifulSoup(original,'html.parser')
+   td=next(td for td in s.select('table[id$=_BracketsTable] td') if P.text(td)=='(7) Celtic\xa0(1)')
+   td.string=replacement
+   with self.subTest(replacement=replacement),self.assertRaises(ValueError):P.parse(str(s),spec)
+  s=BeautifulSoup(original,'html.parser')
+  s.select_one('table[id$=_BracketsTable] td.bracketsInside').string='G999'
+  with self.assertRaises(ValueError):P.parse(str(s),spec)
  def test_actual_gold(self):
   d=P.parse((FIX/'710237.html').read_text(),P.SOURCES[0])
   self.assertEqual([len(p['teams']) for p in d['pools']],[4,4])

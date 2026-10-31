@@ -86,8 +86,12 @@ def parse(html,source):
   labels=cell.get_text('|',strip=True).replace('\xa0',' ').split('|');number=labels[0].strip()
   if number not in nodes or number in seen:raise ValueError('Bracket game mismatch')
   seen.add(number);g=nodes[number];box=cell.find_parent('table')
-  teams=[text(td) for td in box.select('td') if any('TopTeam' in c or 'BottomTeam' in c for c in td.get('class',[]))]
-  if sorted(teams)!=sorted([g['home']['label'],g['away']['label']]):raise ValueError('Bracket participants disagree')
+  teams=[text(td).replace('\xa0',' ') for td in box.select('td') if any('TopTeam' in c or 'BottomTeam' in c for c in td.get('class',[]))]
+  # Official completed nodes append each team's score in parentheses. Match
+  # exact label AND its scheduled score; never strip arbitrary numeric suffixes
+  # or infer home/away orientation from bracket top/bottom positions.
+  expected_teams=[g[k]['label']+(f" ({g[k+'_score']})" if g[k+'_score'] is not None else '') for k in ('home','away')]
+  if sorted(teams)!=sorted(expected_teams):raise ValueError('Bracket participants or scores disagree')
  if seen!=set(nodes):raise ValueError('Incomplete bracket')
  return dict(source,pools=pools,games=games)
 
