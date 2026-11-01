@@ -11,24 +11,24 @@
   const compare=(a,b)=>a<b?-1:a>b?1:0;
   // Additive, browser-only power inputs. Regular games/stats and forecast inputs stay intact.
   function fullSeason(data,postseason){
-    const divisions=data.divisions.map(d=>({...d,power_games:[...(d.games||[])]}));
+    const divisions=data.divisions.map(d=>({...d,regular_teams:d.regular_teams||d.teams,teams:(d.regular_teams||d.teams).map(t=>({...t,scored_gp:t.scored_gp??t.gp,regular_record:{w:t.w,l:t.l,t:t.t,gp:t.gp},playoff_record:{w:0,l:0,t:0,gp:0},record_scope:postseason?'regular + verified playoffs':'regular only (playoff feed unavailable)'})),power_games:[...(d.games||[])],record_games:[...(d.games||[])]}));
     const coverage={scope:'regular-plus-verified-playoffs-v1',included:0,excluded:[],sources:[],missing:!postseason,crossDivision:[]};
     const roster=divisions.flatMap(d=>d.teams.map(t=>({sport:d.sport,division:d.division,...t})));
     const candidates=[];
     for(const s of postseason?.sources||[]){
       if(!divisions.some(d=>d.sport===s.sport))continue;
-      coverage.sources.push({id:s.id,sport:s.sport,status:s.status,last_successful_check:s.last_successful_check,error:s.error||null});
+      coverage.sources.push({id:s.id,sport:s.sport,status:s.status??null,last_successful_check:s.last_successful_check??null,error:s.error||null});
       for(const g of s.games||[]){
         let reason=null;
         const match=p=>{if(!p||p.kind!=='team')return null;const found=roster.filter(t=>t.sport===s.sport&&t.team===p.name&&(!p.coach||p.coach===t.coach));const t=found.length===1?found[0]:null;return t&&p.identity&&p.identity.sport===t.sport&&p.identity.division===t.division&&p.identity.team===t.team?t:null;};
         const h=match(g.home),a=match(g.away);
         if(g.bye)reason='bye';
-        else if(![g.home_score,g.away_score].every(n=>Number.isInteger(n)&&n>=0))reason='no numeric final';
+        else if(![g.home_score,g.away_score].every(n=>Number.isInteger(n)&&n>=0)&&!(g.home_score===null&&g.away_score===null&&['W/L','L/W'].includes(g.home_outcome+'/'+g.away_outcome)))reason='no numeric final';
         else if(!h||!a||key(h.division,h.team)===key(a.division,a.team))reason='unverified identity';
         else if(!g.id)reason='missing match ID';
         if(reason){coverage.excluded.push({source:s.id,id:g.id||null,sport:s.sport,reason});continue;}
         const identity=JSON.stringify([s.id,g.id]);
-        const sides=[[h.division,h.team,g.home_score],[a.division,a.team,g.away_score]].sort((x,y)=>compare(JSON.stringify(x.slice(0,2)),JSON.stringify(y.slice(0,2))));
+        const sides=[[h.division,h.team,g.home_score??g.home_outcome],[a.division,a.team,g.away_score??g.away_outcome]].sort((x,y)=>compare(JSON.stringify(x.slice(0,2)),JSON.stringify(y.slice(0,2))));
         const stamp=g.start_iso||(g.date_iso?g.date_iso+' '+(g.time||''):null);
         const fixture=stamp?JSON.stringify([s.sport,stamp,sides.map(x=>x.slice(0,2))]):identity;
         candidates.push({s,g,h,a,identity,fixture,signature:JSON.stringify(sides)});
@@ -44,8 +44,17 @@
       if(reason){coverage.excluded.push({source:s.id,id:g.id,sport:s.sport,reason});continue;}
       seenIDs.add(c.identity);seenFixtures.add(c.fixture);
       const game={id:g.id,source:s.id,scope:'playoffs',home:h.team,away:a.team,home_division:h.division,away_division:a.division,home_score:g.home_score,away_score:g.away_score};
-      divisions.find(d=>d.sport===s.sport&&d.division===h.division).power_games.push(game);coverage.included++;
-      if(h.division!==a.division)coverage.crossDivision.push({...game,sport:s.sport});
+      const owner=divisions.find(d=>d.sport===s.sport&&d.division===h.division);
+      const numeric=Number.isInteger(g.home_score)&&Number.isInteger(g.away_score);
+      if(numeric){owner.power_games.push(game);coverage.included++;}else{game.home_outcome=g.home_outcome;game.away_outcome=g.away_outcome;}
+      owner.record_games.push(game);
+      for(const [p,score,allowed] of [[h,g.home_score,g.away_score],[a,g.away_score,g.home_score]]){
+        const t=divisions.find(d=>d.sport===s.sport&&d.division===p.division).teams.find(t=>t.team===p.team),result=numeric?(score>allowed?'w':score<allowed?'l':'t'):(p===h?g.home_outcome:g.away_outcome).toLowerCase();
+        t[result]++;t.gp++;t.playoff_record[result]++;t.playoff_record.gp++;
+        if(!numeric){t.outcome_only_gp=(t.outcome_only_gp||0)+1;continue;}t.scored_gp++;
+        for(const [field,value] of [['pf',score],['pa',allowed],['margin_sum',score-allowed],['capped_margin_sum',Math.max(-CAPS[s.sport],Math.min(CAPS[s.sport],score-allowed))]])t[field]=(t[field]||0)+value;
+      }
+      if(numeric&&h.division!==a.division)coverage.crossDivision.push({...game,sport:s.sport});
     }
     return {divisions,coverage};
   }
@@ -90,5 +99,10 @@
         for(const g of played){const m=(g.home_score-g.away_score)*(g.home_division===d.division?1:-1);record[m>0?0:m<0?1:2]++;}
         return {division:d.division,teams:teams.length,rated:teams.filter(t=>t.power!==null).length,mean:teams.every(t=>t.power!==null)?teams.reduce((s,t)=>s+t.power,0)/teams.length:null,crossGames:played.length,record,components:[...new Set(teams.map(t=>t.component))]};})};
   }
-  return {METHOD,V2,compute,key,fullSeason,divisionSummary};
+  function recordDetail(t){
+    if(!t)return 'Record unavailable';
+    const fmt=r=>`${r.w}–${r.l}–${r.t} / ${r.gp} GP`;
+    return t.regular_record?`${t.record_scope}: ${fmt(t)} · Regular ${fmt(t.regular_record)} · Playoffs ${fmt(t.playoff_record)}`:`Regular ${fmt(t)}`;
+  }
+  return {METHOD,V2,compute,key,fullSeason,divisionSummary,recordDetail};
 });

@@ -26,7 +26,7 @@ test('duplicates, conflicting scores, unknown identities and nonnumeric finals n
 });
 test('a playoff-only numeric result rates a team without inventing a regular-season GP',()=>{
  const d=fixture();for(const div of d.divisions){div.games=[];div.teams.forEach(t=>t.gp=0);}
- const f=R.fullSeason(d,playoff()),rows=R.compute(f.divisions,'8u','capped');assert.ok(rows.find(t=>t.team==='A0').power>0);assert.equal(rows.find(t=>t.team==='A0').gp,0);assert.equal(rows.find(t=>t.team==='B0').power,null);
+ const f=R.fullSeason(d,playoff()),rows=R.compute(f.divisions,'8u','capped');assert.ok(rows.find(t=>t.team==='A0').power>0);assert.equal(rows.find(t=>t.team==='A0').gp,1);assert.equal(rows.find(t=>t.team==='A0').regular_record.gp,0);assert.equal(rows.find(t=>t.team==='B0').power,null);
 });
 test('division comparison equally weights all roster teams and exposes graph coverage and crossdivision records',()=>{
  const f=R.fullSeason(fixture(),playoff());

@@ -10,6 +10,13 @@
   // SOS is a per-meeting mean over known external opponent records; coverage
   // reports the known fraction. Adjusted margin requires complete coverage.
   function compute(divisions, sport) {
+    if(divisions.some(d=>d.sport===sport&&d.record_games)){
+      const ds=divisions.filter(d=>d.sport===sport),id=(d,n)=>JSON.stringify([d,n]);
+      const teams=ds.flatMap(d=>d.teams.map(t=>({...t,team:id(d.division,t.team)})));
+      const games=ds.flatMap(d=>(d.record_games||d.games).map(g=>({...g,home:id(g.home_division||d.division,g.home),away:id(g.away_division||d.division,g.away)})));
+      const stats=compute([{sport,division:'combined',teams,games}],sport);
+      return Object.fromEntries(teams.map(t=>[t.team,stats[JSON.stringify(['combined',t.team])]]));
+    }
     const result = {};
     for (const division of divisions) {
       if (division.sport !== sport) continue;

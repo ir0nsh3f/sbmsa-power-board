@@ -51,7 +51,7 @@ test('safe semantic markup, local filters, and explicit historical-stat disclosu
  const html = ui.renderHTML(list,'All','guide');
  assert.match(html,/<table/); assert.match(html,/<caption>/); assert.match(html,/scope="col"/);
  assert.match(html,/1 past game awaiting a published result/);
- assert.match(html,/latest published regular-season totals/); assert.match(html,/not pre-game/); assert.match(html,/Small samples are provisional/);
+ assert.match(html,/latest published regular \+ verified playoff totals/); assert.match(html,/not pre-game/); assert.match(html,/Small samples are provisional/);
  assert.match(html,/aria-pressed="true"[^>]*>All/);
  const attack = '<img src=x onerror="alert(1)">';
  const unsafe = {...list[0],opponent:attack,opponentCoach:attack,location:attack,sourceUrl:'javascript:alert(1)'};
