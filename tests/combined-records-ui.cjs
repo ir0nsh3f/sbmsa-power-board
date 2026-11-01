@@ -1,6 +1,6 @@
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=require('node:assert/strict');
 (async()=>{const b=await chromium.launch({args:['--no-sandbox']}),base=process.env.TEST_URL,girls=process.env.GIRLS==='1';try{for(const width of [320,390,1400]){
- const p=await b.newPage({viewport:{width,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'?records='+Date.now());await p.waitForFunction(()=>typeof data!=='undefined'&&data?.powerCoverage);
+ const p=await b.newPage({viewport:{width,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(base+'?records='+Date.now());await p.waitForFunction(()=>typeof data!=='undefined'&&data?.powerCoverage);assert.doesNotMatch(await p.locator('.columns').innerText(),/Reg W/);
  for(const sport of girls?['5ug']:['flag','8u','6u']){
  if(!girls)await p.locator(`[data-sport="${sport}"]`).click();
  const checks=await p.evaluate(({sport,girls})=>{
@@ -18,6 +18,6 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=req
  if(!girls){await p.locator('[data-sport="6u"]').click();const c=p.locator('#rows .row[data-team="Celtics"]');const expected=await p.evaluate(()=>{const t=data.divisions.find(d=>d.sport==='6u'&&d.division==='Messi').teams.find(t=>t.team==='Celtics');return `${t.w}–${t.l}–${t.t}`});assert.equal(await c.locator('.record').innerText(),expected);console.log('PUBLIC/LOCAL Celtics DOM:',await c.innerText());}
  await p.screenshot({path:(process.env.QA_DIR||'/tmp')+`/records-${girls?'girls':'boys'}-${width}.png`,fullPage:true});assert.deepEqual(errors,[]);await p.close();
  }
- const p=await b.newPage();await p.route('**/playoffs.json',r=>r.abort());await p.goto(base+'?records-fallback='+Date.now());await p.waitForFunction(()=>typeof data!=='undefined'&&data?.powerCoverage);assert.ok(await p.evaluate(()=>data.divisions.every(d=>d.teams.every(t=>t.gp===t.regular_record.gp&&t.playoff_record.gp===0))));await p.close();
+ const p=await b.newPage();await p.route('**/playoffs.json',r=>r.abort());await p.goto(base+'?records-fallback='+Date.now());await p.waitForFunction(()=>typeof data!=='undefined'&&data?.powerCoverage);assert.doesNotMatch(await p.locator('.columns').innerText(),/Reg W/);assert.ok(await p.evaluate(()=>data.divisions.every(d=>d.teams.every(t=>t.gp===t.regular_record.gp&&t.playoff_record.gp===0))));await p.close();
  console.log('Combined record consumers, breakdowns, missing fallback, responsive layouts verified');
 }finally{await b.close();}})().catch(e=>{console.error(e);process.exitCode=1});
