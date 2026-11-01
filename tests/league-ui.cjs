@@ -60,7 +60,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   await page.locator('#tab-rankings').click();await page.locator('#raw').click();await page.locator('#tab-league-schedule').click();
   assert.equal(await page.locator('#raw').isVisible(),false);
   for(const sport of ['flag','8u','6u']){await page.locator(`[data-sport="${sport}"]`).click();for(const filter of ['Upcoming','Results','All']){await page.locator(`[data-league-filter="${filter}"]`).click();await checkFavoriteFill();}}
-  await page.evaluate(()=>location.hash='league-schedule');await page.reload();await page.waitForSelector('[data-league-fixture]');assert.ok(await page.locator('#league-schedule').isVisible());
+  await page.evaluate(()=>location.hash='league-schedule');await page.reload();await page.waitForSelector('[data-league-filter="All"]');await page.locator('[data-league-filter="All"]').click();await page.waitForSelector('[data-league-fixture]');assert.ok(await page.locator('#league-schedule').isVisible());
   for(const age of ['flag','8u','6u']){
    await page.locator(`[data-sport="${age}"]`).click();
    assert.ok(!(await page.locator('#league-schedule').textContent()).includes('Close records'));

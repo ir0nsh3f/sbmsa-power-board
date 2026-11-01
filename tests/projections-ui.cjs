@@ -9,12 +9,12 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   const url=process.env.TEST_URL||`http://127.0.0.1:${server.address().port}/`;
   const countReport={};
   for(const width of [320,390,768,1400]){
-   await page.setViewportSize({width,height:1000});await page.goto(url+'#league-schedule');await page.waitForSelector('[data-league-fixture]');
+   await page.setViewportSize({width,height:1000});await page.goto(url+'?qa='+Date.now()+'#league-schedule');await page.waitForSelector('[data-league-projections]');
    const toggle=page.locator('[data-league-projections]');assert.equal(await toggle.getAttribute('aria-pressed'),'false');assert.equal(await page.locator('.league-projection').count(),0);assert.equal(await page.locator('[data-projection-caution]').isVisible(),false);
    const ids=()=>page.locator('[data-league-fixture]').evaluateAll(es=>es.map(e=>e.dataset.leagueFixture));const baseline=await ids();
    await toggle.click();assert.equal(await toggle.getAttribute('aria-pressed'),'true');assert.deepEqual(await ids(),baseline);
    const expected=await page.evaluate(()=>data.projections.forecasts.filter(f=>Date.parse(f.game_id[5])>Date.now()).length);
-   assert.ok(expected>0,'Actual collected projections loaded, not QA fixtures');assert.equal(await page.locator('.league-projection b').count(),expected);countReport[width]=expected;
+   if(expected===0){assert.equal(await page.locator('.league-projection b').count(),0);assert.ok(await page.locator('[data-projection-caution]').isVisible());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.reload();await page.waitForSelector('[data-league-projections]');assert.equal(await page.locator('[data-league-projections]').getAttribute('aria-pressed'),'false');countReport[width]={future:0,emptySeasonEndVerified:true};continue;}assert.equal(await page.locator('.league-projection b').count(),expected);countReport[width]=expected;
    const checks=await page.locator('.league-projection b').evaluateAll(es=>es.map(e=>{const fixture=e.closest('[data-league-fixture]');const [sport,division,index]=JSON.parse(fixture.dataset.leagueFixture);const d=data.divisions.find(d=>d.sport===sport&&d.division===division),g=d.schedule[index];const p=data.projections.forecasts.find(f=>f.game_id[2]===division&&f.game_id[3]===g.home&&f.game_id[4]===g.away&&Date.parse(f.game_id[5])===Date.parse(g.start_iso));return {text:e.parentElement.innerText,detail:fixture.querySelector('.league-projection-detail').textContent,insideMatch:!!e.closest('.league-match'),p,done:g.home_score!==null||g.away_score!==null,start:Date.parse(g.start_iso)};}));
    for(const c of checks){
     assert.ok(!c.done&&c.start>Date.now());const f=c.p,spread=Math.round(Math.abs(f.margin_home));

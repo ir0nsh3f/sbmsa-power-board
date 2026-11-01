@@ -1,6 +1,10 @@
 """Exact standard-library counterpart of site/ratings.js; see power-method.html."""
 import json
 import math
+try:
+    from scripts.fullseason import full_season
+except ModuleNotFoundError:
+    from fullseason import full_season
 
 V2 = {'id': 'opponent-ridge-margin-v2', 'caps': {'flag': 21, '8u': 3, '6u': 3},
           'ridge': 3, 'tolerance': 1e-12, 'maxIterations': 10000, 'tieDecimals': 8}
@@ -26,10 +30,10 @@ def compute(divisions, sport, mode='raw'):
     for d in divisions:
         if d['sport'] != sport:
             continue
-        for g in d.get('games', []):
+        for g in d.get('power_games', d.get('games', [])):
             if not all(isinstance(g.get(k), (int, float)) and math.isfinite(g[k]) for k in ('home_score', 'away_score')):
                 continue
-            h, a = ids[d['division'], g['home']], ids[d['division'], g['away']]
+            h, a = ids[g.get('home_division', d['division']), g['home']], ids[g.get('away_division', d['division']), g['away']]
             if h == a:
                 raise ValueError('Invalid power-rating game identity')
             games.append((h, a, max(-cap, min(cap, g['home_score']-g['away_score']))))
@@ -61,7 +65,7 @@ def compute(divisions, sport, mode='raw'):
                     all_[k]['component'] = component
                     stack.append(k)
     for i, t in enumerate(all_):
-        if t['gp'] > 0 and edges[i]:
+        if edges[i] and (t['gp'] > 0 or any(d['sport'] == sport and 'power_games' in d for d in divisions)):
             t['power'] = r[i]
     rounded = lambda t: math.floor(t['power']*1e8 + .5)/1e8
     rated = sorted((t for t in all_ if t['power'] is not None), key=lambda t: (-rounded(t), t['team'], t['division']))

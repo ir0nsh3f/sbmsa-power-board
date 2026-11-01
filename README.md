@@ -22,7 +22,17 @@ Scoring totals include only numeric results. Affected teams carry `scored_gp` an
 
 Schedules label the winner and loser with **score unavailable**; standings and Advanced disclose scored-game coverage. Corrections append a new accepted history snapshot with the paired outcomes and coverage fields on the public allowlist. All previous histories, model captures and publication receipts remain immutable and reproducible; no history is backdated. Source standings GF/GA, when supplied, still require exact reconciliation to known numeric scores: unexplained accounting differences fail closed for source review, never become an invented score. The September 16 Haaland desktop standings supply W/L/T/GP/PTS, **not GF/GA**. Its September 12 Blue Jays at San Jose fixture now says away W / home L; the official classification beyond W/L is unknown.
 
-## Observed season history
+## Full-season power scope (November 1, 2026)
+
+Current power inputs are regular-season plus verified numeric playoff results, equal weight per game, no playoff bonus, same ridge3 and selected cap3 soccer / cap21 flag (capped default; Raw available). `fullSeason` in `site/ratings.js` and `scripts/fullseason.py:full_season` construct additive `power_games` from the two source publications; `games`, team records and schedule remain unchanged. Each dashboard waits for postseason loading before rendering ranks. Every rank consumer uses that same combined input. The existing scheduled collector/export automatically supplies new playoff scores; no cadence change or frozen release-only result list.
+
+Only unique exact age/name identities, with coach agreement when provided and matching verified identity metadata, count. Never guess spelling aliases. Match IDs and same-time exact-participant fixture representations are deduplicated; conflicting duplicates are excluded, not arbitrarily chosen. Byes, TBD, W/L-only, missing scores and unverified identities are excluded with coverage counts. Last-good source results retain their original successful timestamps; failed/missing/stale feed coverage is disclosed separately from regular-source freshness.
+
+Cross-division results connect one joint same-age fit. Compact division comparisons average **all** original roster teams equally, show cross-division W–L–T/sample counts and graph connectivity, and warn about Gold/Silver/Bronze selection bias. Disconnected groups are not directly comparable. No calibrated division effect or confidence interval is claimed.
+
+All W–L–T, GP and descriptive scoring/Advanced statistics remain explicitly **regular-season only**. Official playoff standings/brackets stay separate. Existing and continuing history captures remain reproducible regular-season-only series, not full-season rank-movement baselines. Forecast models, priors, training inputs and immutable captures/receipts are unchanged. The formula version stays `opponent-ridge-margin-v3`; the new input scope is `regular-plus-verified-playoffs-v1`.
+
+## Observed regular-season history
 
 Index schema 2 has a ranking-method registry and `ranking_method_id` per capture. Old immutable v1 record-first and v2 capped-power captures and their original ranks are preserved byte-for-byte; v3 archive metadata specifies the Raw capture convention and both modes, independently of the capped browser default. First accepted source check after any method transition appends a `ranking-method-change` baseline even with unchanged results. Never report this as movement. Future charts must split at method boundaries and must not carry observations across them; no chart currently bridges these methods. Unknown historical weeks remain unknown.
 

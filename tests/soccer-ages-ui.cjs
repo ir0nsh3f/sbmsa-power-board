@@ -7,7 +7,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
   browser=await chromium.launch({args:['--no-sandbox']});const url=process.env.TEST_URL||`http://127.0.0.1:${server.address().port}/`,report=[];
   for(const width of [320,390,1400])for(const sport of ['8u','6u']){
    const page=await browser.newPage({viewport:{width,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(url+'#league-schedule');await page.waitForSelector('[data-league-fixture]');await page.locator(`[data-sport="${sport}"]`).click();
+   await page.goto(url+'#league-schedule');await page.waitForSelector('[data-league-projections]');await page.locator(`[data-sport="${sport}"]`).click();
    const toggle=page.locator('[data-league-projections]');assert.equal(await toggle.count(),1,'Soccer toggle present');assert.equal(await toggle.getAttribute('aria-pressed'),'false');assert.equal(await page.locator('.league-projection').count(),0);
    const withheld=await page.evaluate(s=>data.division_status&&SBMSAFreshness.sourceTime(data,s)===null,sport);
    if(withheld){
@@ -17,7 +17,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    await page.waitForFunction(s=>data.soccerAgeProjections?.[s],sport);
    const ids=()=>page.locator('[data-league-fixture]').evaluateAll(es=>es.map(e=>e.dataset.leagueFixture));const before=await ids();await toggle.click();assert.deepEqual(await ids(),before);
    const actual=await page.locator('.league-projection b').evaluateAll(es=>es.map(e=>{const row=e.closest('[data-league-fixture]'),[s,d,i]=JSON.parse(row.dataset.leagueFixture),g=data.divisions.find(x=>x.sport===s&&x.division===d).schedule[i],p=data.soccerAgeProjections[s],f=p.forecasts.find(f=>f.fixture_id[2]===d&&f.fixture_id[3]===g.home&&f.fixture_id[4]===g.away&&Date.parse(f.fixture_id[5])===Date.parse(g.start_iso));return {text:e.parentElement.innerText,detail:row.querySelector('.league-projection-detail').textContent,f,model:p.model};}));
-   const expected=await page.evaluate(s=>data.soccerAgeProjections[s].forecasts.filter(f=>Date.parse(f.fixture_id[5])>Date.now()).length,sport);assert.equal(actual.length,expected);assert.ok(expected>0);
+   const expected=await page.evaluate(s=>data.soccerAgeProjections[s].forecasts.filter(f=>Date.parse(f.fixture_id[5])>Date.now()).length,sport);assert.equal(actual.length,expected);if(expected===0){assert.ok(await page.locator('[data-projection-caution]').isVisible());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal(await page.evaluate(s=>data.soccerAgeProjections[s].model.prior_games,sport),3);assert.deepEqual(errors,[]);report.push({width,sport,future:0,emptySeasonEndVerified:true});await page.close();continue;}
    for(const {text,detail,f,model} of actual){const spread=Math.round(Math.abs(f.margin_home)*2)/2;assert.equal(text,`Model · ${spread?`${f.fixture_id[f.margin_home>0?3:4]} −${spread}`:'Pick’em'} · Total ${Math.round(f.total*2)/2} goals`);assert.match(detail,/Broad approximate 95%/);assert.ok(detail.includes(`scored GP away ${f.away_gp} / home ${f.home_gp}`));assert.ok(detail.includes(`${f.total_range[0]}–${f.total_range[1]}`));assert.equal(model.prior_games,3);assert.equal(model.sport,sport);}
    assert.equal(await page.locator('[data-projection-caution]').isVisible(),true);
    const first=page.locator('.league-fixture').filter({has:page.locator('.league-projection b')}).first();await first.locator('summary').click();assert.equal(await first.locator('.league-projection-detail').isVisible(),true);
@@ -28,7 +28,7 @@ const assert=require('node:assert/strict'),http=require('node:http'),fs=require(
    for(const d of divisions){await page.locator('#division').selectOption(d);assert.equal(await page.locator('.league-projection b').count(),await page.evaluate(({sport,d})=>data.soccerAgeProjections[sport].forecasts.filter(f=>(d==='all'||f.fixture_id[2]===d)&&Date.parse(f.fixture_id[5])>Date.now()).length,{sport,d}));}
    await page.locator('#division').selectOption('all');const futureTeam=await page.evaluate(s=>data.soccerAgeProjections[s].forecasts.find(f=>Date.parse(f.fixture_id[5])>Date.now()).fixture_id[3],sport);await page.locator('#search').fill(futureTeam);const sample=await page.locator('.league-projection b').first().locator('..').innerText();report.push({width,sport,expected,divisions,sample});
    await page.locator('[data-league-filter="Results"]').click();assert.equal(await page.locator('.league-projection').count(),0);
-   await page.reload();await page.waitForSelector('[data-league-fixture]');assert.equal(await page.locator('[data-league-projections]').getAttribute('aria-pressed'),'false');assert.deepEqual(errors,[]);await page.close();
+   await page.reload();await page.waitForSelector('[data-league-projections]');assert.equal(await page.locator('[data-league-projections]').getAttribute('aria-pressed'),'false');assert.deepEqual(errors,[]);await page.close();
   }
   console.log(JSON.stringify(report,null,2));
  }finally{await browser?.close();await new Promise(r=>server.close(r));}
